@@ -5,7 +5,7 @@ import Image from "next/image"
 import Link from "next/link"
 
 const PlayButton = () => {
-  const [rotation, setRotation] = useState(0)
+  const [scale, setScale] = useState(1)
 
   useEffect(() => {
     let ticking = false
@@ -14,8 +14,9 @@ const PlayButton = () => {
       if (!ticking) {
         window.requestAnimationFrame(() => {
           const scrollY = window.scrollY
-          const newRotation = scrollY * 0.1
-          setRotation(newRotation)
+          // Calculate new scale based on scroll position
+          const newScale = Math.max(0.8, Math.min(1.2, 1 + Math.sin(scrollY * 0.01) * 0.1))
+          setScale(newScale)
           ticking = false
         })
         ticking = true
@@ -34,7 +35,7 @@ const PlayButton = () => {
       <button className='fixed z-10 bottom-8 right-8 focus:outline-none' aria-label='Create a poem'>
         <div
           className='clickable relative w-36 h-36 transition-transform duration-300 transform hover:scale-125 flex items-center justify-center'
-          style={{ transform: `rotate(${rotation}deg)`, transition: "transform 0.1s ease-out" }} // Adding smooth transition
+          style={{ transform: `scale(${scale})`, transition: "transform 0.1s ease-out" }} 
         >
           <Image src='/images/create-button.png' alt='Play Button' width={100} height={100} className='absolute w-full h-full' />
         </div>
