@@ -1,7 +1,5 @@
 import "./globals.css"
-import HeaderWhite from "components/HeaderWhite"
 import Footer from "components/Footer"
-import PlayButton from "components/PlayButton"
 
 export const metadata = {
   title: "Mitsch 🤍 Coding",
@@ -18,7 +16,6 @@ export default function RootLayout({ children }) {
       </head>
       <body className='min-h-screen flex flex-col'>
         <main className='flex-grow'>{children}</main>
-        <PlayButton />
         <Footer />
       </body>
     </html>

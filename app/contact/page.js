@@ -1,10 +1,10 @@
 import Image from "next/image"
-import HeaderBlack from "components/HeaderBlack"
+import HeaderWhiteBlack from "components/HeaderWhiteBlack"
 
 export default function Page() {
   return (
     <div>
-      <HeaderBlack />
+      <HeaderWhiteBlack />
       {/* Grid Layout */}
       <div className='grid grid-cols-1 md:grid-cols-2 gap-0'>
         {/* Left: Image */}

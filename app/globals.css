@@ -12,13 +12,6 @@ html {
 }
 
 @font-face {
-  font-family: "Teko";
-  src: url("/fonts/Teko-VariableFont_wght.ttf") format("truetype");
-  font-weight: 100 700;
-  font-style: normal;
-}
-
-@font-face {
   font-family: "Hind Siliguri";
   src: url("/fonts/HindSiliguri-Light.ttf") format("truetype");
   font-weight: 300;
@@ -33,16 +26,16 @@ html {
 }
 
 @font-face {
-  font-family: 'Oswald';
-  src: url('/fonts/Oswald-VariableFont_wght.ttf') format('truetype');
+  font-family: 'Cooper Hewitt';
+  src: url('/fonts/CooperHewitt-Bold.otf') format('truetype');
   font-weight: 700;
   font-style: normal;
 }
 
 @font-face {
-  font-family: 'Cooper Hewitt';
-  src: url('/fonts/CooperHewitt-Bold.otf') format('truetype');
-  font-weight: 700;
+  font-family: 'Covered By Your Grace';
+  src: url('/fonts/CoveredByYourGrace-Regular.ttf') format('truetype');
+  font-weight: normal;
   font-style: normal;
 }
 
@@ -58,7 +51,7 @@ body, div, p, span {
 }
 
 a, button, input, textarea, .clickable {
-  cursor: url('/images/cursor-click-64.png') 16 16, pointer !important;
+  cursor: url('/images/cursor-click-80.png') 36 36, pointer !important;
 }
 
 body {
@@ -123,4 +116,22 @@ button>a {
   .text-balance {
     text-wrap: balance;
   }
+}
+
+.zoom-out {
+  transform: scale(0.8); 
+  transform-origin: top center; 
+}
+
+
+@media (max-width: 600px) {
+  /* Styles for small devices (phones) */
+}
+
+@media (max-width: 768px) {
+  /* Styles for medium devices (tablets) */
+}
+
+@media (min-width: 1024px) {
+  /* Styles for large devices (desktops) */
 }

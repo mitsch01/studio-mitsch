@@ -4,11 +4,10 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        teko: ["Teko", "sans-serif"],
         hind: ["Hind Siliguri", "sans-serif"],
         homemade: ["HomemadeApple", "sans-serif"],
-        oswald: ["Oswald", "sans-serif"],
-        cooperhewitt: ["Cooper Hewitt", "sans-serif"]
+        cooperhewitt: ["Cooper Hewitt", "sans-serif"],
+        grace: ['"Covered By Your Grace"', "cursive"]
       }
     }
   },

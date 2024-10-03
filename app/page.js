@@ -1,7 +1,8 @@
 import Image from "next/image"
 import RepoGallery from "../components/RepoGallery"
 import HeaderWhite from "../components/HeaderWhite"
-import HeaderBlack from "../components/HeaderBlack"
+import PlayButton from "components/PlayButton"
+
 
 export default function Page() {
   return (
@@ -9,7 +10,19 @@ export default function Page() {
       {/* Header */}
       <HeaderWhite />
       <div className='relative w-full h-screen overflow-hidden'>
-        <Image src='/images/header-image.jpg' alt='Header Image' layout='fill' className='object-cover' />
+        <Image
+          src='/images/header-large.jpg' // fallback for browsers that don't support srcSet
+          alt='Responsive header image'
+          layout='fill' // Ensures it spans the full width
+          // width={2400} // Set this to your large image width
+          // height={1350} // Set this to match the aspect ratio of your image
+          sizes='(max-width: 600px) 600px,
+         (max-width: 768px) 768px,
+         1200px'
+          srcSet='/images/header-small.jpg 600w,
+         /images/header-medium.jpg 768w,
+         /images/header-large.jpg 1200w'
+        />
       </div>
 
       <div className='relative z-10 max-w-screen-md mx-auto m-8 p-8'>
@@ -32,7 +45,7 @@ export default function Page() {
             <span className='bg-[#e8175d] text-white py-2 px-6 uppercase'>English & German</span>
           </div>
           <div className='text-lg text-gray-800 leading-relaxed'>
-            <p className='mb-4'>Hi, I'm Miriam – a frontend developer based in Hamburg, passionate about art, design, and everything related to making things visually appealing. I'm currently looking for a part-time position as a frontend developer where I can focus on the digital side of design, helping clients bring their ideas to life through websites and apps that align with their corporate identity. Outside of my work, I will continue to spend time in my art studio, painting and illustrating to unwind. I bike everywhere and love being outdoors. </p>
+            <p className='mb-4'>Hi, I&apos;m Miriam – a frontend developer based in Hamburg, passionate about art, design, and everything related to making things visually appealing. I&apos;m currently looking for a part-time position as a frontend developer where I can focus on the digital side of design, helping clients bring their ideas to life through websites and apps that align with their corporate identity. Outside of my work, I will continue to spend time in my art studio, painting and illustrating to unwind. I bike everywhere and love being outdoors. </p>
           </div>
         </section>
 
@@ -40,6 +53,7 @@ export default function Page() {
         <section id='projects'>
           <h1 className='text-7xl font-bold uppercase text-black pt-16 mt-20 tracking-tight'>Projects</h1>
           <RepoGallery />
+          <PlayButton />
         </section>
       </div>
     </>
