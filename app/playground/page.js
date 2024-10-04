@@ -48,7 +48,7 @@ export default function Playground() {
     await new Promise(resolve => {
       setTimeout(() => {
         resolve()
-      }, 3000)
+      }, 1000)
     })
 
     await generateHaiku()
@@ -56,7 +56,7 @@ export default function Playground() {
 
   useEffect(() => {
     async function fetchHaikus() {
-      const res = await fetch("/api/haikus")
+      const res = await fetch("/api/save-haiku")
       const data = await res.json()
 
       if (data.length > 20) {

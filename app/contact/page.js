@@ -1,5 +1,6 @@
 import Image from "next/image"
 import HeaderWhiteBlack from "components/HeaderWhiteBlack"
+import ConnectingDots from "components/ConnectingDots"
 
 export default function Page() {
   return (
@@ -9,12 +10,10 @@ export default function Page() {
       <div className='grid grid-cols-1 md:grid-cols-2 gap-0'>
         {/* Left: Image */}
         <div className='relative w-full h-screen overflow-hidden'>
-          <Image
-            src='/images/contact-image.jpeg'
-            alt='Header Image'
-            layout='fill' // Fill the container completely
-            className='object-cover' // Ensures the image covers the container with aspect ratio maintained
-          />
+          <Image src='/images/contact-image.jpeg' alt='Header Image' layout='fill' className='object-cover' />
+          <div className='absolute top-52 left-10 z-10'>
+            <ConnectingDots />
+          </div>
         </div>
 
         {/* Right: Contact Form */}

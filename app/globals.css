@@ -46,7 +46,7 @@ html {
   }
 }
 
-body, div, p, span {
+body, p, span {
   cursor: url('/images/cursor-default-64.png') 16 16, auto !important;
 }
 

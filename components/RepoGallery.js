@@ -12,7 +12,6 @@ const RepoGallery = () => {
   const username = "mitsch01"
 
   useEffect(() => {
-    // Fetch GitHub repos
     const fetchRepos = async () => {
       const response = await fetch(`https://api.github.com/users/${username}/repos`)
       const data = await response.json()
@@ -47,7 +46,7 @@ const RepoGallery = () => {
             return canvas.toDataURL("image/png")
           })
 
-          setCardImages(cardImages) // Store the generated images
+          setCardImages(cardImages) 
         }
       }
 
@@ -71,9 +70,10 @@ const RepoGallery = () => {
       {/* Invisible canvas for image generation */}
       <canvas ref={canvasRef} style={{ display: "none" }}></canvas>
 
-      <div className='flex flex-wrap justify-center'>
+      {/* Repo Cards */}
+      <div className='clickable flex flex-wrap justify-center'>
         {repos.slice(0, visibleRepos).map((repo, index) => (
-          <Link href={`/project/${repo.name}`} key={repo.id} className='clickable mr-8 mb-8 w-80 flex flex-col justify-between overflow-hidden transition-transform duration-100 hover:scale-110 hover:rounded'>
+          <Link href={`/project/${repo.name}`} key={repo.id} className='mr-8 mb-8 w-80 flex flex-col justify-between overflow-hidden transition-transform duration-100 hover:scale-110 hover:rounded'>
             {/* Top Part: Image */}
             <div className='w-full'>{cardImages[index] ? <Image src={cardImages[index]} alt={`${repo.name} header`} width={320} height={320} className='w-full h-full object-cover' /> : null}</div>
 

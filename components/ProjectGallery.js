@@ -8,7 +8,7 @@ export default function ProjectGallery({ items = [] }) {
   }
 
   return (
-    <div className='flex flex-col space-y-4'>
+    <div className='clickable flex flex-col space-y-4'>
       {filteredItems.map((item, index) => (
         <div key={index} className={`flex justify-center items-center h-40 rounded-md text-white font-bold text-center p-4 ${getColorClass(index)}`}>
           {item}
