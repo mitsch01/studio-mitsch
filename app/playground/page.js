@@ -180,7 +180,7 @@ export default function Playground() {
             <p className='italic text-gray-600'>
               /ˈhaɪkuː/ <span className='font-normal'>noun</span>
             </p>
-            <p className='mt-2 text-justify'>Rooted in Japanese tradition, the Haiku captures the beauty of fleeting moments in just three lines: The first line has 5 syllables, the second has 7 syllables, and the third has 5 syllables. Haikus invite you to pause, reflect, and appreciate the world around you. Try creating your own!</p>
+            <p className='mt-2 text-justify'>Rooted in Japanese tradition, Haikus capture the beauty of fleeting moments in just three lines. They invite you to pause, reflect, and appreciate the world around you. Try creating your own!</p>
           </div>
         </div>
         <div className='relative w-[4000px] h-[4000px]'>
