@@ -32,12 +32,14 @@ const PlayButton = () => {
 
   return (
     <Link href='/playground'>
-      <button className='fixed z-10 bottom-0 right-2 focus:outline-none' aria-label='Create a poem'>
+      <button className='fixed z-10 md:bottom-4 md:right-6 bottom-0 right-2 transition-transform duration-200' aria-label='Create a poem'>
         <div
-          className='clickable relative w-24 h-24 transition-transform duration-300 transform hover:scale-125 flex items-center justify-center'
-          style={{ transform: `scale(${scale})`, transition: "transform 0.1s ease-out" }} 
-        >
-          <Image src='/images/create-button.png' alt='Play Button' width={100} height={100} className='absolute w-full h-full' />
+          className='clickable relative md:w-36 md:h-36 w-24 h-24 flex items-center justify-center'
+          style={{
+            transform: `scale(${scale})`,
+            transition: "transform 0.1s ease-out"
+          }}>
+          <Image src='/images/create-button.png' alt='Play Button' width={100} height={100} className='absolute w-full h-full transition-transform duration-200 hover:scale-125' />
         </div>
       </button>
     </Link>

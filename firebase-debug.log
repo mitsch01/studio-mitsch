@@ -373,3 +373,1110 @@ info  - Need to disable some ESLint rules? Learn more here: https://nextjs.org/d
 [debug] [2024-10-05T11:58:52.278Z] <<< [apiv2][body] POST https://cloudfunctions.googleapis.com/v2/projects/mitsch-website/locations/europe-west1/functions:generateUploadUrl {"uploadUrl":"https://storage.googleapis.com/gcf-v2-uploads-240593043883-europe-west1/9a03bed5-d6f9-472f-b7f2-5cfe61d89c98.zip?GoogleAccessId=service-240593043883@gcf-admin-robot.iam.gserviceaccount.com&Expires=1728131332&Signature=F1r7w9B6i%2B5twxXTc4A9%2BJAVUT%2F87oXE4l8Mm%2Bgf3xuCudHDwZB6olZjv3EElcjf85yw2yIsY%2BDIlR%2B9RtU6EHsZkfyouUZuXB9etqx0WgmOjW8QHkIa5uAkdDUqoJrF2oiZc74don%2B9gFuJ%2BuAZ9uW2ZDvIqp8k%2BUjrujhl2oowPT5X8Bg3pUKOPJpxFN%2FZ5JANhCicVl12Un5THrh%2BGmPL920zwU7S%2FhwzegsSHi4sVUmBg9olKag0B49Bn0V%2F9KnPIq4xQjPXLE7CtJIf03%2FswKUVvOB1D5aWD9pTBu9FnLQ5zRIGo2hT7Np3jAH3FBWu0Y6vE%2FYq5TXkTFBIww%3D%3D","storageSource":{"bucket":"gcf-v2-uploads-240593043883-europe-west1","object":"9a03bed5-d6f9-472f-b7f2-5cfe61d89c98.zip"}}
 [debug] [2024-10-05T11:58:52.281Z] >>> [apiv2][query] PUT https://storage.googleapis.com/gcf-v2-uploads-240593043883-europe-west1/9a03bed5-d6f9-472f-b7f2-5cfe61d89c98.zip GoogleAccessId=service-240593043883%40gcf-admin-robot.iam.gserviceaccount.com&Expires=1728131332&Signature=F1r7w9B6i%2B5twxXTc4A9%2BJAVUT%2F87oXE4l8Mm%2Bgf3xuCudHDwZB6olZjv3EElcjf85yw2yIsY%2BDIlR%2B9RtU6EHsZkfyouUZuXB9etqx0WgmOjW8QHkIa5uAkdDUqoJrF2oiZc74don%2B9gFuJ%2BuAZ9uW2ZDvIqp8k%2BUjrujhl2oowPT5X8Bg3pUKOPJpxFN%2FZ5JANhCicVl12Un5THrh%2BGmPL920zwU7S%2FhwzegsSHi4sVUmBg9olKag0B49Bn0V%2F9KnPIq4xQjPXLE7CtJIf03%2FswKUVvOB1D5aWD9pTBu9FnLQ5zRIGo2hT7Np3jAH3FBWu0Y6vE%2FYq5TXkTFBIww%3D%3D
 [debug] [2024-10-05T11:58:52.281Z] >>> [apiv2][body] PUT https://storage.googleapis.com/gcf-v2-uploads-240593043883-europe-west1/9a03bed5-d6f9-472f-b7f2-5cfe61d89c98.zip [stream]
+[debug] [2024-10-05T12:56:56.843Z] ----------------------------------------------------------------------
+[debug] [2024-10-05T12:56:56.846Z] Command:       /Users/miriamschwartz/.nvm/versions/node/v20.11.0/bin/node /Users/miriamschwartz/.nvm/versions/node/v20.11.0/bin/firebase deploy
+[debug] [2024-10-05T12:56:56.846Z] CLI Version:   13.20.2
+[debug] [2024-10-05T12:56:56.846Z] Platform:      darwin
+[debug] [2024-10-05T12:56:56.847Z] Node Version:  v20.11.0
+[debug] [2024-10-05T12:56:56.847Z] Time:          Sat Oct 05 2024 14:56:56 GMT+0200 (Central European Summer Time)
+[debug] [2024-10-05T12:56:56.847Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2024-10-05T12:56:56.882Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2024-10-05T12:56:56.882Z] > authorizing via signed-in user (schwartz.miriam@googlemail.com)
+[debug] [2024-10-05T12:56:56.882Z] [iam] checking project mitsch-website for permissions ["firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2024-10-05T12:56:56.883Z] Checked if tokens are valid: false, expires at: 1728133080645
+[debug] [2024-10-05T12:56:56.883Z] Checked if tokens are valid: false, expires at: 1728133080645
+[debug] [2024-10-05T12:56:56.883Z] > refreshing access token with scopes: []
+[debug] [2024-10-05T12:56:56.884Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2024-10-05T12:56:56.884Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2024-10-05T12:56:57.361Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200
+[debug] [2024-10-05T12:56:57.361Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2024-10-05T12:56:57.372Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/mitsch-website:testIamPermissions [none]
+[debug] [2024-10-05T12:56:57.372Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/mitsch-website:testIamPermissions x-goog-quota-user=projects/mitsch-website
+[debug] [2024-10-05T12:56:57.372Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/mitsch-website:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2024-10-05T12:56:57.808Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/mitsch-website:testIamPermissions 200
+[debug] [2024-10-05T12:56:57.808Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/mitsch-website:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2024-10-05T12:56:57.809Z] Checked if tokens are valid: true, expires at: 1728136616362
+[debug] [2024-10-05T12:56:57.809Z] Checked if tokens are valid: true, expires at: 1728136616362
+[debug] [2024-10-05T12:56:57.810Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/mitsch-website [none]
+[debug] [2024-10-05T12:56:58.294Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/mitsch-website 200
+[debug] [2024-10-05T12:56:58.294Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/mitsch-website {"projectId":"mitsch-website","projectNumber":"240593043883","displayName":"Mitsch Website","name":"projects/mitsch-website","resources":{"hostingSite":"mitsch-website"},"state":"ACTIVE","etag":"1_db7cd86d-e712-48ed-bebd-0fe824389a66"}
+[debug] [2024-10-05T12:56:59.063Z] Checked if tokens are valid: true, expires at: 1728136616362
+[debug] [2024-10-05T12:56:59.063Z] Checked if tokens are valid: true, expires at: 1728136616362
+[debug] [2024-10-05T12:56:59.064Z] >>> [apiv2][query] GET https://firebasehosting.googleapis.com/v1beta1/projects/mitsch-website/sites pageToken=&pageSize=10
+[debug] [2024-10-05T12:57:00.409Z] <<< [apiv2][status] GET https://firebasehosting.googleapis.com/v1beta1/projects/mitsch-website/sites 200
+[debug] [2024-10-05T12:57:00.409Z] <<< [apiv2][body] GET https://firebasehosting.googleapis.com/v1beta1/projects/mitsch-website/sites {"sites":[{"name":"projects/mitsch-website/sites/mitsch-website","defaultUrl":"https://mitsch-website.web.app","appId":"1:240593043883:web:b323c1f176c4dc662d92ee","type":"DEFAULT_SITE"}]}
+[debug] [2024-10-05T12:57:00.410Z] Checked if tokens are valid: true, expires at: 1728136616362
+[debug] [2024-10-05T12:57:00.410Z] Checked if tokens are valid: true, expires at: 1728136616362
+[debug] [2024-10-05T12:57:00.410Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/-/webApps/1:240593043883:web:b323c1f176c4dc662d92ee/config [none]
+[debug] [2024-10-05T12:57:01.342Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/-/webApps/1:240593043883:web:b323c1f176c4dc662d92ee/config 200
+[debug] [2024-10-05T12:57:01.343Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/-/webApps/1:240593043883:web:b323c1f176c4dc662d92ee/config {"projectId":"mitsch-website","appId":"1:240593043883:web:b323c1f176c4dc662d92ee","storageBucket":"mitsch-website.appspot.com","apiKey":"AIzaSyA7jcUA-si7vWQqfWcY6XY4Et-OCXi3UVk","authDomain":"mitsch-website.firebaseapp.com","messagingSenderId":"240593043883","measurementId":"G-P47X78ELLB"}
+[info] 
+   Thank you for trying our early preview of Next.js support on Firebase Hosting.
+   During the preview, support is best-effort and breaking changes can be expected. Proceed with caution.
+   The integration is known to work with Next.js version 12 - 14.0. You may encounter errors.
+
+   Documentation: https://firebase.google.com/docs/hosting/frameworks/nextjs
+   File a bug: https://github.com/firebase/firebase-tools/issues/new?template=bug_report.md
+   Submit a feature request: https://github.com/firebase/firebase-tools/issues/new?template=feature_request.md
+
+   We'd love to learn from you. Express your interest in helping us shape the future of Firebase Hosting: https://goo.gle/41enW5X
+
+[debug] [2024-10-05T12:57:02.765Z] Checked if tokens are valid: true, expires at: 1728136616362
+[debug] [2024-10-05T12:57:02.765Z] Checked if tokens are valid: true, expires at: 1728136616362
+[debug] [2024-10-05T12:57:02.765Z] >>> [apiv2][query] GET https://firebasehosting.googleapis.com/v1beta1/projects/mitsch-website/sites/mitsch-website [none]
+[debug] [2024-10-05T12:57:03.274Z] <<< [apiv2][status] GET https://firebasehosting.googleapis.com/v1beta1/projects/mitsch-website/sites/mitsch-website 200
+[debug] [2024-10-05T12:57:03.274Z] <<< [apiv2][body] GET https://firebasehosting.googleapis.com/v1beta1/projects/mitsch-website/sites/mitsch-website {"name":"projects/mitsch-website/sites/mitsch-website","defaultUrl":"https://mitsch-website.web.app","appId":"1:240593043883:web:b323c1f176c4dc662d92ee","type":"DEFAULT_SITE"}
+[info]   ▲ Next.js 14.2.14
+
+[info]   - Environments: .env.local
+
+
+[info]    Creating an optimized production build ...
+
+[info]  ✓ Compiled successfully
+
+[info]    Linting and checking validity of types ...
+
+[info] 
+./components/ConnectingDots.js
+57:6  Warning: React Hook useEffect has a missing dependency: 'initialDots.length'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+
+info  - Need to disable some ESLint rules? Learn more here: https://nextjs.org/docs/basic-features/eslint#disabling-rules
+
+[info]    Collecting page data ...
+
+[info]    Generating static pages (0/8) ...
+
+[info]    Generating static pages (2/8) 
+
+[info]    Generating static pages (4/8) 
+   Generating static pages (6/8) 
+
+[info]  ✓ Generating static pages (8/8)
+
+[info]    Finalizing page optimization ...
+
+[info]    Collecting build traces ...
+
+[info] 
+
+[info] Route (app)                              Size     First Load JS
+┌ ○ /                                    2 kB            100 kB
+├ ○ /_not-found                          873 B            88 kB
+├ ƒ /api/generate-haiku                  0 B                0 B
+├ ƒ /api/save-haiku                      0 B                0 B
+├ ○ /contact                             40 kB           138 kB
+├ ○ /playground                          2.86 kB         101 kB
+└ ƒ /project/[project-name]              28.9 kB         127 kB
++ First Load JS shared by all            87.1 kB
+  ├ chunks/117-06e8ad08bc47bdf0.js       31.6 kB
+  ├ chunks/fd9d1056-13baa9b2029d31fe.js  53.6 kB
+  └ other shared chunks (total)          1.91 kB
+
+
+[info] 
+○  (Static)   prerendered as static content
+ƒ  (Dynamic)  server-rendered on demand
+
+
+[info] Building a Cloud Function to run this application. This is needed due to:
+[info]  • Image Optimization
+[info]  • non-static component /api/save-haiku/route
+[info]  • non-static component /api/generate-haiku/route
+[info]  • non-static component /project/[project-name]/page
+[info] 
+[debug] [2024-10-05T12:57:11.763Z] Checked if tokens are valid: true, expires at: 1728136616362
+[debug] [2024-10-05T12:57:11.763Z] Checked if tokens are valid: true, expires at: 1728136616362
+[debug] [2024-10-05T12:57:11.763Z] >>> [apiv2][query] GET https://firebasehosting.googleapis.com/v1beta1/projects/mitsch-website/sites/mitsch-website [none]
+[debug] [2024-10-05T12:57:12.719Z] <<< [apiv2][status] GET https://firebasehosting.googleapis.com/v1beta1/projects/mitsch-website/sites/mitsch-website 200
+[debug] [2024-10-05T12:57:12.720Z] <<< [apiv2][body] GET https://firebasehosting.googleapis.com/v1beta1/projects/mitsch-website/sites/mitsch-website {"name":"projects/mitsch-website/sites/mitsch-website","defaultUrl":"https://mitsch-website.web.app","appId":"1:240593043883:web:b323c1f176c4dc662d92ee","type":"DEFAULT_SITE"}
+[debug] [2024-10-05T12:57:20.917Z] [web frameworks] effective firebase.json:  {
+  "hosting": [
+    {
+      "source": ".",
+      "ignore": [
+        "firebase.json",
+        "**/.*",
+        "**/node_modules/**"
+      ],
+      "frameworksBackend": {
+        "region": "europe-west1"
+      },
+      "site": "mitsch-website",
+      "rewrites": [
+        {
+          "source": "**",
+          "function": {
+            "functionId": "ssrmitschwebsite",
+            "region": "europe-west1",
+            "pinTag": true
+          }
+        }
+      ],
+      "redirects": [],
+      "headers": [
+        {
+          "source": "/_not-found",
+          "headers": [
+            {
+              "key": "x-next-cache-tags",
+              "value": "_N_T_/layout,_N_T_/_not-found/layout,_N_T_/_not-found/page,_N_T_/_not-found"
+            }
+          ]
+        },
+        {
+          "source": "/contact",
+          "headers": [
+            {
+              "key": "x-next-cache-tags",
+              "value": "_N_T_/layout,_N_T_/contact/layout,_N_T_/contact/page,_N_T_/contact"
+            }
+          ]
+        },
+        {
+          "source": "/playground",
+          "headers": [
+            {
+              "key": "x-next-cache-tags",
+              "value": "_N_T_/layout,_N_T_/playground/layout,_N_T_/playground/page,_N_T_/playground"
+            }
+          ]
+        },
+        {
+          "source": "**/*.[jt]s",
+          "headers": [
+            {
+              "key": "Set-Cookie",
+              "value": "__FIREBASE_DEFAULTS__=eyJjb25maWciOnsicHJvamVjdElkIjoibWl0c2NoLXdlYnNpdGUiLCJhcHBJZCI6IjE6MjQwNTkzMDQzODgzOndlYjpiMzIzYzFmMTc2YzRkYzY2MmQ5MmVlIiwic3RvcmFnZUJ1Y2tldCI6Im1pdHNjaC13ZWJzaXRlLmFwcHNwb3QuY29tIiwiYXBpS2V5IjoiQUl6YVN5QTdqY1VBLXNpN3ZXUXFmV2NZNlhZNEV0LU9DWGkzVVZrIiwiYXV0aERvbWFpbiI6Im1pdHNjaC13ZWJzaXRlLmZpcmViYXNlYXBwLmNvbSIsIm1lc3NhZ2luZ1NlbmRlcklkIjoiMjQwNTkzMDQzODgzIiwibWVhc3VyZW1lbnRJZCI6IkctUDQ3WDc4RUxMQiJ9LCJfYXV0aFRva2VuU3luY1VSTCI6Ii9fX3Nlc3Npb24ifQ; SameSite=Strict; Expires=2026-08-30T23:37:20.917Z; Path=/;"
+            }
+          ]
+        }
+      ],
+      "cleanUrls": true,
+      "trailingSlash": false,
+      "public": ".firebase/mitsch-website/hosting",
+      "webFramework": "next_ssr"
+    }
+  ],
+  "functions": [
+    {
+      "source": ".firebase/mitsch-website/functions",
+      "codebase": "firebase-frameworks-mitsch-website"
+    }
+  ]
+}
+[debug] [2024-10-05T12:57:20.917Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2024-10-05T12:57:20.917Z] > authorizing via signed-in user (schwartz.miriam@googlemail.com)
+[debug] [2024-10-05T12:57:20.917Z] [iam] checking project mitsch-website for permissions ["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get"]
+[debug] [2024-10-05T12:57:20.918Z] Checked if tokens are valid: true, expires at: 1728136616362
+[debug] [2024-10-05T12:57:20.918Z] Checked if tokens are valid: true, expires at: 1728136616362
+[debug] [2024-10-05T12:57:20.918Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/mitsch-website:testIamPermissions [none]
+[debug] [2024-10-05T12:57:20.918Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/mitsch-website:testIamPermissions x-goog-quota-user=projects/mitsch-website
+[debug] [2024-10-05T12:57:20.918Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/mitsch-website:testIamPermissions {"permissions":["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get"]}
+[debug] [2024-10-05T12:57:21.205Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/mitsch-website:testIamPermissions 200
+[debug] [2024-10-05T12:57:21.205Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/mitsch-website:testIamPermissions {"permissions":["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get"]}
+[info] 
+[info] === Deploying to 'mitsch-website'...
+[info] 
+[info] i  deploying functions, hosting 
+[debug] [2024-10-05T12:57:21.207Z] Checked if tokens are valid: true, expires at: 1728136616362
+[debug] [2024-10-05T12:57:21.208Z] Checked if tokens are valid: true, expires at: 1728136616362
+[debug] [2024-10-05T12:57:21.208Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/mitsch-website [none]
+[debug] [2024-10-05T12:57:21.576Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/mitsch-website 200
+[debug] [2024-10-05T12:57:21.577Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/mitsch-website {"projectId":"mitsch-website","projectNumber":"240593043883","displayName":"Mitsch Website","name":"projects/mitsch-website","resources":{"hostingSite":"mitsch-website"},"state":"ACTIVE","etag":"1_db7cd86d-e712-48ed-bebd-0fe824389a66"}
+[info] i  functions: preparing codebase firebase-frameworks-mitsch-website for deployment 
+[info] i  functions: ensuring required API cloudfunctions.googleapis.com is enabled... 
+[debug] [2024-10-05T12:57:21.578Z] Checked if tokens are valid: true, expires at: 1728136616362
+[debug] [2024-10-05T12:57:21.578Z] Checked if tokens are valid: true, expires at: 1728136616362
+[debug] [2024-10-05T12:57:21.578Z] Checked if tokens are valid: true, expires at: 1728136616362
+[debug] [2024-10-05T12:57:21.579Z] Checked if tokens are valid: true, expires at: 1728136616362
+[info] i  functions: ensuring required API cloudbuild.googleapis.com is enabled... 
+[debug] [2024-10-05T12:57:21.579Z] Checked if tokens are valid: true, expires at: 1728136616362
+[debug] [2024-10-05T12:57:21.579Z] Checked if tokens are valid: true, expires at: 1728136616362
+[info] i  artifactregistry: ensuring required API artifactregistry.googleapis.com is enabled... 
+[debug] [2024-10-05T12:57:21.579Z] Checked if tokens are valid: true, expires at: 1728136616362
+[debug] [2024-10-05T12:57:21.579Z] Checked if tokens are valid: true, expires at: 1728136616362
+[debug] [2024-10-05T12:57:21.580Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/mitsch-website/services/cloudfunctions.googleapis.com [none]
+[debug] [2024-10-05T12:57:21.580Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/mitsch-website/services/cloudfunctions.googleapis.com x-goog-quota-user=projects/mitsch-website
+[debug] [2024-10-05T12:57:21.582Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/mitsch-website/services/runtimeconfig.googleapis.com [none]
+[debug] [2024-10-05T12:57:21.582Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/mitsch-website/services/runtimeconfig.googleapis.com x-goog-quota-user=projects/mitsch-website
+[debug] [2024-10-05T12:57:21.584Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/mitsch-website/services/cloudbuild.googleapis.com [none]
+[debug] [2024-10-05T12:57:21.584Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/mitsch-website/services/cloudbuild.googleapis.com x-goog-quota-user=projects/mitsch-website
+[debug] [2024-10-05T12:57:21.585Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/mitsch-website/services/artifactregistry.googleapis.com [none]
+[debug] [2024-10-05T12:57:21.586Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/mitsch-website/services/artifactregistry.googleapis.com x-goog-quota-user=projects/mitsch-website
+[debug] [2024-10-05T12:57:22.162Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/mitsch-website/services/artifactregistry.googleapis.com 200
+[debug] [2024-10-05T12:57:22.162Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/mitsch-website/services/artifactregistry.googleapis.com [omitted]
+[info] ✔  artifactregistry: required API artifactregistry.googleapis.com is enabled 
+[debug] [2024-10-05T12:57:22.166Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/mitsch-website/services/cloudbuild.googleapis.com 200
+[debug] [2024-10-05T12:57:22.166Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/mitsch-website/services/cloudbuild.googleapis.com [omitted]
+[info] ✔  functions: required API cloudbuild.googleapis.com is enabled 
+[debug] [2024-10-05T12:57:22.621Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/mitsch-website/services/runtimeconfig.googleapis.com 200
+[debug] [2024-10-05T12:57:22.622Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/mitsch-website/services/runtimeconfig.googleapis.com [omitted]
+[debug] [2024-10-05T12:57:22.629Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/mitsch-website/services/cloudfunctions.googleapis.com 200
+[debug] [2024-10-05T12:57:22.629Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/mitsch-website/services/cloudfunctions.googleapis.com [omitted]
+[info] ✔  functions: required API cloudfunctions.googleapis.com is enabled 
+[debug] [2024-10-05T12:57:22.630Z] Checked if tokens are valid: true, expires at: 1728136616362
+[debug] [2024-10-05T12:57:22.630Z] Checked if tokens are valid: true, expires at: 1728136616362
+[debug] [2024-10-05T12:57:22.630Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/mitsch-website/adminSdkConfig [none]
+[debug] [2024-10-05T12:57:22.884Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/mitsch-website/adminSdkConfig 200
+[debug] [2024-10-05T12:57:22.884Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/mitsch-website/adminSdkConfig {"projectId":"mitsch-website","storageBucket":"mitsch-website.appspot.com"}
+[debug] [2024-10-05T12:57:22.885Z] Checked if tokens are valid: true, expires at: 1728136616362
+[debug] [2024-10-05T12:57:22.885Z] Checked if tokens are valid: true, expires at: 1728136616362
+[debug] [2024-10-05T12:57:22.885Z] >>> [apiv2][query] GET https://runtimeconfig.googleapis.com/v1beta1/projects/mitsch-website/configs [none]
+[debug] [2024-10-05T12:57:23.282Z] <<< [apiv2][status] GET https://runtimeconfig.googleapis.com/v1beta1/projects/mitsch-website/configs 200
+[debug] [2024-10-05T12:57:23.283Z] <<< [apiv2][body] GET https://runtimeconfig.googleapis.com/v1beta1/projects/mitsch-website/configs {}
+[debug] [2024-10-05T12:57:23.285Z] Validating nodejs source
+[warn] ⚠  functions: package.json indicates an outdated version of firebase-functions. Please upgrade using npm install --save firebase-functions@latest in your functions directory. 
+[warn] ⚠  functions: Please note that there will be breaking changes when you upgrade. 
+[debug] [2024-10-05T12:57:23.742Z] > [functions] package.json contents: {
+  "name": "mitsch-website",
+  "version": "0.1.0",
+  "private": true,
+  "main": "server.js",
+  "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^6.6.0",
+    "@fortawesome/free-solid-svg-icons": "^6.6.0",
+    "@fortawesome/react-fontawesome": "^0.2.2",
+    "axios": "^1.7.7",
+    "emailjs": "^4.0.3",
+    "emailjs-com": "^3.2.0",
+    "firebase": "^10.14.0",
+    "framer-motion": "^11.5.6",
+    "mongodb": "^6.9.0",
+    "mongoose": "^8.7.0",
+    "next": "^14.2.14",
+    "openai": "^4.63.0",
+    "react": "^18",
+    "react-dom": "^18",
+    "react-slick": "^0.30.2",
+    "sweetalert2": "^11.14.1",
+    "swiper": "^11.1.14",
+    "tone": "^15.0.4",
+    "sharp": "^0.32 || ^0.33",
+    "firebase-frameworks": "^0.11.0",
+    "firebase-functions": "^4.5.0",
+    "firebase-admin": "^11.11.1"
+  },
+  "engines": {
+    "node": "20"
+  }
+}
+[debug] [2024-10-05T12:57:23.742Z] Building nodejs source
+[info] i  functions: Loading and analyzing source code for codebase firebase-frameworks-mitsch-website to determine what to deploy 
+[info] i  functions: You are using a version of firebase-functions SDK (4.9.0) that does not have support for the newest Firebase Extensions features. Please update firebase-functions SDK to >=5.1.0 to use them correctly 
+[debug] [2024-10-05T12:57:23.742Z] Could not find functions.yaml. Must use http discovery
+[debug] [2024-10-05T12:57:23.747Z] Found firebase-functions binary at '/Users/miriamschwartz/_miRi/2024_Hamburg-Coding-School/mitsch-website/mitsch-website/.firebase/mitsch-website/functions/node_modules/.bin/firebase-functions'
+[info] Serving at port 8473
+
+[debug] [2024-10-05T12:57:23.953Z] Got response from /__/functions.yaml {"endpoints":{"ssrmitschwebsite":{"availableMemoryMb":null,"timeoutSeconds":null,"minInstances":null,"maxInstances":null,"ingressSettings":null,"concurrency":null,"serviceAccountEmail":null,"vpc":null,"platform":"gcfv2","region":["europe-west1"],"labels":{},"httpsTrigger":{},"entryPoint":"ssrmitschwebsite"}},"specVersion":"v1alpha1","requiredAPIs":[]}
+[info] i  functions: Loaded environment variables from .env. 
+[info] i  functions: preparing .firebase/mitsch-website/functions directory for uploading... 
+[info] i  functions: packaged /Users/miriamschwartz/_miRi/2024_Hamburg-Coding-School/mitsch-website/mitsch-website/.firebase/mitsch-website/functions (80.15 MB) for uploading 
+[debug] [2024-10-05T12:57:31.233Z] Checked if tokens are valid: true, expires at: 1728136616362
+[debug] [2024-10-05T12:57:31.233Z] Checked if tokens are valid: true, expires at: 1728136616362
+[debug] [2024-10-05T12:57:31.233Z] >>> [apiv2][query] GET https://cloudfunctions.googleapis.com/v1/projects/mitsch-website/locations/-/functions [none]
+[debug] [2024-10-05T12:57:31.988Z] <<< [apiv2][status] GET https://cloudfunctions.googleapis.com/v1/projects/mitsch-website/locations/-/functions 200
+[debug] [2024-10-05T12:57:31.989Z] <<< [apiv2][body] GET https://cloudfunctions.googleapis.com/v1/projects/mitsch-website/locations/-/functions {}
+[debug] [2024-10-05T12:57:31.989Z] Checked if tokens are valid: true, expires at: 1728136616362
+[debug] [2024-10-05T12:57:31.989Z] Checked if tokens are valid: true, expires at: 1728136616362
+[debug] [2024-10-05T12:57:31.990Z] >>> [apiv2][query] GET https://cloudfunctions.googleapis.com/v2/projects/mitsch-website/locations/-/functions filter=environment%3D%22GEN_2%22
+[debug] [2024-10-05T12:57:33.051Z] <<< [apiv2][status] GET https://cloudfunctions.googleapis.com/v2/projects/mitsch-website/locations/-/functions 200
+[debug] [2024-10-05T12:57:33.051Z] <<< [apiv2][body] GET https://cloudfunctions.googleapis.com/v2/projects/mitsch-website/locations/-/functions {"functions":[{"name":"projects/mitsch-website/locations/europe-west1/functions/ssrmitschwebsite","buildConfig":{"build":"projects/240593043883/locations/europe-west1/builds/de95d604-fc58-43eb-b15c-34e1ac267516","runtime":"nodejs20","entryPoint":"ssrmitschwebsite","source":{"storageSource":{"bucket":"gcf-v2-sources-240593043883-europe-west1","object":"ssrmitschwebsite/function-source.zip","generation":"1727969240418426"}},"environmentVariables":{"GOOGLE_NODE_RUN_SCRIPTS":""},"dockerRepository":"projects/mitsch-website/locations/europe-west1/repositories/gcf-artifacts","sourceProvenance":{"resolvedStorageSource":{"bucket":"gcf-v2-sources-240593043883-europe-west1","object":"ssrmitschwebsite/function-source.zip","generation":"1727969240418426"}},"dockerRegistry":"ARTIFACT_REGISTRY","serviceAccount":"projects/mitsch-website/serviceAccounts/240593043883-compute@developer.gserviceaccount.com","automaticUpdatePolicy":{}},"serviceConfig":{"service":"projects/mitsch-website/locations/europe-west1/services/ssrmitschwebsite","timeoutSeconds":60,"environmentVariables":{"VERCEL_URL":"mitsch-website.web.app","__FIREBASE_FRAMEWORKS_ENTRY__":"next.js","__FIREBASE_DEFAULTS__":"{\"config\":{\"projectId\":\"mitsch-website\",\"appId\":\"1:240593043883:web:b323c1f176c4dc662d92ee\",\"storageBucket\":\"mitsch-website.appspot.com\",\"apiKey\":\"AIzaSyBWrFw3AtK_ljK4bLUPDJNxQmLV1oLMeh0\",\"authDomain\":\"mitsch-website.firebaseapp.com\",\"messagingSenderId\":\"240593043883\",\"measurementId\":\"G-P47X78ELLB\"},\"_authTokenSyncURL\":\"/__session\"}","FIREBASE_CONFIG":"{\"projectId\":\"mitsch-website\",\"storageBucket\":\"mitsch-website.appspot.com\"}","GCLOUD_PROJECT":"mitsch-website","EVENTARC_CLOUD_EVENT_SOURCE":"projects/mitsch-website/locations/europe-west1/services/ssrmitschwebsite","FUNCTION_TARGET":"ssrmitschwebsite","LOG_EXECUTION_ID":"true"},"maxInstanceCount":100,"ingressSettings":"ALLOW_ALL","uri":"https://ssrmitschwebsite-4eaozerrnq-ew.a.run.app","serviceAccountEmail":"240593043883-compute@developer.gserviceaccount.com","availableMemory":"256Mi","allTrafficOnLatestRevision":true,"revision":"ssrmitschwebsite-00003-zes","maxInstanceRequestConcurrency":80,"availableCpu":"1"},"state":"ACTIVE","updateTime":"2024-10-03T15:30:03.681619882Z","labels":{"firebase-functions-hash":"f6207b7a9a2e8a78dcb0bb612a694658edf8aac3","deployment-tool":"cli-firebase","firebase-functions-codebase":"firebase-frameworks-mitsch-website"},"environment":"GEN_2","url":"https://europe-west1-mitsch-website.cloudfunctions.net/ssrmitschwebsite","createTime":"2024-10-02T08:21:57.789250163Z"}]}
+[info] i  functions: ensuring required API run.googleapis.com is enabled... 
+[debug] [2024-10-05T12:57:33.055Z] Checked if tokens are valid: true, expires at: 1728136616362
+[debug] [2024-10-05T12:57:33.056Z] Checked if tokens are valid: true, expires at: 1728136616362
+[info] i  functions: ensuring required API eventarc.googleapis.com is enabled... 
+[debug] [2024-10-05T12:57:33.056Z] Checked if tokens are valid: true, expires at: 1728136616362
+[debug] [2024-10-05T12:57:33.056Z] Checked if tokens are valid: true, expires at: 1728136616362
+[info] i  functions: ensuring required API pubsub.googleapis.com is enabled... 
+[debug] [2024-10-05T12:57:33.056Z] Checked if tokens are valid: true, expires at: 1728136616362
+[debug] [2024-10-05T12:57:33.056Z] Checked if tokens are valid: true, expires at: 1728136616362
+[info] i  functions: ensuring required API storage.googleapis.com is enabled... 
+[debug] [2024-10-05T12:57:33.056Z] Checked if tokens are valid: true, expires at: 1728136616362
+[debug] [2024-10-05T12:57:33.056Z] Checked if tokens are valid: true, expires at: 1728136616362
+[debug] [2024-10-05T12:57:33.056Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/mitsch-website/services/run.googleapis.com [none]
+[debug] [2024-10-05T12:57:33.056Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/mitsch-website/services/run.googleapis.com x-goog-quota-user=projects/mitsch-website
+[debug] [2024-10-05T12:57:33.059Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/mitsch-website/services/eventarc.googleapis.com [none]
+[debug] [2024-10-05T12:57:33.060Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/mitsch-website/services/eventarc.googleapis.com x-goog-quota-user=projects/mitsch-website
+[debug] [2024-10-05T12:57:33.061Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/mitsch-website/services/pubsub.googleapis.com [none]
+[debug] [2024-10-05T12:57:33.061Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/mitsch-website/services/pubsub.googleapis.com x-goog-quota-user=projects/mitsch-website
+[debug] [2024-10-05T12:57:33.062Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/mitsch-website/services/storage.googleapis.com [none]
+[debug] [2024-10-05T12:57:33.062Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/mitsch-website/services/storage.googleapis.com x-goog-quota-user=projects/mitsch-website
+[debug] [2024-10-05T12:57:33.625Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/mitsch-website/services/eventarc.googleapis.com 200
+[debug] [2024-10-05T12:57:33.625Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/mitsch-website/services/eventarc.googleapis.com [omitted]
+[info] ✔  functions: required API eventarc.googleapis.com is enabled 
+[debug] [2024-10-05T12:57:33.627Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/mitsch-website/services/pubsub.googleapis.com 200
+[debug] [2024-10-05T12:57:33.627Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/mitsch-website/services/pubsub.googleapis.com [omitted]
+[info] ✔  functions: required API pubsub.googleapis.com is enabled 
+[debug] [2024-10-05T12:57:34.036Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/mitsch-website/services/run.googleapis.com 200
+[debug] [2024-10-05T12:57:34.036Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/mitsch-website/services/run.googleapis.com [omitted]
+[info] ✔  functions: required API run.googleapis.com is enabled 
+[debug] [2024-10-05T12:57:34.052Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/mitsch-website/services/storage.googleapis.com 200
+[debug] [2024-10-05T12:57:34.052Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/mitsch-website/services/storage.googleapis.com [omitted]
+[info] ✔  functions: required API storage.googleapis.com is enabled 
+[info] i  functions: generating the service identity for pubsub.googleapis.com... 
+[debug] [2024-10-05T12:57:34.053Z] Checked if tokens are valid: true, expires at: 1728136616362
+[debug] [2024-10-05T12:57:34.053Z] Checked if tokens are valid: true, expires at: 1728136616362
+[info] i  functions: generating the service identity for eventarc.googleapis.com... 
+[debug] [2024-10-05T12:57:34.053Z] Checked if tokens are valid: true, expires at: 1728136616362
+[debug] [2024-10-05T12:57:34.053Z] Checked if tokens are valid: true, expires at: 1728136616362
+[debug] [2024-10-05T12:57:34.053Z] >>> [apiv2][query] POST https://serviceusage.googleapis.com/v1beta1/projects/240593043883/services/pubsub.googleapis.com:generateServiceIdentity [none]
+[debug] [2024-10-05T12:57:34.054Z] >>> [apiv2][query] POST https://serviceusage.googleapis.com/v1beta1/projects/240593043883/services/eventarc.googleapis.com:generateServiceIdentity [none]
+[debug] [2024-10-05T12:57:34.492Z] <<< [apiv2][status] POST https://serviceusage.googleapis.com/v1beta1/projects/240593043883/services/pubsub.googleapis.com:generateServiceIdentity 200
+[debug] [2024-10-05T12:57:34.493Z] <<< [apiv2][body] POST https://serviceusage.googleapis.com/v1beta1/projects/240593043883/services/pubsub.googleapis.com:generateServiceIdentity {"name":"operations/finished.DONE_OPERATION","done":true,"response":{"@type":"type.googleapis.com/google.api.serviceusage.v1beta1.ServiceIdentity","email":"service-240593043883@gcp-sa-pubsub.iam.gserviceaccount.com","uniqueId":"109503605371392262901"}}
+[debug] [2024-10-05T12:57:35.253Z] <<< [apiv2][status] POST https://serviceusage.googleapis.com/v1beta1/projects/240593043883/services/eventarc.googleapis.com:generateServiceIdentity 200
+[debug] [2024-10-05T12:57:35.253Z] <<< [apiv2][body] POST https://serviceusage.googleapis.com/v1beta1/projects/240593043883/services/eventarc.googleapis.com:generateServiceIdentity {"name":"operations/finished.DONE_OPERATION","done":true,"response":{"@type":"type.googleapis.com/google.api.serviceusage.v1beta1.ServiceIdentity","email":"service-240593043883@gcp-sa-eventarc.iam.gserviceaccount.com","uniqueId":"109844966314391122050"}}
+[debug] [2024-10-05T12:57:35.257Z] Checked if tokens are valid: true, expires at: 1728136616362
+[debug] [2024-10-05T12:57:35.257Z] Checked if tokens are valid: true, expires at: 1728136616362
+[debug] [2024-10-05T12:57:35.258Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/mitsch-website [none]
+[debug] [2024-10-05T12:57:35.554Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/mitsch-website 200
+[debug] [2024-10-05T12:57:35.554Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/mitsch-website {"projectId":"mitsch-website","projectNumber":"240593043883","displayName":"Mitsch Website","name":"projects/mitsch-website","resources":{"hostingSite":"mitsch-website"},"state":"ACTIVE","etag":"1_db7cd86d-e712-48ed-bebd-0fe824389a66"}
+[debug] [2024-10-05T12:57:35.562Z] Checked if tokens are valid: true, expires at: 1728136616362
+[debug] [2024-10-05T12:57:35.562Z] Checked if tokens are valid: true, expires at: 1728136616362
+[debug] [2024-10-05T12:57:35.562Z] >>> [apiv2][query] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/mitsch-website/versions [none]
+[debug] [2024-10-05T12:57:35.562Z] >>> [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/mitsch-website/versions {"status":"CREATED","labels":{"deployment-tool":"cli-firebase","firebase-web-framework":"next_ssr"}}
+[debug] [2024-10-05T12:57:37.207Z] <<< [apiv2][status] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/mitsch-website/versions 200
+[debug] [2024-10-05T12:57:37.208Z] <<< [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/mitsch-website/versions {"name":"projects/240593043883/sites/mitsch-website/versions/16cc5723fe5d69bc","status":"CREATED","config":{},"labels":{"deployment-tool":"cli-firebase","firebase-web-framework":"next_ssr"}}
+[debug] [2024-10-05T12:57:37.210Z] Checked if tokens are valid: true, expires at: 1728136616362
+[debug] [2024-10-05T12:57:37.210Z] Checked if tokens are valid: true, expires at: 1728136616362
+[debug] [2024-10-05T12:57:37.210Z] >>> [apiv2][query] POST https://cloudfunctions.googleapis.com/v2/projects/mitsch-website/locations/europe-west1/functions:generateUploadUrl [none]
+[debug] [2024-10-05T12:57:37.419Z] <<< [apiv2][status] POST https://cloudfunctions.googleapis.com/v2/projects/mitsch-website/locations/europe-west1/functions:generateUploadUrl 200
+[debug] [2024-10-05T12:57:37.419Z] <<< [apiv2][body] POST https://cloudfunctions.googleapis.com/v2/projects/mitsch-website/locations/europe-west1/functions:generateUploadUrl {"uploadUrl":"https://storage.googleapis.com/gcf-v2-uploads-240593043883-europe-west1/97c862aa-ada4-4a25-9dd6-c6289d101d04.zip?GoogleAccessId=service-240593043883@gcf-admin-robot.iam.gserviceaccount.com&Expires=1728134857&Signature=LasfatIVzTwwlUnFl4a%2FN46XEDArtNjq4wNDt7r2G0mfIsf80lq%2FPRrA3nzWgKDlNdnZnf3x7CmsUW%2BlRs0WvL7CVDdf1EDI%2B43O1EAOAawmE91xKCLKRm%2FDxcjFapurr1CdsqihfHmtuXM2aAFlqI2D2EYUS3VpgSgLHA0XilBKj15nndMnDTITdJSvJbp7aRx9tq9ei8XMk8kwGDVbpFE1m%2FsSV6mBq7xMfMEBjmRc%2Bril1WUASaPijocWFnAAw6QxBhiQHQOIzT%2Fb0tnhinc4y5nBn2UVW2dlCbHrY6FUwSJhk%2FG%2Be82QocOkVtxa2lw0Zg%2F1nKH0V5jm2zXXbA%3D%3D","storageSource":{"bucket":"gcf-v2-uploads-240593043883-europe-west1","object":"97c862aa-ada4-4a25-9dd6-c6289d101d04.zip"}}
+[debug] [2024-10-05T12:57:37.422Z] >>> [apiv2][query] PUT https://storage.googleapis.com/gcf-v2-uploads-240593043883-europe-west1/97c862aa-ada4-4a25-9dd6-c6289d101d04.zip GoogleAccessId=service-240593043883%40gcf-admin-robot.iam.gserviceaccount.com&Expires=1728134857&Signature=LasfatIVzTwwlUnFl4a%2FN46XEDArtNjq4wNDt7r2G0mfIsf80lq%2FPRrA3nzWgKDlNdnZnf3x7CmsUW%2BlRs0WvL7CVDdf1EDI%2B43O1EAOAawmE91xKCLKRm%2FDxcjFapurr1CdsqihfHmtuXM2aAFlqI2D2EYUS3VpgSgLHA0XilBKj15nndMnDTITdJSvJbp7aRx9tq9ei8XMk8kwGDVbpFE1m%2FsSV6mBq7xMfMEBjmRc%2Bril1WUASaPijocWFnAAw6QxBhiQHQOIzT%2Fb0tnhinc4y5nBn2UVW2dlCbHrY6FUwSJhk%2FG%2Be82QocOkVtxa2lw0Zg%2F1nKH0V5jm2zXXbA%3D%3D
+[debug] [2024-10-05T12:57:37.422Z] >>> [apiv2][body] PUT https://storage.googleapis.com/gcf-v2-uploads-240593043883-europe-west1/97c862aa-ada4-4a25-9dd6-c6289d101d04.zip [stream]
+[debug] [2024-10-05T13:09:05.664Z] ----------------------------------------------------------------------
+[debug] [2024-10-05T13:09:05.670Z] Command:       /Users/miriamschwartz/.nvm/versions/node/v20.11.0/bin/node /Users/miriamschwartz/.nvm/versions/node/v20.11.0/bin/firebase deploy
+[debug] [2024-10-05T13:09:05.670Z] CLI Version:   13.20.2
+[debug] [2024-10-05T13:09:05.670Z] Platform:      darwin
+[debug] [2024-10-05T13:09:05.670Z] Node Version:  v20.11.0
+[debug] [2024-10-05T13:09:05.670Z] Time:          Sat Oct 05 2024 15:09:05 GMT+0200 (Central European Summer Time)
+[debug] [2024-10-05T13:09:05.670Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2024-10-05T13:09:05.706Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2024-10-05T13:09:05.706Z] > authorizing via signed-in user (schwartz.miriam@googlemail.com)
+[debug] [2024-10-05T13:09:05.706Z] [iam] checking project mitsch-website for permissions ["firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2024-10-05T13:09:05.706Z] Checked if tokens are valid: true, expires at: 1728136616362
+[debug] [2024-10-05T13:09:05.706Z] Checked if tokens are valid: true, expires at: 1728136616362
+[debug] [2024-10-05T13:09:05.707Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/mitsch-website:testIamPermissions [none]
+[debug] [2024-10-05T13:09:05.707Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/mitsch-website:testIamPermissions x-goog-quota-user=projects/mitsch-website
+[debug] [2024-10-05T13:09:05.707Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/mitsch-website:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2024-10-05T13:09:06.063Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/mitsch-website:testIamPermissions 200
+[debug] [2024-10-05T13:09:06.064Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/mitsch-website:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2024-10-05T13:09:06.065Z] Checked if tokens are valid: true, expires at: 1728136616362
+[debug] [2024-10-05T13:09:06.065Z] Checked if tokens are valid: true, expires at: 1728136616362
+[debug] [2024-10-05T13:09:06.065Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/mitsch-website [none]
+[debug] [2024-10-05T13:09:06.681Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/mitsch-website 200
+[debug] [2024-10-05T13:09:06.682Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/mitsch-website {"projectId":"mitsch-website","projectNumber":"240593043883","displayName":"Mitsch Website","name":"projects/mitsch-website","resources":{"hostingSite":"mitsch-website"},"state":"ACTIVE","etag":"1_db7cd86d-e712-48ed-bebd-0fe824389a66"}
+[debug] [2024-10-05T13:09:07.456Z] Checked if tokens are valid: true, expires at: 1728136616362
+[debug] [2024-10-05T13:09:07.456Z] Checked if tokens are valid: true, expires at: 1728136616362
+[debug] [2024-10-05T13:09:07.457Z] >>> [apiv2][query] GET https://firebasehosting.googleapis.com/v1beta1/projects/mitsch-website/sites pageToken=&pageSize=10
+[debug] [2024-10-05T13:09:08.830Z] <<< [apiv2][status] GET https://firebasehosting.googleapis.com/v1beta1/projects/mitsch-website/sites 200
+[debug] [2024-10-05T13:09:08.830Z] <<< [apiv2][body] GET https://firebasehosting.googleapis.com/v1beta1/projects/mitsch-website/sites {"sites":[{"name":"projects/mitsch-website/sites/mitsch-website","defaultUrl":"https://mitsch-website.web.app","appId":"1:240593043883:web:b323c1f176c4dc662d92ee","type":"DEFAULT_SITE"}]}
+[debug] [2024-10-05T13:09:08.831Z] Checked if tokens are valid: true, expires at: 1728136616362
+[debug] [2024-10-05T13:09:08.831Z] Checked if tokens are valid: true, expires at: 1728136616362
+[debug] [2024-10-05T13:09:08.831Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/-/webApps/1:240593043883:web:b323c1f176c4dc662d92ee/config [none]
+[debug] [2024-10-05T13:09:09.853Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/-/webApps/1:240593043883:web:b323c1f176c4dc662d92ee/config 200
+[debug] [2024-10-05T13:09:09.854Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/-/webApps/1:240593043883:web:b323c1f176c4dc662d92ee/config {"projectId":"mitsch-website","appId":"1:240593043883:web:b323c1f176c4dc662d92ee","storageBucket":"mitsch-website.appspot.com","apiKey":"AIzaSyA7jcUA-si7vWQqfWcY6XY4Et-OCXi3UVk","authDomain":"mitsch-website.firebaseapp.com","messagingSenderId":"240593043883","measurementId":"G-P47X78ELLB"}
+[info] 
+   Thank you for trying our early preview of Next.js support on Firebase Hosting.
+   During the preview, support is best-effort and breaking changes can be expected. Proceed with caution.
+   The integration is known to work with Next.js version 12 - 14.0. You may encounter errors.
+
+   Documentation: https://firebase.google.com/docs/hosting/frameworks/nextjs
+   File a bug: https://github.com/firebase/firebase-tools/issues/new?template=bug_report.md
+   Submit a feature request: https://github.com/firebase/firebase-tools/issues/new?template=feature_request.md
+
+   We'd love to learn from you. Express your interest in helping us shape the future of Firebase Hosting: https://goo.gle/41enW5X
+
+[debug] [2024-10-05T13:09:11.273Z] Checked if tokens are valid: true, expires at: 1728136616362
+[debug] [2024-10-05T13:09:11.273Z] Checked if tokens are valid: true, expires at: 1728136616362
+[debug] [2024-10-05T13:09:11.273Z] >>> [apiv2][query] GET https://firebasehosting.googleapis.com/v1beta1/projects/mitsch-website/sites/mitsch-website [none]
+[debug] [2024-10-05T13:09:11.798Z] <<< [apiv2][status] GET https://firebasehosting.googleapis.com/v1beta1/projects/mitsch-website/sites/mitsch-website 200
+[debug] [2024-10-05T13:09:11.799Z] <<< [apiv2][body] GET https://firebasehosting.googleapis.com/v1beta1/projects/mitsch-website/sites/mitsch-website {"name":"projects/mitsch-website/sites/mitsch-website","defaultUrl":"https://mitsch-website.web.app","appId":"1:240593043883:web:b323c1f176c4dc662d92ee","type":"DEFAULT_SITE"}
+[info]   ▲ Next.js 14.2.14
+
+[info]   - Environments: .env.local
+
+
+[info]    Creating an optimized production build ...
+
+[info]  ✓ Compiled successfully
+
+[info]    Linting and checking validity of types ...
+
+[info] 
+./components/ConnectingDots.js
+57:6  Warning: React Hook useEffect has a missing dependency: 'initialDots.length'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+
+info  - Need to disable some ESLint rules? Learn more here: https://nextjs.org/docs/basic-features/eslint#disabling-rules
+
+[info]    Collecting page data ...
+
+[info]    Generating static pages (0/8) ...
+
+[info]    Generating static pages (2/8) 
+
+[info]    Generating static pages (4/8) 
+   Generating static pages (6/8) 
+
+[info]  ✓ Generating static pages (8/8)
+
+[info]    Finalizing page optimization ...
+
+[info]    Collecting build traces ...
+
+[info] 
+
+[info] Route (app)                              Size     First Load JS
+┌ ○ /                                    2 kB            100 kB
+├ ○ /_not-found                          873 B            88 kB
+├ ƒ /api/generate-haiku                  0 B                0 B
+├ ƒ /api/save-haiku                      0 B                0 B
+├ ○ /contact                             40 kB           138 kB
+├ ○ /playground                          2.86 kB         101 kB
+└ ƒ /project/[project-name]              28.9 kB         127 kB
++ First Load JS shared by all            87.1 kB
+  ├ chunks/117-06e8ad08bc47bdf0.js       31.6 kB
+  ├ chunks/fd9d1056-13baa9b2029d31fe.js  53.6 kB
+  └ other shared chunks (total)          1.91 kB
+
+
+[info] 
+○  (Static)   prerendered as static content
+ƒ  (Dynamic)  server-rendered on demand
+
+
+[info] Building a Cloud Function to run this application. This is needed due to:
+[info]  • Image Optimization
+[info]  • non-static component /api/save-haiku/route
+[info]  • non-static component /api/generate-haiku/route
+[info]  • non-static component /project/[project-name]/page
+[info] 
+[debug] [2024-10-05T13:09:19.845Z] Checked if tokens are valid: true, expires at: 1728136616362
+[debug] [2024-10-05T13:09:19.845Z] Checked if tokens are valid: true, expires at: 1728136616362
+[debug] [2024-10-05T13:09:19.845Z] >>> [apiv2][query] GET https://firebasehosting.googleapis.com/v1beta1/projects/mitsch-website/sites/mitsch-website [none]
+[debug] [2024-10-05T13:09:20.760Z] <<< [apiv2][status] GET https://firebasehosting.googleapis.com/v1beta1/projects/mitsch-website/sites/mitsch-website 200
+[debug] [2024-10-05T13:09:20.760Z] <<< [apiv2][body] GET https://firebasehosting.googleapis.com/v1beta1/projects/mitsch-website/sites/mitsch-website {"name":"projects/mitsch-website/sites/mitsch-website","defaultUrl":"https://mitsch-website.web.app","appId":"1:240593043883:web:b323c1f176c4dc662d92ee","type":"DEFAULT_SITE"}
+[debug] [2024-10-05T13:09:30.180Z] [web frameworks] effective firebase.json:  {
+  "hosting": [
+    {
+      "source": ".",
+      "ignore": [
+        "firebase.json",
+        "**/.*",
+        "**/node_modules/**"
+      ],
+      "frameworksBackend": {
+        "region": "europe-west1"
+      },
+      "site": "mitsch-website",
+      "rewrites": [
+        {
+          "source": "**",
+          "function": {
+            "functionId": "ssrmitschwebsite",
+            "region": "europe-west1",
+            "pinTag": true
+          }
+        }
+      ],
+      "redirects": [],
+      "headers": [
+        {
+          "source": "/_not-found",
+          "headers": [
+            {
+              "key": "x-next-cache-tags",
+              "value": "_N_T_/layout,_N_T_/_not-found/layout,_N_T_/_not-found/page,_N_T_/_not-found"
+            }
+          ]
+        },
+        {
+          "source": "/contact",
+          "headers": [
+            {
+              "key": "x-next-cache-tags",
+              "value": "_N_T_/layout,_N_T_/contact/layout,_N_T_/contact/page,_N_T_/contact"
+            }
+          ]
+        },
+        {
+          "source": "/playground",
+          "headers": [
+            {
+              "key": "x-next-cache-tags",
+              "value": "_N_T_/layout,_N_T_/playground/layout,_N_T_/playground/page,_N_T_/playground"
+            }
+          ]
+        },
+        {
+          "source": "**/*.[jt]s",
+          "headers": [
+            {
+              "key": "Set-Cookie",
+              "value": "__FIREBASE_DEFAULTS__=eyJjb25maWciOnsicHJvamVjdElkIjoibWl0c2NoLXdlYnNpdGUiLCJhcHBJZCI6IjE6MjQwNTkzMDQzODgzOndlYjpiMzIzYzFmMTc2YzRkYzY2MmQ5MmVlIiwic3RvcmFnZUJ1Y2tldCI6Im1pdHNjaC13ZWJzaXRlLmFwcHNwb3QuY29tIiwiYXBpS2V5IjoiQUl6YVN5QTdqY1VBLXNpN3ZXUXFmV2NZNlhZNEV0LU9DWGkzVVZrIiwiYXV0aERvbWFpbiI6Im1pdHNjaC13ZWJzaXRlLmZpcmViYXNlYXBwLmNvbSIsIm1lc3NhZ2luZ1NlbmRlcklkIjoiMjQwNTkzMDQzODgzIiwibWVhc3VyZW1lbnRJZCI6IkctUDQ3WDc4RUxMQiJ9LCJfYXV0aFRva2VuU3luY1VSTCI6Ii9fX3Nlc3Npb24ifQ; SameSite=Strict; Expires=2026-08-30T23:49:30.180Z; Path=/;"
+            }
+          ]
+        }
+      ],
+      "cleanUrls": true,
+      "trailingSlash": false,
+      "public": ".firebase/mitsch-website/hosting",
+      "webFramework": "next_ssr"
+    }
+  ],
+  "functions": [
+    {
+      "source": ".firebase/mitsch-website/functions",
+      "codebase": "firebase-frameworks-mitsch-website"
+    }
+  ]
+}
+[debug] [2024-10-05T13:09:30.180Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2024-10-05T13:09:30.180Z] > authorizing via signed-in user (schwartz.miriam@googlemail.com)
+[debug] [2024-10-05T13:09:30.180Z] [iam] checking project mitsch-website for permissions ["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get"]
+[debug] [2024-10-05T13:09:30.180Z] Checked if tokens are valid: true, expires at: 1728136616362
+[debug] [2024-10-05T13:09:30.180Z] Checked if tokens are valid: true, expires at: 1728136616362
+[debug] [2024-10-05T13:09:30.181Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/mitsch-website:testIamPermissions [none]
+[debug] [2024-10-05T13:09:30.181Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/mitsch-website:testIamPermissions x-goog-quota-user=projects/mitsch-website
+[debug] [2024-10-05T13:09:30.181Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/mitsch-website:testIamPermissions {"permissions":["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get"]}
+[debug] [2024-10-05T13:09:30.454Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/mitsch-website:testIamPermissions 200
+[debug] [2024-10-05T13:09:30.454Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/mitsch-website:testIamPermissions {"permissions":["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get"]}
+[info] 
+[info] === Deploying to 'mitsch-website'...
+[info] 
+[info] i  deploying functions, hosting 
+[debug] [2024-10-05T13:09:30.457Z] Checked if tokens are valid: true, expires at: 1728136616362
+[debug] [2024-10-05T13:09:30.457Z] Checked if tokens are valid: true, expires at: 1728136616362
+[debug] [2024-10-05T13:09:30.457Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/mitsch-website [none]
+[debug] [2024-10-05T13:09:30.842Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/mitsch-website 200
+[debug] [2024-10-05T13:09:30.843Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/mitsch-website {"projectId":"mitsch-website","projectNumber":"240593043883","displayName":"Mitsch Website","name":"projects/mitsch-website","resources":{"hostingSite":"mitsch-website"},"state":"ACTIVE","etag":"1_db7cd86d-e712-48ed-bebd-0fe824389a66"}
+[info] i  functions: preparing codebase firebase-frameworks-mitsch-website for deployment 
+[info] i  functions: ensuring required API cloudfunctions.googleapis.com is enabled... 
+[debug] [2024-10-05T13:09:30.844Z] Checked if tokens are valid: true, expires at: 1728136616362
+[debug] [2024-10-05T13:09:30.844Z] Checked if tokens are valid: true, expires at: 1728136616362
+[debug] [2024-10-05T13:09:30.844Z] Checked if tokens are valid: true, expires at: 1728136616362
+[debug] [2024-10-05T13:09:30.844Z] Checked if tokens are valid: true, expires at: 1728136616362
+[info] i  functions: ensuring required API cloudbuild.googleapis.com is enabled... 
+[debug] [2024-10-05T13:09:30.844Z] Checked if tokens are valid: true, expires at: 1728136616362
+[debug] [2024-10-05T13:09:30.844Z] Checked if tokens are valid: true, expires at: 1728136616362
+[info] i  artifactregistry: ensuring required API artifactregistry.googleapis.com is enabled... 
+[debug] [2024-10-05T13:09:30.844Z] Checked if tokens are valid: true, expires at: 1728136616362
+[debug] [2024-10-05T13:09:30.844Z] Checked if tokens are valid: true, expires at: 1728136616362
+[debug] [2024-10-05T13:09:30.844Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/mitsch-website/services/cloudfunctions.googleapis.com [none]
+[debug] [2024-10-05T13:09:30.844Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/mitsch-website/services/cloudfunctions.googleapis.com x-goog-quota-user=projects/mitsch-website
+[debug] [2024-10-05T13:09:30.846Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/mitsch-website/services/runtimeconfig.googleapis.com [none]
+[debug] [2024-10-05T13:09:30.846Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/mitsch-website/services/runtimeconfig.googleapis.com x-goog-quota-user=projects/mitsch-website
+[debug] [2024-10-05T13:09:30.846Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/mitsch-website/services/cloudbuild.googleapis.com [none]
+[debug] [2024-10-05T13:09:30.846Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/mitsch-website/services/cloudbuild.googleapis.com x-goog-quota-user=projects/mitsch-website
+[debug] [2024-10-05T13:09:30.847Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/mitsch-website/services/artifactregistry.googleapis.com [none]
+[debug] [2024-10-05T13:09:30.847Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/mitsch-website/services/artifactregistry.googleapis.com x-goog-quota-user=projects/mitsch-website
+[debug] [2024-10-05T13:09:31.869Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/mitsch-website/services/cloudbuild.googleapis.com 200
+[debug] [2024-10-05T13:09:31.869Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/mitsch-website/services/cloudbuild.googleapis.com [omitted]
+[info] ✔  functions: required API cloudbuild.googleapis.com is enabled 
+[debug] [2024-10-05T13:09:31.870Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/mitsch-website/services/runtimeconfig.googleapis.com 200
+[debug] [2024-10-05T13:09:31.870Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/mitsch-website/services/runtimeconfig.googleapis.com [omitted]
+[debug] [2024-10-05T13:09:31.871Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/mitsch-website/services/artifactregistry.googleapis.com 200
+[debug] [2024-10-05T13:09:31.871Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/mitsch-website/services/artifactregistry.googleapis.com [omitted]
+[info] ✔  artifactregistry: required API artifactregistry.googleapis.com is enabled 
+[debug] [2024-10-05T13:09:31.938Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/mitsch-website/services/cloudfunctions.googleapis.com 200
+[debug] [2024-10-05T13:09:31.938Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/mitsch-website/services/cloudfunctions.googleapis.com [omitted]
+[info] ✔  functions: required API cloudfunctions.googleapis.com is enabled 
+[debug] [2024-10-05T13:09:31.938Z] Checked if tokens are valid: true, expires at: 1728136616362
+[debug] [2024-10-05T13:09:31.938Z] Checked if tokens are valid: true, expires at: 1728136616362
+[debug] [2024-10-05T13:09:31.938Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/mitsch-website/adminSdkConfig [none]
+[debug] [2024-10-05T13:09:32.172Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/mitsch-website/adminSdkConfig 200
+[debug] [2024-10-05T13:09:32.173Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/mitsch-website/adminSdkConfig {"projectId":"mitsch-website","storageBucket":"mitsch-website.appspot.com"}
+[debug] [2024-10-05T13:09:32.173Z] Checked if tokens are valid: true, expires at: 1728136616362
+[debug] [2024-10-05T13:09:32.173Z] Checked if tokens are valid: true, expires at: 1728136616362
+[debug] [2024-10-05T13:09:32.174Z] >>> [apiv2][query] GET https://runtimeconfig.googleapis.com/v1beta1/projects/mitsch-website/configs [none]
+[debug] [2024-10-05T13:09:32.639Z] <<< [apiv2][status] GET https://runtimeconfig.googleapis.com/v1beta1/projects/mitsch-website/configs 200
+[debug] [2024-10-05T13:09:32.639Z] <<< [apiv2][body] GET https://runtimeconfig.googleapis.com/v1beta1/projects/mitsch-website/configs {}
+[debug] [2024-10-05T13:09:32.642Z] Validating nodejs source
+[warn] ⚠  functions: package.json indicates an outdated version of firebase-functions. Please upgrade using npm install --save firebase-functions@latest in your functions directory. 
+[warn] ⚠  functions: Please note that there will be breaking changes when you upgrade. 
+[debug] [2024-10-05T13:09:33.077Z] > [functions] package.json contents: {
+  "name": "mitsch-website",
+  "version": "0.1.0",
+  "private": true,
+  "main": "server.js",
+  "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^6.6.0",
+    "@fortawesome/free-solid-svg-icons": "^6.6.0",
+    "@fortawesome/react-fontawesome": "^0.2.2",
+    "axios": "^1.7.7",
+    "emailjs": "^4.0.3",
+    "emailjs-com": "^3.2.0",
+    "firebase": "^10.14.0",
+    "framer-motion": "^11.5.6",
+    "mongodb": "^6.9.0",
+    "mongoose": "^8.7.0",
+    "next": "^14.2.14",
+    "openai": "^4.63.0",
+    "react": "^18",
+    "react-dom": "^18",
+    "react-slick": "^0.30.2",
+    "sweetalert2": "^11.14.1",
+    "swiper": "^11.1.14",
+    "tone": "^15.0.4",
+    "sharp": "^0.32 || ^0.33",
+    "firebase-frameworks": "^0.11.0",
+    "firebase-functions": "^4.5.0",
+    "firebase-admin": "^11.11.1"
+  },
+  "engines": {
+    "node": "20"
+  }
+}
+[debug] [2024-10-05T13:09:33.077Z] Building nodejs source
+[info] i  functions: Loading and analyzing source code for codebase firebase-frameworks-mitsch-website to determine what to deploy 
+[info] i  functions: You are using a version of firebase-functions SDK (4.9.0) that does not have support for the newest Firebase Extensions features. Please update firebase-functions SDK to >=5.1.0 to use them correctly 
+[debug] [2024-10-05T13:09:33.077Z] Could not find functions.yaml. Must use http discovery
+[debug] [2024-10-05T13:09:33.082Z] Found firebase-functions binary at '/Users/miriamschwartz/_miRi/2024_Hamburg-Coding-School/mitsch-website/mitsch-website/.firebase/mitsch-website/functions/node_modules/.bin/firebase-functions'
+[info] Serving at port 8581
+
+[debug] [2024-10-05T13:09:33.261Z] Got response from /__/functions.yaml {"endpoints":{"ssrmitschwebsite":{"availableMemoryMb":null,"timeoutSeconds":null,"minInstances":null,"maxInstances":null,"ingressSettings":null,"concurrency":null,"serviceAccountEmail":null,"vpc":null,"platform":"gcfv2","region":["europe-west1"],"labels":{},"httpsTrigger":{},"entryPoint":"ssrmitschwebsite"}},"specVersion":"v1alpha1","requiredAPIs":[]}
+[info] i  functions: Loaded environment variables from .env. 
+[info] i  functions: preparing .firebase/mitsch-website/functions directory for uploading... 
+[info] i  functions: packaged /Users/miriamschwartz/_miRi/2024_Hamburg-Coding-School/mitsch-website/mitsch-website/.firebase/mitsch-website/functions (80.15 MB) for uploading 
+[debug] [2024-10-05T13:09:40.370Z] Checked if tokens are valid: true, expires at: 1728136616362
+[debug] [2024-10-05T13:09:40.370Z] Checked if tokens are valid: true, expires at: 1728136616362
+[debug] [2024-10-05T13:09:40.370Z] >>> [apiv2][query] GET https://cloudfunctions.googleapis.com/v1/projects/mitsch-website/locations/-/functions [none]
+[debug] [2024-10-05T13:09:41.087Z] <<< [apiv2][status] GET https://cloudfunctions.googleapis.com/v1/projects/mitsch-website/locations/-/functions 200
+[debug] [2024-10-05T13:09:41.088Z] <<< [apiv2][body] GET https://cloudfunctions.googleapis.com/v1/projects/mitsch-website/locations/-/functions {}
+[debug] [2024-10-05T13:09:41.088Z] Checked if tokens are valid: true, expires at: 1728136616362
+[debug] [2024-10-05T13:09:41.088Z] Checked if tokens are valid: true, expires at: 1728136616362
+[debug] [2024-10-05T13:09:41.089Z] >>> [apiv2][query] GET https://cloudfunctions.googleapis.com/v2/projects/mitsch-website/locations/-/functions filter=environment%3D%22GEN_2%22
+[debug] [2024-10-05T13:09:42.180Z] <<< [apiv2][status] GET https://cloudfunctions.googleapis.com/v2/projects/mitsch-website/locations/-/functions 200
+[debug] [2024-10-05T13:09:42.181Z] <<< [apiv2][body] GET https://cloudfunctions.googleapis.com/v2/projects/mitsch-website/locations/-/functions {"functions":[{"name":"projects/mitsch-website/locations/europe-west1/functions/ssrmitschwebsite","buildConfig":{"build":"projects/240593043883/locations/europe-west1/builds/de95d604-fc58-43eb-b15c-34e1ac267516","runtime":"nodejs20","entryPoint":"ssrmitschwebsite","source":{"storageSource":{"bucket":"gcf-v2-sources-240593043883-europe-west1","object":"ssrmitschwebsite/function-source.zip","generation":"1727969240418426"}},"environmentVariables":{"GOOGLE_NODE_RUN_SCRIPTS":""},"dockerRepository":"projects/mitsch-website/locations/europe-west1/repositories/gcf-artifacts","sourceProvenance":{"resolvedStorageSource":{"bucket":"gcf-v2-sources-240593043883-europe-west1","object":"ssrmitschwebsite/function-source.zip","generation":"1727969240418426"}},"dockerRegistry":"ARTIFACT_REGISTRY","serviceAccount":"projects/mitsch-website/serviceAccounts/240593043883-compute@developer.gserviceaccount.com","automaticUpdatePolicy":{}},"serviceConfig":{"service":"projects/mitsch-website/locations/europe-west1/services/ssrmitschwebsite","timeoutSeconds":60,"environmentVariables":{"VERCEL_URL":"mitsch-website.web.app","__FIREBASE_FRAMEWORKS_ENTRY__":"next.js","__FIREBASE_DEFAULTS__":"{\"config\":{\"projectId\":\"mitsch-website\",\"appId\":\"1:240593043883:web:b323c1f176c4dc662d92ee\",\"storageBucket\":\"mitsch-website.appspot.com\",\"apiKey\":\"AIzaSyBWrFw3AtK_ljK4bLUPDJNxQmLV1oLMeh0\",\"authDomain\":\"mitsch-website.firebaseapp.com\",\"messagingSenderId\":\"240593043883\",\"measurementId\":\"G-P47X78ELLB\"},\"_authTokenSyncURL\":\"/__session\"}","FIREBASE_CONFIG":"{\"projectId\":\"mitsch-website\",\"storageBucket\":\"mitsch-website.appspot.com\"}","GCLOUD_PROJECT":"mitsch-website","EVENTARC_CLOUD_EVENT_SOURCE":"projects/mitsch-website/locations/europe-west1/services/ssrmitschwebsite","FUNCTION_TARGET":"ssrmitschwebsite","LOG_EXECUTION_ID":"true"},"maxInstanceCount":100,"ingressSettings":"ALLOW_ALL","uri":"https://ssrmitschwebsite-4eaozerrnq-ew.a.run.app","serviceAccountEmail":"240593043883-compute@developer.gserviceaccount.com","availableMemory":"256Mi","allTrafficOnLatestRevision":true,"revision":"ssrmitschwebsite-00003-zes","maxInstanceRequestConcurrency":80,"availableCpu":"1"},"state":"ACTIVE","updateTime":"2024-10-03T15:30:03.681619882Z","labels":{"firebase-functions-hash":"f6207b7a9a2e8a78dcb0bb612a694658edf8aac3","deployment-tool":"cli-firebase","firebase-functions-codebase":"firebase-frameworks-mitsch-website"},"environment":"GEN_2","url":"https://europe-west1-mitsch-website.cloudfunctions.net/ssrmitschwebsite","createTime":"2024-10-02T08:21:57.789250163Z"}]}
+[info] i  functions: ensuring required API run.googleapis.com is enabled... 
+[debug] [2024-10-05T13:09:42.185Z] Checked if tokens are valid: true, expires at: 1728136616362
+[debug] [2024-10-05T13:09:42.185Z] Checked if tokens are valid: true, expires at: 1728136616362
+[info] i  functions: ensuring required API eventarc.googleapis.com is enabled... 
+[debug] [2024-10-05T13:09:42.185Z] Checked if tokens are valid: true, expires at: 1728136616362
+[debug] [2024-10-05T13:09:42.185Z] Checked if tokens are valid: true, expires at: 1728136616362
+[info] i  functions: ensuring required API pubsub.googleapis.com is enabled... 
+[debug] [2024-10-05T13:09:42.185Z] Checked if tokens are valid: true, expires at: 1728136616362
+[debug] [2024-10-05T13:09:42.185Z] Checked if tokens are valid: true, expires at: 1728136616362
+[info] i  functions: ensuring required API storage.googleapis.com is enabled... 
+[debug] [2024-10-05T13:09:42.185Z] Checked if tokens are valid: true, expires at: 1728136616362
+[debug] [2024-10-05T13:09:42.185Z] Checked if tokens are valid: true, expires at: 1728136616362
+[debug] [2024-10-05T13:09:42.186Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/mitsch-website/services/run.googleapis.com [none]
+[debug] [2024-10-05T13:09:42.186Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/mitsch-website/services/run.googleapis.com x-goog-quota-user=projects/mitsch-website
+[debug] [2024-10-05T13:09:42.189Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/mitsch-website/services/eventarc.googleapis.com [none]
+[debug] [2024-10-05T13:09:42.189Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/mitsch-website/services/eventarc.googleapis.com x-goog-quota-user=projects/mitsch-website
+[debug] [2024-10-05T13:09:42.190Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/mitsch-website/services/pubsub.googleapis.com [none]
+[debug] [2024-10-05T13:09:42.191Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/mitsch-website/services/pubsub.googleapis.com x-goog-quota-user=projects/mitsch-website
+[debug] [2024-10-05T13:09:42.192Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/mitsch-website/services/storage.googleapis.com [none]
+[debug] [2024-10-05T13:09:42.193Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/mitsch-website/services/storage.googleapis.com x-goog-quota-user=projects/mitsch-website
+[debug] [2024-10-05T13:09:42.710Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/mitsch-website/services/eventarc.googleapis.com 200
+[debug] [2024-10-05T13:09:42.711Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/mitsch-website/services/eventarc.googleapis.com [omitted]
+[info] ✔  functions: required API eventarc.googleapis.com is enabled 
+[debug] [2024-10-05T13:09:42.712Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/mitsch-website/services/pubsub.googleapis.com 200
+[debug] [2024-10-05T13:09:42.713Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/mitsch-website/services/pubsub.googleapis.com [omitted]
+[info] ✔  functions: required API pubsub.googleapis.com is enabled 
+[debug] [2024-10-05T13:09:43.132Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/mitsch-website/services/run.googleapis.com 200
+[debug] [2024-10-05T13:09:43.133Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/mitsch-website/services/run.googleapis.com [omitted]
+[info] ✔  functions: required API run.googleapis.com is enabled 
+[debug] [2024-10-05T13:09:43.201Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/mitsch-website/services/storage.googleapis.com 200
+[debug] [2024-10-05T13:09:43.201Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/mitsch-website/services/storage.googleapis.com [omitted]
+[info] ✔  functions: required API storage.googleapis.com is enabled 
+[info] i  functions: generating the service identity for pubsub.googleapis.com... 
+[debug] [2024-10-05T13:09:43.202Z] Checked if tokens are valid: true, expires at: 1728136616362
+[debug] [2024-10-05T13:09:43.202Z] Checked if tokens are valid: true, expires at: 1728136616362
+[info] i  functions: generating the service identity for eventarc.googleapis.com... 
+[debug] [2024-10-05T13:09:43.202Z] Checked if tokens are valid: true, expires at: 1728136616362
+[debug] [2024-10-05T13:09:43.202Z] Checked if tokens are valid: true, expires at: 1728136616362
+[debug] [2024-10-05T13:09:43.202Z] >>> [apiv2][query] POST https://serviceusage.googleapis.com/v1beta1/projects/240593043883/services/pubsub.googleapis.com:generateServiceIdentity [none]
+[debug] [2024-10-05T13:09:43.203Z] >>> [apiv2][query] POST https://serviceusage.googleapis.com/v1beta1/projects/240593043883/services/eventarc.googleapis.com:generateServiceIdentity [none]
+[debug] [2024-10-05T13:09:43.744Z] <<< [apiv2][status] POST https://serviceusage.googleapis.com/v1beta1/projects/240593043883/services/eventarc.googleapis.com:generateServiceIdentity 200
+[debug] [2024-10-05T13:09:43.744Z] <<< [apiv2][body] POST https://serviceusage.googleapis.com/v1beta1/projects/240593043883/services/eventarc.googleapis.com:generateServiceIdentity {"name":"operations/finished.DONE_OPERATION","done":true,"response":{"@type":"type.googleapis.com/google.api.serviceusage.v1beta1.ServiceIdentity","email":"service-240593043883@gcp-sa-eventarc.iam.gserviceaccount.com","uniqueId":"109844966314391122050"}}
+[debug] [2024-10-05T13:09:44.155Z] <<< [apiv2][status] POST https://serviceusage.googleapis.com/v1beta1/projects/240593043883/services/pubsub.googleapis.com:generateServiceIdentity 200
+[debug] [2024-10-05T13:09:44.156Z] <<< [apiv2][body] POST https://serviceusage.googleapis.com/v1beta1/projects/240593043883/services/pubsub.googleapis.com:generateServiceIdentity {"name":"operations/finished.DONE_OPERATION","done":true,"response":{"@type":"type.googleapis.com/google.api.serviceusage.v1beta1.ServiceIdentity","email":"service-240593043883@gcp-sa-pubsub.iam.gserviceaccount.com","uniqueId":"109503605371392262901"}}
+[debug] [2024-10-05T13:09:44.160Z] Checked if tokens are valid: true, expires at: 1728136616362
+[debug] [2024-10-05T13:09:44.160Z] Checked if tokens are valid: true, expires at: 1728136616362
+[debug] [2024-10-05T13:09:44.160Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/mitsch-website [none]
+[debug] [2024-10-05T13:09:44.448Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/mitsch-website 200
+[debug] [2024-10-05T13:09:44.449Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/mitsch-website {"projectId":"mitsch-website","projectNumber":"240593043883","displayName":"Mitsch Website","name":"projects/mitsch-website","resources":{"hostingSite":"mitsch-website"},"state":"ACTIVE","etag":"1_db7cd86d-e712-48ed-bebd-0fe824389a66"}
+[debug] [2024-10-05T13:09:44.455Z] Checked if tokens are valid: true, expires at: 1728136616362
+[debug] [2024-10-05T13:09:44.455Z] Checked if tokens are valid: true, expires at: 1728136616362
+[debug] [2024-10-05T13:09:44.455Z] >>> [apiv2][query] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/mitsch-website/versions [none]
+[debug] [2024-10-05T13:09:44.455Z] >>> [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/mitsch-website/versions {"status":"CREATED","labels":{"deployment-tool":"cli-firebase","firebase-web-framework":"next_ssr"}}
+[debug] [2024-10-05T13:09:46.101Z] <<< [apiv2][status] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/mitsch-website/versions 200
+[debug] [2024-10-05T13:09:46.101Z] <<< [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/mitsch-website/versions {"name":"projects/240593043883/sites/mitsch-website/versions/77b562ac00a4210f","status":"CREATED","config":{},"labels":{"deployment-tool":"cli-firebase","firebase-web-framework":"next_ssr"}}
+[debug] [2024-10-05T13:09:46.104Z] Checked if tokens are valid: true, expires at: 1728136616362
+[debug] [2024-10-05T13:09:46.104Z] Checked if tokens are valid: true, expires at: 1728136616362
+[debug] [2024-10-05T13:09:46.104Z] >>> [apiv2][query] POST https://cloudfunctions.googleapis.com/v2/projects/mitsch-website/locations/europe-west1/functions:generateUploadUrl [none]
+[debug] [2024-10-05T13:09:46.296Z] <<< [apiv2][status] POST https://cloudfunctions.googleapis.com/v2/projects/mitsch-website/locations/europe-west1/functions:generateUploadUrl 200
+[debug] [2024-10-05T13:09:46.297Z] <<< [apiv2][body] POST https://cloudfunctions.googleapis.com/v2/projects/mitsch-website/locations/europe-west1/functions:generateUploadUrl {"uploadUrl":"https://storage.googleapis.com/gcf-v2-uploads-240593043883-europe-west1/9e5e29fc-adc0-44be-af88-99b4f734edb0.zip?GoogleAccessId=service-240593043883@gcf-admin-robot.iam.gserviceaccount.com&Expires=1728135586&Signature=UjCh4pjYxz8LSryaKEPAf8bPGRLcxwb%2FwWg78XS1xBEIpJ2C1oMazQPE0psXQfjgObfsutysNcBG3ZQ3G64Cd4ik7yptBqhAMsHzqBQ0k6C4%2FLu1lFpWVoXMsEAaWpjuSn4UOB8F3RGplmHSb9GYfppIq5Va1jz%2BhKzT98ewrJ%2FtxtOIoPGpdiZF4iq57SwOzCAqt2ysliAj12lcJHfbCZVJxMPrfvy4VhvgFq%2BQ43DRkR4i%2B0xf3acqoc0vBV7zMNcXDfcNaxnH25X5PpnZ5J%2B7mFFT%2FFNfn5u%2BFCjVgCgGnwszhaXwTPIYfGbe8GhL44ukX3%2F%2F4Z%2FLqKub3Jfz3g%3D%3D","storageSource":{"bucket":"gcf-v2-uploads-240593043883-europe-west1","object":"9e5e29fc-adc0-44be-af88-99b4f734edb0.zip"}}
+[debug] [2024-10-05T13:09:46.300Z] >>> [apiv2][query] PUT https://storage.googleapis.com/gcf-v2-uploads-240593043883-europe-west1/9e5e29fc-adc0-44be-af88-99b4f734edb0.zip GoogleAccessId=service-240593043883%40gcf-admin-robot.iam.gserviceaccount.com&Expires=1728135586&Signature=UjCh4pjYxz8LSryaKEPAf8bPGRLcxwb%2FwWg78XS1xBEIpJ2C1oMazQPE0psXQfjgObfsutysNcBG3ZQ3G64Cd4ik7yptBqhAMsHzqBQ0k6C4%2FLu1lFpWVoXMsEAaWpjuSn4UOB8F3RGplmHSb9GYfppIq5Va1jz%2BhKzT98ewrJ%2FtxtOIoPGpdiZF4iq57SwOzCAqt2ysliAj12lcJHfbCZVJxMPrfvy4VhvgFq%2BQ43DRkR4i%2B0xf3acqoc0vBV7zMNcXDfcNaxnH25X5PpnZ5J%2B7mFFT%2FFNfn5u%2BFCjVgCgGnwszhaXwTPIYfGbe8GhL44ukX3%2F%2F4Z%2FLqKub3Jfz3g%3D%3D
+[debug] [2024-10-05T13:09:46.300Z] >>> [apiv2][body] PUT https://storage.googleapis.com/gcf-v2-uploads-240593043883-europe-west1/9e5e29fc-adc0-44be-af88-99b4f734edb0.zip [stream]
+[debug] [2024-10-05T13:47:59.263Z] ----------------------------------------------------------------------
+[debug] [2024-10-05T13:47:59.270Z] Command:       /Users/miriamschwartz/.nvm/versions/node/v20.11.0/bin/node /Users/miriamschwartz/.nvm/versions/node/v20.11.0/bin/firebase deploy
+[debug] [2024-10-05T13:47:59.270Z] CLI Version:   13.20.2
+[debug] [2024-10-05T13:47:59.270Z] Platform:      darwin
+[debug] [2024-10-05T13:47:59.270Z] Node Version:  v20.11.0
+[debug] [2024-10-05T13:47:59.270Z] Time:          Sat Oct 05 2024 15:47:59 GMT+0200 (Central European Summer Time)
+[debug] [2024-10-05T13:47:59.270Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2024-10-05T13:47:59.305Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2024-10-05T13:47:59.305Z] > authorizing via signed-in user (schwartz.miriam@googlemail.com)
+[debug] [2024-10-05T13:47:59.305Z] [iam] checking project mitsch-website for permissions ["firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2024-10-05T13:47:59.306Z] Checked if tokens are valid: true, expires at: 1728137607843
+[debug] [2024-10-05T13:47:59.306Z] Checked if tokens are valid: true, expires at: 1728137607843
+[debug] [2024-10-05T13:47:59.306Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/mitsch-website:testIamPermissions [none]
+[debug] [2024-10-05T13:47:59.306Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/mitsch-website:testIamPermissions x-goog-quota-user=projects/mitsch-website
+[debug] [2024-10-05T13:47:59.306Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/mitsch-website:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2024-10-05T13:48:00.169Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/mitsch-website:testIamPermissions 200
+[debug] [2024-10-05T13:48:00.169Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/mitsch-website:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2024-10-05T13:48:00.170Z] Checked if tokens are valid: true, expires at: 1728137607843
+[debug] [2024-10-05T13:48:00.171Z] Checked if tokens are valid: true, expires at: 1728137607843
+[debug] [2024-10-05T13:48:00.171Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/mitsch-website [none]
+[debug] [2024-10-05T13:48:00.541Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/mitsch-website 200
+[debug] [2024-10-05T13:48:00.542Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/mitsch-website {"projectId":"mitsch-website","projectNumber":"240593043883","displayName":"Mitsch Website","name":"projects/mitsch-website","resources":{"hostingSite":"mitsch-website"},"state":"ACTIVE","etag":"1_db7cd86d-e712-48ed-bebd-0fe824389a66"}
+[debug] [2024-10-05T13:48:01.294Z] Checked if tokens are valid: true, expires at: 1728137607843
+[debug] [2024-10-05T13:48:01.294Z] Checked if tokens are valid: true, expires at: 1728137607843
+[debug] [2024-10-05T13:48:01.294Z] >>> [apiv2][query] GET https://firebasehosting.googleapis.com/v1beta1/projects/mitsch-website/sites pageToken=&pageSize=10
+[debug] [2024-10-05T13:48:02.534Z] <<< [apiv2][status] GET https://firebasehosting.googleapis.com/v1beta1/projects/mitsch-website/sites 200
+[debug] [2024-10-05T13:48:02.534Z] <<< [apiv2][body] GET https://firebasehosting.googleapis.com/v1beta1/projects/mitsch-website/sites {"sites":[{"name":"projects/mitsch-website/sites/mitsch-website","defaultUrl":"https://mitsch-website.web.app","appId":"1:240593043883:web:b323c1f176c4dc662d92ee","type":"DEFAULT_SITE"}]}
+[debug] [2024-10-05T13:48:02.534Z] Checked if tokens are valid: true, expires at: 1728137607843
+[debug] [2024-10-05T13:48:02.534Z] Checked if tokens are valid: true, expires at: 1728137607843
+[debug] [2024-10-05T13:48:02.535Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/-/webApps/1:240593043883:web:b323c1f176c4dc662d92ee/config [none]
+[debug] [2024-10-05T13:48:03.337Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/-/webApps/1:240593043883:web:b323c1f176c4dc662d92ee/config 200
+[debug] [2024-10-05T13:48:03.338Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/-/webApps/1:240593043883:web:b323c1f176c4dc662d92ee/config {"projectId":"mitsch-website","appId":"1:240593043883:web:b323c1f176c4dc662d92ee","storageBucket":"mitsch-website.appspot.com","apiKey":"AIzaSyA7jcUA-si7vWQqfWcY6XY4Et-OCXi3UVk","authDomain":"mitsch-website.firebaseapp.com","messagingSenderId":"240593043883","measurementId":"G-P47X78ELLB"}
+[info] 
+   Thank you for trying our early preview of Next.js support on Firebase Hosting.
+   During the preview, support is best-effort and breaking changes can be expected. Proceed with caution.
+   The integration is known to work with Next.js version 12 - 14.0. You may encounter errors.
+
+   Documentation: https://firebase.google.com/docs/hosting/frameworks/nextjs
+   File a bug: https://github.com/firebase/firebase-tools/issues/new?template=bug_report.md
+   Submit a feature request: https://github.com/firebase/firebase-tools/issues/new?template=feature_request.md
+
+   We'd love to learn from you. Express your interest in helping us shape the future of Firebase Hosting: https://goo.gle/41enW5X
+
+[debug] [2024-10-05T13:48:04.752Z] Checked if tokens are valid: true, expires at: 1728137607843
+[debug] [2024-10-05T13:48:04.752Z] Checked if tokens are valid: true, expires at: 1728137607843
+[debug] [2024-10-05T13:48:04.752Z] >>> [apiv2][query] GET https://firebasehosting.googleapis.com/v1beta1/projects/mitsch-website/sites/mitsch-website [none]
+[debug] [2024-10-05T13:48:05.181Z] <<< [apiv2][status] GET https://firebasehosting.googleapis.com/v1beta1/projects/mitsch-website/sites/mitsch-website 200
+[debug] [2024-10-05T13:48:05.181Z] <<< [apiv2][body] GET https://firebasehosting.googleapis.com/v1beta1/projects/mitsch-website/sites/mitsch-website {"name":"projects/mitsch-website/sites/mitsch-website","defaultUrl":"https://mitsch-website.web.app","appId":"1:240593043883:web:b323c1f176c4dc662d92ee","type":"DEFAULT_SITE"}
+[info]   ▲ Next.js 14.2.14
+
+[info]   - Environments: .env.local
+
+
+[info]    Creating an optimized production build ...
+
+[info]  ✓ Compiled successfully
+
+[info]    Linting and checking validity of types ...
+
+[info] 
+./components/ConnectingDots.js
+57:6  Warning: React Hook useEffect has a missing dependency: 'initialDots.length'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+
+info  - Need to disable some ESLint rules? Learn more here: https://nextjs.org/docs/basic-features/eslint#disabling-rules
+
+[info]    Collecting page data ...
+
+[info]    Generating static pages (0/8) ...
+
+[info]    Generating static pages (2/8) 
+
+[info]    Generating static pages (4/8) 
+
+[info]    Generating static pages (6/8) 
+
+[info]  ✓ Generating static pages (8/8)
+
+[info]    Finalizing page optimization ...
+
+[info]    Collecting build traces ...
+
+[info] 
+
+[info] Route (app)                              Size     First Load JS
+┌ ○ /                                    2 kB            100 kB
+├ ○ /_not-found                          873 B            88 kB
+├ ƒ /api/generate-haiku                  0 B                0 B
+├ ƒ /api/save-haiku                      0 B                0 B
+├ ○ /contact                             40 kB           138 kB
+├ ○ /playground                          2.86 kB         101 kB
+└ ƒ /project/[project-name]              28.9 kB         127 kB
++ First Load JS shared by all            87.1 kB
+  ├ chunks/117-06e8ad08bc47bdf0.js       31.6 kB
+  ├ chunks/fd9d1056-13baa9b2029d31fe.js  53.6 kB
+  └ other shared chunks (total)          1.91 kB
+
+
+[info] 
+○  (Static)   prerendered as static content
+ƒ  (Dynamic)  server-rendered on demand
+
+
+[info] Building a Cloud Function to run this application. This is needed due to:
+[info]  • Image Optimization
+[info]  • non-static component /api/save-haiku/route
+[info]  • non-static component /api/generate-haiku/route
+[info]  • non-static component /project/[project-name]/page
+[info] 
+[debug] [2024-10-05T13:48:12.938Z] Checked if tokens are valid: true, expires at: 1728137607843
+[debug] [2024-10-05T13:48:12.938Z] Checked if tokens are valid: true, expires at: 1728137607843
+[debug] [2024-10-05T13:48:12.938Z] >>> [apiv2][query] GET https://firebasehosting.googleapis.com/v1beta1/projects/mitsch-website/sites/mitsch-website [none]
+[debug] [2024-10-05T13:48:14.085Z] <<< [apiv2][status] GET https://firebasehosting.googleapis.com/v1beta1/projects/mitsch-website/sites/mitsch-website 200
+[debug] [2024-10-05T13:48:14.085Z] <<< [apiv2][body] GET https://firebasehosting.googleapis.com/v1beta1/projects/mitsch-website/sites/mitsch-website {"name":"projects/mitsch-website/sites/mitsch-website","defaultUrl":"https://mitsch-website.web.app","appId":"1:240593043883:web:b323c1f176c4dc662d92ee","type":"DEFAULT_SITE"}
+[debug] [2024-10-05T13:48:24.437Z] [web frameworks] effective firebase.json:  {
+  "hosting": [
+    {
+      "source": ".",
+      "ignore": [
+        "firebase.json",
+        "**/.*",
+        "**/node_modules/**"
+      ],
+      "frameworksBackend": {
+        "region": "europe-west1"
+      },
+      "site": "mitsch-website",
+      "rewrites": [
+        {
+          "source": "**",
+          "function": {
+            "functionId": "ssrmitschwebsite",
+            "region": "europe-west1",
+            "pinTag": true
+          }
+        }
+      ],
+      "redirects": [],
+      "headers": [
+        {
+          "source": "/_not-found",
+          "headers": [
+            {
+              "key": "x-next-cache-tags",
+              "value": "_N_T_/layout,_N_T_/_not-found/layout,_N_T_/_not-found/page,_N_T_/_not-found"
+            }
+          ]
+        },
+        {
+          "source": "/contact",
+          "headers": [
+            {
+              "key": "x-next-cache-tags",
+              "value": "_N_T_/layout,_N_T_/contact/layout,_N_T_/contact/page,_N_T_/contact"
+            }
+          ]
+        },
+        {
+          "source": "/playground",
+          "headers": [
+            {
+              "key": "x-next-cache-tags",
+              "value": "_N_T_/layout,_N_T_/playground/layout,_N_T_/playground/page,_N_T_/playground"
+            }
+          ]
+        },
+        {
+          "source": "**/*.[jt]s",
+          "headers": [
+            {
+              "key": "Set-Cookie",
+              "value": "__FIREBASE_DEFAULTS__=eyJjb25maWciOnsicHJvamVjdElkIjoibWl0c2NoLXdlYnNpdGUiLCJhcHBJZCI6IjE6MjQwNTkzMDQzODgzOndlYjpiMzIzYzFmMTc2YzRkYzY2MmQ5MmVlIiwic3RvcmFnZUJ1Y2tldCI6Im1pdHNjaC13ZWJzaXRlLmFwcHNwb3QuY29tIiwiYXBpS2V5IjoiQUl6YVN5QTdqY1VBLXNpN3ZXUXFmV2NZNlhZNEV0LU9DWGkzVVZrIiwiYXV0aERvbWFpbiI6Im1pdHNjaC13ZWJzaXRlLmZpcmViYXNlYXBwLmNvbSIsIm1lc3NhZ2luZ1NlbmRlcklkIjoiMjQwNTkzMDQzODgzIiwibWVhc3VyZW1lbnRJZCI6IkctUDQ3WDc4RUxMQiJ9LCJfYXV0aFRva2VuU3luY1VSTCI6Ii9fX3Nlc3Npb24ifQ; SameSite=Strict; Expires=2026-08-31T00:28:24.437Z; Path=/;"
+            }
+          ]
+        }
+      ],
+      "cleanUrls": true,
+      "trailingSlash": false,
+      "public": ".firebase/mitsch-website/hosting",
+      "webFramework": "next_ssr"
+    }
+  ],
+  "functions": [
+    {
+      "source": ".firebase/mitsch-website/functions",
+      "codebase": "firebase-frameworks-mitsch-website"
+    }
+  ]
+}
+[debug] [2024-10-05T13:48:24.437Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2024-10-05T13:48:24.438Z] > authorizing via signed-in user (schwartz.miriam@googlemail.com)
+[debug] [2024-10-05T13:48:24.438Z] [iam] checking project mitsch-website for permissions ["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get"]
+[debug] [2024-10-05T13:48:24.438Z] Checked if tokens are valid: true, expires at: 1728137607843
+[debug] [2024-10-05T13:48:24.438Z] Checked if tokens are valid: true, expires at: 1728137607843
+[debug] [2024-10-05T13:48:24.438Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/mitsch-website:testIamPermissions [none]
+[debug] [2024-10-05T13:48:24.438Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/mitsch-website:testIamPermissions x-goog-quota-user=projects/mitsch-website
+[debug] [2024-10-05T13:48:24.438Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/mitsch-website:testIamPermissions {"permissions":["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get"]}
+[debug] [2024-10-05T13:48:25.253Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/mitsch-website:testIamPermissions 200
+[debug] [2024-10-05T13:48:25.253Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/mitsch-website:testIamPermissions {"permissions":["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get"]}
+[info] 
+[info] === Deploying to 'mitsch-website'...
+[info] 
+[info] i  deploying functions, hosting 
+[debug] [2024-10-05T13:48:25.256Z] Checked if tokens are valid: true, expires at: 1728137607843
+[debug] [2024-10-05T13:48:25.256Z] Checked if tokens are valid: true, expires at: 1728137607843
+[debug] [2024-10-05T13:48:25.256Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/mitsch-website [none]
+[debug] [2024-10-05T13:48:25.574Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/mitsch-website 200
+[debug] [2024-10-05T13:48:25.574Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/mitsch-website {"projectId":"mitsch-website","projectNumber":"240593043883","displayName":"Mitsch Website","name":"projects/mitsch-website","resources":{"hostingSite":"mitsch-website"},"state":"ACTIVE","etag":"1_db7cd86d-e712-48ed-bebd-0fe824389a66"}
+[info] i  functions: preparing codebase firebase-frameworks-mitsch-website for deployment 
+[info] i  functions: ensuring required API cloudfunctions.googleapis.com is enabled... 
+[debug] [2024-10-05T13:48:25.576Z] Checked if tokens are valid: true, expires at: 1728137607843
+[debug] [2024-10-05T13:48:25.576Z] Checked if tokens are valid: true, expires at: 1728137607843
+[debug] [2024-10-05T13:48:25.577Z] Checked if tokens are valid: true, expires at: 1728137607843
+[debug] [2024-10-05T13:48:25.577Z] Checked if tokens are valid: true, expires at: 1728137607843
+[info] i  functions: ensuring required API cloudbuild.googleapis.com is enabled... 
+[debug] [2024-10-05T13:48:25.577Z] Checked if tokens are valid: true, expires at: 1728137607843
+[debug] [2024-10-05T13:48:25.577Z] Checked if tokens are valid: true, expires at: 1728137607843
+[info] i  artifactregistry: ensuring required API artifactregistry.googleapis.com is enabled... 
+[debug] [2024-10-05T13:48:25.577Z] Checked if tokens are valid: true, expires at: 1728137607843
+[debug] [2024-10-05T13:48:25.577Z] Checked if tokens are valid: true, expires at: 1728137607843
+[debug] [2024-10-05T13:48:25.578Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/mitsch-website/services/cloudfunctions.googleapis.com [none]
+[debug] [2024-10-05T13:48:25.578Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/mitsch-website/services/cloudfunctions.googleapis.com x-goog-quota-user=projects/mitsch-website
+[debug] [2024-10-05T13:48:25.580Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/mitsch-website/services/runtimeconfig.googleapis.com [none]
+[debug] [2024-10-05T13:48:25.580Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/mitsch-website/services/runtimeconfig.googleapis.com x-goog-quota-user=projects/mitsch-website
+[debug] [2024-10-05T13:48:25.581Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/mitsch-website/services/cloudbuild.googleapis.com [none]
+[debug] [2024-10-05T13:48:25.581Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/mitsch-website/services/cloudbuild.googleapis.com x-goog-quota-user=projects/mitsch-website
+[debug] [2024-10-05T13:48:25.583Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/mitsch-website/services/artifactregistry.googleapis.com [none]
+[debug] [2024-10-05T13:48:25.584Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/mitsch-website/services/artifactregistry.googleapis.com x-goog-quota-user=projects/mitsch-website
+[debug] [2024-10-05T13:48:26.527Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/mitsch-website/services/runtimeconfig.googleapis.com 200
+[debug] [2024-10-05T13:48:26.528Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/mitsch-website/services/runtimeconfig.googleapis.com [omitted]
+[debug] [2024-10-05T13:48:26.568Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/mitsch-website/services/artifactregistry.googleapis.com 200
+[debug] [2024-10-05T13:48:26.568Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/mitsch-website/services/artifactregistry.googleapis.com [omitted]
+[info] ✔  artifactregistry: required API artifactregistry.googleapis.com is enabled 
+[debug] [2024-10-05T13:48:26.573Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/mitsch-website/services/cloudbuild.googleapis.com 200
+[debug] [2024-10-05T13:48:26.573Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/mitsch-website/services/cloudbuild.googleapis.com [omitted]
+[info] ✔  functions: required API cloudbuild.googleapis.com is enabled 
+[debug] [2024-10-05T13:48:26.574Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/mitsch-website/services/cloudfunctions.googleapis.com 200
+[debug] [2024-10-05T13:48:26.574Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/mitsch-website/services/cloudfunctions.googleapis.com [omitted]
+[info] ✔  functions: required API cloudfunctions.googleapis.com is enabled 
+[debug] [2024-10-05T13:48:26.575Z] Checked if tokens are valid: true, expires at: 1728137607843
+[debug] [2024-10-05T13:48:26.575Z] Checked if tokens are valid: true, expires at: 1728137607843
+[debug] [2024-10-05T13:48:26.575Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/mitsch-website/adminSdkConfig [none]
+[debug] [2024-10-05T13:48:26.770Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/mitsch-website/adminSdkConfig 200
+[debug] [2024-10-05T13:48:26.771Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/mitsch-website/adminSdkConfig {"projectId":"mitsch-website","storageBucket":"mitsch-website.appspot.com"}
+[debug] [2024-10-05T13:48:26.772Z] Checked if tokens are valid: true, expires at: 1728137607843
+[debug] [2024-10-05T13:48:26.772Z] Checked if tokens are valid: true, expires at: 1728137607843
+[debug] [2024-10-05T13:48:26.772Z] >>> [apiv2][query] GET https://runtimeconfig.googleapis.com/v1beta1/projects/mitsch-website/configs [none]
+[debug] [2024-10-05T13:48:27.049Z] <<< [apiv2][status] GET https://runtimeconfig.googleapis.com/v1beta1/projects/mitsch-website/configs 200
+[debug] [2024-10-05T13:48:27.049Z] <<< [apiv2][body] GET https://runtimeconfig.googleapis.com/v1beta1/projects/mitsch-website/configs {}
+[debug] [2024-10-05T13:48:27.052Z] Validating nodejs source
+[warn] ⚠  functions: package.json indicates an outdated version of firebase-functions. Please upgrade using npm install --save firebase-functions@latest in your functions directory. 
+[warn] ⚠  functions: Please note that there will be breaking changes when you upgrade. 
+[debug] [2024-10-05T13:48:27.480Z] > [functions] package.json contents: {
+  "name": "mitsch-website",
+  "version": "0.1.0",
+  "private": true,
+  "main": "server.js",
+  "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^6.6.0",
+    "@fortawesome/free-solid-svg-icons": "^6.6.0",
+    "@fortawesome/react-fontawesome": "^0.2.2",
+    "axios": "^1.7.7",
+    "emailjs": "^4.0.3",
+    "emailjs-com": "^3.2.0",
+    "firebase": "^10.14.0",
+    "framer-motion": "^11.5.6",
+    "mongodb": "^6.9.0",
+    "mongoose": "^8.7.0",
+    "next": "^14.2.14",
+    "openai": "^4.63.0",
+    "react": "^18",
+    "react-dom": "^18",
+    "react-slick": "^0.30.2",
+    "sweetalert2": "^11.14.1",
+    "swiper": "^11.1.14",
+    "tone": "^15.0.4",
+    "sharp": "^0.32 || ^0.33",
+    "firebase-frameworks": "^0.11.0",
+    "firebase-functions": "^4.5.0",
+    "firebase-admin": "^11.11.1"
+  },
+  "engines": {
+    "node": "20"
+  }
+}
+[debug] [2024-10-05T13:48:27.480Z] Building nodejs source
+[info] i  functions: Loading and analyzing source code for codebase firebase-frameworks-mitsch-website to determine what to deploy 
+[info] i  functions: You are using a version of firebase-functions SDK (4.9.0) that does not have support for the newest Firebase Extensions features. Please update firebase-functions SDK to >=5.1.0 to use them correctly 
+[debug] [2024-10-05T13:48:27.480Z] Could not find functions.yaml. Must use http discovery
+[debug] [2024-10-05T13:48:27.484Z] Found firebase-functions binary at '/Users/miriamschwartz/_miRi/2024_Hamburg-Coding-School/mitsch-website/mitsch-website/.firebase/mitsch-website/functions/node_modules/.bin/firebase-functions'
+[info] Serving at port 8097
+
+[debug] [2024-10-05T13:48:27.788Z] Got response from /__/functions.yaml {"endpoints":{"ssrmitschwebsite":{"availableMemoryMb":null,"timeoutSeconds":null,"minInstances":null,"maxInstances":null,"ingressSettings":null,"concurrency":null,"serviceAccountEmail":null,"vpc":null,"platform":"gcfv2","region":["europe-west1"],"labels":{},"httpsTrigger":{},"entryPoint":"ssrmitschwebsite"}},"specVersion":"v1alpha1","requiredAPIs":[]}
+[info] i  functions: Loaded environment variables from .env. 
+[info] i  functions: preparing .firebase/mitsch-website/functions directory for uploading... 
+[info] i  functions: packaged /Users/miriamschwartz/_miRi/2024_Hamburg-Coding-School/mitsch-website/mitsch-website/.firebase/mitsch-website/functions (80.74 MB) for uploading 
+[debug] [2024-10-05T13:48:34.933Z] Checked if tokens are valid: true, expires at: 1728137607843
+[debug] [2024-10-05T13:48:34.933Z] Checked if tokens are valid: true, expires at: 1728137607843
+[debug] [2024-10-05T13:48:34.933Z] >>> [apiv2][query] GET https://cloudfunctions.googleapis.com/v1/projects/mitsch-website/locations/-/functions [none]
+[debug] [2024-10-05T13:48:35.594Z] <<< [apiv2][status] GET https://cloudfunctions.googleapis.com/v1/projects/mitsch-website/locations/-/functions 200
+[debug] [2024-10-05T13:48:35.595Z] <<< [apiv2][body] GET https://cloudfunctions.googleapis.com/v1/projects/mitsch-website/locations/-/functions {}
+[debug] [2024-10-05T13:48:35.595Z] Checked if tokens are valid: true, expires at: 1728137607843
+[debug] [2024-10-05T13:48:35.595Z] Checked if tokens are valid: true, expires at: 1728137607843
+[debug] [2024-10-05T13:48:35.596Z] >>> [apiv2][query] GET https://cloudfunctions.googleapis.com/v2/projects/mitsch-website/locations/-/functions filter=environment%3D%22GEN_2%22
+[debug] [2024-10-05T13:48:36.690Z] <<< [apiv2][status] GET https://cloudfunctions.googleapis.com/v2/projects/mitsch-website/locations/-/functions 200
+[debug] [2024-10-05T13:48:36.690Z] <<< [apiv2][body] GET https://cloudfunctions.googleapis.com/v2/projects/mitsch-website/locations/-/functions {"functions":[{"name":"projects/mitsch-website/locations/europe-west1/functions/ssrmitschwebsite","buildConfig":{"build":"projects/240593043883/locations/europe-west1/builds/de95d604-fc58-43eb-b15c-34e1ac267516","runtime":"nodejs20","entryPoint":"ssrmitschwebsite","source":{"storageSource":{"bucket":"gcf-v2-sources-240593043883-europe-west1","object":"ssrmitschwebsite/function-source.zip","generation":"1727969240418426"}},"environmentVariables":{"GOOGLE_NODE_RUN_SCRIPTS":""},"dockerRepository":"projects/mitsch-website/locations/europe-west1/repositories/gcf-artifacts","sourceProvenance":{"resolvedStorageSource":{"bucket":"gcf-v2-sources-240593043883-europe-west1","object":"ssrmitschwebsite/function-source.zip","generation":"1727969240418426"}},"dockerRegistry":"ARTIFACT_REGISTRY","serviceAccount":"projects/mitsch-website/serviceAccounts/240593043883-compute@developer.gserviceaccount.com","automaticUpdatePolicy":{}},"serviceConfig":{"service":"projects/mitsch-website/locations/europe-west1/services/ssrmitschwebsite","timeoutSeconds":60,"environmentVariables":{"VERCEL_URL":"mitsch-website.web.app","__FIREBASE_FRAMEWORKS_ENTRY__":"next.js","__FIREBASE_DEFAULTS__":"{\"config\":{\"projectId\":\"mitsch-website\",\"appId\":\"1:240593043883:web:b323c1f176c4dc662d92ee\",\"storageBucket\":\"mitsch-website.appspot.com\",\"apiKey\":\"AIzaSyBWrFw3AtK_ljK4bLUPDJNxQmLV1oLMeh0\",\"authDomain\":\"mitsch-website.firebaseapp.com\",\"messagingSenderId\":\"240593043883\",\"measurementId\":\"G-P47X78ELLB\"},\"_authTokenSyncURL\":\"/__session\"}","FIREBASE_CONFIG":"{\"projectId\":\"mitsch-website\",\"storageBucket\":\"mitsch-website.appspot.com\"}","GCLOUD_PROJECT":"mitsch-website","EVENTARC_CLOUD_EVENT_SOURCE":"projects/mitsch-website/locations/europe-west1/services/ssrmitschwebsite","FUNCTION_TARGET":"ssrmitschwebsite","LOG_EXECUTION_ID":"true"},"maxInstanceCount":100,"ingressSettings":"ALLOW_ALL","uri":"https://ssrmitschwebsite-4eaozerrnq-ew.a.run.app","serviceAccountEmail":"240593043883-compute@developer.gserviceaccount.com","availableMemory":"256Mi","allTrafficOnLatestRevision":true,"revision":"ssrmitschwebsite-00003-zes","maxInstanceRequestConcurrency":80,"availableCpu":"1"},"state":"ACTIVE","updateTime":"2024-10-03T15:30:03.681619882Z","labels":{"firebase-functions-hash":"f6207b7a9a2e8a78dcb0bb612a694658edf8aac3","deployment-tool":"cli-firebase","firebase-functions-codebase":"firebase-frameworks-mitsch-website"},"environment":"GEN_2","url":"https://europe-west1-mitsch-website.cloudfunctions.net/ssrmitschwebsite","createTime":"2024-10-02T08:21:57.789250163Z"}]}
+[info] i  functions: ensuring required API run.googleapis.com is enabled... 
+[debug] [2024-10-05T13:48:36.695Z] Checked if tokens are valid: true, expires at: 1728137607843
+[debug] [2024-10-05T13:48:36.695Z] Checked if tokens are valid: true, expires at: 1728137607843
+[info] i  functions: ensuring required API eventarc.googleapis.com is enabled... 
+[debug] [2024-10-05T13:48:36.695Z] Checked if tokens are valid: true, expires at: 1728137607843
+[debug] [2024-10-05T13:48:36.695Z] Checked if tokens are valid: true, expires at: 1728137607843
+[info] i  functions: ensuring required API pubsub.googleapis.com is enabled... 
+[debug] [2024-10-05T13:48:36.695Z] Checked if tokens are valid: true, expires at: 1728137607843
+[debug] [2024-10-05T13:48:36.695Z] Checked if tokens are valid: true, expires at: 1728137607843
+[info] i  functions: ensuring required API storage.googleapis.com is enabled... 
+[debug] [2024-10-05T13:48:36.695Z] Checked if tokens are valid: true, expires at: 1728137607843
+[debug] [2024-10-05T13:48:36.695Z] Checked if tokens are valid: true, expires at: 1728137607843
+[debug] [2024-10-05T13:48:36.696Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/mitsch-website/services/run.googleapis.com [none]
+[debug] [2024-10-05T13:48:36.696Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/mitsch-website/services/run.googleapis.com x-goog-quota-user=projects/mitsch-website
+[debug] [2024-10-05T13:48:36.699Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/mitsch-website/services/eventarc.googleapis.com [none]
+[debug] [2024-10-05T13:48:36.699Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/mitsch-website/services/eventarc.googleapis.com x-goog-quota-user=projects/mitsch-website
+[debug] [2024-10-05T13:48:36.700Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/mitsch-website/services/pubsub.googleapis.com [none]
+[debug] [2024-10-05T13:48:36.700Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/mitsch-website/services/pubsub.googleapis.com x-goog-quota-user=projects/mitsch-website
+[debug] [2024-10-05T13:48:36.702Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/mitsch-website/services/storage.googleapis.com [none]
+[debug] [2024-10-05T13:48:36.702Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/mitsch-website/services/storage.googleapis.com x-goog-quota-user=projects/mitsch-website
+[debug] [2024-10-05T13:48:37.232Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/mitsch-website/services/storage.googleapis.com 200
+[debug] [2024-10-05T13:48:37.232Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/mitsch-website/services/storage.googleapis.com [omitted]
+[info] ✔  functions: required API storage.googleapis.com is enabled 
+[debug] [2024-10-05T13:48:37.746Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/mitsch-website/services/run.googleapis.com 200
+[debug] [2024-10-05T13:48:37.746Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/mitsch-website/services/run.googleapis.com [omitted]
+[info] ✔  functions: required API run.googleapis.com is enabled 
+[debug] [2024-10-05T13:48:37.747Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/mitsch-website/services/pubsub.googleapis.com 200
+[debug] [2024-10-05T13:48:37.747Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/mitsch-website/services/pubsub.googleapis.com [omitted]
+[info] ✔  functions: required API pubsub.googleapis.com is enabled 
+[debug] [2024-10-05T13:48:37.747Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/mitsch-website/services/eventarc.googleapis.com 200
+[debug] [2024-10-05T13:48:37.747Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/mitsch-website/services/eventarc.googleapis.com [omitted]
+[info] ✔  functions: required API eventarc.googleapis.com is enabled 
+[info] i  functions: generating the service identity for pubsub.googleapis.com... 
+[debug] [2024-10-05T13:48:37.748Z] Checked if tokens are valid: true, expires at: 1728137607843
+[debug] [2024-10-05T13:48:37.748Z] Checked if tokens are valid: true, expires at: 1728137607843
+[info] i  functions: generating the service identity for eventarc.googleapis.com... 
+[debug] [2024-10-05T13:48:37.748Z] Checked if tokens are valid: true, expires at: 1728137607843
+[debug] [2024-10-05T13:48:37.748Z] Checked if tokens are valid: true, expires at: 1728137607843
+[debug] [2024-10-05T13:48:37.748Z] >>> [apiv2][query] POST https://serviceusage.googleapis.com/v1beta1/projects/240593043883/services/pubsub.googleapis.com:generateServiceIdentity [none]
+[debug] [2024-10-05T13:48:37.749Z] >>> [apiv2][query] POST https://serviceusage.googleapis.com/v1beta1/projects/240593043883/services/eventarc.googleapis.com:generateServiceIdentity [none]
+[debug] [2024-10-05T13:48:38.254Z] <<< [apiv2][status] POST https://serviceusage.googleapis.com/v1beta1/projects/240593043883/services/eventarc.googleapis.com:generateServiceIdentity 200
+[debug] [2024-10-05T13:48:38.254Z] <<< [apiv2][body] POST https://serviceusage.googleapis.com/v1beta1/projects/240593043883/services/eventarc.googleapis.com:generateServiceIdentity {"name":"operations/finished.DONE_OPERATION","done":true,"response":{"@type":"type.googleapis.com/google.api.serviceusage.v1beta1.ServiceIdentity","email":"service-240593043883@gcp-sa-eventarc.iam.gserviceaccount.com","uniqueId":"109844966314391122050"}}
+[debug] [2024-10-05T13:48:38.255Z] <<< [apiv2][status] POST https://serviceusage.googleapis.com/v1beta1/projects/240593043883/services/pubsub.googleapis.com:generateServiceIdentity 200
+[debug] [2024-10-05T13:48:38.255Z] <<< [apiv2][body] POST https://serviceusage.googleapis.com/v1beta1/projects/240593043883/services/pubsub.googleapis.com:generateServiceIdentity {"name":"operations/finished.DONE_OPERATION","done":true,"response":{"@type":"type.googleapis.com/google.api.serviceusage.v1beta1.ServiceIdentity","email":"service-240593043883@gcp-sa-pubsub.iam.gserviceaccount.com","uniqueId":"109503605371392262901"}}
+[debug] [2024-10-05T13:48:38.257Z] Checked if tokens are valid: true, expires at: 1728137607843
+[debug] [2024-10-05T13:48:38.257Z] Checked if tokens are valid: true, expires at: 1728137607843
+[debug] [2024-10-05T13:48:38.258Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/mitsch-website [none]
+[debug] [2024-10-05T13:48:38.767Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/mitsch-website 200
+[debug] [2024-10-05T13:48:38.767Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/mitsch-website {"projectId":"mitsch-website","projectNumber":"240593043883","displayName":"Mitsch Website","name":"projects/mitsch-website","resources":{"hostingSite":"mitsch-website"},"state":"ACTIVE","etag":"1_db7cd86d-e712-48ed-bebd-0fe824389a66"}
+[debug] [2024-10-05T13:48:38.773Z] Checked if tokens are valid: true, expires at: 1728137607843
+[debug] [2024-10-05T13:48:38.773Z] Checked if tokens are valid: true, expires at: 1728137607843
+[debug] [2024-10-05T13:48:38.773Z] >>> [apiv2][query] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/mitsch-website/versions [none]
+[debug] [2024-10-05T13:48:38.773Z] >>> [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/mitsch-website/versions {"status":"CREATED","labels":{"deployment-tool":"cli-firebase","firebase-web-framework":"next_ssr"}}
+[debug] [2024-10-05T13:48:39.946Z] <<< [apiv2][status] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/mitsch-website/versions 200
+[debug] [2024-10-05T13:48:39.947Z] <<< [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/mitsch-website/versions {"name":"projects/240593043883/sites/mitsch-website/versions/3266a0263a33d79e","status":"CREATED","config":{},"labels":{"deployment-tool":"cli-firebase","firebase-web-framework":"next_ssr"}}
+[debug] [2024-10-05T13:48:39.949Z] Checked if tokens are valid: true, expires at: 1728137607843
+[debug] [2024-10-05T13:48:39.949Z] Checked if tokens are valid: true, expires at: 1728137607843
+[debug] [2024-10-05T13:48:39.950Z] >>> [apiv2][query] POST https://cloudfunctions.googleapis.com/v2/projects/mitsch-website/locations/europe-west1/functions:generateUploadUrl [none]
+[debug] [2024-10-05T13:48:40.140Z] <<< [apiv2][status] POST https://cloudfunctions.googleapis.com/v2/projects/mitsch-website/locations/europe-west1/functions:generateUploadUrl 200
+[debug] [2024-10-05T13:48:40.140Z] <<< [apiv2][body] POST https://cloudfunctions.googleapis.com/v2/projects/mitsch-website/locations/europe-west1/functions:generateUploadUrl {"uploadUrl":"https://storage.googleapis.com/gcf-v2-uploads-240593043883-europe-west1/601e9218-296a-44fa-afa5-0857877fd6ac.zip?GoogleAccessId=service-240593043883@gcf-admin-robot.iam.gserviceaccount.com&Expires=1728137920&Signature=JblmvGRG%2B5CsSrIT0oi%2F0YRzROhfyRy1%2B1JW3Qz0JvhO6MWfqtzs1AMjpMfaiE8cb2LmZCCI0pHwEoffE4B2soay3lfmEhzG%2Bj5NPZqXkOAI1PXOI2Ii3x8GsAsZj8aqRfMU7OD7n81Fkfvz1gi4Q6F0F%2Bkp83D48NRLHUtAESIB1OPJiNBz3RY7dmGNRthFM8wuWFFpm%2Bq7whIsaKZ85WnVJBLvoooK50fwWyC%2BXTIWo3jMycJ9k3UnBmOq5DN5k64FwSju5KWdoqIGlELkVxmqMflKI%2F9nZeH2Wa%2FZm1dOLcdKtSaS3BaCw8fNFpELFv%2FmtpG2v5k3b7ZzPENUzQ%3D%3D","storageSource":{"bucket":"gcf-v2-uploads-240593043883-europe-west1","object":"601e9218-296a-44fa-afa5-0857877fd6ac.zip"}}
+[debug] [2024-10-05T13:48:40.143Z] >>> [apiv2][query] PUT https://storage.googleapis.com/gcf-v2-uploads-240593043883-europe-west1/601e9218-296a-44fa-afa5-0857877fd6ac.zip GoogleAccessId=service-240593043883%40gcf-admin-robot.iam.gserviceaccount.com&Expires=1728137920&Signature=JblmvGRG%2B5CsSrIT0oi%2F0YRzROhfyRy1%2B1JW3Qz0JvhO6MWfqtzs1AMjpMfaiE8cb2LmZCCI0pHwEoffE4B2soay3lfmEhzG%2Bj5NPZqXkOAI1PXOI2Ii3x8GsAsZj8aqRfMU7OD7n81Fkfvz1gi4Q6F0F%2Bkp83D48NRLHUtAESIB1OPJiNBz3RY7dmGNRthFM8wuWFFpm%2Bq7whIsaKZ85WnVJBLvoooK50fwWyC%2BXTIWo3jMycJ9k3UnBmOq5DN5k64FwSju5KWdoqIGlELkVxmqMflKI%2F9nZeH2Wa%2FZm1dOLcdKtSaS3BaCw8fNFpELFv%2FmtpG2v5k3b7ZzPENUzQ%3D%3D
+[debug] [2024-10-05T13:48:40.143Z] >>> [apiv2][body] PUT https://storage.googleapis.com/gcf-v2-uploads-240593043883-europe-west1/601e9218-296a-44fa-afa5-0857877fd6ac.zip [stream]

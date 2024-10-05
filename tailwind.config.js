@@ -8,7 +8,7 @@ module.exports = {
         homemade: ["HomemadeApple", "sans-serif"],
         cooperhewitt: ["Cooper Hewitt", "sans-serif"],
         grace: ['"Covered By Your Grace"', "cursive"]
-      }
+      },
     }
   },
   plugins: []
