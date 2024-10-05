@@ -5,24 +5,27 @@ import PlayButton from "components/PlayButton"
 
 
 export default function Page() {
+  
   return (
     <>
       {/* Header */}
       <HeaderWhite />
       <div className='relative w-full h-screen overflow-hidden'>
-        <Image
-          src='/images/header-large.jpg' // Fallback for browsers that don't support srcSet
-          alt='Responsive header image'
-          layout='fill'
-          objectFit='cover' // Ensures the image maintains aspect ratio while covering the area
-          sizes='(max-width: 600px) 600px,
-           (max-width: 768px) 768px,
-           (max-width: 1200px) 1170px,
-           2400px' // Default for larger screens
-          srcSet='/images/header-small.jpg 600w,  // 1170px wide image
-            /images/header-medium.jpg 768w, // 1538px wide image
-            /images/header-large.jpg 2400w' // 2400px wide image
-        />
+        {/* Image for large screens */}
+        <div className='hidden sm:block'>
+          <Image src='/images/header-landscape.jpg' alt='Responsive header image for large screens' layout='fill' objectFit='cover' sizes='(max-width: 1200px) 1170px, 2400px' />
+        </div>
+
+        {/* Image for small screens */}
+        <div className='block sm:hidden'>
+          <Image
+            src='/images/header-portrait.jpg'
+            alt='Responsive header image for small screens'
+            layout='fill'
+            objectFit='cover'
+            sizes='(max-width: 600px) 100vw, 320px'
+          />
+        </div>
       </div>
 
       <div className='relative z-10 max-w-screen-md mx-auto m-8 p-8'>

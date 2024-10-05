@@ -1,6 +1,8 @@
 import Image from "next/image"
 import HeaderWhiteBlack from "components/HeaderWhiteBlack"
 import ConnectingDots from "components/ConnectingDots"
+import EmailForm from "components/EmailForm"
+
 
 export default function Page() {
   return (
@@ -48,6 +50,7 @@ export default function Page() {
               Send Message
             </button>
           </form>
+          <EmailForm />
         </div>
       </div>
     </div>
