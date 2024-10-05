@@ -1,6 +1,7 @@
 import Link from "next/link"
 import HeaderBlack from "components/HeaderBlack"
 import ProjectGallery from "components/ProjectGallery"
+import Footer from "components/Footer"
 
 export default async function ProjectDetail({ params }) {
   const username = "mitsch01"
@@ -75,6 +76,7 @@ export default async function ProjectDetail({ params }) {
           </Link>
         </div>
       </div>
+      <Footer />
     </div>
   )
 }

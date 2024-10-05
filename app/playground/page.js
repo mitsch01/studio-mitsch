@@ -5,7 +5,7 @@ import Image from "next/image"
 import HeaderWhite from "components/HeaderWhite"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faSyncAlt } from "@fortawesome/free-solid-svg-icons"
-import Layout from "components/Layout"
+import PlaygroundLayout from "components/PlaygroundLayout"
 
 export default function Playground() {
   const [haikus, setHaikus] = useState([]) // Holds past haikus
@@ -21,29 +21,29 @@ export default function Playground() {
   const [startY, setStartY] = useState(0)
 
   const fixedPositions = [
-    { top: 100, left: 200 },
-    { top: 300, left: 400 },
-    { top: 150, left: 800 },
-    { top: 130, left: 1250 },
-    { top: 250, left: 1600 },
-    { top: 500, left: 2000 },
-    { top: 600, left: 300 },
-    { top: 750, left: 650 },
-    { top: 800, left: 1600 },
-    { top: 900, left: 400 },
-    { top: 1050, left: 1100 },
-    { top: 1150, left: 1700 },
-    { top: 1250, left: 600 },
-    { top: 1350, left: 1500 },
-    { top: 1450, left: 1800 },
-    { top: 1550, left: 700 },
-    { top: 1650, left: 1400 },
-    { top: 1750, left: 1900 },
-    { top: 1850, left: 300 },
-    { top: 1950, left: 1000 }
+    { top: 480, left: 200 },
+    { top: 665, left: 400 },
+    { top: 450, left: 600 },
+    { top: 430, left: 1250 },
+    { top: 550, left: 1600 },
+    { top: 800, left: 2000 },
+    { top: 900, left: 300 },
+    { top: 1050, left: 650 },
+    { top: 1100, left: 1600 },
+    { top: 1200, left: 400 },
+    { top: 1350, left: 1100 },
+    { top: 1450, left: 1700 },
+    { top: 1550, left: 600 },
+    { top: 1650, left: 1500 },
+    { top: 1750, left: 1800 },
+    { top: 1850, left: 700 },
+    { top: 1950, left: 1400 },
+    { top: 2050, left: 1900 },
+    { top: 2150, left: 300 },
+    { top: 2350, left: 1000 }
   ]
 
-  const fixedRotations = [5, -3, 7, -5, 2, -2, 4, -4, 1, -1, 3, -6, 8, -8, 6, -7, 9, -9, 0, 4]
+  const fixedRotations = [-5, -3, 7, -5, 2, -2, 4, -4, 1, -1, 3, -6, 8, -8, 6, -7, 9, -9, 0, 4]
 
   const handleClick = async () => {
     if (!word1.trim() || !word2.trim() || !word3.trim()) {
@@ -100,7 +100,8 @@ export default function Playground() {
     const haikuData = await haikuRes.json()
 
     if (haikuRes.ok) {
-      const generatedHaiku = haikuData.haiku / setNewHaiku(generatedHaiku)
+      const generatedHaiku = haikuData.haiku
+      setNewHaiku(generatedHaiku)
       setCurrentMachine("final")
 
       await fetch("/api/save-haiku", {
@@ -177,11 +178,26 @@ export default function Playground() {
     setWord3("")
   }
 
+  useEffect(() => {
+    const centerX = window.innerWidth
+    const centerY = window.innerHeight / 0.75
+
+    window.scrollTo(centerX, centerY)
+  }, [])
+
+  useEffect(() => {
+    document.body.classList.add("dark-mode")
+
+    return () => {
+      document.body.classList.remove("dark-mode")
+    }
+  }, [])
+
   return (
-    <Layout isBlackBackground={true} showFooter={false}>
+    <PlaygroundLayout isBlackBackground={true} showFooter={false}>
       <HeaderWhite />
       <div
-        className='overflow-hidden relative'
+        className='scale-75 overflow-hidden relative'
         onMouseDown={startDrag}
         onTouchStart={startDrag}
         ref={dragContainerRef}
@@ -200,15 +216,33 @@ export default function Playground() {
             <div className='relative' style={{ padding: 0, margin: 0 }}>
               {/* Machine Image */}
               {currentMachine === "initial" && (
-                <div className='relative right-full'>
-                  <Image src='/images/poem-machine-without-poem.png' alt='Machine' width={800} height={555} className='w-[800px] h-[555px] object-cover block' onClick={handleClick} />
-                  {/* Pink round button */}
-                  <button className='absolute top-52 right-4 w-12 h-12 bg-[#e8175d] hover:bg-[#a3144f] rounded-full z-20 flex items-center justify-center text-white font-bold' onClick={handleClick}></button>
-                  {/* Input fields for the haiku */}
-                  <div className='absolute flex flex-col top-32 left-16 p-4 z-50'>
-                    <input type='text' value={word1} onChange={e => setWord1(e.target.value)} onKeyDown={handleKeyDown} className='p-2 mb-2 uppercase' placeholder='First noun (EN)' />
-                    <input type='text' value={word2} onChange={e => setWord2(e.target.value)} onKeyDown={handleKeyDown} className='p-2 mb-2 uppercase' placeholder='Second noun (EN)' />
-                    <input type='text' value={word3} onChange={e => setWord3(e.target.value)} onKeyDown={handleKeyDown} className='p-2 uppercase' placeholder='Third noun (EN)' />
+                <div className='relative' style={{ padding: 0, margin: 0 }}>
+                  <div
+                    className='relative'
+                    style={{
+                      top: `${fixedPositions[0].top * 2.5}px`, // Adjust multiplier as needed for vertical positioning
+                      left: `${fixedPositions[0].left * 1.5}px` // Adjust multiplier as needed for horizontal positioning
+                    }}>
+                    <Image src='/images/poem-machine-without-poem.png' alt='Machine' width={800} height={555} className='w-[800px] h-[555px] object-cover block' onClick={handleClick} />
+                    <button className='absolute top-52 right-4 w-12 h-12 bg-[#e8175d] hover:bg-[#a3144f] rounded-full z-20 flex items-center justify-center text-white font-bold' onClick={handleClick}></button>
+                    {/* Input fields for the haiku */}
+                    <div className='absolute flex flex-col top-32 p-4 w-72 uppercase z-50'>
+                      <input type='text' value={word1} onChange={e => setWord1(e.target.value)} onKeyDown={handleKeyDown} className='p-2 mb-2' placeholder='First noun (EN)' />
+                      <input type='text' value={word2} onChange={e => setWord2(e.target.value)} onKeyDown={handleKeyDown} className='p-2 mb-2' placeholder='Second noun (EN)' />
+                      <input type='text' value={word3} onChange={e => setWord3(e.target.value)} onKeyDown={handleKeyDown} className='p-2' placeholder='Third noun (EN)' />
+                    </div>
+                    {/* Reload button */}
+                    <div className='absolute max-w-96 right-0'>
+                      <button className='z-10' onClick={reloadHaiku}>
+                        <FontAwesomeIcon icon={faSyncAlt} className='text-white text-3xl' />
+                      </button>
+                    </div>
+                    {/* Haiku definition */}
+                    <div className='absolute text-white max-w-96 ml-48 mt-12'>
+                      <h1 className='text-xl font-bold italic'>haiku</h1>
+                      <p className='italic text-gray-600'>/ˈhaɪkuː/ noun</p>
+                      <p className='mt-2 text-justify'>Rooted in Japanese tradition, Haikus capture the beauty of fleeting moments in just three lines. They invite you to pause, reflect, and appreciate the world around you. Try creating your own!</p>
+                    </div>
                   </div>
                 </div>
               )}
@@ -221,16 +255,6 @@ export default function Playground() {
                 </div>
               )}
             </div>
-            {/* Reload button */}
-            <button className='mt-6 text-white flex items-center gap-2 p-3 bg-[#e8175d] hover:bg-[#a3144f] rounded-full z-10' onClick={reloadHaiku}>
-              <FontAwesomeIcon icon={faSyncAlt} className='text-white text-xl' />
-            </button>
-            {/* Haiku definition */}
-            <div className='relative text-white max-w-96 right-96'>
-              <h1 className='text-xl font-bold italic'>haiku</h1>
-              <p className='italic text-gray-600'>/ˈhaɪkuː/ noun</p>
-              <p className='mt-2 text-justify'>Rooted in Japanese tradition, Haikus capture the beauty of fleeting moments in just three lines. They invite you to pause, reflect, and appreciate the world around you. Try creating your own!</p>
-            </div>
           </div>
         </div>
         {/* Display existing haikus */}
@@ -239,14 +263,14 @@ export default function Playground() {
             haikus.map((haikuItem, index) => (
               <div
                 key={index}
-                className='text-white p-4'
+                className='text-white'
                 style={{
                   position: "absolute",
-                  top: `${fixedPositions[index].top}px`,
-                  left: `${fixedPositions[index].left}px`,
+                  top: `${fixedPositions[index].top * 2}px`, // Adjust the multiplier as needed
+                  left: `${fixedPositions[index].left * 2}px`, // Adjust the multiplier as needed
                   transform: `rotate(${fixedRotations[index]}deg)`
                 }}>
-                <pre className='font-grace tracking-wider text-center text-2xl'>{haikuItem.haiku}</pre> {/* Display only haiku text */}
+                <pre className='font-grace tracking-wider text-center text-2xl'>{haikuItem.haiku}</pre>
               </div>
             ))}
           {/* Display the newly generated haiku with a pink border */}
@@ -264,6 +288,6 @@ export default function Playground() {
           )}
         </div>
       </div>
-    </Layout>
+    </PlaygroundLayout>
   )
 }

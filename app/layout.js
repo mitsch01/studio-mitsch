@@ -1,5 +1,4 @@
 import "./globals.css"
-import Footer from "components/Footer"
 
 export const metadata = {
   title: "Mitsch 🤍 Coding",
@@ -8,7 +7,7 @@ export const metadata = {
   author: "Miriam Schwartz"
 }
 
-export default function RootLayout({ children, showFooter = true }) {
+export default function RootLayout({ children}) {
   return (
     <html lang='en'>
       <head>
@@ -16,7 +15,6 @@ export default function RootLayout({ children, showFooter = true }) {
       </head>
       <body className='min-h-screen flex flex-col'>
         <main className='flex-grow'>{children}</main>
-        {showFooter && <Footer />}
       </body>
     </html>
   )

@@ -1,11 +1,10 @@
-import React from "react"
-
 const Layout = ({ children, isBlackBackground }) => {
   return (
     <div
       style={{
-        backgroundColor: isBlackBackground ? "black" : "white", 
-        minHeight: "100vh",
+        backgroundColor: isBlackBackground ? "black" : "white",
+        minHeight: "100vh", 
+        overflow: "hidden" 
       }}>
       {children}
     </div>

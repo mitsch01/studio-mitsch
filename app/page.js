@@ -6,6 +6,8 @@ import RepoGallery from "../components/RepoGallery"
 import HeaderWhite from "../components/HeaderWhite"
 import HeaderBlack from "../components/HeaderBlack"
 import PlayButton from "../components/PlayButton"
+import Footer from "components/Footer"
+
 
 export default function Page() {
   const [activeHeader, setActiveHeader] = useState(<HeaderWhite />)
@@ -104,12 +106,13 @@ export default function Page() {
         </section>
 
         {/* Projects */}
-        <section id='projects'>
+        <section id='projects' className='mb-24'>
           <h1 className='md:text-7xl text-6xl font-bold uppercase text-black pt-20 pb-6 tracking-tight'>Projects</h1>
           <RepoGallery />
           <PlayButton />
         </section>
       </div>
+      <Footer />
     </>
   )
 }

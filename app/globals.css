@@ -2,11 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
 html {
   scroll-behavior: smooth;
 }
@@ -54,9 +49,16 @@ a, button, input, textarea, .clickable {
   cursor: url('/images/cursor-click-80.png') 36 36, pointer !important;
 }
 
+body.dark-mode {
+    background-color: black;
+}
+
+html,
 body {
-  color: var(--foreground);
-  background: var(--background);
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow: hidden;
 }
 
 h1,

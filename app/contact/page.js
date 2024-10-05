@@ -3,6 +3,7 @@ import HeaderWhiteBlack from "components/HeaderWhiteBlack"
 import HeaderWhite from "components/HeaderWhite"
 import ConnectingDots from "components/ConnectingDots"
 import EmailForm from "components/EmailForm"
+import Footer from "components/Footer"
 
 
 export default function Page() {
@@ -37,6 +38,7 @@ export default function Page() {
           <EmailForm />
         </div>
       </div>
+      <Footer />
     </div>
   )
 }
