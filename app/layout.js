@@ -8,7 +8,7 @@ export const metadata = {
   author: "Miriam Schwartz"
 }
 
-export default function RootLayout({ children }) {
+export default function RootLayout({ children, showFooter = true }) {
   return (
     <html lang='en'>
       <head>
@@ -16,7 +16,7 @@ export default function RootLayout({ children }) {
       </head>
       <body className='min-h-screen flex flex-col'>
         <main className='flex-grow'>{children}</main>
-        <Footer />
+        {showFooter && <Footer />}
       </body>
     </html>
   )
