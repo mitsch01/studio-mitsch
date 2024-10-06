@@ -25,9 +25,9 @@ export default function Page() {
         {/* Left: Image */}
         <div className='relative w-full h-screen overflow-hidden'>
           <Image src='/images/contact-image.jpeg' alt='Header Image' layout='fill' className='object-cover' />
-          <div className='absolute top-52 left-10 z-10'>
+          {/* <div className='absolute top-52 left-10 z-10'>
             <ConnectingDots />
-          </div>
+          </div> */}
         </div>
         {/* Right: Contact Form */}
         <div className='flex flex-col justify-center max-w-screen-sm mx-auto p-8 my-12'>

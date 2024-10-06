@@ -33,16 +33,16 @@ const RepoGallery = () => {
   return (
     <div className='flex flex-col'>
       {/* Repo Cards */}
-      <div className='clickable flex flex-wrap gap-8'>
+      <div className='clickable grid grid-cols-1 md:grid-cols-2 gap-8'>
         {repos.slice(0, visibleRepos).map(repo => (
-          <Link href={`/project/${repo.name}`} key={repo.id} className='md:w-80 w-full flex flex-col overflow-hidden transition-transform duration-100 hover:scale-110 hover:rounded'>
+          <Link href={`/project/${repo.name}`} key={repo.id} className='w-full flex flex-col overflow-hidden transition-transform duration-100 hover:scale-110 hover:rounded shadow-xl'>
             {/* Top Part: Image */}
             <div className='w-full'>
-              <Image src={`/images/${repo.name}-preview.png`} alt={`${repo.name} header`} width={320} height={0} className='w-full h-full object-cover' />
+              <Image src={`/images/${repo.name}-preview.jpg`} alt={`${repo.name} header`} width={320} height={0} className='w-full h-full object-cover' />
             </div>
 
             {/* Bottom Part: Content */}
-            <div className='flex flex-col flex-grow p-3 bg-black text-center'>
+            <div className='flex flex-col flex-grow justify-end p-3 bg-black text-center'>
               <h3 className='text-white font-hind md:text-base text-sm'>{transformString(repo.name)}</h3>
             </div>
           </Link>

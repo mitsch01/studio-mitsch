@@ -22,24 +22,24 @@ export default function Playground() {
 
   const fixedPositions = [
     { top: 480, left: 200 },
-    { top: 665, left: 400 },
-    { top: 450, left: 600 },
-    { top: 430, left: 1250 },
+    { top: 565, left: 550 },
+    { top: 610, left: 860 },
+    { top: 450, left: 1250 },
     { top: 550, left: 1600 },
-    { top: 800, left: 2000 },
-    { top: 900, left: 300 },
-    { top: 1050, left: 650 },
+    { top: 800, left: 1400 },
+    { top: 900, left: 770 },
+    { top: 1050, left: 750 },
     { top: 1100, left: 1600 },
-    { top: 1200, left: 400 },
+    { top: 800, left: 600 },
     { top: 1350, left: 1100 },
-    { top: 1450, left: 1700 },
-    { top: 1550, left: 600 },
-    { top: 1650, left: 1500 },
-    { top: 1750, left: 1800 },
-    { top: 1850, left: 1200 },
-    { top: 1850, left: 1400 },
+    { top: 1350, left: 1500 },
+    { top: 1350, left: 600 },
+    { top: 1250, left: 1300 },
+    { top: 750, left: 1600 },
+    { top: 620, left: 1200 },
+    { top: 950, left: 1400 },
     { top: 1050, left: 1200 },
-    { top: 1150, left: 300 },
+    { top: 1150, left: 600 },
     { top: 1150, left: 1000 }
   ]
 
@@ -178,10 +178,29 @@ export default function Playground() {
   }
 
   useEffect(() => {
-    const centerX = window.innerWidth
-    const centerY = window.innerHeight / 0.75
+    const handleScrollToCenter = () => {
+      const isMobile = window.innerWidth <= 768
 
-    window.scrollTo(centerX, centerY)
+      if (isMobile) {
+        // Mobile screen logic
+        const centerX = window.innerWidth / 0.285
+        const centerY = window.innerHeight / 0.65 
+        window.scrollTo(centerX, centerY)
+      } else {
+        // Desktop screen logic
+        const centerX = window.innerWidth
+        const centerY = window.innerHeight / 0.68
+        window.scrollTo(centerX, centerY)
+      }
+    }
+
+    handleScrollToCenter() 
+
+    window.addEventListener("resize", handleScrollToCenter)
+
+    return () => {
+      window.removeEventListener("resize", handleScrollToCenter)
+    }
   }, [])
 
   useEffect(() => {
@@ -196,7 +215,7 @@ export default function Playground() {
     <PlaygroundLayout isBlackBackground={true} showFooter={false}>
       <HeaderWhite />
       <div
-        className='scale-90 overflow-hidden relative'
+        className='scale-75 md:scale-90 overflow-hidden relative'
         onMouseDown={startDrag}
         onTouchStart={startDrag}
         ref={dragContainerRef}
@@ -226,7 +245,7 @@ export default function Playground() {
                   {currentMachine === "final" && <Image src='/images/poem-machine-with-poem.png' alt='Final Machine' width={800} height={555} className='w-[800px] h-[555px] object-cover block' />}
                   {/* Replace Input Fields with Final Haiku Display */}
                   {currentMachine === "final" ? (
-                    <pre className='absolute top-32 -left-16 p-4 text-white font-grace tracking-wider text-center text-2xl border-[#e8175d] border-4'>{newHaiku}</pre>
+                    <pre className='absolute top-32 -left-32 p-4 text-white font-grace tracking-wider text-center text-2xl border-[#e8175d] border-4'>{newHaiku}</pre>
                   ) : (
                     <div className='absolute flex flex-col top-32 p-4 w-72 z-30'>
                       <input type='text' value={word1} onChange={e => setWord1(e.target.value)} onKeyDown={handleKeyDown} className='p-2 mb-2 uppercase' placeholder='First noun (EN)' />
@@ -261,9 +280,9 @@ export default function Playground() {
                 className='text-white'
                 style={{
                   position: "absolute",
-                  top: `${fixedPositions[index].top * 2}px`, // Adjust the multiplier as needed
-                  left: `${fixedPositions[index].left * 2}px`, // Adjust the multiplier as needed
-                  transform: `rotate(${fixedRotations[index]}deg)`
+                  top: fixedPositions[index] ? `${fixedPositions[index].top * 2}px` : "0px", // Fallback if undefined
+                  left: fixedPositions[index] ? `${fixedPositions[index].left * 2}px` : "0px", // Fallback if undefined
+                  transform: fixedRotations[index] !== undefined ? `rotate(${fixedRotations[index]}deg)` : "rotate(0deg)"
                 }}>
                 <pre className='font-grace tracking-wider text-center text-2xl'>{haikuItem.haiku}</pre>
               </div>

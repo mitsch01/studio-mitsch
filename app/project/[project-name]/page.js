@@ -27,9 +27,9 @@ export default async function ProjectDetail({ params }) {
   }
 
   return (
-    <div>
+    <div className='overflow-y-auto scroll-smooth'>
       <HeaderBlack />
-      <div className='mt-36 p-28 max-w-screen-lg mx-auto'>
+      <div className='mt-24 p-8 md:p-28 max-w-screen-lg mx-auto min-h-screen'>
         {/* Header */}
         <h1 className='text-4xl font-bold uppercase text-black mb-6'>{transformString(project.name)}</h1>
 
