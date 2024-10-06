@@ -11,7 +11,8 @@ const PlayButton = () => {
     let ticking = false
 
     const handleScroll = () => {
-      if (!ticking) {
+      if (typeof window !== "undefined" && !ticking) {
+        // Check if we're on the client side
         window.requestAnimationFrame(() => {
           const scrollY = window.scrollY
           // Calculate new scale based on scroll position
@@ -23,10 +24,14 @@ const PlayButton = () => {
       }
     }
 
-    window.addEventListener("scroll", handleScroll)
+    if (typeof window !== "undefined") {
+      window.addEventListener("scroll", handleScroll)
+    }
 
     return () => {
-      window.removeEventListener("scroll", handleScroll)
+      if (typeof window !== "undefined") {
+        window.removeEventListener("scroll", handleScroll)
+      }
     }
   }, [])
 

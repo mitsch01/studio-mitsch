@@ -179,35 +179,34 @@ export default function Playground() {
 
   useEffect(() => {
     const handleScrollToCenter = () => {
-      const isMobile = window.innerWidth <= 768
+      if (typeof window !== "undefined") {
+        // Check if we're on the client side
+        const isMobile = window.innerWidth <= 768
 
-      if (isMobile) {
-        // Mobile screen logic
-        const centerX = window.innerWidth / 0.285
-        const centerY = window.innerHeight / 0.65 
-        window.scrollTo(centerX, centerY)
-      } else {
-        // Desktop screen logic
-        const centerX = window.innerWidth
-        const centerY = window.innerHeight / 0.68
-        window.scrollTo(centerX, centerY)
+        if (isMobile) {
+          // Mobile screen logic
+          const centerX = window.innerWidth / 0.285
+          const centerY = window.innerHeight / 0.65
+          window.scrollTo(centerX, centerY)
+        } else {
+          // Desktop screen logic
+          const centerX = window.innerWidth
+          const centerY = window.innerHeight / 0.68
+          window.scrollTo(centerX, centerY)
+        }
       }
     }
 
-    handleScrollToCenter() 
+    handleScrollToCenter()
 
-    window.addEventListener("resize", handleScrollToCenter)
-
-    return () => {
-      window.removeEventListener("resize", handleScrollToCenter)
+    if (typeof window !== "undefined") {
+      window.addEventListener("resize", handleScrollToCenter)
     }
-  }, [])
-
-  useEffect(() => {
-    document.body.classList.add("dark-mode")
 
     return () => {
-      document.body.classList.remove("dark-mode")
+      if (typeof window !== "undefined") {
+        window.removeEventListener("resize", handleScrollToCenter)
+      }
     }
   }, [])
 

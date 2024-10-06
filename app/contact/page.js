@@ -1,7 +1,6 @@
 import Image from "next/image"
 import HeaderWhiteBlack from "components/HeaderWhiteBlack"
 import HeaderWhite from "components/HeaderWhite"
-import ConnectingDots from "components/ConnectingDots"
 import EmailForm from "components/EmailForm"
 import Footer from "components/Footer"
 
