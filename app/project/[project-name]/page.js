@@ -71,7 +71,7 @@ export default async function ProjectDetail({ params }) {
         <br />
         {/* Back to Projects Link */}
         <div className='text-center mt-10'>
-          <Link href='/' className='font-hind text-xl bg-[#e8175d] hover:bg-[#c3144f] text-white py-2 px-4 rounded'>
+          <Link href='/#projects' className='font-hind text-xl bg-[#e8175d] hover:bg-[#c3144f] text-white py-2 px-4 rounded'>
             ◀ Back to all projects
           </Link>
         </div>

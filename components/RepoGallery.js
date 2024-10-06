@@ -38,7 +38,7 @@ const RepoGallery = () => {
           <Link href={`/project/${repo.name}`} key={repo.id} className='md:w-80 w-full flex flex-col overflow-hidden transition-transform duration-100 hover:scale-110 hover:rounded'>
             {/* Top Part: Image */}
             <div className='w-full'>
-              <Image src={`/images/${repo.name}-desktop-1.jpg`} alt={`${repo.name} header`} width={320} height={0} className='w-full h-full object-cover' />
+              <Image src={`/images/${repo.name}-preview.png`} alt={`${repo.name} header`} width={320} height={0} className='w-full h-full object-cover' />
             </div>
 
             {/* Bottom Part: Content */}

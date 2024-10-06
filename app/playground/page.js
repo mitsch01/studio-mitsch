@@ -13,7 +13,7 @@ export default function Playground() {
   const [word2, setWord2] = useState("")
   const [word3, setWord3] = useState("")
   const [currentMachine, setCurrentMachine] = useState("initial")
-  const [newHaiku, setNewHaiku] = useState("") // Holds newly generated haiku
+  const [newHaiku, setNewHaiku] = useState("")
   const [loading, setLoading] = useState(false)
   const dragContainerRef = useRef(null)
   const [isDragging, setIsDragging] = useState(false)
@@ -36,11 +36,11 @@ export default function Playground() {
     { top: 1550, left: 600 },
     { top: 1650, left: 1500 },
     { top: 1750, left: 1800 },
-    { top: 1850, left: 700 },
-    { top: 1950, left: 1400 },
-    { top: 2050, left: 1900 },
-    { top: 2150, left: 300 },
-    { top: 2350, left: 1000 }
+    { top: 1850, left: 1200 },
+    { top: 1850, left: 1400 },
+    { top: 1050, left: 1200 },
+    { top: 1150, left: 300 },
+    { top: 1150, left: 1000 }
   ]
 
   const fixedRotations = [-5, -3, 7, -5, 2, -2, 4, -4, 1, -1, 3, -6, 8, -8, 6, -7, 9, -9, 0, 4]
@@ -103,6 +103,7 @@ export default function Playground() {
       const generatedHaiku = haikuData.haiku
       setNewHaiku(generatedHaiku)
       setCurrentMachine("final")
+      setHaikus(prevHaikus => [...prevHaikus, { haiku: newHaiku }])
 
       await fetch("/api/save-haiku", {
         method: "POST",
@@ -111,8 +112,6 @@ export default function Playground() {
         },
         body: JSON.stringify({ haiku: generatedHaiku })
       })
-
-      setHaikus(prevHaikus => [...prevHaikus, { haiku: generatedHaiku }])
     } else {
       setNewHaiku("Error generating haiku")
       setCurrentMachine("initial")
@@ -197,7 +196,7 @@ export default function Playground() {
     <PlaygroundLayout isBlackBackground={true} showFooter={false}>
       <HeaderWhite />
       <div
-        className='scale-75 overflow-hidden relative'
+        className='scale-90 overflow-hidden relative'
         onMouseDown={startDrag}
         onTouchStart={startDrag}
         ref={dragContainerRef}
@@ -211,49 +210,45 @@ export default function Playground() {
           backgroundColor: "black"
         }}>
         <div className='scale-90 absolute w-full h-full z-30'>
-          {" "}
           <div className='flex flex-col items-center justify-center'>
             <div className='relative' style={{ padding: 0, margin: 0 }}>
               {/* Machine Image */}
-              {currentMachine === "initial" && (
-                <div className='relative' style={{ padding: 0, margin: 0 }}>
-                  <div
-                    className='relative'
-                    style={{
-                      top: `${fixedPositions[0].top * 2.5}px`, // Adjust multiplier as needed for vertical positioning
-                      left: `${fixedPositions[0].left * 1.5}px` // Adjust multiplier as needed for horizontal positioning
-                    }}>
-                    <Image src='/images/poem-machine-without-poem.png' alt='Machine' width={800} height={555} className='w-[800px] h-[555px] object-cover block' onClick={handleClick} />
-                    <button className='absolute top-52 right-4 w-12 h-12 bg-[#e8175d] hover:bg-[#a3144f] rounded-full z-20 flex items-center justify-center text-white font-bold' onClick={handleClick}></button>
-                    {/* Input fields for the haiku */}
-                    <div className='absolute flex flex-col top-32 p-4 w-72 uppercase z-50'>
-                      <input type='text' value={word1} onChange={e => setWord1(e.target.value)} onKeyDown={handleKeyDown} className='p-2 mb-2' placeholder='First noun (EN)' />
-                      <input type='text' value={word2} onChange={e => setWord2(e.target.value)} onKeyDown={handleKeyDown} className='p-2 mb-2' placeholder='Second noun (EN)' />
-                      <input type='text' value={word3} onChange={e => setWord3(e.target.value)} onKeyDown={handleKeyDown} className='p-2' placeholder='Third noun (EN)' />
+              <div className='relative' style={{ padding: 0, margin: 0 }}>
+                <div
+                  className='relative'
+                  style={{
+                    top: `${fixedPositions[0].top * 2.5}px`, // Adjust multiplier as needed for vertical positioning
+                    left: `${fixedPositions[0].left * 1.5}px` // Adjust multiplier as needed for horizontal positioning
+                  }}>
+                  {currentMachine === "initial" && <Image src='/images/poem-machine-without-poem.png' alt='Machine' width={800} height={555} className='w-[800px] h-[555px] object-cover block' onClick={handleClick} />}
+                  {currentMachine === "initial" && <button className='absolute top-52 right-4 w-12 h-12 bg-[#e8175d] hover:bg-[#a3144f] rounded-full z-20 flex items-center justify-center text-white font-bold' onClick={handleClick}></button>}
+                  {currentMachine === "animating" && <Image src='/videos/poem-machine-animation.png' alt='Generating' width={800} height={555} className='w-[800px] h-[555px] object-cover block' />}
+                  {currentMachine === "final" && <Image src='/images/poem-machine-with-poem.png' alt='Final Machine' width={800} height={555} className='w-[800px] h-[555px] object-cover block' />}
+                  {/* Replace Input Fields with Final Haiku Display */}
+                  {currentMachine === "final" ? (
+                    <pre className='absolute top-32 -left-16 p-4 text-white font-grace tracking-wider text-center text-2xl border-[#e8175d] border-4'>{newHaiku}</pre>
+                  ) : (
+                    <div className='absolute flex flex-col top-32 p-4 w-72 z-30'>
+                      <input type='text' value={word1} onChange={e => setWord1(e.target.value)} onKeyDown={handleKeyDown} className='p-2 mb-2 uppercase' placeholder='First noun (EN)' />
+                      <input type='text' value={word2} onChange={e => setWord2(e.target.value)} onKeyDown={handleKeyDown} className='p-2 mb-2 uppercase' placeholder='Second noun (EN)' />
+                      <input type='text' value={word3} onChange={e => setWord3(e.target.value)} onKeyDown={handleKeyDown} className='p-2 uppercase' placeholder='Third noun (EN)' />
                     </div>
-                    {/* Reload button */}
-                    <div className='absolute max-w-96 right-0'>
-                      <button className='z-10' onClick={reloadHaiku}>
-                        <FontAwesomeIcon icon={faSyncAlt} className='text-white text-3xl' />
-                      </button>
-                    </div>
-                    {/* Haiku definition */}
-                    <div className='absolute text-white max-w-96 ml-48 mt-12'>
-                      <h1 className='text-xl font-bold italic'>haiku</h1>
-                      <p className='italic text-gray-600'>/ˈhaɪkuː/ noun</p>
-                      <p className='mt-2 text-justify'>Rooted in Japanese tradition, Haikus capture the beauty of fleeting moments in just three lines. They invite you to pause, reflect, and appreciate the world around you. Try creating your own!</p>
-                    </div>
+                  )}
+
+                  {/* Reload button */}
+                  <div className='absolute max-w-96 right-0'>
+                    <button className='z-30' onClick={reloadHaiku}>
+                      <FontAwesomeIcon icon={faSyncAlt} className='text-white text-3xl' />
+                    </button>
+                  </div>
+                  {/* Haiku definition */}
+                  <div className='absolute text-white max-w-96 ml-48 mt-12'>
+                    <h1 className='text-xl font-bold italic'>haiku</h1>
+                    <p className='italic text-gray-600'>/ˈhaɪkuː/ noun</p>
+                    <p className='mt-2 text-justify'>Rooted in Japanese tradition, Haikus capture the beauty of fleeting moments in just three lines. They invite you to pause, reflect, and appreciate the world around you. Try creating your own!</p>
                   </div>
                 </div>
-              )}
-              {/* Animated and Final machine */}
-              {currentMachine === "animating" && <Image src='/videos/poem-machine-animation.png' alt='Generating' width={800} height={555} className='w-[800px] h-[555px] object-cover block' />}
-              {currentMachine === "final" && (
-                <div className='relative right-full'>
-                  <Image src='/images/poem-machine-with-poem.png' alt='Final Machine' width={800} height={555} className='w-[800px] h-[555px] object-cover block' />
-                  <pre className='absolute bottom-72 -left-4 p-4 text-white font-grace tracking-wider text-center text-2xl'>{newHaiku}</pre>
-                </div>
-              )}
+              </div>
             </div>
           </div>
         </div>
@@ -276,7 +271,7 @@ export default function Playground() {
           {/* Display the newly generated haiku with a pink border */}
           {newHaiku && (
             <div
-              className='text-white p-4 border-[#e8175d] border-4'
+              className='text-white p-4'
               style={{
                 position: "absolute",
                 top: `${fixedPositions[haikus.length % fixedPositions.length].top}px`,
