@@ -32,16 +32,6 @@ export default function ProjectGallery({ projectName }) {
 
   return (
     <div className='flex flex-col mt-16'>
-      {/* Video Section */}
-      {videoPath && (
-        <div className='flex justify-center items-center mb-12'>
-          <video controls className='w-full max-w-4xl'>
-            <source src={videoPath} type='video/mp4' />
-            Your browser does not support the video tag.
-          </video>
-        </div>
-      )}
-
       {/* Desktop Carousel */}
       <div className='w-full max-w-4xl mx-auto mb-12'>
         <Swiper
@@ -96,6 +86,16 @@ export default function ProjectGallery({ projectName }) {
           ))}
         </Swiper>
       </div>
+
+      {/* Video Section */}
+      {videoPath && (
+        <div className='flex justify-center items-center mb-12'>
+          <video controls className='w-full max-w-4xl'>
+            <source src={videoPath} type='video/mp4' />
+            Your browser does not support the video tag.
+          </video>
+        </div>
+      )}
     </div>
   )
 }

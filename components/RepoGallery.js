@@ -6,7 +6,7 @@ import Image from "next/image"
 
 const RepoGallery = () => {
   const [repos, setRepos] = useState([])
-  const [visibleRepos, setVisibleRepos] = useState(4)
+  const [visibleRepos, setVisibleRepos] = useState(4) // load only 4
   const username = "mitsch01"
 
   useEffect(() => {
@@ -27,7 +27,7 @@ const RepoGallery = () => {
   }
 
   const loadMoreRepos = () => {
-    setVisibleRepos(prev => prev + 4)
+    setVisibleRepos(prev => prev + 4) // load 4 more
   }
 
   return (
