@@ -48,9 +48,11 @@ const RepoGallery = () => {
 
       {/* Load More Button */}
       {visibleRepos < repos.length && (
-        <button onClick={loadMoreRepos} className='md:text-base text-sm w-full uppercase bg-[#e8175d] text-white p-4 hover:bg-[#c3144f] my-12'>
-          Load More
-        </button>
+        <div className="flex justify-center">
+          <button onClick={loadMoreRepos} className='md:text-base text-sm w-44 uppercase bg-black text-white p-4 hover:bg-gray-800 my-12'>
+            Load More
+          </button>
+        </div>
       )}
     </div>
   )
