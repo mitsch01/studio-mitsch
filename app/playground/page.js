@@ -38,7 +38,7 @@ export default function Playground() {
     { top: 750, left: 1600 },
     { top: 620, left: 1200 },
     { top: 950, left: 1400 },
-    { top: 1050, left: 1200 },
+    { top: 1100, left: 1300 },
     { top: 1150, left: 600 },
     { top: 1150, left: 1000 }
   ]
@@ -177,38 +177,45 @@ export default function Playground() {
     setWord3("")
   }
 
-  useEffect(() => {
-    const handleScrollToCenter = () => {
-      if (typeof window !== "undefined") {
-        // Check if we're on the client side
-        const isMobile = window.innerWidth <= 768
-
-        if (isMobile) {
-          // Mobile screen logic
-          const centerX = window.innerWidth / 0.285
-          const centerY = window.innerHeight / 0.65
-          window.scrollTo(centerX, centerY)
-        } else {
-          // Desktop screen logic
-          const centerX = window.innerWidth
-          const centerY = window.innerHeight / 0.68
-          window.scrollTo(centerX, centerY)
-        }
-      }
-    }
-
-    handleScrollToCenter()
-
+useEffect(() => {
+  const handleScrollToCenter = () => {
     if (typeof window !== "undefined") {
-      window.addEventListener("resize", handleScrollToCenter)
-    }
+      // Check if we're on the client side
+      const isMobile = window.innerWidth <= 768
+      const isTablet = window.innerWidth > 768 && window.innerWidth <= 1500
+      const isLargeDesktop = window.innerWidth > 1500
 
-    return () => {
-      if (typeof window !== "undefined") {
-        window.removeEventListener("resize", handleScrollToCenter)
+      if (isMobile) {
+        // Mobile screen logic
+        const centerX = window.innerWidth / 0.285
+        const centerY = window.innerHeight / 0.65
+        window.scrollTo(centerX, centerY)
+      } else if (isTablet) {
+        // Tablet or small desktop screen logic
+        const centerX = window.innerWidth / 1
+        const centerY = window.innerHeight / 0.6
+        window.scrollTo(centerX, centerY)
+      } else if (isLargeDesktop) {
+        // Large desktop screen logic
+        const centerX = window.innerWidth / 2.5
+        const centerY = window.innerHeight / 1.3
+        window.scrollTo(centerX, centerY)
       }
     }
-  }, [])
+  }
+
+  handleScrollToCenter()
+
+  if (typeof window !== "undefined") {
+    window.addEventListener("resize", handleScrollToCenter)
+  }
+
+  return () => {
+    if (typeof window !== "undefined") {
+      window.removeEventListener("resize", handleScrollToCenter)
+    }
+  }
+}, [])
 
   return (
     <PlaygroundLayout isBlackBackground={true} showFooter={false}>
@@ -238,15 +245,16 @@ export default function Playground() {
                     top: `${fixedPositions[0].top * 2.5}px`, // Adjust multiplier as needed for vertical positioning
                     left: `${fixedPositions[0].left * 1.5}px` // Adjust multiplier as needed for horizontal positioning
                   }}>
+                  <h2 className='font-cooperhewitt text-white text-5xl mt-48 -mb-20 text-center'>Haiku Generator</h2>
                   {currentMachine === "initial" && <Image src='/images/poem-machine-without-poem.png' alt='Machine' width={800} height={555} className='w-[800px] h-[555px] object-cover block' onClick={handleClick} />}
-                  {currentMachine === "initial" && <button className='absolute top-52 right-4 w-12 h-12 bg-[#e8175d] hover:bg-[#a3144f] rounded-full z-20 flex items-center justify-center text-white font-bold' onClick={handleClick}></button>}
+                  {currentMachine === "initial" && <button className='absolute top-44 right-4 w-12 h-12 bg-[#e8175d] hover:bg-[#a3144f] rounded-full z-20 flex items-center justify-center text-white font-bold' onClick={handleClick}></button>}
                   {currentMachine === "animating" && <Image src='/videos/poem-machine-animation.png' alt='Generating' width={800} height={555} className='w-[800px] h-[555px] object-cover block' />}
                   {currentMachine === "final" && <Image src='/images/poem-machine-with-poem.png' alt='Final Machine' width={800} height={555} className='w-[800px] h-[555px] object-cover block' />}
                   {/* Replace Input Fields with Final Haiku Display */}
                   {currentMachine === "final" ? (
                     <pre className='absolute top-32 -left-32 p-4 text-white font-grace tracking-wider text-center text-2xl border-[#e8175d] border-4'>{newHaiku}</pre>
                   ) : (
-                    <div className='absolute flex flex-col top-32 p-4 w-72 z-30'>
+                    <div className='absolute flex flex-col top-24 p-4 w-72 z-30'>
                       <input type='text' value={word1} onChange={e => setWord1(e.target.value)} onKeyDown={handleKeyDown} className='p-2 mb-2 uppercase' placeholder='First noun (EN)' />
                       <input type='text' value={word2} onChange={e => setWord2(e.target.value)} onKeyDown={handleKeyDown} className='p-2 mb-2 uppercase' placeholder='Second noun (EN)' />
                       <input type='text' value={word3} onChange={e => setWord3(e.target.value)} onKeyDown={handleKeyDown} className='p-2 uppercase' placeholder='Third noun (EN)' />
@@ -263,7 +271,7 @@ export default function Playground() {
                   <div className='absolute text-white max-w-96 ml-48 mt-12'>
                     <h1 className='text-xl font-bold italic'>haiku</h1>
                     <p className='italic text-gray-600'>/ˈhaɪkuː/ noun</p>
-                    <p className='mt-2 text-justify'>Rooted in Japanese tradition, Haikus capture the beauty of fleeting moments in just three lines. They invite you to pause, reflect, and appreciate the world around you. Try creating your own!</p>
+                    <p className='mt-2 text-justify'>Rooted in Japanese tradition, Haikus capture the beauty of fleeting moments in just three lines. They invite you to pause, reflect and appreciate the world around you. Enter three words and let the Haiku Generator work its magic for you!</p>
                   </div>
                 </div>
               </div>

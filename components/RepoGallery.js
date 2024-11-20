@@ -1,5 +1,3 @@
-"use client"
-
 import { useEffect, useState } from "react"
 import Link from "next/link"
 import Image from "next/image"
@@ -35,15 +33,14 @@ const RepoGallery = () => {
       {/* Repo Cards */}
       <div className='clickable grid grid-cols-1 md:grid-cols-2 gap-8'>
         {repos.slice(0, visibleRepos).map(repo => (
-          <Link href={`/project/${repo.name}`} key={repo.id} className='w-full flex flex-col overflow-hidden transition-transform duration-100 hover:scale-110 hover:rounded shadow-xl'>
+          <Link href={`/project/${repo.name}`} key={repo.id} className='w-full flex flex-col overflow-hidden transition-transform duration-100 hover:scale-105 hover:rounded shadow-xl group'>
             {/* Top Part: Image */}
-            <div className='w-full'>
-              <Image src={`/images/${repo.name}-preview.jpg`} alt={`${repo.name} header`} width={320} height={0} className='w-full h-full object-cover' />
-            </div>
-
-            {/* Bottom Part: Content */}
-            <div className='flex flex-col flex-grow justify-end p-3 bg-black text-center'>
-              <h3 className='text-white font-hind md:text-base text-sm'>{transformString(repo.name)}</h3>
+            <div className='w-full h-[305px] relative'>
+              <Image src={`/images/${repo.name}-preview.jpg`} alt={`${repo.name} header`} className='object-cover' layout='fill' />
+              {/* Overlay */}
+              <div className='absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-90 transition-opacity duration-300 flex items-center justify-center'>
+                <h3 className='text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 font-hind md:text-base text-sm'>{transformString(repo.name)}</h3>
+              </div>
             </div>
           </Link>
         ))}
