@@ -25,7 +25,7 @@ export default function Page() {
           <Image
             src="/images/contact-image.jpeg"
             alt="Header Image"
-            layout="fill"
+            fill
             className="object-cover"
           />
           {/* <div className='absolute top-52 left-10 z-10'>

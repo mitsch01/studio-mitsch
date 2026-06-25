@@ -89,8 +89,7 @@ export default function Page() {
           <Image
             src="/images/header-landscape.jpg"
             alt="Responsive header image for large screens"
-            layout="fill"
-            objectFit="cover"
+            fill className='object-cover'
             sizes="(max-width: 1200px) 1170px, 2400px"
           />
         </div>
@@ -100,8 +99,7 @@ export default function Page() {
           <Image
             src="/images/header-portrait.jpg"
             alt="Responsive header image for small screens"
-            layout="fill"
-            objectFit="cover"
+            fill className='object-cover'
             sizes="(max-width: 600px) 100vw, 320px"
           />
         </div>

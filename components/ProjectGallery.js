@@ -53,7 +53,7 @@ export default function ProjectGallery({ projectName }) {
           }}>
           {desktopImages.map((desktopImage, index) => (
             <SwiperSlide key={index}>
-              <Image src={desktopImage} alt={`${projectName} desktop mockup ${index + 1}`} layout='responsive' width={1200} height={676} objectFit='cover' className='w-full' />
+              <Image src={desktopImage} alt={`${projectName} desktop mockup ${index + 1}`} layout='responsive' width={1200} height={676} className='w-full object-cover' />
             </SwiperSlide>
           ))}
         </Swiper>
@@ -81,7 +81,7 @@ export default function ProjectGallery({ projectName }) {
           }}>
           {mobileImages.map((mobileImage, index) => (
             <SwiperSlide key={index}>
-              <Image src={mobileImage} alt={`${projectName} mobile mockup ${index + 1}`} layout='responsive' width={1200} height={676} objectFit='cover' className='w-full' />
+              <Image src={mobileImage} alt={`${projectName} mobile mockup ${index + 1}`} layout='responsive' width={1200} height={676} className='w-full object-cover' />
             </SwiperSlide>
           ))}
         </Swiper>
