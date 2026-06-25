@@ -1,12 +1,12 @@
 "use client";
 
-import Footer from "components/Footer";
+import Footer from "@/components/Footer";
+import HeaderBlack from "@/components/HeaderBlack";
+import HeaderWhite from "@/components/HeaderWhite";
+import PlayButton from "@/components/PlayButton";
+import RepoGallery from "@/components/RepoGallery";
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import HeaderBlack from "../components/HeaderBlack";
-import HeaderWhite from "../components/HeaderWhite";
-import PlayButton from "../components/PlayButton";
-import RepoGallery from "../components/RepoGallery";
 
 export default function Page() {
   const [activeHeader, setActiveHeader] = useState(<HeaderWhite />);
