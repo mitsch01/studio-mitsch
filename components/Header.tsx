@@ -89,11 +89,6 @@ export default function Header({
 
       {/* Modal */}
       {isModalOpen && <NavModal toggleModal={toggleModal} />}
-
-      {/* Gradient border bottom */}
-      {scrolled && (
-        <div className="absolute bottom-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-gray-300 to-transparent" />
-      )}
     </header>
   );
 }

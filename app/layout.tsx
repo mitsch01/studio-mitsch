@@ -1,6 +1,7 @@
-import "./globals.css"
+import "./globals.css";
+import { Metadata } from "next"
 
-export const metadata = {
+export const metadata: Metadata = {
   title: {
     default: "Studio Mitsch",
     template: "%s | Studio Mitsch",
@@ -24,14 +25,21 @@ export const metadata = {
   metadataBase: new URL("https://studio-mitsch.de"),
 }
 
-export default function RootLayout({ children }) {
+export default function RootLayout({
+  children,
+  modal,
+}: {
+  children: React.ReactNode
+  modal: React.ReactNode
+}) {
   return (
-    <html lang='en'>
+    <html lang="en">
       <head>
-        <link rel='icon' href='/favicon.ico' />
+        <link rel="icon" href="/favicon.ico" />
       </head>
-      <body className='min-h-screen flex flex-col'>
-        <main className='flex-grow'>{children}</main>
+      <body className="min-h-screen flex flex-col">
+        <main className="flex-grow">{children}</main>
+        {modal}
       </body>
     </html>
   )
