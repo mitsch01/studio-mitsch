@@ -51,7 +51,7 @@ export default function Header({
 
   return (
     <header
-      className={`fixed top-0 w-full z-40 overflow-hidden flex justify-between items-center transition-all duration-300 
+      className={`fixed top-0 w-full z-40 flex justify-between items-center transition-all duration-300 
       ${scrolled ? "md:px-16 px-8 py-10 bg-white/95 backdrop-blur-sm" : "md:p-16 p-8 bg-transparent"}
       ${hidden && !isModalOpen ? "-translate-y-full" : "translate-y-0"}
     `}
@@ -92,7 +92,7 @@ export default function Header({
 
       {/* Gradient border bottom */}
       {scrolled && (
-        <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-gray-200 to-transparent" />
+        <div className="absolute bottom-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-gray-300 to-transparent" />
       )}
     </header>
   );
