@@ -6,7 +6,7 @@ const EmailForm = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
-  const [status, setStatus] = useState(""); // "success" | "error" | ""
+  const [status, setStatus] = useState("");
   const [loading, setLoading] = useState(false);
 
   const sendEmail = async (e) => {
@@ -40,10 +40,7 @@ const EmailForm = () => {
   return (
     <form onSubmit={sendEmail} className="space-y-4">
       <div>
-        <label
-          htmlFor="name"
-          className="block text-sm font-medium text-gray-700"
-        >
+        <label htmlFor="name" className="block text-sm uppercase tracking-widest text-gray-500 mb-1">
           Name
         </label>
         <input
@@ -53,15 +50,12 @@ const EmailForm = () => {
           value={name}
           onChange={(e) => setName(e.target.value)}
           required
-          className="mt-1 block w-full p-2 border border-gray-300"
+          className="block w-full p-3 border border-black focus:outline-none focus:border-raspberry transition-colors"
         />
       </div>
 
-      <div className="mb-4">
-        <label
-          htmlFor="email"
-          className="block text-sm font-medium text-gray-700"
-        >
+      <div>
+        <label htmlFor="email" className="block text-sm uppercase tracking-widest text-gray-500 mb-1">
           Email
         </label>
         <input
@@ -71,43 +65,40 @@ const EmailForm = () => {
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           required
-          className="mt-1 block w-full p-2 border border-gray-300"
+          className="block w-full p-3 border border-black focus:outline-none focus:border-raspberry transition-colors"
         />
       </div>
 
-      <div className="mb-4">
-        <label
-          htmlFor="message"
-          className="block text-sm font-medium text-gray-700"
-        >
+      <div>
+        <label htmlFor="message" className="block text-sm uppercase tracking-widest text-gray-500 mb-1">
           Message
         </label>
         <textarea
           id="message"
           name="message"
-          rows="4"
+          rows={4}
           value={message}
           onChange={(e) => setMessage(e.target.value)}
           required
-          className="mt-1 block w-full p-2 border border-gray-300"
+          className="block w-full p-3 border border-black focus:outline-none focus:border-raspberry transition-colors resize-none"
         />
       </div>
 
       <button
         type="submit"
         disabled={loading}
-        className="w-full bg-raspberry text-white py-2 md:text-base text-sm uppercase hover:bg-raspberry-hover disabled:opacity-50 disabled:cursor-not-allowed"
+        className="w-full bg-raspberry text-white py-3 text-sm uppercase tracking-widest hover:bg-raspberry-hover transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
       >
         {loading ? "Sending..." : "Send Message"}
       </button>
 
       {status === "success" && (
-        <p className="mt-4 text-green-600">
-          Thank you! I&apos;ll get back to you soon.
+        <p className="text-sm text-green-600 uppercase tracking-widest">
+          Thank you — I&apos;ll get back to you soon.
         </p>
       )}
       {status === "error" && (
-        <p className="mt-4 text-raspberry">
+        <p className="text-sm text-raspberry uppercase tracking-widest">
           Something went wrong. Please try again.
         </p>
       )}
