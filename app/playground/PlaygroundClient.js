@@ -7,11 +7,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 
-export const metadata = {
-  title: "Playground",
-  description: "An experimental creative space — AI haiku generator and interactive art by Miriam Schwartz.",
-}
-
 export default function Playground() {
   const [haikus, setHaikus] = useState([]); // Holds past haikus
   const [word1, setWord1] = useState("");
