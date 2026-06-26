@@ -2,6 +2,7 @@ import Footer from "@/components/Footer";
 import HeaderBlack from "@/components/HeaderBlack";
 import ProjectGallery from "@/components/ProjectGallery";
 import Link from "next/link";
+import ErrorBoundary from "@/components/ErrorBoundary";
 
 export default async function ProjectDetail({ params }) {
   const username = "mitsch01";
@@ -41,11 +42,18 @@ export default async function ProjectDetail({ params }) {
   };
 
   return (
-    <div className="overflow-y-auto scroll-smooth">
-      <HeaderBlack />
-      <div className="mt-24 p-8 md:p-28 max-w-screen-lg mx-auto min-h-screen">
-        {/* Header */}
-        <h1 className="text-4xl font-bold uppercase text-black mb-6">
+    <ErrorBoundary
+      fallback={
+        <p className="text-gray-400 text-sm uppercase tracking-widest py-8">
+          Project details unavailable right now — check back soon.
+        </p>
+      }
+    >
+      <div className="overflow-y-auto scroll-smooth">
+        <HeaderBlack />
+        <div className="mt-24 p-8 md:p-28 max-w-screen-lg mx-auto min-h-screen">
+          {/* Header */}
+          <h1 className="text-4xl font-bold uppercase text-black mb-6">
           {transformString(project.name)}
         </h1>
 
@@ -107,5 +115,6 @@ export default async function ProjectDetail({ params }) {
       </div>
       <Footer />
     </div>
+    </ErrorBoundary>
   );
 }
