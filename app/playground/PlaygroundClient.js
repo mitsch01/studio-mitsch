@@ -2,8 +2,7 @@
 
 import HeaderWhite from "@/components/HeaderWhite";
 import PlaygroundLayout from "@/components/PlaygroundLayout";
-import { faSyncAlt } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { RotateCcw } from "lucide-react";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 
@@ -323,10 +322,7 @@ export default function Playground() {
                   {/* Reload button */}
                   <div className="absolute max-w-96 right-0">
                     <button className="z-30" onClick={reloadHaiku}>
-                      <FontAwesomeIcon
-                        icon={faSyncAlt}
-                        className="text-white text-3xl"
-                      />
+                      <RotateCcw className="text-white w-8 h-8" />
                     </button>
                   </div>
                   {/* Haiku definition */}
