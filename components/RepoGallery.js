@@ -18,9 +18,11 @@ const RepoGallery = () => {
         },
       );
       const data = await response.json();
-      setRepos(data);
+      const filtered = data.filter(
+        (repo) => !repo.fork && repo.topics?.includes("portfolio"),
+      );
+      setRepos(filtered);
     };
-
     fetchRepos();
   }, []);
 
