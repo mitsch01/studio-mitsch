@@ -22,7 +22,7 @@ html {
 
 @font-face {
   font-family: 'Cooper Hewitt';
-  src: url('/fonts/CooperHewitt-Bold.otf') format('truetype');
+  src: url('/fonts/CooperHewitt-Bold.otf') format('opentype');
   font-weight: 700;
   font-style: normal;
 }
@@ -34,23 +34,12 @@ html {
   font-style: normal;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
 body, p, span {
   cursor: url('/images/cursor-default-64.png') 16 16, auto !important;
 }
 
 a, button, input, textarea, .clickable {
   cursor: url('/images/cursor-click-80.png') 36 36, pointer !important;
-}
-
-body.dark-mode {
-    background-color: black;
 }
 
 html,
@@ -93,6 +82,11 @@ a:hover::after {
   background: white;
   animation: draw 0.1s ease-in-out forwards;
   transform: translateY(3px);
+}
+
+a.no-underline:hover::after,
+button a:hover::after {
+  display: none;
 }
 
 @keyframes draw {
