@@ -11,6 +11,11 @@ const RepoGallery = () => {
     const fetchRepos = async () => {
       const response = await fetch(
         `https://api.github.com/users/${username}/repos`,
+        {
+          headers: {
+            Authorization: `Bearer ${process.env.NEXT_PUBLIC_GITHUB_TOKEN}`,
+          },
+        },
       );
       const data = await response.json();
       setRepos(data);

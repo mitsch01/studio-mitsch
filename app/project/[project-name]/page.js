@@ -10,6 +10,11 @@ export default async function ProjectDetail({ params }) {
   // Fetch project details from GitHub
   const res = await fetch(
     `https://api.github.com/repos/${username}/${projectName}`,
+    {
+      headers: {
+        Authorization: `Bearer ${process.env.NEXT_PUBLIC_GITHUB_TOKEN}`,
+      },
+    },
   );
   if (!res.ok) {
     return <div>Project not found</div>;
@@ -19,6 +24,11 @@ export default async function ProjectDetail({ params }) {
   // Fetch languages used in the project
   const languagesRes = await fetch(
     `https://api.github.com/repos/${username}/${projectName}/languages`,
+    {
+      headers: {
+        Authorization: `Bearer ${process.env.NEXT_PUBLIC_GITHUB_TOKEN}`,
+      },
+    },
   );
   const languagesData = await languagesRes.json();
   const languages = Object.keys(languagesData);
