@@ -1,3 +1,4 @@
+import ErrorBoundary from "@/components/ErrorBoundary";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
@@ -38,46 +39,53 @@ const RepoGallery = () => {
   };
 
   return (
-    <div className="flex flex-col">
-      {/* Repo Cards */}
-      <div className="clickable grid grid-cols-1 md:grid-cols-2 gap-8">
-        {repos.slice(0, visibleRepos).map((repo) => (
-          <Link
-            href={`/project/${repo.name}`}
-            key={repo.id}
-            className="w-full flex flex-col overflow-hidden transition-transform duration-100 hover:scale-105 hover:rounded shadow-xl group"
-          >
-            {/* Top Part: Image */}
-            <div className="w-full h-[305px] relative">
-              <Image
-                src={`/images/${repo.name}-preview.jpg`}
-                alt={`${repo.name} header`}
-                fill
-                className="object-cover"
-              />
-              {/* Overlay */}
-              <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-90 transition-opacity duration-300 flex items-center justify-center">
-                <h3 className="text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 font-hind md:text-base text-sm">
-                  {transformString(repo.name)}
-                </h3>
+    <ErrorBoundary
+      fallback={
+        <p className="text-gray-400 text-sm uppercase tracking-widest py-8">
+          Projects unavailable right now — check back soon.
+        </p>
+      }
+    >
+      <div className="flex flex-col">
+        {/* Repo Cards */}
+        <div className="clickable grid grid-cols-1 md:grid-cols-2 gap-8">
+          {repos.slice(0, visibleRepos).map((repo) => (
+            <Link
+              href={`/project/${repo.name}`}
+              key={repo.id}
+              className="w-full flex flex-col overflow-hidden transition-transform duration-100 hover:scale-105 hover:rounded shadow-xl group"
+            >
+              {/* Top Part: Image */}
+              <div className="w-full h-[305px] relative">
+                <Image
+                  src={`/images/${repo.name}-preview.jpg`}
+                  alt={`${repo.name} header`}
+                  fill
+                  className="object-cover"
+                />
+                {/* Overlay */}
+                <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-90 transition-opacity duration-300 flex items-center justify-center">
+                  <h3 className="text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 font-hind md:text-base text-sm">
+                    {transformString(repo.name)}
+                  </h3>
+                </div>
               </div>
-            </div>
-          </Link>
-        ))}
-      </div>
-
-      {/* Load More Button */}
-      {visibleRepos < repos.length && (
-        <div className="flex justify-center">
-          <button
-            onClick={loadMoreRepos}
-            className="md:text-base text-sm w-44 uppercase bg-black text-white p-4 hover:bg-gray-800 my-12"
-          >
-            Load More
-          </button>
+            </Link>
+          ))}
         </div>
-      )}
-    </div>
+        {/* Load More Button */}
+        {visibleRepos < repos.length && (
+          <div className="flex justify-center">
+            <button
+              onClick={loadMoreRepos}
+              className="md:text-base text-sm w-44 uppercase bg-black text-white p-4 hover:bg-gray-800 my-12"
+            >
+              Load More
+            </button>
+          </div>
+        )}
+      </div>
+    </ErrorBoundary>
   );
 };
 
