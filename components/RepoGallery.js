@@ -1,3 +1,6 @@
+
+"use client"
+
 import ErrorBoundary from "@/components/ErrorBoundary";
 import Image from "next/image";
 import Link from "next/link";
