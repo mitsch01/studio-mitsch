@@ -8,6 +8,12 @@ import RepoGallery from "@/components/RepoGallery";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 
+
+export const metadata = {
+  title: "Home",
+  description: "Portfolio of Miriam Schwartz — fullstack developer and app developer based in Hamburg. Web development with React & Next.js, app development with Flutter & Dart.",
+}
+
 export default function Page() {
   const [activeHeader, setActiveHeader] = useState(<HeaderWhite />);
   const [scrollThreshold, setScrollThreshold] = useState(0);

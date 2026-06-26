@@ -4,6 +4,19 @@ import ProjectGallery from "@/components/ProjectGallery";
 import Link from "next/link";
 import ErrorBoundary from "@/components/ErrorBoundary";
 
+export async function generateMetadata({ params }) {
+  const projectName = params["project-name"]
+  const formatted = projectName
+    .split("-")
+    .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(" ")
+
+  return {
+    title: formatted,
+    description: `${formatted} — a project by Miriam Schwartz, fullstack web and app developer based in Hamburg.`,
+  }
+}
+
 export default async function ProjectDetail({ params }) {
   const username = "mitsch01";
   const { "project-name": projectName } = params;

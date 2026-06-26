@@ -1,13 +1,30 @@
 import "./globals.css"
 
 export const metadata = {
-  title: "Mitsch 🤍 Coding",
-  description: "Portfolio Miriam Schwartz",
-  keywords: "fullstack-development, frontend-development, react, nextjs",
-  author: "Miriam Schwartz"
+  title: {
+    default: "Studio Mitsch",
+    template: "%s | Studio Mitsch",
+  },
+  description: "Hamburg-based fullstack developer and designer specialising in web and app development. React, Next.js, Flutter, Dart, UI/UX.",
+  keywords: ["fullstack development", "frontend development", "app development", "React", "Next.js", "Flutter", "Dart", "UI/UX", "Tailwind CSS", "Hamburg", "freelance developer"],
+  authors: [{ name: "Miriam Schwartz" }],
+  openGraph: {
+    title: "Studio Mitsch",
+    description: "Hamburg-based fullstack developer and designer specialising in web and app development.",
+    url: "https://studio-mitsch.de",
+    siteName: "Studio Mitsch",
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Studio Mitsch",
+    description: "Hamburg-based fullstack developer and designer specialising in web and app development.",
+  },
+  metadataBase: new URL("https://studio-mitsch.de"),
 }
 
-export default function RootLayout({ children}) {
+export default function RootLayout({ children }) {
   return (
     <html lang='en'>
       <head>

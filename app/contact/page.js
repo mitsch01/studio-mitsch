@@ -4,6 +4,11 @@ import HeaderWhite from "@/components/HeaderWhite";
 import HeaderWhiteBlack from "@/components/HeaderWhiteBlack";
 import Image from "next/image";
 
+export const metadata = {
+  title: "Contact",
+  description: "Get in touch with Miriam Schwartz for freelance web and app development projects.",
+}
+
 export default function Page() {
   return (
     <div>
