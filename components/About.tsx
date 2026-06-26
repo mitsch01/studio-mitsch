@@ -29,16 +29,12 @@ export default function About() {
           {/* ── Column 1: Heading, Badges, Philosophy card ── */}
           <div className="flex flex-col gap-8">
             {/* Heading */}
-            <div className="relative">
-              {/* Ghost background letter */}
-              <span className="absolute -top-8 -left-4 text-8xl font-black text-gray-100 uppercase select-none pointer-events-none tracking-widest leading-none">
-                ME
-              </span>
+            <div>
               <motion.h1
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-100px" }}
-                className="md:text-7xl text-6xl uppercase pt-4 pb-2 tracking-tight relative z-10"
+                className="md:text-7xl text-6xl uppercase pt-4 pb-2 tracking-tight"
               >
                 About
               </motion.h1>
