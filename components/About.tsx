@@ -1,8 +1,8 @@
-"use client"
+"use client";
 
-import { motion } from "motion/react"
-import { Code2, MapPin, Sparkles } from "lucide-react"
-import Link from "next/link"
+import { MapPin, Sparkles } from "lucide-react";
+import { motion } from "motion/react";
+import Link from "next/link";
 
 const skillBadges = [
   "Fullstack Development",
@@ -19,17 +19,15 @@ const skillBadges = [
   "Tailwind CSS",
   "Procreate",
   "Photoshop",
-]
+];
 
 export default function About() {
   return (
     <section id="about" className="py-24 md:py-36 bg-white overflow-hidden">
       <div className="max-w-screen-lg mx-auto px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-start">
-
           {/* ── Column 1: Heading, Badges, Philosophy card ── */}
           <div className="flex flex-col gap-8">
-
             {/* Heading */}
             <div className="relative">
               {/* Ghost background letter */}
@@ -80,14 +78,14 @@ export default function About() {
             >
               <div className="flex gap-4 items-start">
                 <div className="p-3 bg-[#e8175d]/5 text-[#e8175d] shrink-0">
-                  <Code2 className="w-5 h-5" />
+                  <Sparkles className="w-5 h-5" />
                 </div>
                 <div>
                   <h4 className="font-bold text-sm uppercase tracking-wider text-black">
-                    Coding Philosophy
+                    Albert Einstein
                   </h4>
                   <p className="text-xs text-gray-500 font-mono mt-1 leading-relaxed">
-                    &ldquo;I believe code should support visual narrative, never compete with it. Clean architecture should lay a foundation for beautiful, intentional interactions.&rdquo;
+                    &ldquo;Creativity is intelligence having fun.&rdquo;
                   </p>
                 </div>
               </div>
@@ -108,13 +106,22 @@ export default function About() {
                 Hi, I&apos;m Miriam
               </h2>
               <p className="text-gray-600 leading-relaxed">
-                I&apos;m a frontend web and app developer from Hamburg with a thing for design, details, and the space where code meets craft. I build responsive websites and apps that feel as good as they look — technically solid, visually considered, and shaped around the people and projects behind them.
+                I&apos;m a frontend web and app developer from Hamburg with a
+                thing for design, details, and the space where code meets craft.
+                I build responsive websites and apps that feel as good as they
+                look — technically solid, visually considered, and shaped around
+                the people and projects behind them.
               </p>
               <p className="text-gray-600 leading-relaxed">
-                My background in art and design isn&apos;t just a hobby footnote. It influences how I think about layouts, colour, and the small decisions that make a digital product feel intentional rather than assembled.
+                My background in art and design isn&apos;t just a hobby
+                footnote. It influences how I think about layouts, colour, and
+                the small decisions that make a digital product feel intentional
+                rather than assembled.
               </p>
               <p className="text-gray-600 leading-relaxed">
-                When I&apos;m not coding, you&apos;ll find me in my art studio, out on my bike or in my garden enjoying the fresh air and colours of nature.
+                When I&apos;m not coding, you&apos;ll find me in my art studio,
+                out on my bike or in my garden enjoying the fresh air and
+                colours of nature.
               </p>
             </div>
 
@@ -128,7 +135,9 @@ export default function About() {
                   <h5 className="font-mono text-[10px] uppercase text-gray-400 tracking-wider">
                     Based in
                   </h5>
-                  <p className="text-xs font-bold text-black">Hamburg, Germany</p>
+                  <p className="text-xs font-bold text-black">
+                    Hamburg, Germany
+                  </p>
                 </div>
               </div>
 
@@ -140,7 +149,9 @@ export default function About() {
                   <h5 className="font-mono text-[10px] uppercase text-gray-400 tracking-wider">
                     Status
                   </h5>
-                  <p className="text-xs font-bold text-black">Available for Freelance</p>
+                  <p className="text-xs font-bold text-black">
+                    Available for Freelance
+                  </p>
                 </div>
               </div>
             </div>
@@ -163,9 +174,8 @@ export default function About() {
               </a>
             </div>
           </motion.div>
-
         </div>
       </div>
     </section>
-  )
+  );
 }
