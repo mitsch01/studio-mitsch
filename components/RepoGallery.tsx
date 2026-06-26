@@ -32,28 +32,40 @@ const transformString = (input: string) =>
     .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
     .join(" ");
 
+// NEW: Skeleton card — matches card dimensions exactly
+function SkeletonCard() {
+  return (
+    <div className="w-full h-[305px] bg-gray-200 animate-pulse" />
+  );
+}
+
 export default function RepoGallery() {
   const [repos, setRepos] = useState<Repo[]>([]);
   const [visibleRepos, setVisibleRepos] = useState(4);
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [languages, setLanguages] = useState<string[]>([]);
+  const [loading, setLoading] = useState(true); // NEW
   const username = "mitsch01";
 
   useEffect(() => {
     const fetchRepos = async () => {
-      const response = await fetch(
-        `https://api.github.com/users/${username}/repos`,
-        {
-          headers: {
-            Authorization: `Bearer ${process.env.NEXT_PUBLIC_GITHUB_TOKEN}`,
+      try { // NEW: wrapped in try/finally so loading always clears
+        const response = await fetch(
+          `https://api.github.com/users/${username}/repos`,
+          {
+            headers: {
+              Authorization: `Bearer ${process.env.NEXT_PUBLIC_GITHUB_TOKEN}`,
+            },
           },
-        },
-      );
-      const data = await response.json();
-      const filtered = data.filter(
-        (repo: Repo) => !repo.fork && repo.topics?.includes("portfolio"),
-      );
-      setRepos(filtered);
+        );
+        const data = await response.json();
+        const filtered = data.filter(
+          (repo: Repo) => !repo.fork && repo.topics?.includes("portfolio"),
+        );
+        setRepos(filtered);
+      } finally {
+        setLoading(false); // NEW
+      }
     };
     fetchRepos();
   }, []);
@@ -69,7 +81,6 @@ export default function RepoGallery() {
   }, [selectedProject]);
 
   const openProject = async (repo: Repo) => {
-    // Fetch full project details + languages
     const [projectRes, langRes] = await Promise.all([
       fetch(`https://api.github.com/repos/${username}/${repo.name}`, {
         headers: {
@@ -83,20 +94,19 @@ export default function RepoGallery() {
       }),
     ]);
 
-    // Guard: if project not found, don't open overlay
     if (!projectRes.ok) return;
 
     const project = await projectRes.json();
     const langData = await langRes.json();
     setLanguages(Object.keys(langData));
     setSelectedProject(project);
-    document.body.style.overflow = "hidden"; // prevent background scroll
+    document.body.style.overflow = "hidden";
   };
 
   const closeProject = () => {
     setSelectedProject(null);
     setLanguages([]);
-    document.body.style.overflow = ""; // restore scroll
+    document.body.style.overflow = "";
   };
 
   return (
@@ -107,44 +117,55 @@ export default function RepoGallery() {
         </p>
       }
     >
-      {/* Project Cards Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-        {repos.slice(0, visibleRepos).map((repo) => (
-          <button
-            key={repo.id}
-            onClick={() => openProject(repo)}
-            className="w-full flex flex-col overflow-hidden transition-transform duration-100 hover:scale-105 hover:rounded shadow-xl group text-left"
-          >
-            <div className="w-full h-[305px] relative">
-              <Image
-                src={`/images/${repo.name}-preview.jpg`}
-                alt={`${repo.name} preview`}
-                fill
-                className="object-cover"
-              />
-              <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-90 transition-opacity duration-300 flex items-center justify-center">
-                <h3 className="text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 font-hind md:text-base text-sm uppercase tracking-widest">
-                  {transformString(repo.name)}
-                </h3>
-              </div>
-            </div>
-          </button>
-        ))}
-      </div>
-
-      {/* Load More */}
-      {visibleRepos < repos.length && (
-        <div className="flex justify-center">
-          <button
-            onClick={() => setVisibleRepos((prev) => prev + 4)}
-            className="md:text-base text-sm w-44 uppercase bg-black text-white p-4 hover:bg-gray-800 my-12"
-          >
-            Load More
-          </button>
+      {/* NEW: Skeleton grid shown while loading */}
+      {loading ? (
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {Array.from({ length: 4 }).map((_, i) => (
+            <SkeletonCard key={i} />
+          ))}
         </div>
+      ) : (
+        <>
+          {/* Project Cards Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {repos.slice(0, visibleRepos).map((repo) => (
+              <button
+                key={repo.id}
+                onClick={() => openProject(repo)}
+                className="w-full flex flex-col overflow-hidden transition-transform duration-100 hover:scale-105 hover:rounded shadow-xl group text-left"
+              >
+                <div className="w-full h-[305px] relative">
+                  <Image
+                    src={`/images/${repo.name}-preview.jpg`}
+                    alt={`${repo.name} preview`}
+                    fill
+                    className="object-cover"
+                  />
+                  <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-90 transition-opacity duration-300 flex items-center justify-center">
+                    <h3 className="text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 font-hind md:text-base text-sm uppercase tracking-widest">
+                      {transformString(repo.name)}
+                    </h3>
+                  </div>
+                </div>
+              </button>
+            ))}
+          </div>
+
+          {/* Load More */}
+          {visibleRepos < repos.length && (
+            <div className="flex justify-center">
+              <button
+                onClick={() => setVisibleRepos((prev) => prev + 4)}
+                className="md:text-base text-sm w-44 uppercase bg-black text-white p-4 hover:bg-gray-800 my-12"
+              >
+                Load More
+              </button>
+            </div>
+          )}
+        </>
       )}
 
-      {/* Overlay */}
+      {/* Overlay — unchanged */}
       <AnimatePresence>
         {selectedProject && (
           <motion.div
@@ -163,7 +184,6 @@ export default function RepoGallery() {
               className="relative bg-black rounded-2xl overflow-y-auto max-h-[90vh] w-full max-w-4xl shadow-2xl"
               onClick={(e) => e.stopPropagation()}
             >
-              {/* Close button */}
               <button
                 onClick={closeProject}
                 className="absolute top-6 right-6 text-white/60 hover:text-white text-4xl leading-none z-10 transition-colors"
@@ -172,7 +192,6 @@ export default function RepoGallery() {
                 &times;
               </button>
 
-              {/* Content */}
               <div className="pt-16 pb-12 px-8 md:px-12">
                 <h1 className="text-4xl md:text-5xl font-bold uppercase text-white mb-4">
                   {transformString(selectedProject.name)}
@@ -203,17 +222,13 @@ export default function RepoGallery() {
                       <span className="font-bold uppercase tracking-wider text-white">
                         Created:{" "}
                       </span>
-                      {new Date(
-                        selectedProject.created_at,
-                      ).toLocaleDateString()}
+                      {new Date(selectedProject.created_at).toLocaleDateString()}
                     </p>
                     <p className="text-sm text-gray-400">
                       <span className="font-bold uppercase tracking-wider text-white">
                         Updated:{" "}
                       </span>
-                      {new Date(
-                        selectedProject.updated_at,
-                      ).toLocaleDateString()}
+                      {new Date(selectedProject.updated_at).toLocaleDateString()}
                     </p>
                   </div>
 
