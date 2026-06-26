@@ -263,7 +263,7 @@ export default function Playground() {
                   )}
                   {currentMachine === "initial" && (
                     <button
-                      className="absolute top-44 right-4 w-12 h-12 bg-[#e8175d] hover:bg-[#a3144f] rounded-full z-20 flex items-center justify-center text-white font-bold"
+                      className="absolute top-44 right-4 w-12 h-12 bg-raspberry hover:bg-[#a3144f] rounded-full z-20 flex items-center justify-center text-white font-bold"
                       onClick={handleClick}
                     ></button>
                   )}
@@ -287,7 +287,7 @@ export default function Playground() {
                   )}
                   {/* Replace Input Fields with Final Haiku Display */}
                   {currentMachine === "final" ? (
-                    <pre className="absolute top-32 -left-32 p-4 text-white font-grace tracking-wider text-center text-2xl border-[#e8175d] border-4">
+                    <pre className="absolute top-32 -left-32 p-4 text-white font-grace tracking-wider text-center text-2xl border-raspberry border-4">
                       {newHaiku}
                     </pre>
                   ) : (

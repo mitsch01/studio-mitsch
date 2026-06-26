@@ -72,11 +72,11 @@ const getCategoryTheme = (category: string): CategoryTheme => {
       };
     case "Frameworks & Libraries":
       return {
-        icon: <Code2 className="w-5 h-5 text-[#e8175d]" />,
+        icon: <Code2 className="w-5 h-5 text-raspberry" />,
         headerBg: "bg-rose-50 border-rose-100",
-        accentColor: "text-[#e8175d]",
-        progressColor: "bg-[#e8175d]",
-        badgeBg: "bg-rose-50 text-[#e8175d] border-rose-100",
+        accentColor: "text-raspberry",
+        progressColor: "bg-raspberry",
+        badgeBg: "bg-rose-50 text-raspberry border-rose-100",
       };
     case "Tools & Design":
       return {
@@ -110,7 +110,7 @@ export default function Skills() {
             Skills
           </h1>
           {/* Pink underline accent */}
-          <div className="mt-2 h-1 w-16 bg-[#e8175d]" />
+          <div className="mt-2 h-1 w-16 bg-raspberry" />
         </div>
 
         {/* 2×2 Bento skill grid */}
@@ -189,7 +189,7 @@ export default function Skills() {
               JS
             </span>
             <div className="relative z-10">
-              <span className="font-mono text-[10px] uppercase text-[#e8175d] font-bold tracking-widest block mb-1">
+              <span className="font-mono text-[10px] uppercase text-raspberry font-bold tracking-widest block mb-1">
                 Interactive Focus
               </span>
               <h3 className="text-xl md:text-2xl font-black tracking-tight mb-4 uppercase text-white">
@@ -237,7 +237,7 @@ export default function Skills() {
                 <span className="text-gray-500 uppercase">
                   Design Integration
                 </span>
-                <span className="text-[#e8175d] font-bold uppercase">
+                <span className="text-raspberry font-bold uppercase">
                   100% Native
                 </span>
               </div>

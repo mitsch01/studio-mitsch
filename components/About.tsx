@@ -58,7 +58,7 @@ export default function About() {
                     visible: { opacity: 1, scale: 1 },
                   }}
                   whileHover={{ scale: 1.05, y: -2 }}
-                  className="bg-[#e8175d] text-white px-4 py-2 text-xs font-bold tracking-wider uppercase select-none hover:bg-[#c3144f] transition-colors cursor-default"
+                  className="bg-raspberry text-white px-4 py-2 text-xs font-bold tracking-wider uppercase select-none hover:bg-raspberry-hover transition-colors cursor-default"
                 >
                   {badge}
                 </motion.span>
@@ -70,10 +70,10 @@ export default function About() {
               initial={{ opacity: 0, scale: 0.95 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
-              className="p-6 bg-white border border-gray-200 border-l-4 border-l-[#e8175d] shadow-sm"
+              className="p-6 bg-white border border-gray-200 border-l-4 border-l-raspberry shadow-sm"
             >
               <div className="flex gap-4 items-start">
-                <div className="p-3 bg-[#e8175d]/5 text-[#e8175d] shrink-0">
+                <div className="p-3 bg-raspberry/5 text-raspberry shrink-0">
                   <Sparkles className="w-5 h-5" />
                 </div>
                 <div>
@@ -156,7 +156,7 @@ export default function About() {
             <div className="flex gap-4 flex-wrap">
               <Link
                 href="/contact"
-                className="px-6 py-3 bg-black text-white font-bold text-xs uppercase tracking-widest hover:bg-[#e8175d] transition-colors shadow-sm"
+                className="px-6 py-3 bg-black text-white font-bold text-xs uppercase tracking-widest hover:bg-raspberry transition-colors shadow-sm no-underline"
               >
                 Let&apos;s Collaborate
               </Link>
@@ -164,7 +164,7 @@ export default function About() {
                 href="https://www.linkedin.com/in/miriam-schwartz-568aaa30b/"
                 target="_blank"
                 rel="noreferrer"
-                className="px-6 py-3 border border-gray-200 text-black font-bold text-xs uppercase tracking-widest hover:bg-gray-100 transition-colors"
+                className="px-6 py-3 border border-gray-200 text-black font-bold text-xs uppercase tracking-widest hover:bg-gray-100 transition-colors no-underline"
               >
                 LinkedIn Profile
               </a>
