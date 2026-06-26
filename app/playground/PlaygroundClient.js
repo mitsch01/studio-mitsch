@@ -1,6 +1,6 @@
 "use client";
 
-import HeaderWhite from "@/components/HeaderWhite";
+import Header from "@/components/Header";
 import PlaygroundLayout from "@/components/PlaygroundLayout";
 import { RotateCcw } from "lucide-react";
 import Image from "next/image";
@@ -220,7 +220,7 @@ export default function Playground() {
 
   return (
     <PlaygroundLayout isBlackBackground={true} showFooter={false}>
-      <HeaderWhite />
+      <Header logoColor="white" burgerColor="white" />
       <div
         className="scale-75 md:scale-90 overflow-hidden relative"
         onMouseDown={startDrag}

@@ -1,7 +1,6 @@
 import EmailForm from "@/components/EmailForm";
 import Footer from "@/components/Footer";
-import HeaderWhite from "@/components/HeaderWhite";
-import HeaderWhiteBlack from "@/components/HeaderWhiteBlack";
+import Header from "@/components/Header"
 import Image from "next/image";
 
 export const metadata = {
@@ -15,11 +14,11 @@ export default function Page() {
       <div>
         {/* Component for large screens */}
         <div className="hidden md:block">
-          <HeaderWhiteBlack />
+          <Header logoColor="white" burgerColor="white" />
         </div>
         {/* Component for small screens */}
         <div className="block md:hidden">
-          <HeaderWhite />
+          <Header logoColor="white" burgerColor="white" />
         </div>
       </div>
 

@@ -1,6 +1,6 @@
 import ErrorBoundary from "@/components/ErrorBoundary";
 import Footer from "@/components/Footer";
-import HeaderBlack from "@/components/HeaderBlack";
+import Header from "@/components/Header";
 import ProjectGallery from "@/components/ProjectGallery";
 import Link from "next/link";
 
@@ -63,7 +63,7 @@ export default async function ProjectDetail({ params }) {
       }
     >
       <div className="overflow-y-auto scroll-smooth">
-        <HeaderBlack />
+        <Header logoColor="white" burgerColor="white" />
         <div className="mt-24 p-8 md:p-28 max-w-screen-lg mx-auto min-h-screen">
           {/* Header */}
           <h1 className="text-4xl font-bold uppercase text-black mb-6">
