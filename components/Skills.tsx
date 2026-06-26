@@ -99,7 +99,7 @@ const getCategoryTheme = (category: string): CategoryTheme => {
 
 export default function Skills() {
   return (
-    <section id="skills" className="py-24 bg-gray-50 border-t border-gray-100">
+    <section id="skills" className="py-section bg-gray-50 border-t border-gray-100">
       <div className="max-w-screen-lg mx-auto px-8">
         {/* Section heading */}
         <div className="mb-16">

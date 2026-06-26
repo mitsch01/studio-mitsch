@@ -23,7 +23,7 @@ const skillBadges = [
 
 export default function About() {
   return (
-    <section id="about" className="py-24 md:py-36 bg-white overflow-hidden">
+    <section id="about" className="py-section md:py-36 bg-white overflow-hidden">
       <div className="max-w-screen-lg mx-auto px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-start">
           {/* ── Column 1: Heading, Badges, Philosophy card ── */}
