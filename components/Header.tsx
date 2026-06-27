@@ -9,13 +9,17 @@ type HeaderColor = "black" | "white";
 interface HeaderProps {
   logoColor?: HeaderColor;
   burgerColor?: HeaderColor;
+  mobileBurgerColor?: HeaderColor;
   scrollBackground?: boolean;
+  scrollThreshold?: number;
 }
 
 export default function Header({
   logoColor = "black",
   burgerColor = "black",
+  mobileBurgerColor,
   scrollBackground = false,
+  scrollThreshold = 0.8,
 }: HeaderProps) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -28,7 +32,7 @@ export default function Header({
       const currentScrollY = window.scrollY;
 
       // 1. Scrolled past hero threshold
-      setScrolled(currentScrollY > window.innerHeight * 0.8);
+      setScrolled(currentScrollY > window.innerHeight * (scrollThreshold ?? 0.8));
 
       // 2. Hide on scroll down, show on scroll up
       if (currentScrollY > lastScrollY && currentScrollY > 200) {
@@ -52,7 +56,7 @@ export default function Header({
   return (
     <header
       className={`fixed top-0 w-full z-40 flex justify-between items-center transition-all duration-300 
-      ${scrolled ? "md:px-16 px-8 py-10 bg-white/95 backdrop-blur-sm" : "md:p-16 p-8 bg-transparent"}
+${scrolled ? `md:px-16 px-8 py-10 ${scrollBackground ? "bg-white/95 backdrop-blur-sm" : "bg-transparent"}` : "md:p-16 p-8 bg-transparent"}
       ${hidden && !isModalOpen ? "-translate-y-full" : "translate-y-0"}
     `}
     >
@@ -67,7 +71,9 @@ export default function Header({
 
       {/* Burger Menu Icon */}
       <button
-        className={`text-${currentBurgerColor} focus:outline-none transition-colors duration-300`}
+        className={`focus:outline-none transition-colors duration-300 
+    text-${mobileBurgerColor ?? currentBurgerColor} 
+    md:text-${currentBurgerColor}`}
         onClick={toggleModal}
         aria-label="Open Menu"
       >

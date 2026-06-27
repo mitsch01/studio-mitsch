@@ -13,7 +13,13 @@ export const metadata = {
 export default function Page() {
   return (
     <div>
-      <Header logoColor="white" burgerColor="white" />
+      <Header
+        logoColor="white"
+        burgerColor="black"
+        // mobileBurgerColor="white"
+        scrollBackground={true}
+        scrollThreshold={0.1}
+      />
 
       <div className="grid grid-cols-1 md:grid-cols-2 min-h-screen">
         {/* Left: Image */}

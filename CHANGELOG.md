@@ -96,3 +96,90 @@ Format: [Phase] — [Date] — [Description]
 
 ---
 
+## Phase 2 — UX/UI Improvements
+**Date:** June 2026
+ 
+### Design tokens
+- Added `raspberry` (`#e8175d`) and `raspberry-hover` (`#c3144f`) colour tokens to `tailwind.config.js`
+- Added `spacing.section` (96px), `spacing.section-sm` (64px), `spacing.content` (1024px) tokens
+- Replaced all hardcoded colour values with token references throughout codebase
+- Fixed Cooper Hewitt font format string (`truetype` → `opentype`)
+- Removed unused dark mode CSS variables and `body.dark-mode` class
+- Fixed `a:hover::after` underline rule conflicting with CTA buttons
+
+### About section
+- Created `components/About.tsx` — two-column layout (skill badges + bio)
+- Left column: ABOUT heading, staggered skill badges with `motion/react` animations, Einstein quote card
+- Right column: bio text, Quick Facts (Hamburg / Available for Freelance), CTA buttons
+- Removed ghost "ME" background text
+
+### Skills section
+- Created `components/Skills.tsx` — 2×2 bento grid with progress bars
+- Four categories: Languages, Frameworks & Libraries, Tools & Design, Others
+- Dark editorial summary panel with JS ghost text and "Modern Web & App Stack" copy
+
+### Navigation
+- Consolidated `HeaderWhite`, `HeaderBlack`, `HeaderWhiteBlack` → single `components/Header.tsx`
+- Props: `logoColor`, `burgerColor`, `mobileBurgerColor`, `scrollBackground`, `scrollThreshold`
+- Smart navbar: hides on scroll down, reappears on scroll up
+- Header shrinks in height/padding after scrolling past hero threshold
+- Background on scroll gated by `scrollBackground` prop — playground header stays transparent
+- `mobileBurgerColor` prop allows different burger colour per breakpoint (used on contact page)
+- `scrollThreshold` prop controls when scroll state triggers (default 0.8, contact page uses 0.05)
+
+### NavModal
+- Refactored to use `navItems` array + `usePathname` for active state detection
+- Moved to React Portal (`createPortal`) — renders into `document.body`, fixes full-screen clipping bug
+- `z-[100]` ensures modal sits above all other elements
+- Scroll lock on open, restored on close; Escape key closes modal
+- Logo hidden on mobile (`hidden md:block`) to free vertical space
+- Nav items: `text-4xl md:text-6xl`, `space-y-5 md:space-y-8` — fits all 7 items at 375px
+- Layout: `pt-28 md:pt-0 md:justify-center` — near top on mobile, centered on desktop
+- State hierarchy: active = raspberry, hover = full white, inactive = `text-white/50`
+- Close button: `hover:text-raspberry` transition added
+
+### Homepage
+- Extracted `Hero` into `components/Hero.tsx` with `priority` image loading
+- Merged `HomeClient` back into `app/page.tsx` — now a server component
+- Removed scroll-based header state machine (50+ lines)
+
+### Project detail overlay
+- Replaced intercepting routes with overlay built directly into `RepoGallery.tsx`
+- Cards are buttons — click opens full-screen overlay with project details + ProjectGallery
+- `AnimatePresence` fade-in/out, backdrop click + Escape key to close
+- Background scroll locked while overlay open; not-found guard in `openProject()`
+- Deleted `app/@modal/` folder, reverted `layout.tsx` to single slot
+
+### RepoGallery
+- Added skeleton loaders — 4 `SkeletonCard` components (`animate-pulse`) shown while fetching
+- Fetch wrapped in `try/finally` — loading state always clears even on error
+- Migrated to `RepoGallery.tsx`
+
+### Contact page
+- Single `<Header>` replacing duplicate mobile/desktop blocks
+- Left image: `h-[50vh]` mobile, `h-screen` desktop
+- Added social links (GitHub + LinkedIn inline SVGs) between intro and form
+- Personal intro text written to match About section voice
+- Renamed to `page.tsx`
+
+### EmailForm
+- Input styling: `border-black`, `focus:border-raspberry`, sharp corners, `resize-none` on textarea
+- Labels: uppercase, tracked — matches site typographic voice
+- Button: black → raspberry on hover
+
+### Footer
+- Rebuilt as `Footer.tsx` — 5-column weighted grid (`md:col-span-2 / 1 / 2`)
+- Col 1: brand logo + tagline; Col 2: nav links; Col 3: newsletter stub + social icons
+- PNG icons replaced with inline SVGs (GitHub, LinkedIn)
+- Bottom bar: copyright left, tech stack right
+
+### Cleanup
+- Removed `firebase.js`, `firebase.json`, Firebase GitHub Actions workflow files
+- Removed `jsconfig.json` (conflicted with `tsconfig.json`)
+- Removed commented-out `ConnectingDots` block from contact page
+
+### Mobile audit (375px)
+- Contact header: white logo + white burger on mobile via `mobileBurgerColor` prop
+- NavModal portal fix: full viewport coverage on all screen sizes
+- NavModal items sized to fit all 7 items without overflow at 375px
+- Contact image stacks above form on mobile with `h-[50vh]`
