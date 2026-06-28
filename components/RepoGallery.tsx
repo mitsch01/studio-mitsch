@@ -34,9 +34,7 @@ const transformString = (input: string) =>
 
 // NEW: Skeleton card — matches card dimensions exactly
 function SkeletonCard() {
-  return (
-    <div className="w-full h-[305px] bg-gray-200 animate-pulse" />
-  );
+  return <div className="w-full h-[305px] bg-gray-200 animate-pulse" />;
 }
 
 export default function RepoGallery() {
@@ -49,7 +47,8 @@ export default function RepoGallery() {
 
   useEffect(() => {
     const fetchRepos = async () => {
-      try { // NEW: wrapped in try/finally so loading always clears
+      try {
+        // NEW: wrapped in try/finally so loading always clears
         const response = await fetch(
           `https://api.github.com/users/${username}/repos`,
           {
@@ -128,7 +127,7 @@ export default function RepoGallery() {
         <>
           {/* Project Cards Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {repos.slice(0, visibleRepos).map((repo) => (
+            {repos.slice(0, visibleRepos).map((repo, index) => (
               <button
                 key={repo.id}
                 onClick={() => openProject(repo)}
@@ -140,6 +139,8 @@ export default function RepoGallery() {
                     alt={`${repo.name} preview`}
                     fill
                     className="object-cover"
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                    loading={index === 0 ? "eager" : "lazy"}
                   />
                   <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-90 transition-opacity duration-300 flex items-center justify-center">
                     <h3 className="text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 font-hind md:text-base text-sm uppercase tracking-widest">
@@ -222,13 +223,17 @@ export default function RepoGallery() {
                       <span className="font-bold uppercase tracking-wider text-white">
                         Created:{" "}
                       </span>
-                      {new Date(selectedProject.created_at).toLocaleDateString()}
+                      {new Date(
+                        selectedProject.created_at,
+                      ).toLocaleDateString()}
                     </p>
                     <p className="text-sm text-gray-400">
                       <span className="font-bold uppercase tracking-wider text-white">
                         Updated:{" "}
                       </span>
-                      {new Date(selectedProject.updated_at).toLocaleDateString()}
+                      {new Date(
+                        selectedProject.updated_at,
+                      ).toLocaleDateString()}
                     </p>
                   </div>
 

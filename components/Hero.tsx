@@ -4,7 +4,7 @@ export default function Hero() {
   return (
     <div className="relative w-full h-screen overflow-hidden">
       {/* Landscape — large screens */}
-      <div className="hidden sm:block">
+      <div className="hidden sm:block relative w-full h-full">
         <Image
           src="/images/header-landscape.jpg"
           alt="Studio Mitsch — Hamburg based web and app developer"
@@ -16,7 +16,7 @@ export default function Hero() {
       </div>
 
       {/* Portrait — small screens */}
-      <div className="block sm:hidden">
+      <div className="block sm:hidden relative w-full h-full">
         <Image
           src="/images/header-portrait.jpg"
           alt="Studio Mitsch — Hamburg based web and app developer"
