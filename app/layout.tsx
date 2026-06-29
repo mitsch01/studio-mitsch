@@ -1,5 +1,7 @@
-import "./globals.css"
+import { CartProvider } from "@/context/CartContext"
 import { Metadata } from "next"
+import "./globals.css"
+
 
 export const metadata: Metadata = {
   title: {
@@ -32,8 +34,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <link rel="icon" href="/favicon.ico" />
       </head>
       <body className="min-h-screen flex flex-col">
-        <main className="flex-grow">{children}</main>
-      </body>
+<CartProvider>
+          <main className="flex-grow">{children}</main>
+        </CartProvider>      </body>
     </html>
   )
 }

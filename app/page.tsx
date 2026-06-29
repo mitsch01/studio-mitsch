@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 export default function Page() {
   return (
     <>
-      <Header logoColor="white" burgerColor="white" scrollBackground={true} />
+      <Header logoColor="white" burgerColor="white" scrollThreshold={0.8}/>
       <Hero />
       <About />
       <Skills />

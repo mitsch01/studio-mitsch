@@ -29,7 +29,7 @@ export default async function PostPage({
 
   return (
     <div>
-      <Header logoColor="black" burgerColor="black" scrollBackground={true} scrollThreshold={0.05}/>
+      <Header logoColor="black" burgerColor="black" />
       <main className="max-w-3xl mx-auto px-8 pt-48 py-section">
         <p className="text-xs uppercase tracking-widest text-gray-400 mb-4">
           {post.publishedAt

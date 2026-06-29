@@ -17,7 +17,6 @@ export default function Page() {
         logoColor="white"
         burgerColor="black"
         // mobileBurgerColor="white"
-        scrollBackground={true}
         scrollThreshold={0.1}
       />
 

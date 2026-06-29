@@ -25,7 +25,7 @@ export default async function BlogPage() {
 
   return (
     <div>
-      <Header logoColor="black" burgerColor="black" scrollBackground={true} scrollThreshold={0.05}/>
+      <Header logoColor="black" burgerColor="black" />
       <main className="max-w-3xl mx-auto px-8 pt-48 py-section">
         <h1 className="text-6xl md:text-7xl font-bold uppercase tracking-tight mb-16">
           Blog

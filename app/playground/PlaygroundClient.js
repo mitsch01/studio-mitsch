@@ -179,6 +179,15 @@ export default function Playground() {
   };
 
   useEffect(() => {
+  document.body.style.backgroundColor = 'black'
+  document.documentElement.style.backgroundColor = 'black'
+  return () => {
+    document.body.style.backgroundColor = ''
+    document.documentElement.style.backgroundColor = ''
+  }
+}, [])
+
+  useEffect(() => {
     const handleScrollToCenter = () => {
       if (typeof window !== "undefined") {
         // Check if we're on the client side
@@ -220,7 +229,8 @@ export default function Playground() {
 
   return (
     <PlaygroundLayout isBlackBackground={true} showFooter={false}>
-      <Header logoColor="white" burgerColor="white" />
+      <Header logoColor="white" burgerColor="white" scrollBackground={false}   scrollThreshold={1}
+/>
       <div
         className="scale-75 md:scale-90 overflow-hidden relative"
         onMouseDown={startDrag}
