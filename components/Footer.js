@@ -1,8 +1,13 @@
+"use client";
+
 import NewsletterForm from '@/components/NewsletterForm';
 import Link from "next/link";
+import { useDarkCursor } from '@/hooks/useDarkCursor'
 
 
 export default function Footer() {
+  useDarkCursor()
+
   return (
     <footer className="bg-black text-white">
       <div className="grid grid-cols-1 md:grid-cols-5 gap-12 px-8 md:px-16 py-section-sm">

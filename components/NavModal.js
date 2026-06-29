@@ -1,12 +1,16 @@
 "use client";
 
 import { useAuth } from "@/context/AuthContext";
+import { useDarkCursor } from '@/hooks/useDarkCursor';
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 
+
 export default function NavModal({ toggleModal }) {
+  useDarkCursor()
+
   const pathname = usePathname();
   const [mounted, setMounted] = useState(false);
   const { user, logout } = useAuth();

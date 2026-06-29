@@ -2,9 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-html {
-  scroll-behavior: smooth;
-}
 
 @font-face {
   font-family: "Hind Siliguri";
@@ -34,12 +31,35 @@ html {
   font-style: normal;
 }
 
-body, p, span {
-  cursor: url('/images/cursor-default-64.png') 16 16, auto !important;
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    cursor: url('/images/cursor-default.png') 17 17, auto;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+  }
+
+  html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+  }
+
+  a, button, input, textarea, .clickable {
+  cursor: url('/images/cursor-active-black.png') 16 2, pointer !important;
 }
 
-a, button, input, textarea, .clickable {
-  cursor: url('/images/cursor-click-80.png') 36 36, pointer !important;
+body.dark-cursor a,
+body.dark-cursor button,
+body.dark-cursor input,
+body.dark-cursor textarea,
+body.dark-cursor .clickable {
+  cursor: url('/images/cursor-active-pink.png') 16 2, pointer !important;
+}
 }
 
 html,

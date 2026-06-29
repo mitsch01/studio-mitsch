@@ -5,6 +5,8 @@ import ProjectGallery from "@/components/ProjectGallery";
 import { AnimatePresence, motion } from "motion/react";
 import Image from "next/image";
 import { useEffect, useState } from "react";
+import { useDarkCursor } from '@/hooks/useDarkCursor'
+
 
 type Repo = {
   id: number;
@@ -38,6 +40,8 @@ function SkeletonCard() {
 }
 
 export default function RepoGallery() {
+  useDarkCursor()
+
   const [repos, setRepos] = useState<Repo[]>([]);
   const [visibleRepos, setVisibleRepos] = useState(4);
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
@@ -166,7 +170,7 @@ export default function RepoGallery() {
         </>
       )}
 
-      {/* Overlay — unchanged */}
+      {/* Overlay */}
       <AnimatePresence>
         {selectedProject && (
           <motion.div
