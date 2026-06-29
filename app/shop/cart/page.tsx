@@ -13,23 +13,33 @@ export default function CartPage() {
   const router = useRouter()
 
   const handleCheckout = async () => {
-    setLoading(true)
-    try {
-      const res = await fetch('/api/checkout', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ items }),
-      })
-      const data = await res.json()
-      if (data.url) {
-        router.push(data.url)
-      }
-    } catch (error) {
-      console.error('Checkout error:', error)
-    } finally {
-      setLoading(false)
+  setLoading(true)
+  try {
+    // Free products — skip Stripe, go straight to success
+    if (total === 0) {
+      const slugs = items.map((i) => i.slug).join(',')
+      router.push(`/shop/success?slugs=${slugs}`)
+      return
     }
+
+    // Paid products — Stripe checkout
+    // Uncomment when adding paid products:
+    // const res = await fetch('/api/checkout', {
+    //   method: 'POST',
+    //   headers: { 'Content-Type': 'application/json' },
+    //   body: JSON.stringify({ items }),
+    // })
+    // const data = await res.json()
+    // if (data.url) {
+    //   router.push(data.url)
+    // }
+
+  } catch (error) {
+    console.error('Checkout error:', error)
+  } finally {
+    setLoading(false)
   }
+}
 
   return (
     <div>
