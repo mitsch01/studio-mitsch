@@ -1,11 +1,11 @@
 "use client"
 
-import { useCart } from '@/context/CartContext'
-import Header from '@/components/Header'
 import Footer from '@/components/Footer'
+import Header from '@/components/Header'
+import { useCart } from '@/context/CartContext'
 import Link from 'next/link'
-import { useState } from 'react'
 import { useRouter } from 'next/navigation'
+import { useState } from 'react'
 
 export default function CartPage() {
   const { items, removeItem, total } = useCart()
@@ -15,24 +15,35 @@ export default function CartPage() {
   const handleCheckout = async () => {
   setLoading(true)
   try {
-    // Free products — skip Stripe, go straight to success
     if (total === 0) {
+      // Get current user email if logged in
+      const meRes = await fetch('/api/auth/me')
+      const meData = await meRes.json()
+      const customerEmail = meData.user?.email ?? null
+
+      // Save order to MongoDB
+      await fetch('/api/orders', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          slugs: items.map((i) => i.slug),
+          customerEmail,
+        }),
+      })
+
       const slugs = items.map((i) => i.slug).join(',')
       router.push(`/shop/success?slugs=${slugs}`)
       return
     }
 
     // Paid products — Stripe checkout
-    // Uncomment when adding paid products:
     // const res = await fetch('/api/checkout', {
     //   method: 'POST',
     //   headers: { 'Content-Type': 'application/json' },
     //   body: JSON.stringify({ items }),
     // })
     // const data = await res.json()
-    // if (data.url) {
-    //   router.push(data.url)
-    // }
+    // if (data.url) router.push(data.url)
 
   } catch (error) {
     console.error('Checkout error:', error)

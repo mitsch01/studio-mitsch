@@ -2,6 +2,8 @@ import { client } from '@/sanity/client'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import { getDownloadUrl } from '@/lib/getDownloadUrl'
+import { cookies } from 'next/headers'
+import { jwtVerify } from 'jose'
 import Link from 'next/link'
 
 type Product = {
@@ -23,6 +25,20 @@ export default async function SuccessPage({
   const { slugs } = await searchParams
   const slugList = slugs ? slugs.split(',') : []
 
+  // Check if user is logged in
+  const cookieStore = await cookies()
+  const token = cookieStore.get('auth_token')?.value
+  let isLoggedIn = false
+
+  if (token) {
+    try {
+      await jwtVerify(token, new TextEncoder().encode(process.env.JWT_SECRET!))
+      isLoggedIn = true
+    } catch {
+      isLoggedIn = false
+    }
+  }
+
   // Fetch products matching the slugs
   const products = await client.fetch<Product[]>(
     `*[_type == "product" && slug.current in $slugs] {
@@ -31,7 +47,7 @@ export default async function SuccessPage({
     { slugs: slugList }
   )
 
-  // Generate pre-signed download URLs for products that have a downloadKey
+  // Generate pre-signed download URLs
   const downloads = await Promise.all(
     products.map(async (product) => {
       if (!product.downloadKey) return { name: product.name, url: null }
@@ -51,6 +67,7 @@ export default async function SuccessPage({
           Your order is confirmed. Download your files below — links expire after one hour.
         </p>
 
+        {/* Downloads */}
         {downloads.length === 0 ? (
           <p className="text-gray-400 text-sm uppercase tracking-widest">
             No downloads found.
@@ -76,6 +93,33 @@ export default async function SuccessPage({
               </li>
             ))}
           </ul>
+        )}
+
+        {/* Guest prompt — only shown when not logged in */}
+        {!isLoggedIn && (
+          <div className="border border-black p-8 mb-16">
+            <h2 className="text-lg font-bold uppercase tracking-tight mb-3">
+              Access your downloads anytime
+            </h2>
+            <p className="text-gray-600 text-sm leading-relaxed mb-6">
+              Your download links expire after one hour. Create a free account
+              to access your purchases anytime — no expiry, no hassle.
+            </p>
+            <div className="flex gap-4">
+              <Link
+                href={`/account/register`}
+                className="text-xs uppercase tracking-widest font-bold px-6 py-3 bg-black text-white hover:bg-raspberry transition-colors"
+              >
+                Create account
+              </Link>
+              <Link
+                href="/account/login"
+                className="text-xs uppercase tracking-widest font-bold px-6 py-3 border border-black text-black hover:bg-black hover:text-white transition-colors"
+              >
+                Log in
+              </Link>
+            </div>
+          </div>
         )}
 
         <Link

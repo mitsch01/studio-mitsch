@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
+import { useAuth } from '@/context/AuthContext'
 
 export default function LoginPage() {
   const [email, setEmail] = useState('')
@@ -12,6 +13,8 @@ export default function LoginPage() {
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
   const router = useRouter()
+  const { refetch } = useAuth()
+
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -28,8 +31,9 @@ export default function LoginPage() {
       const data = await res.json()
 
       if (res.ok) {
-        router.push('/account/dashboard')
-      } else {
+ await refetch()
+  router.push('/account/dashboard')
+  router.refresh()      } else {
         setError(data.error)
       }
     } catch {

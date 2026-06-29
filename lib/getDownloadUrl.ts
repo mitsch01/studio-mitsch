@@ -7,5 +7,5 @@ export async function getDownloadUrl(key: string): Promise<string> {
     Bucket: process.env.CLOUDFLARE_R2_BUCKET!,
     Key: key,
   })
-  return getSignedUrl(r2, command, { expiresIn: 3600 })
+  return getSignedUrl(r2, command, { expiresIn: 604800 }) // 7 days
 }

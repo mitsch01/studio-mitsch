@@ -3,7 +3,6 @@ import { jwtVerify } from 'jose'
 import { redirect } from 'next/navigation'
 import clientPromise from '@/mongodb'
 import { client as sanityClient } from '@/sanity/client'
-import { getDownloadUrl } from '@/lib/getDownloadUrl'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import LogoutButton from '@/components/LogoutButton'
@@ -60,22 +59,9 @@ export default async function DashboardPage() {
     { slugs: allSlugs }
   )
 
-  // 5. Build a slug → download URL map
-  const downloadMap: Record<string, string | null> = {}
-  await Promise.all(
-    products.map(async (product) => {
-      if (product.downloadKey) {
-        downloadMap[product.slug.current] = await getDownloadUrl(product.downloadKey)
-      } else {
-        downloadMap[product.slug.current] = null
-      }
-    })
-  )
 
   const productMap: Record<string, Product> = {}
-  products.forEach((p) => {
-    productMap[p.slug.current] = p
-  })
+  products.forEach((p) => { productMap[p.slug.current] = p })
 
   return (
     <div>
@@ -119,15 +105,15 @@ export default async function DashboardPage() {
                   <ul className="flex flex-col gap-3">
                     {(order.slugs ?? []).map((slug: string) => {
                       const product = productMap[slug]
-                      const url = downloadMap[slug]
+                      const hasFile = product?.downloadKey
                       return (
                         <li key={slug} className="flex items-center justify-between">
                           <span className="font-bold uppercase tracking-tight text-sm">
                             {product?.name ?? slug}
                           </span>
-                          {url ? (
+                          {hasFile ? (
                             <a
-                              href={url}
+                              href={`/api/download?slug=${slug}`}
                               download
                               className="text-xs uppercase tracking-widest font-bold px-4 py-2 bg-black text-white hover:bg-raspberry transition-colors"
                             >

@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
+import { useAuth } from '@/context/AuthContext'
 
 export default function RegisterPage() {
   const [name, setName] = useState('')
@@ -13,6 +14,7 @@ export default function RegisterPage() {
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
   const router = useRouter()
+  const { refetch } = useAuth()
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -29,7 +31,9 @@ export default function RegisterPage() {
       const data = await res.json()
 
       if (res.ok) {
+        await refetch()
         router.push('/account/dashboard')
+        router.refresh()
       } else {
         setError(data.error)
       }

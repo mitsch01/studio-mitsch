@@ -95,7 +95,7 @@ ${scrolled ? `md:px-16 px-8 py-10 ${scrollBackground ? "bg-white/95 backdrop-blu
           <Link
             href="/shop/cart"
             aria-label="Cart"
-            className={`relative ${iconColor} transition-colors duration-300 text-gray-600 hover:text-raspberry no-underline`}
+            className={`relative ${iconColor} transition-colors duration-300 text-gray-500 hover:text-raspberry no-underline`}
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"

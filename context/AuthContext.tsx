@@ -1,6 +1,6 @@
 "use client"
 
-import { createContext, useContext, useEffect, useState } from 'react'
+import { createContext, useContext, useEffect, useState, useCallback } from 'react'
 
 type User = {
   id: string
@@ -12,6 +12,7 @@ type AuthContextType = {
   user: User | null
   loading: boolean
   logout: () => Promise<void>
+  refetch: () => Promise<void>
 }
 
 const AuthContext = createContext<AuthContextType | null>(null)
@@ -20,21 +21,33 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [user, setUser] = useState<User | null>(null)
   const [loading, setLoading] = useState(true)
 
-  useEffect(() => {
-    fetch('/api/auth/me')
-      .then((res) => res.json())
-      .then((data) => setUser(data.user ?? null))
-      .catch(() => setUser(null))
-      .finally(() => setLoading(false))
+  const fetchUser = useCallback(async () => {
+    try {
+      const res = await fetch('/api/auth/me')
+      const data = await res.json()
+      setUser(data.user ?? null)
+    } catch {
+      setUser(null)
+    } finally {
+      setLoading(false)
+    }
   }, [])
+
+  useEffect(() => {
+    fetchUser()
+  }, [fetchUser])
 
   const logout = async () => {
     await fetch('/api/auth/logout', { method: 'POST' })
     setUser(null)
   }
 
+  const refetch = async () => {
+    await fetchUser()
+  }
+
   return (
-    <AuthContext.Provider value={{ user, loading, logout }}>
+    <AuthContext.Provider value={{ user, loading, logout, refetch }}>
       {children}
     </AuthContext.Provider>
   )
