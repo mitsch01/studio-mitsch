@@ -1,4 +1,6 @@
+import NewsletterForm from '@/components/NewsletterForm';
 import Link from "next/link";
+
 
 export default function Footer() {
   return (
@@ -45,20 +47,8 @@ export default function Footer() {
           </p>
           {/* Newsletter form — wired up in Phase 5 */}
           <div className="flex">
-            <input
-              type="email"
-              placeholder="your@email.com"
-              disabled
-              className="flex-1 bg-white/10 text-white text-sm px-4 py-2 placeholder:text-gray-500 focus:outline-none cursor-not-allowed"
-            />
-            <button
-              disabled
-              className="bg-raspberry text-white text-xs uppercase tracking-widest px-4 py-2 cursor-not-allowed opacity-60"
-            >
-              Subscribe
-            </button>
+            <NewsletterForm />
           </div>
-          <p className="text-xs text-gray-600">Coming soon.</p>
 
           {/* Social icons */}
           <div className="flex gap-4 mt-2">
