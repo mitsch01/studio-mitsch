@@ -290,3 +290,50 @@ Phase 4 was merged into Phase 6 — R2 setup is documented there.
 
 ### Environment variables added
 - `NEXT_PUBLIC_BASE_URL` — used for Stripe success/cancel URLs
+
+---
+
+## Phase 7 — User Login
+**Date:** June 2026
+
+### Architecture
+- Custom auth built on MongoDB + bcryptjs + jsonwebtoken + jose
+- JWT stored in httpOnly cookie (not localStorage) — protected against XSS
+- Middleware uses `jose` (Edge Runtime compatible) to protect `/account/*` routes server-side
+- `AuthContext` provides user state across the app, refetches after login/register
+
+### Dependencies added
+- `bcryptjs` + `@types/bcryptjs` — password hashing
+- `jsonwebtoken` + `@types/jsonwebtoken` — JWT creation and verification
+- `jose` — Edge Runtime compatible JWT verification for middleware
+
+### API routes
+- `app/api/auth/register/route.ts` — validates input, hashes password (bcrypt cost 12), saves to MongoDB `clients` collection, returns JWT cookie
+- `app/api/auth/login/route.ts` — finds user by email, verifies password hash, returns JWT cookie
+- `app/api/auth/logout/route.ts` — clears JWT cookie
+- `app/api/auth/me/route.ts` — verifies JWT cookie, returns current user
+- `app/api/orders/route.ts` — saves orders to MongoDB on free checkout (no Stripe needed)
+- `app/api/download/route.ts` — permanent authenticated download route, streams file directly from R2, verifies purchase before serving
+
+### Middleware
+- `middleware.ts` — protects `/account/*` routes, redirects unauthenticated users to login
+
+### Account pages
+- `app/account/login/page.tsx` — login form, calls `refetch()` + `router.refresh()` after success
+- `app/account/register/page.tsx` — register form, calls `refetch()` + `router.refresh()` after success
+- `app/account/dashboard/page.tsx` — server component, verifies JWT server-side, fetches orders from MongoDB, shows permanent download links via `/api/download`
+
+### Download strategy
+- **Logged-in users** — permanent downloads via `/api/download?slug=...`, no expiry, purchase verified on every request
+- **Guest users** — 7-day pre-signed R2 URLs on success page (up from 1 hour)
+- Orders saved to MongoDB on checkout with `customerEmail` — linked to account if logged in, `null` if guest
+
+### UX — honest auth
+- Account icon always visible in Header — person icon with raspberry dot when logged in
+- Login/logout in NavModal are full size and weight — same as all other nav items
+- Logout button on dashboard is a clear bordered button
+- Success page shows account creation prompt to guests — "Access your downloads anytime"
+- App subscriptions: honest message directing to App Store / Play Store
+
+### Environment variables added
+- `JWT_SECRET` — random 32-char string for JWT signing
