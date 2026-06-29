@@ -216,3 +216,77 @@ Format: [Phase] — [Date] — [Description]
 - `app/blog/[slug]/page.tsx` — server component, fetches single post by slug, renders body with `<PortableText />`
 - `notFound()` guard on post detail page — returns 404 if slug doesn't match any document
 - SEO metadata on blog list page
+
+---
+
+## Phase 4 — Asset Storage (Cloudflare R2)
+**Date:** June 2026
+
+### Note
+Phase 4 was merged into Phase 6 — R2 setup is documented there.
+
+---
+
+## Phase 5 — CRM / Newsletter (Resend)
+**Date:** June 2026
+
+### API routes
+- `app/api/newsletter/subscribe/route.ts` — validates email, checks for duplicates, saves subscriber to MongoDB, sends welcome email via Resend
+- `app/api/newsletter/unsubscribe/route.ts` — GET route, sets `isActive: false` in MongoDB via `?email=` query param
+
+### MongoDB
+- Subscribers saved to `studio-mitsch-prod` database, `subscribers` collection
+- Document shape: `{ email, name, subscribedAt, isActive }`
+- Duplicate check prevents double-subscribing (returns 409)
+
+### Email
+- Welcome email sent via Resend on successful subscribe
+- From: `hello@studio-mitsch.de`
+- Inline HTML template — on-brand styling, unsubscribe link in footer
+
+### NewsletterForm component
+- `components/NewsletterForm.tsx` — client component with states: idle, loading, success, duplicate, error
+- Wired into `components/Footer.tsx` — replaces the disabled stub from Phase 2
+- Success state replaces the form with a confirmation message
+
+---
+
+## Phase 6 — Shop + R2 (Cloudflare)
+**Date:** June 2026
+
+### R2 setup
+- `lib/r2.ts` — shared S3Client configured for Cloudflare R2
+- `lib/getDownloadUrl.ts` — generates pre-signed download URLs (1 hour expiry)
+- Installed `@aws-sdk/client-s3` and `@aws-sdk/s3-request-presigner`
+
+### Cart
+- `context/CartContext.tsx` — client-side cart state (items, addItem, removeItem, clearCart, total)
+- `CartProvider` wraps root layout in `app/layout.tsx`
+- Duplicate guard — adding the same product twice is a no-op
+
+### Shop pages
+- `app/shop/page.tsx` — fetches active products from Sanity, renders product grid
+- `components/ProductCard.tsx` — product card with "Add to cart" / "In cart" state
+- `app/shop/cart/page.tsx` — cart summary, remove items, checkout button
+- Free products bypass Stripe entirely — redirects straight to success page
+- Paid product Stripe path commented in for future use
+
+### Stripe
+- `app/api/checkout/route.ts` — creates Stripe Checkout Session, passes slugs in metadata
+- `app/api/webhooks/stripe/route.ts` — listens for `checkout.session.completed`, saves order to MongoDB
+- Orders saved to `studio-mitsch-prod` database, `orders` collection
+
+### Success page
+- `app/shop/success/page.tsx` — reads slugs from URL params, fetches matching products from Sanity
+- Generates pre-signed R2 download URLs for products with a `downloadKey`
+- Shows "Coming soon" for products without a download file yet
+- Download links expire after 1 hour
+
+### Header updates
+- Added cart icon with raspberry item count badge linking to `/shop/cart`
+- Default props changed: `scrollBackground=true`, `scrollThreshold=0.05`
+- Homepage explicitly overrides with hero settings
+- Playground: `useEffect` forces black `body` + `html` background — prevents white overscroll flash
+
+### Environment variables added
+- `NEXT_PUBLIC_BASE_URL` — used for Stripe success/cancel URLs

@@ -1,19 +1,21 @@
 "use client";
 
+import { useAuth } from "@/context/AuthContext";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 
 export default function NavModal({ toggleModal }) {
   const pathname = usePathname();
   const [mounted, setMounted] = useState(false);
+  const { user, logout } = useAuth();
+  const router = useRouter();
 
   useEffect(() => {
     setMounted(true);
   }, []);
 
-  // Scroll lock + Escape key
   useEffect(() => {
     document.body.style.overflow = "hidden";
     const handleKeyDown = (e) => {
@@ -31,6 +33,13 @@ export default function NavModal({ toggleModal }) {
     return pathname.startsWith(href);
   };
 
+  const handleLogout = async () => {
+    await logout()
+    toggleModal()
+    router.push('/')
+    router.refresh()
+  }
+
   const navItems = [
     { href: "/", label: "Home" },
     { href: "/#about", label: "About" },
@@ -43,7 +52,6 @@ export default function NavModal({ toggleModal }) {
 
   const modal = (
     <div className="fixed inset-0 bg-black z-[100] flex flex-col items-center pt-28 md:pt-0 md:justify-center">
-      {" "}
       {/* Logo — hidden on mobile to save space */}
       <div className="clickable absolute top-10 left-10 md:top-16 md:left-16 hidden md:block">
         <Link href="/" onClick={toggleModal}>
@@ -52,6 +60,7 @@ export default function NavModal({ toggleModal }) {
           </div>
         </Link>
       </div>
+
       {/* Close Button */}
       <button
         className="absolute top-10 right-10 md:top-16 md:right-16 text-white text-5xl leading-none hover:text-raspberry transition-colors"
@@ -60,6 +69,7 @@ export default function NavModal({ toggleModal }) {
       >
         &times;
       </button>
+
       {/* Navigation Items */}
       <nav className="font-cooperhewitt flex flex-col space-y-5 md:space-y-8 text-center text-4xl md:text-6xl font-bold uppercase tracking-wider">
         {navItems.map(({ href, label }) => (
@@ -76,6 +86,41 @@ export default function NavModal({ toggleModal }) {
             {label}
           </Link>
         ))}
+
+        {/* Auth link — conditional */}
+  {user ? (
+  <>
+    <Link
+      href="/account/dashboard"
+      onClick={toggleModal}
+      className={
+        isActive("/account")
+          ? "text-raspberry no-underline"
+          : "text-white/70 hover:text-white transition-colors duration-200 no-underline"
+      }
+    >
+      My Account
+    </Link>
+    <button
+      onClick={handleLogout}
+      className="text-white/70 hover:text-white transition-colors duration-200 uppercase tracking-wider font-bold"
+    >
+      Logout
+    </button>
+  </>
+) : (
+  <Link
+    href="/account/login"
+    onClick={toggleModal}
+    className={
+      isActive("/account")
+        ? "text-raspberry no-underline"
+        : "text-white/70 hover:text-white transition-colors duration-200 no-underline"
+    }
+  >
+    Login
+  </Link>
+)}
       </nav>
     </div>
   );

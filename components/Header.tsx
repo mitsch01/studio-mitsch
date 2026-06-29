@@ -1,6 +1,7 @@
 "use client";
 
 import NavModal from "@/components/NavModal";
+import { useAuth } from "@/context/AuthContext";
 import { useCart } from "@/context/CartContext";
 import Link from "next/link";
 import { useEffect, useState } from "react";
@@ -27,6 +28,7 @@ export default function Header({
   const [hidden, setHidden] = useState(false);
   const [lastScrollY, setLastScrollY] = useState(0);
   const { items } = useCart();
+  const { user } = useAuth();
   const toggleModal = () => setIsModalOpen(!isModalOpen);
 
   useEffect(() => {
@@ -47,6 +49,7 @@ export default function Header({
 
   const currentLogoColor = scrollBackground && scrolled ? "black" : logoColor;
   const currentBurgerColor = scrollBackground && scrolled ? "black" : burgerColor;
+  const iconColor = `text-${mobileBurgerColor ?? currentBurgerColor} md:text-${currentBurgerColor}`;
 
   return (
     <header
@@ -62,43 +65,65 @@ ${scrolled ? `md:px-16 px-8 py-10 ${scrollBackground ? "bg-white/95 backdrop-blu
         </div>
       </Link>
 
-      {/* Right side: cart + burger */}
+      {/* Right side: account + cart + burger */}
       <div className="flex items-center gap-12">
-        {/* Cart icon */}
-        <Link
-          href="/shop/cart"
-          aria-label="Cart"
-          className={`relative text-${mobileBurgerColor ?? currentBurgerColor} md:text-${currentBurgerColor} transition-colors duration-300`}
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className={`transition-all duration-300 ${scrolled ? "md:h-7 h-6" : "md:h-18 h-9"}`}
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-            strokeWidth={2}
+
+        <div className="flex items-center gap-4">
+          {/* Account icon */}
+          <Link
+            href={user ? "/account/dashboard" : "/account/login"}
+            aria-label={user ? "My Account" : "Login"}
+            className={`relative ${iconColor} transition-colors duration-300 text-gray-600 hover:text-raspberry no-underline`}
           >
-            <path strokeLinecap="round" strokeLinejoin="round" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
-          </svg>
-          {/* Item count badge */}
-          {items.length > 0 && (
-            <span className="absolute -top-1 -right-1 bg-raspberry text-white text-[10px] font-bold rounded-full w-4 h-4 flex items-center justify-center">
-              {items.length}
-            </span>
-          )}
-        </Link>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className={`transition-all duration-300 ${scrolled ? "md:h-7 h-6" : "md:h-9 h-8"}`}
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              strokeWidth={2}
+            >
+              <path strokeLinecap="round" strokeLinejoin="round" d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2" />
+              <circle cx="12" cy="7" r="4" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+            {/* Logged in indicator dot */}
+            {user && (
+              <span className="absolute -top-1 -right-1 bg-raspberry rounded-full w-2.5 h-2.5" />
+            )}
+          </Link>
+          {/* Cart icon */}
+          <Link
+            href="/shop/cart"
+            aria-label="Cart"
+            className={`relative ${iconColor} transition-colors duration-300 text-gray-600 hover:text-raspberry no-underline`}
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className={`transition-all duration-300 ${scrolled ? "md:h-7 h-6" : "md:h-9 h-8"}`}
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              strokeWidth={2}
+            >
+              <path strokeLinecap="round" strokeLinejoin="round" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+            </svg>
+            {items.length > 0 && (
+              <span className="absolute -top-1 -right-1 bg-raspberry text-white text-[10px] font-bold rounded-full w-4 h-4 flex items-center justify-center">
+                {items.length}
+              </span>
+            )}
+          </Link>
+        </div>
 
         {/* Burger Menu Icon */}
         <button
-          className={`focus:outline-none transition-colors duration-300 
-          text-${mobileBurgerColor ?? currentBurgerColor} 
-          md:text-${currentBurgerColor}`}
+          className={`focus:outline-none transition-colors duration-300 ${iconColor}`}
           onClick={toggleModal}
           aria-label="Open Menu"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            className={`transition-all duration-300 ${scrolled ? "md:h-8 h-7" : "md:h-12 h-11"}`}
+            className={`transition-all duration-300 ${scrolled ? "md:h-12 h-10" : "md:h-14 h-12"}`}
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"

@@ -1,3 +1,4 @@
+import { AuthProvider } from "@/context/AuthContext"
 import { CartProvider } from "@/context/CartContext"
 import { Metadata } from "next"
 import "./globals.css"
@@ -34,9 +35,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <link rel="icon" href="/favicon.ico" />
       </head>
       <body className="min-h-screen flex flex-col">
-<CartProvider>
-          <main className="flex-grow">{children}</main>
-        </CartProvider>      </body>
+        <AuthProvider>
+          <CartProvider>
+            <main className="flex-grow">{children}</main>
+          </CartProvider>
+        </AuthProvider>     
+         </body>
     </html>
   )
 }
