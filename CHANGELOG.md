@@ -183,3 +183,36 @@ Format: [Phase] — [Date] — [Description]
 - NavModal portal fix: full viewport coverage on all screen sizes
 - NavModal items sized to fit all 7 items without overflow at 375px
 - Contact image stacks above form on mobile with `h-[50vh]`
+
+---
+
+## Phase 3 — CMS (Sanity)
+**Date:** June 2026
+
+### CMS switch
+- Switched from Payload CMS to Sanity — Payload causes cold start, connection pool exhaustion, and timeout issues on Vercel's serverless infrastructure; Sanity's hosted Content Lake works perfectly with serverless
+- Updated implementation plan: Phase 3 rewritten for Sanity, Phase 4 rescoped to R2 for shop downloads only
+
+### Sanity setup
+- Created Sanity project `studio-mitsch` (projectId: `v6oxqy1t`, dataset: `production`)
+- Installed `next-sanity`, `@sanity/image-url`, `@sanity/vision`, `@portabletext/react`
+- Upgraded React 18 → 19 (required by `next-sanity@13`)
+- Upgraded Node 20 → 22 (required by Sanity v6 — `groq@6` requires ≥22.12)
+- Created `sanity.config.ts` at repo root with hardcoded projectId/dataset (public values, not secret)
+- Created `sanity/client.ts` — shared fetch client for server components
+- Studio split into two files to satisfy Next.js 16 server/client boundary:
+  - `app/studio/[[...tool]]/page.tsx` — server component, exports metadata + viewport
+  - `app/studio/[[...tool]]/studio-client.tsx` — client component, renders `<NextStudio />`
+- Studio accessible at `localhost:3000/studio` and `studio-mitsch.de/studio`
+- Added `NEXT_PUBLIC_SANITY_PROJECT_ID` and `NEXT_PUBLIC_SANITY_DATASET` to `.env.local` and Vercel dashboard
+
+### Schemas
+- `sanity/schemaTypes/post.ts` — title, slug, excerpt, coverImage, body (portable text), tags, publishedAt
+- `sanity/schemaTypes/project.ts` — title, slug, description, coverImage, tags, liveUrl, order, isVisible
+- `sanity/schemaTypes/product.ts` — name, slug, description, price, image, downloadKey, isActive
+
+### Blog frontend
+- `app/blog/page.tsx` — server component, fetches published posts via GROQ, sorted by date descending
+- `app/blog/[slug]/page.tsx` — server component, fetches single post by slug, renders body with `<PortableText />`
+- `notFound()` guard on post detail page — returns 404 if slug doesn't match any document
+- SEO metadata on blog list page
