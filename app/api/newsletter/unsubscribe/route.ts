@@ -7,7 +7,9 @@ export async function GET(req: NextRequest) {
     const email = searchParams.get('email')
 
     if (!email) {
-      return NextResponse.json({ error: 'Missing email' }, { status: 400 })
+      return NextResponse.redirect(
+        new URL('/newsletter/unsubscribed?status=error', req.url)
+      )
     }
 
     const client = await clientPromise
@@ -17,9 +19,13 @@ export async function GET(req: NextRequest) {
       { $set: { isActive: false } }
     )
 
-    return NextResponse.json({ success: true })
+    return NextResponse.redirect(
+      new URL('/newsletter/unsubscribed?status=success', req.url)
+    )
   } catch (error) {
     console.error('Unsubscribe error:', error)
-    return NextResponse.json({ error: 'Server error' }, { status: 500 })
+    return NextResponse.redirect(
+      new URL('/newsletter/unsubscribed?status=error', req.url)
+    )
   }
 }

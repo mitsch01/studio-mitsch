@@ -26,6 +26,15 @@ module.exports = {
         content: "1024px", // max-width for readable content columns
         "form-gap": "2rem", // 32px — gap between form elements / intra-section spacing
       },
+      keyframes: {
+        "pulse-slow": {
+          "0%, 100%": { transform: "scale(1)" },
+          "50%": { transform: "scale(1.05)" },
+        },
+      },
+      animation: {
+        "pulse-slow": "pulse-slow 6s ease-in-out infinite",
+      },
     },
   },
   plugins: [],
