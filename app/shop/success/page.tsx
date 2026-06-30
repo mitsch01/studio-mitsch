@@ -1,41 +1,41 @@
-import { client } from '@/sanity/client'
-import Header from '@/components/Header'
-import Footer from '@/components/Footer'
-import { getDownloadUrl } from '@/lib/getDownloadUrl'
-import { cookies } from 'next/headers'
-import { jwtVerify } from 'jose'
-import Link from 'next/link'
+import Footer from "@/components/Footer";
+import Header from "@/components/Header";
+import { getDownloadUrl } from "@/lib/getDownloadUrl";
+import { client } from "@/sanity/client";
+import { jwtVerify } from "jose";
+import { cookies } from "next/headers";
+import Link from "next/link";
 
 type Product = {
-  name: string
-  slug: { current: string }
-  downloadKey: string
-}
+  name: string;
+  slug: { current: string };
+  downloadKey: string;
+};
 
 export const metadata = {
-  title: 'Order Confirmed',
-  description: 'Your download is ready.',
-}
+  title: "Order Confirmed",
+  description: "Your download is ready.",
+};
 
 export default async function SuccessPage({
   searchParams,
 }: {
-  searchParams: Promise<{ slugs?: string; session_id?: string }>
+  searchParams: Promise<{ slugs?: string; session_id?: string }>;
 }) {
-  const { slugs } = await searchParams
-  const slugList = slugs ? slugs.split(',') : []
+  const { slugs } = await searchParams;
+  const slugList = slugs ? slugs.split(",") : [];
 
   // Check if user is logged in
-  const cookieStore = await cookies()
-  const token = cookieStore.get('auth_token')?.value
-  let isLoggedIn = false
+  const cookieStore = await cookies();
+  const token = cookieStore.get("auth_token")?.value;
+  let isLoggedIn = false;
 
   if (token) {
     try {
-      await jwtVerify(token, new TextEncoder().encode(process.env.JWT_SECRET!))
-      isLoggedIn = true
+      await jwtVerify(token, new TextEncoder().encode(process.env.JWT_SECRET!));
+      isLoggedIn = true;
     } catch {
-      isLoggedIn = false
+      isLoggedIn = false;
     }
   }
 
@@ -44,23 +44,28 @@ export default async function SuccessPage({
     `*[_type == "product" && slug.current in $slugs] {
       name, slug, downloadKey
     }`,
-    { slugs: slugList }
-  )
+    { slugs: slugList },
+  );
 
   // Logged-in users: permanent links via /api/download
   // Guests: 7-day pre-signed R2 URLs
   const downloads = await Promise.all(
     products.map(async (product) => {
-      if (!product.downloadKey) return { name: product.name, url: null }
+      if (!product.downloadKey) return { name: product.name, url: null };
 
       if (isLoggedIn) {
-        return { name: product.name, url: `/api/download?slug=${product.slug.current}` }
+        return {
+          name: product.name,
+          url: `/api/download?slug=${product.slug.current}`,
+        };
       }
 
-      const url = await getDownloadUrl(product.downloadKey)
-      return { name: product.name, url }
-    })
-  )
+      const extension = product.downloadKey.split(".").pop();
+      const filename = `${product.name}.${extension}`;
+      const url = await getDownloadUrl(product.downloadKey, filename);
+      return { name: product.name, url };
+    }),
+  );
 
   return (
     <div>
@@ -83,8 +88,13 @@ export default async function SuccessPage({
         ) : (
           <ul className="flex flex-col gap-6 mb-16">
             {downloads.map(({ name, url }) => (
-              <li key={name} className="flex items-center justify-between border-b border-gray-100 pb-6">
-                <span className="font-bold uppercase tracking-tight">{name}</span>
+              <li
+                key={name}
+                className="flex items-center justify-between border-b border-gray-100 pb-6"
+              >
+                <span className="font-bold uppercase tracking-tight">
+                  {name}
+                </span>
                 {url ? (
                   <a
                     href={url}
@@ -110,8 +120,8 @@ export default async function SuccessPage({
               Access your downloads anytime
             </h2>
             <p className="text-gray-600 text-sm leading-relaxed mb-6">
-              Your download links expire after 7 days. Create a free account
-              to access your purchases anytime — no expiry, no hassle.
+              Your download links expire after 7 days. Create a free account to
+              access your purchases anytime — no expiry, no hassle.
             </p>
             <div className="flex gap-4">
               <Link
@@ -139,5 +149,5 @@ export default async function SuccessPage({
       </main>
       <Footer />
     </div>
-  )
+  );
 }
