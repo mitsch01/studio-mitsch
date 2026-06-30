@@ -1,6 +1,11 @@
 "use client";
 
-
+import Header from "@/components/Header";
+import PlaygroundLayout from "@/components/PlaygroundLayout";
+import { RotateCcw } from "lucide-react";
+import Image from "next/image";
+import { useEffect, useRef, useState } from "react";
+import { useDarkCursor } from '@/hooks/useDarkCursor'
 
 export default function Playground() {
   useDarkCursor()
