@@ -1,6 +1,8 @@
 "use client"
 
 import { useCart } from '@/context/CartContext'
+import { urlFor } from '@/sanity/image'
+import Image from 'next/image'
 import { useState } from 'react'
 
 type Product = {
@@ -29,13 +31,27 @@ export default function ProductCard({ product }: { product: Product }) {
     setTimeout(() => setAdded(false), 2000)
   }
 
+  const imageUrl = product.image ? urlFor(product.image).width(600).height(800).url() : null
+
   return (
     <div className="flex flex-col border border-gray-100 group">
-      {/* Image placeholder */}
-      <div className="w-full aspect-square bg-gray-100 flex items-center justify-center">
-        <span className="text-gray-300 text-sm uppercase tracking-widest">
-          {product.name}
-        </span>
+      {/* Image */}
+      <div className="w-full aspect-[3/4] bg-gray-100 relative overflow-hidden">
+        {imageUrl ? (
+          <Image
+            src={imageUrl}
+            alt={product.name}
+            fill
+            className="object-cover"
+            sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+          />
+        ) : (
+          <div className="w-full h-full flex items-center justify-center">
+            <span className="text-gray-300 text-sm uppercase tracking-widest">
+              {product.name}
+            </span>
+          </div>
+        )}
       </div>
 
       {/* Info */}

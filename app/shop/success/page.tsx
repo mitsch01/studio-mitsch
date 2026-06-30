@@ -47,10 +47,16 @@ export default async function SuccessPage({
     { slugs: slugList }
   )
 
-  // Generate pre-signed download URLs
+  // Logged-in users: permanent links via /api/download
+  // Guests: 7-day pre-signed R2 URLs
   const downloads = await Promise.all(
     products.map(async (product) => {
       if (!product.downloadKey) return { name: product.name, url: null }
+
+      if (isLoggedIn) {
+        return { name: product.name, url: `/api/download?slug=${product.slug.current}` }
+      }
+
       const url = await getDownloadUrl(product.downloadKey)
       return { name: product.name, url }
     })
@@ -64,7 +70,9 @@ export default async function SuccessPage({
           Thank you!
         </h1>
         <p className="text-gray-600 leading-relaxed mb-16">
-          Your order is confirmed. Download your files below — links expire after one hour.
+          {isLoggedIn
+            ? "Your order is confirmed. Download your files below — they'll always be available in your account dashboard."
+            : "Your order is confirmed. Download your files below — links are valid for 7 days."}
         </p>
 
         {/* Downloads */}
@@ -102,7 +110,7 @@ export default async function SuccessPage({
               Access your downloads anytime
             </h2>
             <p className="text-gray-600 text-sm leading-relaxed mb-6">
-              Your download links expire after one hour. Create a free account
+              Your download links expire after 7 days. Create a free account
               to access your purchases anytime — no expiry, no hassle.
             </p>
             <div className="flex gap-4">

@@ -19,7 +19,7 @@ export const metadata = {
 
 export default async function ShopPage() {
   const products = await client.fetch<Product[]>(
-    `*[_type == "product" && isActive == true] | order(name asc) {
+    `*[_type == "product" && isActive == true] | order(order asc) {
       _id, name, slug, description, price, image
     }`
   )
