@@ -7,6 +7,7 @@ import RepoGallery from "@/components/RepoGallery"
 import Skills from "@/components/Skills"
 import { Metadata } from "next"
 
+
 export const metadata: Metadata = {
   title: "Home",
   description: "Portfolio of Miriam Schwartz — fullstack developer and app developer based in Hamburg. Web development with React & Next.js, app development with Flutter & Dart.",
