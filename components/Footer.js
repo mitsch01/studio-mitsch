@@ -1,12 +1,11 @@
 "use client";
 
-import NewsletterForm from '@/components/NewsletterForm';
+import NewsletterForm from "@/components/NewsletterForm";
+import { useDarkCursor } from "@/hooks/useDarkCursor";
 import Link from "next/link";
-import { useDarkCursor } from '@/hooks/useDarkCursor'
-
 
 export default function Footer() {
-  useDarkCursor()
+  useDarkCursor();
 
   return (
     <footer className="bg-black text-white">
@@ -42,18 +41,16 @@ export default function Footer() {
           ))}
         </nav>
 
-        {/* Col 3: Newsletter stub + socials */}
-        <div className="md:col-span-2 flex flex-col gap-4">
+        {/* Col 3: Newsletter + socials */}
+        <div className="md:col-span-2 flex flex-col gap-4 w-full min-w-0">
           <span className="text-xs uppercase tracking-widest text-gray-500">
             Stay in the loop
           </span>
           <p className="text-sm text-gray-400 leading-relaxed">
             Occasional updates on projects, process, and new work.
           </p>
-          {/* Newsletter form — wired up in Phase 5 */}
-          <div className="flex">
+          {/* Newsletter form */}
             <NewsletterForm />
-          </div>
 
           {/* Social icons */}
           <div className="flex gap-4 mt-2">
