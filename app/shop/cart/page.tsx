@@ -37,13 +37,13 @@ export default function CartPage() {
     }
 
     // Paid products — Stripe checkout
-    // const res = await fetch('/api/checkout', {
-    //   method: 'POST',
-    //   headers: { 'Content-Type': 'application/json' },
-    //   body: JSON.stringify({ items }),
-    // })
-    // const data = await res.json()
-    // if (data.url) router.push(data.url)
+    const res = await fetch('/api/checkout', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ items }),
+    })
+    const data = await res.json()
+    if (data.url) router.push(data.url)
 
   } catch (error) {
     console.error('Checkout error:', error)
