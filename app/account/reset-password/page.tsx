@@ -46,7 +46,7 @@ function ResetPasswordForm() {
 
   if (!token) {
     return (
-      <main className="max-w-md mx-auto px-8 pt-48 pb-section">
+      <main className="flex-1 max-w-md mx-auto px-8 pt-48 pb-section">
         <h1 className="text-4xl font-bold uppercase tracking-tight mb-6">
           Invalid Link
         </h1>
@@ -64,7 +64,7 @@ function ResetPasswordForm() {
   }
 
   return (
-    <main className="max-w-md mx-auto px-8 pt-48 pb-section">
+    <main className="flex-1 max-w-md mx-auto px-8 pt-48 pb-section">
       <h1 className="text-4xl font-bold uppercase tracking-tight mb-8">
         Reset Password
       </h1>
@@ -111,7 +111,7 @@ function ResetPasswordForm() {
 
 export default function ResetPasswordPage() {
   return (
-    <div>
+    <div className="flex flex-col flex-1">
       <Header />
       <Suspense fallback={null}>
         <ResetPasswordForm />

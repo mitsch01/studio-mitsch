@@ -24,9 +24,9 @@ export default async function BlogPage() {
   )
 
   return (
-    <div>
+    <div className="flex flex-col flex-1">
       <Header logoColor="black" burgerColor="black" />
-      <main className="max-w-3xl mx-auto px-8 pt-48 py-section">
+      <main className="flex-1 max-w-3xl mx-auto px-8 pt-48 py-section">
         <h1 className="text-6xl md:text-7xl font-bold uppercase tracking-tight mb-16">
           Blog
         </h1>

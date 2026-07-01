@@ -68,9 +68,9 @@ export default async function SuccessPage({
   );
 
   return (
-    <div>
+    <div className="flex flex-col flex-1">
       <Header />
-      <main className="max-w-3xl mx-auto px-8 pt-48 pb-section">
+      <main className="flex-1 max-w-3xl mx-auto px-8 pt-48 pb-section">
         <h1 className="text-6xl md:text-7xl font-bold uppercase tracking-tight mb-6">
           Thank you!
         </h1>

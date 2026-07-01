@@ -44,9 +44,9 @@ export default function LoginPage() {
   };
 
   return (
-    <div>
+    <div className="flex flex-col flex-1">
       <Header />
-      <main className="max-w-md mx-auto px-8 pt-48 pb-section">
+      <main className="flex-1 max-w-md mx-auto px-8 pt-48 pb-section">
         <h1 className="text-5xl font-bold uppercase tracking-tight mb-12">
           Login
         </h1>
