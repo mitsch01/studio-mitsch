@@ -5,13 +5,15 @@ import Header from "@/components/Header";
 import { useAuth } from "@/context/AuthContext";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
-import { useState, Suspense } from "react";
+import { Suspense, useState } from "react";
 
 function ResetPasswordForm() {
   const searchParams = useSearchParams();
   const token = searchParams.get("token");
   const [password, setPassword] = useState("");
-  const [status, setStatus] = useState<"idle" | "saving" | "success" | "error">("idle");
+  const [status, setStatus] = useState<"idle" | "saving" | "success" | "error">(
+    "idle",
+  );
   const [errorMessage, setErrorMessage] = useState("");
   const router = useRouter();
   const { refetch } = useAuth();
@@ -46,7 +48,7 @@ function ResetPasswordForm() {
 
   if (!token) {
     return (
-      <main className="flex-1 max-w-md mx-auto px-8 pt-48 pb-section">
+      <main className="flex-1 flex flex-col justify-center px-8 pt-48 pb-section max-w-md mx-auto w-full">
         <h1 className="text-4xl font-bold uppercase tracking-tight mb-6">
           Invalid Link
         </h1>
@@ -64,7 +66,7 @@ function ResetPasswordForm() {
   }
 
   return (
-    <main className="flex-1 max-w-md mx-auto px-8 pt-48 pb-section">
+    <main className="flex-1 flex flex-col justify-center px-8 pt-48 pb-section max-w-md mx-auto w-full">
       <h1 className="text-4xl font-bold uppercase tracking-tight mb-8">
         Reset Password
       </h1>
@@ -111,7 +113,7 @@ function ResetPasswordForm() {
 
 export default function ResetPasswordPage() {
   return (
-    <div className="flex flex-col flex-1">
+    <div className="min-h-screen flex flex-col">
       <Header />
       <Suspense fallback={null}>
         <ResetPasswordForm />

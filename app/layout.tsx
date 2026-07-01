@@ -37,7 +37,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className="min-h-screen flex flex-col">
         <AuthProvider>
           <CartProvider>
-            <main className="flex-grow">{children}</main>
+            <main className="flex-1 flex flex-col">{children}</main>
           </CartProvider>
         </AuthProvider>     
          </body>

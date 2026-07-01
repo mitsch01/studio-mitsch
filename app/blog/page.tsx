@@ -24,9 +24,9 @@ export default async function BlogPage() {
   )
 
   return (
-    <div className="flex flex-col flex-1">
+    <div className="min-h-screen flex flex-col">
       <Header logoColor="black" burgerColor="black" />
-      <main className="flex-1 max-w-3xl mx-auto px-8 pt-48 py-section">
+  <main className="flex-1 flex flex-col justify-center px-8 pt-48 pb-section max-w-2xl mx-auto w-full">
         <h1 className="text-6xl md:text-7xl font-bold uppercase tracking-tight mb-16">
           Blog
         </h1>
@@ -40,7 +40,7 @@ export default async function BlogPage() {
             {posts.map((post) => (
               <li key={post._id}>
                 <Link href={`/blog/${post.slug.current}`} className="group">
-                  <p className="text-xs uppercase tracking-widest text-gray-400 mb-2">
+                  <p className="text-base uppercase tracking-widest text-gray-400 mb-2">
                     {post.publishedAt
                       ? new Date(post.publishedAt).toLocaleDateString('en-GB', {
                           day: 'numeric',

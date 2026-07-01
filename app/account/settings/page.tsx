@@ -1,67 +1,69 @@
-"use client"
+"use client";
 
-import { useState, useEffect } from 'react'
-import { useAuth } from '@/context/AuthContext'
-import Header from '@/components/Header'
-import Footer from '@/components/Footer'
-import Link from 'next/link'
+import Footer from "@/components/Footer";
+import Header from "@/components/Header";
+import { useAuth } from "@/context/AuthContext";
+import Link from "next/link";
+import { useEffect, useState } from "react";
 
 export default function SettingsPage() {
-  const { user, loading, refetch } = useAuth()
-  const [name, setName] = useState('')
-  const [email, setEmail] = useState('')
-  const [currentPassword, setCurrentPassword] = useState('')
-  const [newPassword, setNewPassword] = useState('')
-  const [status, setStatus] = useState<'idle' | 'saving' | 'success' | 'error'>('idle')
-  const [errorMessage, setErrorMessage] = useState('')
+  const { user, loading, refetch } = useAuth();
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [currentPassword, setCurrentPassword] = useState("");
+  const [newPassword, setNewPassword] = useState("");
+  const [status, setStatus] = useState<"idle" | "saving" | "success" | "error">(
+    "idle",
+  );
+  const [errorMessage, setErrorMessage] = useState("");
 
   useEffect(() => {
     if (user) {
-      setName(user.name)
-      setEmail(user.email)
+      setName(user.name);
+      setEmail(user.email);
     }
-  }, [user])
+  }, [user]);
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    setStatus('saving')
-    setErrorMessage('')
+    e.preventDefault();
+    setStatus("saving");
+    setErrorMessage("");
 
     try {
-      const res = await fetch('/api/auth/update', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+      const res = await fetch("/api/auth/update", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           name,
           email,
           currentPassword: currentPassword || undefined,
           newPassword: newPassword || undefined,
         }),
-      })
+      });
 
-      const data = await res.json()
+      const data = await res.json();
 
       if (res.ok) {
-        setStatus('success')
-        setCurrentPassword('')
-        setNewPassword('')
-        await refetch()
+        setStatus("success");
+        setCurrentPassword("");
+        setNewPassword("");
+        await refetch();
       } else {
-        setStatus('error')
-        setErrorMessage(data.error)
+        setStatus("error");
+        setErrorMessage(data.error);
       }
     } catch {
-      setStatus('error')
-      setErrorMessage('Something went wrong.')
+      setStatus("error");
+      setErrorMessage("Something went wrong.");
     }
-  }
+  };
 
-  if (loading) return null
+  if (loading) return null;
 
   return (
-    <div className="flex flex-col flex-1">
+    <div className="min-h-screen flex flex-col">
       <Header />
-      <main className="flex-1 max-w-md mx-auto px-8 pt-48 pb-section">
+      <main className="flex-1 flex flex-col justify-center px-8 pt-48 pb-24 max-w-md mx-auto w-full">
         <h1 className="text-4xl font-bold uppercase tracking-tight mb-12">
           Account Settings
         </h1>
@@ -124,12 +126,12 @@ export default function SettingsPage() {
             </div>
           </div>
 
-          {status === 'error' && (
+          {status === "error" && (
             <p className="text-sm text-raspberry uppercase tracking-widest">
               {errorMessage}
             </p>
           )}
-          {status === 'success' && (
+          {status === "success" && (
             <p className="text-sm text-green-600 uppercase tracking-widest">
               Changes saved.
             </p>
@@ -137,10 +139,10 @@ export default function SettingsPage() {
 
           <button
             type="submit"
-            disabled={status === 'saving'}
+            disabled={status === "saving"}
             className="w-full bg-black text-white py-3 text-sm uppercase tracking-widest hover:bg-raspberry transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
           >
-            {status === 'saving' ? 'Saving...' : 'Save Changes'}
+            {status === "saving" ? "Saving..." : "Save Changes"}
           </button>
         </form>
 
@@ -153,5 +155,5 @@ export default function SettingsPage() {
       </main>
       <Footer />
     </div>
-  )
+  );
 }

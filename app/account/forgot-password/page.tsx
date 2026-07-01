@@ -1,47 +1,49 @@
-"use client"
+"use client";
 
-import { useState } from 'react'
-import Header from '@/components/Header'
-import Footer from '@/components/Footer'
-import Link from 'next/link'
+import Footer from "@/components/Footer";
+import Header from "@/components/Header";
+import Link from "next/link";
+import { useState } from "react";
 
 export default function ForgotPasswordPage() {
-  const [email, setEmail] = useState('')
-  const [status, setStatus] = useState<'idle' | 'sending' | 'sent' | 'error'>('idle')
+  const [email, setEmail] = useState("");
+  const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">(
+    "idle",
+  );
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    setStatus('sending')
+    e.preventDefault();
+    setStatus("sending");
 
     try {
-      const res = await fetch('/api/auth/forgot-password', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+      const res = await fetch("/api/auth/forgot-password", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email }),
-      })
+      });
 
       if (res.ok) {
-        setStatus('sent')
+        setStatus("sent");
       } else {
-        setStatus('error')
+        setStatus("error");
       }
     } catch {
-      setStatus('error')
+      setStatus("error");
     }
-  }
+  };
 
   return (
-    <div className="flex flex-col flex-1">
+    <div className="min-h-screen flex flex-col">
       <Header />
-      <main className="flex-1 max-w-md mx-auto px-8 pt-48 pb-section">
+      <main className="flex-1 flex flex-col justify-center px-8 pt-48 pb-section max-w-md mx-auto w-full">
         <h1 className="text-4xl font-bold uppercase tracking-tight mb-4">
           Forgot Password
         </h1>
 
-        {status === 'sent' ? (
+        {status === "sent" ? (
           <div className="space-y-6">
             <p className="text-gray-600 leading-relaxed">
-              If an account exists for that email address, you'll receive a 
+              If an account exists for that email address, you'll receive a
               reset link shortly. Check your inbox.
             </p>
             <Link
@@ -97,5 +99,5 @@ export default function ForgotPasswordPage() {
       </main>
       <Footer />
     </div>
-  )
+  );
 }

@@ -1,53 +1,53 @@
-"use client"
+"use client";
 
-import { useState } from 'react'
-import { useRouter } from 'next/navigation'
-import Link from 'next/link'
-import Header from '@/components/Header'
-import Footer from '@/components/Footer'
-import { useAuth } from '@/context/AuthContext'
+import Footer from "@/components/Footer";
+import Header from "@/components/Header";
+import { useAuth } from "@/context/AuthContext";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
 
 export default function RegisterPage() {
-  const [name, setName] = useState('')
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
-  const [error, setError] = useState('')
-  const [loading, setLoading] = useState(false)
-  const router = useRouter()
-  const { refetch } = useAuth()
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
+  const router = useRouter();
+  const { refetch } = useAuth();
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    setLoading(true)
-    setError('')
+    e.preventDefault();
+    setLoading(true);
+    setError("");
 
     try {
-      const res = await fetch('/api/auth/register', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+      const res = await fetch("/api/auth/register", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ name, email, password }),
-      })
+      });
 
-      const data = await res.json()
+      const data = await res.json();
 
       if (res.ok) {
-        await refetch()
-        router.push('/account/dashboard')
-        router.refresh()
+        await refetch();
+        router.push("/account/dashboard");
+        router.refresh();
       } else {
-        setError(data.error)
+        setError(data.error);
       }
     } catch {
-      setError('Something went wrong — try again.')
+      setError("Something went wrong — try again.");
     } finally {
-      setLoading(false)
+      setLoading(false);
     }
-  }
+  };
 
   return (
-    <div className='flex flex-col flex-1'>
+    <div className="min-h-screen flex flex-col">
       <Header />
-      <main className="flex-1 max-w-md mx-auto px-8 pt-48 pb-section">
+      <main className="flex-1 flex flex-col justify-center px-8 pt-48 pb-section max-w-md mx-auto w-full">
         <h1 className="text-5xl font-bold uppercase tracking-tight mb-12">
           Register
         </h1>
@@ -105,18 +105,21 @@ export default function RegisterPage() {
             disabled={loading}
             className="w-full bg-black text-white py-3 text-sm uppercase tracking-widest hover:bg-raspberry transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
           >
-            {loading ? 'Creating account...' : 'Create account'}
+            {loading ? "Creating account..." : "Create account"}
           </button>
         </form>
 
         <p className="mt-8 text-sm text-gray-500">
-          Already have an account?{' '}
-          <Link href="/account/login" className="font-bold text-black hover:text-raspberry transition-colors">
+          Already have an account?{" "}
+          <Link
+            href="/account/login"
+            className="font-bold text-black hover:text-raspberry transition-colors"
+          >
             Login
           </Link>
         </p>
       </main>
       <Footer />
     </div>
-  )
+  );
 }

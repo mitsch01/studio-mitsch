@@ -15,9 +15,9 @@ export default async function UnsubscribedPage({
   const success = status === 'success'
 
   return (
-    <div className="flex flex-col flex-1">
-      <Header />
-      <main className="flex-1 max-w-md mx-auto px-8 pt-48 pb-section text-center">
+   <div className="min-h-screen flex flex-col">
+         <Header />
+         <main className="flex-1 flex flex-col justify-center px-8 pt-48 pb-section max-w-md mx-auto w-full">
         <h1 className="text-4xl font-bold uppercase tracking-tight mb-6">
           {success ? "You're unsubscribed" : 'Something went wrong'}
         </h1>
