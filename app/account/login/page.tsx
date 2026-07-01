@@ -1,47 +1,47 @@
-"use client"
+"use client";
 
-import { useState } from 'react'
-import { useRouter } from 'next/navigation'
-import Link from 'next/link'
-import Header from '@/components/Header'
-import Footer from '@/components/Footer'
-import { useAuth } from '@/context/AuthContext'
+import Footer from "@/components/Footer";
+import Header from "@/components/Header";
+import { useAuth } from "@/context/AuthContext";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
 
 export default function LoginPage() {
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
-  const [error, setError] = useState('')
-  const [loading, setLoading] = useState(false)
-  const router = useRouter()
-  const { refetch } = useAuth()
-
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
+  const router = useRouter();
+  const { refetch } = useAuth();
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    setLoading(true)
-    setError('')
+    e.preventDefault();
+    setLoading(true);
+    setError("");
 
     try {
-      const res = await fetch('/api/auth/login', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+      const res = await fetch("/api/auth/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, password }),
-      })
+      });
 
-      const data = await res.json()
+      const data = await res.json();
 
       if (res.ok) {
- await refetch()
-  router.push('/account/dashboard')
-  router.refresh()      } else {
-        setError(data.error)
+        await refetch();
+        router.push("/account/dashboard");
+        router.refresh();
+      } else {
+        setError(data.error);
       }
     } catch {
-      setError('Something went wrong — try again.')
+      setError("Something went wrong — try again.");
     } finally {
-      setLoading(false)
+      setLoading(false);
     }
-  }
+  };
 
   return (
     <div>
@@ -89,18 +89,27 @@ export default function LoginPage() {
             disabled={loading}
             className="w-full bg-black text-white py-3 text-sm uppercase tracking-widest hover:bg-raspberry transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
           >
-            {loading ? 'Logging in...' : 'Login'}
+            {loading ? "Logging in..." : "Login"}
           </button>
+          <Link
+            href="/account/forgot-password"
+            className="block text-center text-sm text-gray-400 hover:text-black transition-colors"
+          >
+            Forgot your password?
+          </Link>
         </form>
 
         <p className="mt-8 text-sm text-gray-500">
-          No account yet?{' '}
-          <Link href="/account/register" className="font-bold text-black hover:text-raspberry transition-colors">
+          No account yet?{" "}
+          <Link
+            href="/account/register"
+            className="font-bold text-black hover:text-raspberry transition-colors"
+          >
             Register
           </Link>
         </p>
       </main>
       <Footer />
     </div>
-  )
+  );
 }
