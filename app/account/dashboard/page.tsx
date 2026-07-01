@@ -1,82 +1,99 @@
-import { cookies } from 'next/headers'
-import { jwtVerify } from 'jose'
-import { redirect } from 'next/navigation'
-import clientPromise from '@/mongodb'
-import { client as sanityClient } from '@/sanity/client'
-import Header from '@/components/Header'
-import Footer from '@/components/Footer'
-import LogoutButton from '@/components/LogoutButton'
+import Footer from "@/components/Footer";
+import Header from "@/components/Header";
+import LogoutButton from "@/components/LogoutButton";
+import clientPromise from "@/mongodb";
+import { client as sanityClient } from "@/sanity/client";
+import { jwtVerify } from "jose";
+import { cookies } from "next/headers";
+import Link from "next/link";
+import { redirect } from "next/navigation";
+import { Settings } from 'lucide-react'
+import Tooltip from "@/components/Tooltip";
 
 type Order = {
-  _id: string
-  slugs: string[]
-  createdAt: string
-  amount: number
-  currency: string
-}
+  _id: string;
+  slugs: string[];
+  createdAt: string;
+  amount: number;
+  currency: string;
+};
 
 type Product = {
-  name: string
-  slug: { current: string }
-  downloadKey: string
-}
+  name: string;
+  slug: { current: string };
+  downloadKey: string;
+};
 
 export default async function DashboardPage() {
   // 1. Verify JWT from cookie
-  const cookieStore = await cookies()
-  const token = cookieStore.get('auth_token')?.value
+  const cookieStore = await cookies();
+  const token = cookieStore.get("auth_token")?.value;
 
-  if (!token) redirect('/account/login')
+  if (!token) redirect("/account/login");
 
-  let user: { id: string; email: string; name: string }
+  let user: { id: string; email: string; name: string };
   try {
     const { payload } = await jwtVerify(
       token,
-      new TextEncoder().encode(process.env.JWT_SECRET!)
-    )
-    user = payload as typeof user
+      new TextEncoder().encode(process.env.JWT_SECRET!),
+    );
+    user = payload as typeof user;
   } catch {
-    redirect('/account/login')
+    redirect("/account/login");
   }
 
   // 2. Fetch orders from MongoDB
-  const mongo = await clientPromise
-  const db = mongo.db('studio-mitsch-prod')
+  const mongo = await clientPromise;
+  const db = mongo.db("studio-mitsch-prod");
   const orders = await db
-    .collection('orders')
+    .collection("orders")
     .find({ customerEmail: user.email })
     .sort({ createdAt: -1 })
-    .toArray()
+    .toArray();
 
   // 3. Collect all unique slugs across orders
-  const allSlugs = [...new Set(orders.flatMap((o) => o.slugs ?? []))]
+  const allSlugs = [...new Set(orders.flatMap((o) => o.slugs ?? []))];
 
   // 4. Fetch matching products from Sanity
   const products = await sanityClient.fetch<Product[]>(
     `*[_type == "product" && slug.current in $slugs] {
       name, slug, downloadKey
     }`,
-    { slugs: allSlugs }
-  )
+    { slugs: allSlugs },
+  );
 
-
-  const productMap: Record<string, Product> = {}
-  products.forEach((p) => { productMap[p.slug.current] = p })
+  const productMap: Record<string, Product> = {};
+  products.forEach((p) => {
+    productMap[p.slug.current] = p;
+  });
 
   return (
     <div>
-      <Header />
-      <main className="max-w-3xl mx-auto px-8 pt-48 pb-section">
-        {/* Header */}
-        <div className="flex justify-between items-start mb-16">
-          <div>
-            <h1 className="text-5xl font-bold uppercase tracking-tight mb-2">
-              My Account
-            </h1>
-            <p className="text-gray-500 text-sm">{user.email}</p>
-          </div>
-          <LogoutButton />
-        </div>
+<Header />
+<main className="max-w-3xl mx-auto px-8 pt-48 pb-section">
+  {/* Header */}
+  <div className="flex justify-between items-start mb-16 gap-4">
+    <div>
+      <h1 className="text-4xl md:text-5xl font-bold uppercase tracking-tight mb-2">
+        My Account
+      </h1>
+      <p className="text-gray-500 text-sm">{user.email}</p>
+    </div>
+    <div className="flex items-center gap-4">
+      <Tooltip label="Settings">
+        <Link
+          href="/account/settings"
+          aria-label="Account settings"
+          className="text-black hover:text-raspberry transition-colors"
+        >
+          <Settings size={20} />
+        </Link>
+      </Tooltip>
+      <Tooltip label="Logout">
+        <LogoutButton />
+      </Tooltip>
+    </div>
+  </div>
 
         {/* Downloads */}
         <section className="mb-16">
@@ -86,8 +103,11 @@ export default async function DashboardPage() {
 
           {orders.length === 0 ? (
             <p className="text-gray-700 text-sm uppercase tracking-widest">
-              No purchases yet.{' '}
-              <a href="/shop" className="text-black font-bold hover:text-raspberry transition-colors ml-4">
+              No purchases yet.{" "}
+              <a
+                href="/shop"
+                className="text-black font-bold hover:text-raspberry transition-colors ml-4"
+              >
                 Visit the shop →
               </a>
             </p>
@@ -96,18 +116,21 @@ export default async function DashboardPage() {
               {orders.map((order) => (
                 <li key={order._id.toString()} className="py-6">
                   <p className="text-xs uppercase tracking-widest text-gray-800 mb-4">
-                    {new Date(order.createdAt).toLocaleDateString('en-GB', {
-                      day: 'numeric',
-                      month: 'long',
-                      year: 'numeric',
+                    {new Date(order.createdAt).toLocaleDateString("en-GB", {
+                      day: "numeric",
+                      month: "long",
+                      year: "numeric",
                     })}
                   </p>
                   <ul className="flex flex-col gap-3">
                     {(order.slugs ?? []).map((slug: string) => {
-                      const product = productMap[slug]
-                      const hasFile = product?.downloadKey
+                      const product = productMap[slug];
+                      const hasFile = product?.downloadKey;
                       return (
-                        <li key={slug} className="flex items-center justify-between">
+                        <li
+                          key={slug}
+                          className="flex items-center justify-between"
+                        >
                           <span className="font-bold uppercase tracking-tight text-sm">
                             {product?.name ?? slug}
                           </span>
@@ -125,7 +148,7 @@ export default async function DashboardPage() {
                             </span>
                           )}
                         </li>
-                      )
+                      );
                     })}
                   </ul>
                 </li>
@@ -148,5 +171,5 @@ export default async function DashboardPage() {
       </main>
       <Footer />
     </div>
-  )
+  );
 }
