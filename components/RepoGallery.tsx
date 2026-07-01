@@ -2,11 +2,10 @@
 
 import ErrorBoundary from "@/components/ErrorBoundary";
 import ProjectGallery from "@/components/ProjectGallery";
+import { useDarkCursor } from "@/hooks/useDarkCursor";
 import { AnimatePresence, motion } from "motion/react";
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import { useDarkCursor } from '@/hooks/useDarkCursor'
-
 
 type Repo = {
   id: number;
@@ -40,7 +39,7 @@ function SkeletonCard() {
 }
 
 export default function RepoGallery() {
-  useDarkCursor()
+  useDarkCursor();
 
   const [repos, setRepos] = useState<Repo[]>([]);
   const [visibleRepos, setVisibleRepos] = useState(4);
@@ -147,9 +146,9 @@ export default function RepoGallery() {
                     loading={index === 0 ? "eager" : "lazy"}
                   />
                   <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-90 transition-opacity duration-300 flex items-center justify-center">
-                    <h3 className="text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 font-hind md:text-base text-sm uppercase tracking-widest">
+                    <h2 className="text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 font-hind md:text-base text-sm uppercase tracking-widest">
                       {transformString(repo.name)}
-                    </h3>
+                    </h2>
                   </div>
                 </div>
               </button>

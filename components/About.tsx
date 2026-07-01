@@ -77,9 +77,9 @@ export default function About() {
                   <Sparkles className="w-5 h-5" />
                 </div>
                 <div>
-                  <h4 className="font-bold text-sm uppercase tracking-wider text-black">
+                  <p className="font-bold text-sm uppercase tracking-wider text-black">
                     Albert Einstein
-                  </h4>
+                  </p>
                   <p className="text-xs text-gray-500 font-mono mt-1 leading-relaxed">
                     &ldquo;Creativity is intelligence having fun.&rdquo;
                   </p>
@@ -128,9 +128,9 @@ export default function About() {
                   <MapPin className="w-4 h-4" />
                 </div>
                 <div>
-                  <h5 className="font-mono text-[10px] uppercase text-gray-400 tracking-wider">
+                  <p className="font-mono text-[10px] uppercase text-gray-400 tracking-wider">
                     Based in
-                  </h5>
+                  </p>
                   <p className="text-xs font-bold text-black">
                     Hamburg, Germany
                   </p>
@@ -142,9 +142,9 @@ export default function About() {
                   <Sparkles className="w-4 h-4" />
                 </div>
                 <div>
-                  <h5 className="font-mono text-[10px] uppercase text-gray-400 tracking-wider">
+                  <p className="font-mono text-[10px] uppercase text-gray-400 tracking-wider">
                     Status
-                  </h5>
+                  </p>
                   <p className="text-xs font-bold text-black">
                     Available for Freelance
                   </p>

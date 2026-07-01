@@ -72,11 +72,11 @@ const getCategoryTheme = (category: string): CategoryTheme => {
       };
     case "Frameworks & Libraries":
       return {
-        icon: <Code2 className="w-5 h-5 text-raspberry" />,
+        icon: <Code2 className="w-5 h-5 text-raspberry-hover" />,
         headerBg: "bg-rose-50 border-rose-100",
-        accentColor: "text-raspberry",
-        progressColor: "bg-raspberry",
-        badgeBg: "bg-rose-50 text-raspberry border-rose-100",
+        accentColor: "text-raspberry-hover",
+        progressColor: "bg-raspberry-hover",
+        badgeBg: "bg-rose-50 text-raspberry-hover border-rose-100",
       };
     case "Tools & Design":
       return {
@@ -103,7 +103,7 @@ export default function Skills() {
       <div className="max-w-screen-lg mx-auto px-8">
         {/* Section heading */}
         <div className="mb-16">
-          <span className="font-mono text-xs text-gray-400 uppercase tracking-widest block mb-2">
+          <span className="font-mono text-xs text-gray-600 uppercase tracking-widest block mb-2">
             Technical Core
           </span>
           <h1 className="md:text-7xl text-6xl uppercase tracking-tight text-black">
@@ -189,12 +189,12 @@ export default function Skills() {
               JS
             </span>
             <div className="relative z-10">
-              <span className="font-mono text-[10px] uppercase text-raspberry font-bold tracking-widest block mb-1">
+              <span className="font-mono text-[10px] uppercase text-raspberry-hover font-bold tracking-widest block mb-1">
                 Interactive Focus
               </span>
-              <h3 className="text-xl md:text-2xl font-black tracking-tight mb-4 uppercase text-white">
+              <h2 className="text-xl md:text-2xl font-black tracking-tight mb-4 uppercase text-white">
                 Modern Web & App Stack
-              </h3>
+              </h2>
               <p className="text-gray-300 text-sm leading-relaxed max-w-xl">
                 My build pipeline is centred on React and Next.js for web, and
                 Flutter & Dart for cross-platform apps. Every interaction is
@@ -219,12 +219,12 @@ export default function Skills() {
           {/* Right: light panel */}
           <div className="lg:col-span-4 p-8 bg-white border border-gray-200 flex flex-col justify-between">
             <div>
-              <span className="font-mono text-[10px] uppercase text-gray-400 tracking-widest block mb-1">
+              <span className="font-mono text-[10px] uppercase text-gray-600 tracking-widest block mb-1">
                 Visual Design
               </span>
-              <h3 className="text-xl font-bold text-black mb-3 uppercase">
+              <h2 className="text-xl font-bold text-black mb-3 uppercase">
                 Art meets Code
-              </h3>
+              </h2>
               <p className="text-gray-600 text-xs leading-relaxed">
                 Using Procreate and Photoshop I illustrate layouts, create
                 custom assets, and prepare visual concepts before writing a
@@ -237,7 +237,7 @@ export default function Skills() {
                 <span className="text-gray-500 uppercase">
                   Design Integration
                 </span>
-                <span className="text-raspberry font-bold uppercase">
+                <span className="text-raspberry-hover font-bold uppercase">
                   100% Native
                 </span>
               </div>

@@ -21,7 +21,7 @@ export default function Footer() {
 
         {/* Col 2: Nav links */}
         <nav className="md:col-span-1 flex flex-col gap-3">
-          <span className="text-xs uppercase tracking-widest text-gray-500 mb-1">
+          <span className="text-xs uppercase tracking-widest text-gray-400 mb-1">
             Navigate
           </span>
           {[
@@ -43,7 +43,7 @@ export default function Footer() {
 
         {/* Col 3: Newsletter + socials */}
         <div className="md:col-span-2 flex flex-col gap-4 w-full min-w-0">
-          <span className="text-xs uppercase tracking-widest text-gray-500">
+          <span className="text-xs uppercase tracking-widest text-gray-400">
             Stay in the loop
           </span>
           <p className="text-sm text-gray-400 leading-relaxed">
@@ -94,7 +94,7 @@ export default function Footer() {
 
       {/* Bottom bar */}
       <div className="border-t border-white/10 px-8 md:px-16 py-6 flex flex-col md:flex-row justify-between items-center gap-2">
-        <p className="text-xs text-gray-600">
+        <p className="text-xs text-gray-400">
           © {new Date().getFullYear()} Miriam Schwartz. All rights reserved.
         </p>
         <p className="text-xs text-gray-600">

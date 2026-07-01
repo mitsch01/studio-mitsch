@@ -53,7 +53,7 @@ export default function NewsletterForm() {
           <button
             type="submit"
             disabled={status === "loading"}
-            className="bg-raspberry text-white text-xs uppercase tracking-widest px-4 py-2 hover:bg-raspberry-hover transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+            className="bg-raspberry text-white font-bold text-xs uppercase tracking-widest px-4 py-2 hover:bg-raspberry-hover transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
           >
             {status === "loading" ? "..." : "Subscribe"}
           </button>
