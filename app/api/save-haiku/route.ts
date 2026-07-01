@@ -1,11 +1,9 @@
-import clientPromise from "../../../mongodb"
-import { NextResponse } from "next/server"
+import clientPromise from "@/mongodb"
+import { NextRequest, NextResponse } from "next/server"
 
-// GET handler to fetch all haikus from the database
-export async function GET(req) {
+export async function GET() {
   try {
     const client = await clientPromise
-    console.log("Connected to MongoDB successfully")
     const db = client.db("MitschWebsite")
     const collection = db.collection("Haikus")
 
@@ -18,8 +16,7 @@ export async function GET(req) {
   }
 }
 
-// POST handler to add a new haiku to the database
-export async function POST(req) {
+export async function POST(req: NextRequest) {
   try {
     const client = await clientPromise
     const db = client.db("MitschWebsite")
@@ -32,7 +29,6 @@ export async function POST(req) {
       return NextResponse.json({ message: "Haiku cannot be empty" }, { status: 400 })
     }
 
-    // Insert the haiku into the database
     await collection.insertOne({ haiku })
 
     return NextResponse.json({ message: "Haiku added", haiku }, { status: 200 })

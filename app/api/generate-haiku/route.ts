@@ -1,16 +1,13 @@
-import { NextResponse } from "next/server"
+import { NextRequest, NextResponse } from "next/server"
 
-export async function POST(req) {
-  // Get the JSON body from the request
+export async function POST(req: NextRequest) {
   const { prompt } = await req.json()
 
-  // Validate prompt
   if (!prompt || prompt.length === 0) {
     return NextResponse.json({ message: "Prompt is required" }, { status: 400 })
   }
 
   try {
-    // Call the OpenAI API to generate a haiku
     const response = await fetch("https://api.openai.com/v1/chat/completions", {
       method: "POST",
       headers: {
@@ -18,7 +15,7 @@ export async function POST(req) {
         Authorization: `Bearer ${process.env.OPENAI_API_KEY}`
       },
       body: JSON.stringify({
-        model: "gpt-3.5-turbo",
+        model: "gpt-4o-mini",
         messages: [
           {
             role: "user",
@@ -30,14 +27,19 @@ export async function POST(req) {
       })
     })
 
-    // Parse the response from OpenAI
     const data = await response.json()
 
     if (response.ok) {
-      return NextResponse.json({ haiku: data.choices[0].message.content.trim() }, { status: 200 })
+      return NextResponse.json(
+        { haiku: data.choices[0].message.content.trim() },
+        { status: 200 }
+      )
     } else {
       console.error("OpenAI API Error:", data)
-      return NextResponse.json({ message: data.error.message || "Error generating haiku" }, { status: response.status })
+      return NextResponse.json(
+        { message: data.error.message || "Error generating haiku" },
+        { status: response.status }
+      )
     }
   } catch (error) {
     console.error("Error generating haiku:", error)

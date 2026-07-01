@@ -2,23 +2,29 @@
 
 import Header from "@/components/Header";
 import PlaygroundLayout from "@/components/PlaygroundLayout";
+import { useDarkCursor } from "@/hooks/useDarkCursor";
 import { RotateCcw } from "lucide-react";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
-import { useDarkCursor } from '@/hooks/useDarkCursor';
+
+type Haiku = { haiku: string };
+
+type Position = { top: number; left: number };
 
 export default function Playground() {
   useDarkCursor();
 
-  const [haikus, setHaikus] = useState([]);
+  const [haikus, setHaikus] = useState<Haiku[]>([]);
   const [word1, setWord1] = useState("");
   const [word2, setWord2] = useState("");
   const [word3, setWord3] = useState("");
-  const [currentMachine, setCurrentMachine] = useState("initial");
+  const [currentMachine, setCurrentMachine] = useState<
+    "initial" | "animating" | "final"
+  >("initial");
   const [newHaiku, setNewHaiku] = useState("");
   const [loading, setLoading] = useState(false);
-  const dragContainerRef = useRef(null);
-  const machineRef = useRef(null);
+  const dragContainerRef = useRef<HTMLDivElement>(null);
+  const machineRef = useRef<HTMLDivElement>(null);
   const [isDragging, setIsDragging] = useState(false);
   const [startX, setStartX] = useState(0);
   const [startY, setStartY] = useState(0);
@@ -57,7 +63,7 @@ export default function Playground() {
 
     setCurrentMachine("animating");
 
-    await new Promise((resolve) => {
+    await new Promise<void>((resolve) => {
       setTimeout(() => {
         resolve();
       }, 1000);
@@ -66,7 +72,7 @@ export default function Playground() {
     await generateHaiku();
   };
 
-  const handleKeyDown = async (e) => {
+  const handleKeyDown = async (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter" && word1 && word2 && word3) {
       e.preventDefault();
       await handleClick();
@@ -125,40 +131,37 @@ export default function Playground() {
     setLoading(false);
   };
 
-  const startDrag = (e) => {
-    if (e.target.tagName === "INPUT" || e.target.tagName === "BUTTON") {
+  const startDrag = (
+    e: React.MouseEvent<HTMLDivElement> | React.TouchEvent<HTMLDivElement>,
+  ) => {
+    if (
+      e.target instanceof HTMLInputElement ||
+      e.target instanceof HTMLButtonElement
+    )
       return;
-    }
-
     setIsDragging(true);
     e.preventDefault();
-
-    setStartX(e.clientX);
-    setStartY(e.clientY);
+    const clientX = "touches" in e ? e.touches[0].clientX : e.clientX;
+    const clientY = "touches" in e ? e.touches[0].clientY : e.clientY;
+    setStartX(clientX);
+    setStartY(clientY);
   };
 
-  const handleDrag = (e) => {
+  const handleDrag = (
+    e: React.MouseEvent<HTMLDivElement> | React.TouchEvent<HTMLDivElement>,
+  ) => {
     if (!isDragging) return;
-
     const dragContainer = dragContainerRef.current;
-    let currentX, currentY;
+    if (!dragContainer) return;
 
-    if (e.type === "mousemove") {
-      currentX = e.clientX;
-      currentY = e.clientY;
-    } else if (e.type === "touchmove") {
-      currentX = e.touches[0].clientX;
-      currentY = e.touches[0].clientY;
-    }
+    const currentX = "touches" in e ? e.touches[0].clientX : e.clientX;
+    const currentY = "touches" in e ? e.touches[0].clientY : e.clientY;
 
     const deltaX = currentX - startX;
     const deltaY = currentY - startY;
 
-    const newTranslateX = dragContainer.offsetLeft + deltaX;
-    const newTranslateY = dragContainer.offsetTop + deltaY;
-
-    dragContainer.style.left = `${newTranslateX}px`;
-    dragContainer.style.top = `${newTranslateY}px`;
+    dragContainer.style.left = `${dragContainer.offsetLeft + deltaX}px`;
+    dragContainer.style.top = `${dragContainer.offsetTop + deltaY}px`;
 
     setStartX(currentX);
     setStartY(currentY);
@@ -178,11 +181,11 @@ export default function Playground() {
 
   // Force black background to prevent white overscroll flash
   useEffect(() => {
-    document.body.style.backgroundColor = 'black';
-    document.documentElement.style.backgroundColor = 'black';
+    document.body.style.backgroundColor = "black";
+    document.documentElement.style.backgroundColor = "black";
     return () => {
-      document.body.style.backgroundColor = '';
-      document.documentElement.style.backgroundColor = '';
+      document.body.style.backgroundColor = "";
+      document.documentElement.style.backgroundColor = "";
     };
   }, []);
 
@@ -191,19 +194,26 @@ export default function Playground() {
     if (!machineRef.current) return;
 
     const rect = machineRef.current.getBoundingClientRect();
-    const scrollX = window.scrollX + rect.left - (window.innerWidth / 2) + (rect.width / 2);
-    const scrollY = window.scrollY + rect.top - (window.innerHeight / 2) + (rect.height / 2);
+    const scrollX =
+      window.scrollX + rect.left - window.innerWidth / 2 + rect.width / 2;
+    const scrollY =
+      window.scrollY + rect.top - window.innerHeight / 2 + rect.height / 2;
 
     window.scrollTo({
       left: scrollX,
       top: scrollY,
-      behavior: 'instant'
+      behavior: "instant",
     });
   }, []);
 
   return (
     <PlaygroundLayout isBlackBackground={true} showFooter={false}>
-      <Header logoColor="white" burgerColor="white" scrollBackground={false} scrollThreshold={1} />
+      <Header
+        logoColor="white"
+        burgerColor="white"
+        scrollBackground={false}
+        scrollThreshold={1}
+      />
 
       {/* Mobile placeholder */}
       <div className="flex md:hidden flex-col items-center justify-center h-screen bg-black px-8 text-center gap-6">
@@ -212,7 +222,8 @@ export default function Playground() {
           Playground
         </h1>
         <p className="text-gray-400 text-sm leading-relaxed max-w-xs">
-          This experience is designed for desktop. Visit on a larger screen to explore the Haiku Generator.
+          This experience is designed for desktop. Visit on a larger screen to
+          explore the Haiku Generator.
         </p>
         <a
           href="/"
@@ -349,9 +360,16 @@ export default function Playground() {
                 className="text-white"
                 style={{
                   position: "absolute",
-                  top: fixedPositions[index] ? `${fixedPositions[index].top * 2}px` : "0px",
-                  left: fixedPositions[index] ? `${fixedPositions[index].left * 2}px` : "0px",
-                  transform: fixedRotations[index] !== undefined ? `rotate(${fixedRotations[index]}deg)` : "rotate(0deg)",
+                  top: fixedPositions[index]
+                    ? `${fixedPositions[index].top * 2}px`
+                    : "0px",
+                  left: fixedPositions[index]
+                    ? `${fixedPositions[index].left * 2}px`
+                    : "0px",
+                  transform:
+                    fixedRotations[index] !== undefined
+                      ? `rotate(${fixedRotations[index]}deg)`
+                      : "rotate(0deg)",
                 }}
               >
                 <pre className="font-grace tracking-wider text-center text-2xl">

@@ -7,8 +7,11 @@ import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 
-
-export default function NavModal({ toggleModal }) {
+interface NavModalProps {
+  toggleModal: () => void
+}
+  
+export default function NavModal({ toggleModal }: NavModalProps) {
   useDarkCursor()
 
   const pathname = usePathname();
@@ -22,7 +25,7 @@ export default function NavModal({ toggleModal }) {
 
   useEffect(() => {
     document.body.style.overflow = "hidden";
-    const handleKeyDown = (e) => {
+    const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Escape") toggleModal();
     };
     window.addEventListener("keydown", handleKeyDown);
@@ -32,12 +35,12 @@ export default function NavModal({ toggleModal }) {
     };
   }, [toggleModal]);
 
-  const isActive = (href) => {
+  const isActive = (href: string): boolean => {
     if (href === "/") return pathname === "/";
     return pathname.startsWith(href);
   };
 
-  const handleLogout = async () => {
+  const handleLogout = async (): Promise<void> => {
     await logout()
     toggleModal()
     router.push('/')
