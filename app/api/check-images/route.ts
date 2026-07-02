@@ -1,6 +1,6 @@
 import fs from "fs"
-import path from "path"
 import { NextRequest } from "next/server"
+import path from "path"
 
 export async function GET(request: NextRequest) {
   const { searchParams } = new URL(request.url)
@@ -12,15 +12,15 @@ export async function GET(request: NextRequest) {
   const mobileImages: string[] = []
 
   for (let i = 1; i <= maxImages; i++) {
-    const desktopImagePath = path.join(imagesDirectory, `${projectName}-desktop-${i}.jpg`)
-    const mobileImagePath = path.join(imagesDirectory, `${projectName}-mobile-${i}.jpg`)
+    const desktopImagePath = path.join(imagesDirectory, `${projectName}-desktop-${i}.webp`)
+    const mobileImagePath = path.join(imagesDirectory, `${projectName}-mobile-${i}.webp`)
 
     if (fs.existsSync(desktopImagePath)) {
-      desktopImages.push(`/images/${projectName}-desktop-${i}.jpg`)
+      desktopImages.push(`/images/${projectName}-desktop-${i}.webp`)
     }
 
     if (fs.existsSync(mobileImagePath)) {
-      mobileImages.push(`/images/${projectName}-mobile-${i}.jpg`)
+      mobileImages.push(`/images/${projectName}-mobile-${i}.webp`)
     }
   }
 

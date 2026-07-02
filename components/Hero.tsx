@@ -6,7 +6,7 @@ export default function Hero() {
       {/* Landscape — large screens */}
       <div className="hidden sm:block relative w-full h-full">
         <Image
-          src="/images/header-landscape.jpg"
+          src="/images/header-landscape.webp"
           alt="Studio Mitsch — Hamburg based web and app developer"
           fill
           className="object-cover"
@@ -18,7 +18,7 @@ export default function Hero() {
       {/* Portrait — small screens */}
       <div className="block sm:hidden relative w-full h-full">
         <Image
-          src="/images/header-portrait.jpg"
+          src="/images/header-portrait.webp"
           alt="Studio Mitsch — Hamburg based web and app developer"
           fill
           className="object-cover"

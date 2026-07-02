@@ -24,7 +24,7 @@ export default function Page() {
         {/* Left: Image */}
         <div className="relative w-full h-[50vh] md:h-screen">
           <Image
-            src="/images/contact-image.jpeg"
+            src="/images/contact-image.webp"
             alt="Contact"
             fill
             priority

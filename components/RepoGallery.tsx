@@ -138,7 +138,7 @@ export default function RepoGallery() {
               >
                 <div className="w-full h-[305px] relative">
                   <Image
-                    src={`/images/${repo.name}-preview.jpg`}
+                    src={`/images/${repo.name}-preview.webp`}
                     alt={`${repo.name} preview`}
                     fill
                     className="object-cover"
