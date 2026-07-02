@@ -3,6 +3,8 @@
 import ErrorBoundary from "@/components/ErrorBoundary";
 import ProjectGallery from "@/components/ProjectGallery";
 import { useDarkCursor } from "@/hooks/useDarkCursor";
+import type { Locale } from "@/lib/locale";
+import { getStrings } from "@/lib/strings";
 import { AnimatePresence, motion } from "motion/react";
 import Image from "next/image";
 import { useEffect, useState } from "react";
@@ -38,7 +40,9 @@ function SkeletonCard() {
   return <div className="w-full h-[305px] bg-gray-200 animate-pulse" />;
 }
 
-export default function RepoGallery() {
+export default function RepoGallery({ locale }: { locale: Locale }) {
+  const t = getStrings(locale);
+
   useDarkCursor();
 
   const [repos, setRepos] = useState<Repo[]>([]);
@@ -115,7 +119,7 @@ export default function RepoGallery() {
     <ErrorBoundary
       fallback={
         <p className="text-gray-400 text-sm uppercase tracking-widest py-8">
-          Projects unavailable right now — check back soon.
+          {t.projects.unavailable}
         </p>
       }
     >
@@ -162,7 +166,7 @@ export default function RepoGallery() {
                 onClick={() => setVisibleRepos((prev) => prev + 4)}
                 className="md:text-base text-sm w-44 uppercase bg-black text-white p-4 hover:bg-gray-800 my-12"
               >
-                Load More
+                {t.projects.loadMore}
               </button>
             </div>
           )}
@@ -191,7 +195,7 @@ export default function RepoGallery() {
               <button
                 onClick={closeProject}
                 className="absolute top-6 right-6 text-white/60 hover:text-white text-4xl leading-none z-10 transition-colors"
-                aria-label="Close"
+                aria-label={t.projects.close}
               >
                 &times;
               </button>
@@ -201,7 +205,7 @@ export default function RepoGallery() {
                   {transformString(selectedProject.name)}
                 </h1>
                 <p className="text-gray-300 text-lg leading-relaxed mb-10">
-                  {selectedProject.description || "No description available."}
+                  {selectedProject.description || t.projects.noDescription}
                 </p>
 
                 <ProjectGallery projectName={selectedProject.name} />
@@ -210,33 +214,39 @@ export default function RepoGallery() {
                   <div className="flex flex-col gap-2">
                     <p className="text-sm text-gray-400">
                       <span className="font-bold uppercase tracking-wider text-white">
-                        Languages:{" "}
+                        {t.projects.languages}:{" "}
                       </span>
                       {languages.join(", ")}
                     </p>
                     <p className="text-sm text-gray-400">
                       <span className="font-bold uppercase tracking-wider text-white">
-                        Tags:{" "}
+                        {t.projects.tags}:{" "}
                       </span>
                       {selectedProject.topics?.length > 0
                         ? selectedProject.topics.join(", ")
-                        : "none"}
+                        : t.projects.none}
                     </p>
                     <p className="text-sm text-gray-400">
                       <span className="font-bold uppercase tracking-wider text-white">
-                        Created:{" "}
+                        {t.projects.created}:{" "}
                       </span>
-                      {new Date(
-                        selectedProject.created_at,
-                      ).toLocaleDateString()}
+                      {new Date(selectedProject.created_at).toLocaleDateString(locale === "de" ? "de-DE" : "en-GB", {
+                        day: "2-digit",
+                        month: "2-digit",
+                        year: "numeric",
+                      })}
                     </p>
                     <p className="text-sm text-gray-400">
                       <span className="font-bold uppercase tracking-wider text-white">
-                        Updated:{" "}
+                        {t.projects.updated}:{" "}
                       </span>
                       {new Date(
                         selectedProject.updated_at,
-                      ).toLocaleDateString()}
+                      ).toLocaleDateString(locale === "de" ? "de-DE" : "en-GB", {
+                        day: "2-digit",
+                        month: "2-digit",
+                        year: "numeric",
+                      })}
                     </p>
                   </div>
 
@@ -245,8 +255,9 @@ export default function RepoGallery() {
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-sm font-bold uppercase tracking-widest text-white hover:text-raspberry transition-colors"
+                    aria-label={t.projects.viewOnGitHub}
                   >
-                    View on GitHub ↗
+                    {t.projects.viewOnGitHub}
                   </a>
                 </div>
               </div>
