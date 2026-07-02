@@ -36,10 +36,11 @@ export default async function ShopPage({
   const t = getStrings(locale as Locale)
 
   const products = await client.fetch<Product[]>(
-    `*[_type == "product" && isActive == true] | order(order asc) {
-      _id, name, slug, description, price, image
-    }`
-  )
+  `*[_type == "product" && isActive == true && language == $locale] | order(order asc) {
+    _id, name, slug, description, price, image
+  }`,
+  { locale }
+)
 
   return (
     <div>

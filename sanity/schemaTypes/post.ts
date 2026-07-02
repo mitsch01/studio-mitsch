@@ -6,6 +6,13 @@ export const post = defineType({
   type: 'document',
   fields: [
     defineField({
+      name: 'language',
+      title: 'Language',
+      type: 'string',
+      readOnly: true,
+      hidden: true,
+    }),
+    defineField({
       name: 'title',
       title: 'Title',
       type: 'string',
@@ -47,14 +54,21 @@ export const post = defineType({
       title: 'Published At',
       type: 'datetime',
     }),
-        defineField({
-      name: "isPublished",
-      title: "Publish",
-      type: "boolean",
+    defineField({
+      name: 'isPublished',
+      title: 'Publish',
+      type: 'boolean',
       initialValue: true,
     }),
   ],
   preview: {
-    select: { title: 'title', media: 'coverImage' },
+    select: { title: 'title', media: 'coverImage', lang: 'language' },
+    prepare({ title, media, lang }) {
+      return {
+        title,
+        media,
+        subtitle: lang ? lang.toUpperCase() : '',
+      }
+    },
   },
 })

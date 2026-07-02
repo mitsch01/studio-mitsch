@@ -1,4 +1,5 @@
-import { client } from "@/sanity/client"
+import type { Locale } from "@/lib/locale";
+import { client } from "@/sanity/client";
 
 export type SkillItem = { name: string; level: number }
 export type SkillGroup = { category: string; skills: SkillItem[] }
@@ -46,22 +47,30 @@ const defaultSiteContent: SiteContent = {
   },
   skills: {
     skillGroups: [
-      { category: "Languages", skills: [
-        { name: "JavaScript", level: 5 }, { name: "TypeScript", level: 4 },
-        { name: "HTML5 & CSS3", level: 5 }, { name: "Dart", level: 4 },
-      ]},
-      { category: "Frameworks & Libraries", skills: [
-        { name: "React", level: 5 }, { name: "Next.js", level: 4 },
-        { name: "Tailwind CSS", level: 5 }, { name: "Flutter", level: 4 },
-      ]},
-      { category: "Tools & Design", skills: [
-        { name: "UI / UX Design", level: 4 }, { name: "Procreate", level: 5 },
-        { name: "Adobe Photoshop", level: 4 }, { name: "Git & GitHub", level: 4 },
-      ]},
-      { category: "Others", skills: [
-        { name: "RESTful APIs", level: 4 }, { name: "Firebase", level: 4 },
-        { name: "MongoDB", level: 4 }, { name: "AI Integration", level: 4 },
-      ]},
+      {
+        category: "Languages", skills: [
+          { name: "JavaScript", level: 5 }, { name: "TypeScript", level: 4 },
+          { name: "HTML5 & CSS3", level: 5 }, { name: "Dart", level: 4 },
+        ]
+      },
+      {
+        category: "Frameworks & Libraries", skills: [
+          { name: "React", level: 5 }, { name: "Next.js", level: 4 },
+          { name: "Tailwind CSS", level: 5 }, { name: "Flutter", level: 4 },
+        ]
+      },
+      {
+        category: "Tools & Design", skills: [
+          { name: "UI / UX Design", level: 4 }, { name: "Procreate", level: 5 },
+          { name: "Adobe Photoshop", level: 4 }, { name: "Git & GitHub", level: 4 },
+        ]
+      },
+      {
+        category: "Others", skills: [
+          { name: "RESTful APIs", level: 4 }, { name: "Firebase", level: 4 },
+          { name: "MongoDB", level: 4 }, { name: "AI Integration", level: 4 },
+        ]
+      },
     ],
     stackHeading: "Modern Web & App Stack",
     stackBody:
@@ -72,7 +81,7 @@ const defaultSiteContent: SiteContent = {
   },
 }
 
-export async function getSiteContent(): Promise<SiteContent> {
+export async function getSiteContent(locale: Locale = "de"): Promise<SiteContent> {
   const data = await client.fetch<Partial<SiteContent> | null>(
     `*[_id == "siteContent"][0]{ about, contact, skills }`,
     {},

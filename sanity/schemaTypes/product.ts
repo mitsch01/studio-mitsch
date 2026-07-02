@@ -6,6 +6,13 @@ export const product = defineType({
   type: "document",
   fields: [
     defineField({
+      name: "language",
+      title: "Language",
+      type: "string",
+      readOnly: true,
+      hidden: true,
+    }),
+    defineField({
       name: "name",
       title: "Name",
       type: "string",
@@ -41,8 +48,7 @@ export const product = defineType({
       name: "downloadKey",
       title: "Download Key",
       type: "string",
-      description:
-        "R2 file key for the downloadable file (e.g. downloads/love.png)",
+      description: "R2 file key for the downloadable file (e.g. downloads/love.png)",
     }),
     defineField({
       name: "order",
@@ -58,6 +64,13 @@ export const product = defineType({
     }),
   ],
   preview: {
-    select: { title: "name", media: "image" },
+    select: { title: "name", media: "image", lang: "language" },
+    prepare({ title, media, lang }) {
+      return {
+        title,
+        media,
+        subtitle: lang ? lang.toUpperCase() : '',
+      }
+    },
   },
 });

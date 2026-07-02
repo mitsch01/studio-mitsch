@@ -40,12 +40,12 @@ export default async function BlogPage({
   const t = getStrings(locale as Locale)
 
   const posts = await client.fetch<Post[]>(
-    `*[_type == "post" && isPublished == true] | order(publishedAt desc) {
-      _id, title, slug, excerpt, publishedAt, coverImage
-    }`,
-    {},
-    { cache: 'no-store' }
-  )
+  `*[_type == "post" && isPublished == true && language == $locale] | order(publishedAt desc) {
+    _id, title, slug, excerpt, publishedAt, coverImage
+  }`,
+  { locale },
+  { cache: 'no-store' }
+)
 
   return (
     <div className="min-h-screen flex flex-col">

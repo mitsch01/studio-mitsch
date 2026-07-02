@@ -1,3 +1,4 @@
+import { documentInternationalization } from '@sanity/document-internationalization'
 import { defineConfig } from 'sanity'
 import { structureTool } from 'sanity/structure'
 import { visionTool } from '@sanity/vision'
@@ -19,9 +20,24 @@ export default defineConfig({
               .title('Site Content')
               .id('siteContent')
               .child(
-                S.document()
-                  .schemaType('siteContent')
-                  .documentId('siteContent')
+                S.list()
+                  .title('Site Content')
+                  .items([
+                    S.listItem()
+                      .title('DE')
+                      .child(
+                        S.document()
+                          .schemaType('siteContent')
+                          .documentId('siteContent-de')
+                      ),
+                    S.listItem()
+                      .title('EN')
+                      .child(
+                        S.document()
+                          .schemaType('siteContent')
+                          .documentId('siteContent-en')
+                      ),
+                  ])
               ),
             S.divider(),
             ...S.documentTypeListItems().filter(
@@ -30,6 +46,13 @@ export default defineConfig({
           ]),
     }),
     visionTool(),
+    documentInternationalization({
+      supportedLanguages: [
+        { id: 'de', title: 'Deutsch' },
+        { id: 'en', title: 'English' },
+      ],
+      schemaTypes: ['post', 'product'],
+    }),
   ],
   schema: { types: schemaTypes },
 })

@@ -30,7 +30,7 @@ export default async function Page({
 }) {
   const { locale } = await params
   const t = getStrings(locale as Locale)
-  const content = await getSiteContent()
+const content = await getSiteContent(locale as Locale)
 
   return (
     <>
