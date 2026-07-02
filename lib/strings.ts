@@ -8,7 +8,8 @@ export const strings: Record<Locale, {
   projects: Record<"heading" | "unavailable" | "loadMore" | "close" | "noDescription" | "languages" | "tags" | "none" | "created" | "updated" | "viewOnGitHub", string>;
   playground: Record<"tooltip", string>;
   hero: Record<"alt", string>;
-  meta: Record<"homeDescription", string>;
+meta: Record<"homeDescription" | "blogDescription", string>;
+  blog: Record<"heading" | "noPosts" | "readMore" | "backToArticles" | "dateLocale", string>;
 }> = {
   de: {
     nav: {
@@ -68,6 +69,14 @@ export const strings: Record<Locale, {
     },
     meta: {
       homeDescription: "Portfolio von Miriam Schwartz — Fullstack-Entwicklerin aus Hamburg. Webentwicklung mit React & Next.js, App-Entwicklung mit Flutter & Dart.",
+      blogDescription: "Gedanken über das Zusammenspiel von Webentwicklung und Design, wo Code auf Gestaltung trifft — von Miriam Schwartz.",
+    },
+    blog: {
+      heading: "Blog",
+      noPosts: "Noch keine Beiträge — schau bald wieder vorbei.",
+      readMore: "Weiterlesen →",
+      backToArticles: "← Alle Artikel",
+      dateLocale: "de-DE",
     },
   },
   en: {
@@ -128,6 +137,14 @@ export const strings: Record<Locale, {
     },
     meta: {
       homeDescription: "Portfolio of Miriam Schwartz — fullstack developer and app developer based in Hamburg. Web development with React & Next.js, app development with Flutter & Dart.",
+      blogDescription: "Thoughts on web development, design, and the space where code meets craft — by Miriam Schwartz.",
+    },
+    blog: {
+      heading: "Blog",
+      noPosts: "No posts yet — check back soon.",
+      readMore: "Read more →",
+      backToArticles: "← All Articles",
+      dateLocale: "en-GB",
     },
   },
 } as const;
