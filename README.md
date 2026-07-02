@@ -23,8 +23,15 @@ Personal portfolio site for Miriam Schwartz — Hamburg-based fullstack web and 
 ## Local Setup
 
 ### Prerequisites
-- Node.js ≥ 22.12
+- Node.js ≥ 22.12 (see note below)
 - npm ≥ 10
+
+> **Note on Node versions:** This project requires Node ≥ 22.12 (Sanity dependency). If you manage multiple projects with different Node versions, use [nvm](https://github.com/nvm-sh/nvm):
+> ```bash
+> nvm install 22
+> nvm use 22
+> ```
+> A `.nvmrc` file is included — run `nvm use` in the project folder to automatically switch to the correct version.
 
 ### Installation
 
@@ -32,6 +39,7 @@ Personal portfolio site for Miriam Schwartz — Hamburg-based fullstack web and 
 git clone https://github.com/mitsch01/studio-mitsch.git
 cd studio-mitsch
 git checkout refactor/v2
+nvm use        # switches to Node 22 (requires nvm)
 npm install
 ```
 

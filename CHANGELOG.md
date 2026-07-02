@@ -337,3 +337,98 @@ Phase 4 was merged into Phase 6 — R2 setup is documented there.
 
 ### Environment variables added
 - `JWT_SECRET` — random 32-char string for JWT signing
+
+---
+ 
+## Phase 8 — Cleanup, Polish & Production Launch
+**Date:** July 2026
+ 
+### Custom cursors
+- Raspberry dot default cursor (`cursor-default.png`, 20×20px, hotspot 17 17)
+- Black arrow on light sections (`cursor-active-black.png`, 32×32px)
+- Pink arrow on dark sections (`cursor-active-pink.png`, 32×32px)
+- `useDarkCursor` hook — adds `body.dark-cursor` class when component mounts; CSS switches cursor automatically
+- Applied to `RepoGallery.tsx`, `NavModal.tsx`, `PlaygroundClient.tsx`
+
+### Playground
+- Mobile placeholder added — friendly "desktop only" message shown below `md` breakpoint
+- `PlaygroundButton` renamed from `PlayButton`, uses Feather icon from `lucide-react`
+- OpenAI model updated to `gpt-4o-mini`, $1/month hard spend limit set
+
+### Newsletter improvements
+- Resubscribe reactivation logic — returning subscribers get `isActive: true` restored instead of 409 error
+- `react-email` templates: `WelcomeEmail`, `NewsletterEmail`, `OrderConfirmationEmail`
+- Admin send UI at `/admin/newsletter` — subject + HTML body + send to all active subscribers
+- Subscriber count + recent signups panel on admin dashboard
+
+### Shop improvements
+- Product images via `@sanity/image-url` — replaced hardcoded `/images/` paths
+- R2 downloads in `downloads/` folder — `Content-Disposition: attachment` forces file download
+- `ResponseContentDisposition` on pre-signed URLs — forces download for guest users
+- Free checkout bypass active — all current products are free, Stripe path available for future use
+- Order confirmation email with Sanity product thumbnails sent on checkout
+
+### Auth improvements
+- Account settings page — update name, email, password
+- Password reset flow — forgot password → email → reset link → auto-login after reset
+- `Tooltip` component on header icons (account, cart)
+- `useSearchParams` wrapped in `Suspense` in `reset-password/page.tsx` — required for production build
+- Forgot/reset pages excluded from auth middleware to prevent redirect loop
+
+### TypeScript migration
+- All remaining `.js` files converted to `.tsx` / `.ts`
+- All API routes fully typed
+- `parseInt` radix bug fixed in `check-images` route
+
+### Accessibility
+- Lighthouse accessibility score: 96/100
+- Color contrast improved across all text elements
+- Heading order fixed on all pages
+- `HindSiliguri-Bold.ttf` added — `font-bold` now renders correctly everywhere
+
+### SEO
+- Lighthouse SEO score: 100/100
+- `robots.txt` added to `/public`
+- `sitemap.xml` added to `/public`
+
+### Stripe live mode
+- Live keys configured for Production environment in Vercel
+- Test keys remain active for Preview and Development
+- Live webhook endpoint registered at `studio-mitsch.de/api/webhooks/stripe`
+
+### Layout fixes
+- Footer always at bottom — `min-h-screen flex flex-col` pattern applied to all short pages
+- Root layout `<main>` simplified to `flex-1` only — removes `flex-col` that caused project gallery width collapse
+- `w-full` added to all `max-w-*` elements inside flex columns
+
+### Blog improvements
+- Cover images on list page (horizontal layout: image left, text column right)
+- Cover images on detail page
+- `isPublished` boolean field added — manual publish/unpublish control without Sanity paid plan
+- GROQ query updated: `!(_id in path("drafts.**")) && isPublished == true`
+- "← All Articles" link at bottom of detail page
+- `font-cooperhewitt` / `HindSiliguri-Bold` fix for "Read more →" label
+
+### NavModal cleanup
+- Login/logout removed from modal — redundant with header icons
+- Account + cart icons added at bottom of modal on mobile only (`sm:hidden`)
+- Header icons hidden below `sm` breakpoint — moved to NavModal
+
+### Asset optimisation
+- All JPG/JPEG images converted to WebP (quality 90) — ~93% size reduction on preview images
+- All MP4 videos compressed to H.264 CRF23 — ~95% size reduction (836MB → 41MB total)
+- `blogging-app-video`: 278MB → 8.9MB; `omr-website-replica-video`: 434MB → 23MB
+
+### Email forwarding
+- `hello@studio-mitsch.de` → `studiomitsch@gmail.com` configured via do.de E-Mail-Weiterleitung
+#
+## Documentation
+- `README.md` written — setup, env vars, deployment, shop guide, download flow, branch strategy
+- `.nvmrc` added — `nvm use` switches to Node 22 automatically
+- Node version note added to README prerequisites
+
+### Production launch
+- `refactor/v2` merged to `main`
+- `studio-mitsch.de` live on Vercel production
+- Full smoke test passed
+ 
