@@ -2,12 +2,7 @@
 
 # large media files
 public/videos
-public/images
-*.png
-*.jpg
-*.jpeg
 *.mov
-*.psd
 *.mp4
 
 # dependencies

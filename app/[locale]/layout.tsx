@@ -23,7 +23,14 @@ export default async function LocaleLayout({
   return (
     <AuthProvider>
       <CartProvider>
-        <main className="flex-1">{children}</main>
+        <>
+          <head>
+            <link rel="alternate" hrefLang="de" href="https://studio-mitsch.de" />
+            <link rel="alternate" hrefLang="en" href="https://studio-mitsch.de/en" />
+            <link rel="alternate" hrefLang="x-default" href="https://studio-mitsch.de" />
+          </head>
+          <main className="flex-1">{children}</main>
+        </>
       </CartProvider>
     </AuthProvider>
   );

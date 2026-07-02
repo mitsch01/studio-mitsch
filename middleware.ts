@@ -1,6 +1,6 @@
+import { defaultLocale, getLocaleFromPath, hasLocalePrefix } from "@/lib/locale";
 import { jwtVerify } from "jose";
 import { NextRequest, NextResponse } from "next/server";
-import { defaultLocale, getLocaleFromPath, hasLocalePrefix } from "@/lib/locale";
 
 export async function middleware(req: NextRequest) {
   const { pathname } = req.nextUrl;
@@ -16,6 +16,9 @@ export async function middleware(req: NextRequest) {
   } else {
     response = NextResponse.next();
   }
+
+  response.headers.set('x-locale', locale)
+
 
   const pathWithoutLocale = localePrefixed ? pathname.slice(`/${locale}`.length) || "/" : pathname;
 

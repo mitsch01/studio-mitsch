@@ -1,8 +1,66 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://studio-mitsch.de/</loc><priority>1.0</priority></url>
-  <url><loc>https://studio-mitsch.de/blog</loc><priority>0.8</priority></url>
-  <url><loc>https://studio-mitsch.de/shop</loc><priority>0.8</priority></url>
-  <url><loc>https://studio-mitsch.de/contact</loc><priority>0.7</priority></url>
-  <url><loc>https://studio-mitsch.de/playground</loc><priority>0.5</priority></url>
+<urlset
+  xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml"
+>
+  <url>
+    <loc>https://studio-mitsch.de/</loc>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="de" href="https://studio-mitsch.de/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://studio-mitsch.de/en"/>
+  </url>
+  <url>
+    <loc>https://studio-mitsch.de/blog</loc>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="de" href="https://studio-mitsch.de/blog"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://studio-mitsch.de/en/blog"/>
+  </url>
+  <url>
+    <loc>https://studio-mitsch.de/shop</loc>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="de" href="https://studio-mitsch.de/shop"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://studio-mitsch.de/en/shop"/>
+  </url>
+  <url>
+    <loc>https://studio-mitsch.de/contact</loc>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="de" href="https://studio-mitsch.de/contact"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://studio-mitsch.de/en/contact"/>
+  </url>
+  <url>
+    <loc>https://studio-mitsch.de/playground</loc>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="de" href="https://studio-mitsch.de/playground"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://studio-mitsch.de/en/playground"/>
+  </url>
+  <url>
+    <loc>https://studio-mitsch.de/en</loc>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="de" href="https://studio-mitsch.de/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://studio-mitsch.de/en"/>
+  </url>
+  <url>
+    <loc>https://studio-mitsch.de/en/blog</loc>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="de" href="https://studio-mitsch.de/blog"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://studio-mitsch.de/en/blog"/>
+  </url>
+  <url>
+    <loc>https://studio-mitsch.de/en/shop</loc>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="de" href="https://studio-mitsch.de/shop"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://studio-mitsch.de/en/shop"/>
+  </url>
+  <url>
+    <loc>https://studio-mitsch.de/en/contact</loc>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="de" href="https://studio-mitsch.de/contact"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://studio-mitsch.de/en/contact"/>
+  </url>
+  <url>
+    <loc>https://studio-mitsch.de/en/playground</loc>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="de" href="https://studio-mitsch.de/playground"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://studio-mitsch.de/en/playground"/>
+  </url>
 </urlset>
