@@ -12,6 +12,10 @@ export const strings: Record<Locale, {
   blog: Record<"heading" | "noPosts" | "readMore" | "backToArticles" | "dateLocale", string>;
   contact: Record<"heading" | "imageAlt" | "descriptionMeta", string>;
   form: Record<"name" | "email" | "message" | "sending" | "send" | "success" | "error", string>;
+  shop: Record<"heading" | "subheading" | "noProducts" | "free" | "descriptionMeta" | "comingSoon", string>;
+  cart: Record<"heading" | "empty" | "backToShop" | "remove" | "total" | "continueShopping" | "redirecting" | "checkout" | "descriptionMeta", string>;
+  success: Record<"heading" | "confirmedLoggedIn" | "confirmedGuest" | "noDownloads" | "download" | "comingSoon" | "accessHeading" | "accessBody" | "createAccount" | "login" | "backToShop" | "descriptionMeta", string>;
+  product: Record<"free" | "inCart" | "added" | "addToCart", string>;
 }> = {
   de: {
     nav: {
@@ -94,6 +98,45 @@ export const strings: Record<Locale, {
       success: "Danke — ich melde mich bald bei dir.",
       error: "Etwas ist schiefgelaufen. Bitte versuch es erneut.",
     },
+    shop: {
+      heading: "Shop",
+      subheading: "Kostenlose Downloads — bald kommt noch mehr!",
+      noProducts: "Noch keine Produkte — schau bald wieder vorbei.",
+      free: "Kostenlos",
+      comingSoon: "Coming Soon",
+      descriptionMeta: "Kunst & Tools von Miriam Schwartz — Studio Mitsch.",
+    },
+    cart: {
+      heading: "Warenkorb",
+      empty: "Dein Warenkorb ist leer.",
+      backToShop: "← Zurück zum Shop",
+      remove: "Entfernen",
+      total: "Gesamt",
+      continueShopping: "← Weiter einkaufen",
+      redirecting: "Weiterleitung...",
+      checkout: "Zur Kasse",
+      descriptionMeta: "Dein Warenkorb — Studio Mitsch.",
+    },
+    success: {
+      heading: "Danke!",
+      confirmedLoggedIn: "Deine Bestellung ist bestätigt. Lade deine Dateien unten herunter — sie sind auch jederzeit in deinem Konto verfügbar.",
+      confirmedGuest: "Deine Bestellung ist bestätigt. Lade deine Dateien unten herunter — die Links sind 7 Tage gültig.",
+      noDownloads: "Keine Downloads gefunden.",
+      download: "Herunterladen",
+      comingSoon: "Coming Soon",
+      accessHeading: "Jederzeit auf deine Downloads zugreifen",
+      accessBody: "Deine Download-Links laufen nach 7 Tagen ab. Erstelle ein kostenloses Konto, um jederzeit auf deine Käufe zuzugreifen.",
+      createAccount: "Konto erstellen",
+      login: "Anmelden",
+      backToShop: "← Zurück zum Shop",
+      descriptionMeta: "Deine Bestellung ist bestätigt — dein Download ist bereit.",
+    },
+    product: {
+      free: "Kostenlos",
+      inCart: "Im Warenkorb",
+      added: "Hinzugefügt!",
+      addToCart: "In den Warenkorb",
+    },
   },
   en: {
     nav: {
@@ -175,6 +218,45 @@ export const strings: Record<Locale, {
       send: "Send Message",
       success: "Thank you — I'll get back to you soon.",
       error: "Something went wrong. Please try again.",
+    },
+    shop: {
+      heading: "Shop",
+      subheading: "Free downloads — more to come.",
+      noProducts: "No products yet — check back soon.",
+      free: "Free",
+      comingSoon: "Coming soon",
+      descriptionMeta: "Download art & tools by Miriam Schwartz — Studio Mitsch.",
+    },
+    cart: {
+      heading: "Cart",
+      empty: "Your cart is empty.",
+      backToShop: "← Back to shop",
+      remove: "Remove",
+      total: "Total",
+      continueShopping: "← Continue shopping",
+      redirecting: "Redirecting...",
+      checkout: "Checkout",
+      descriptionMeta: "Your cart — Studio Mitsch.",
+    },
+    success: {
+      heading: "Thank you!",
+      confirmedLoggedIn: "Your order is confirmed. Download your files below. They'll also be available in your account dashboard.",
+      confirmedGuest: "Your order is confirmed. Download your files below — links are valid for 7 days.",
+      noDownloads: "No downloads found.",
+      download: "Download",
+      comingSoon: "Coming soon",
+      accessHeading: "Access your downloads anytime",
+      accessBody: "Your download links expire after 7 days. Create a free account to access your purchases anytime.",
+      createAccount: "Create account",
+      login: "Log in",
+      backToShop: "← Back to shop",
+      descriptionMeta: "Your order is confirmed — your download is ready.",
+    },
+    product: {
+      free: "Free",
+      inCart: "In cart",
+      added: "Added!",
+      addToCart: "Add to cart",
     },
   },
 } as const;
