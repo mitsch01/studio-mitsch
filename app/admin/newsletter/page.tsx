@@ -12,18 +12,21 @@ export default function AdminNewsletterPage() {
   const [status, setStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle')
   const [resultMessage, setResultMessage] = useState('')
   const [subscriberCount, setSubscriberCount] = useState<number | null>(null)
+const [recentSubscribers, setRecentSubscribers] = useState<{ email: string, subscribedAt: string }[]>([])
 
 
 const handleUnlock = async (e: React.FormEvent) => {
   e.preventDefault()
   setUnlocked(true)
-  // Fetch subscriber count
   try {
     const res = await fetch('/api/newsletter/subscribers/count', {
       headers: { 'Authorization': `Bearer ${secret}` }
     })
     const data = await res.json()
-    if (res.ok) setSubscriberCount(data.count)
+    if (res.ok) {
+      setSubscriberCount(data.count)
+      setRecentSubscribers(data.recent)
+    }
   } catch {}
 }
 
@@ -60,9 +63,9 @@ const handleUnlock = async (e: React.FormEvent) => {
 
   if (!unlocked) {
     return (
-      <div>
+    <div className='min-h-screen flex flex-col'>
         <Header />
-        <main className="max-w-md mx-auto px-8 pt-48 pb-section">
+         <main className="flex-1 flex flex-col justify-center px-8 pt-48 pb-section max-w-md mx-auto w-full">
           <h1 className="text-3xl font-bold uppercase tracking-tight mb-8">
             Admin Access
           </h1>
@@ -89,22 +92,46 @@ const handleUnlock = async (e: React.FormEvent) => {
   }
 
   return (
-    <div>
+    <div className='min-h-screen flex flex-col'>
       <Header />
-      <main className="max-w-2xl mx-auto px-8 pt-48 pb-section">
+         <main className="flex-1 flex flex-col justify-center px-8 pt-48 pb-section max-w-3xl mx-auto w-full">
         <h1 className="text-3xl font-bold uppercase tracking-tight mb-8">
           Send Newsletter
         </h1>
 
         {/* Subscriber count stat */}
-<div className="border border-gray-200 p-6 mb-8 flex items-center gap-6">
-  <div>
+<div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+  {/* Count */}
+  <div className="border border-gray-200 p-6">
     <p className="font-mono text-[10px] uppercase text-gray-400 tracking-wider mb-1">
       Active Subscribers
     </p>
     <p className="text-4xl font-bold text-black">
       {subscriberCount ?? '—'}
     </p>
+  </div>
+
+  {/* Recent */}
+  <div className="border border-gray-200 p-6 col-span-2">
+    <p className="font-mono text-[10px] uppercase text-gray-400 tracking-wider mb-3">
+      Recent Signups
+    </p>
+    {recentSubscribers.length === 0 ? (
+      <p className="text-sm text-gray-400">No subscribers yet.</p>
+    ) : (
+      <ul className="flex flex-col gap-2">
+        {recentSubscribers.map((sub) => (
+          <li key={sub.email} className="flex justify-between items-center text-sm">
+            <span className="text-black font-mono truncate max-w-[360px]">{sub.email}</span>
+            <span className="text-gray-400 text-xs">
+              {new Date(sub.subscribedAt).toLocaleDateString('en-GB', {
+                day: 'numeric', month: 'short', year: 'numeric'
+              })}
+            </span>
+          </li>
+        ))}
+      </ul>
+    )}
   </div>
 </div>
 

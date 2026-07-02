@@ -9,7 +9,15 @@ export async function GET(request: NextRequest) {
 
   const client = await clientPromise
   const db = client.db('studio-mitsch-prod')
-  const count = await db.collection('subscribers').countDocuments({ isActive: true })
+  
+  const [count, recent] = await Promise.all([
+  db.collection('subscribers').countDocuments({ isActive: { $ne: false } }),
+  db.collection('subscribers')
+    .find({ isActive: { $ne: false } })
+    .sort({ subscribedAt: -1 })
+    .limit(5)
+    .toArray()
+])
 
-  return NextResponse.json({ count })
+  return NextResponse.json({ count, recent })
 }
