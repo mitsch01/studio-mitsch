@@ -81,7 +81,7 @@ const { items } = useCart()
             className={
               isActive(href)
                 ? "text-raspberry no-underline"
-                : "text-white/70 hover:text-white transition-colors duration-200 no-underline"
+                : "text-white transition-colors duration-200"
             }
           >
             {label}

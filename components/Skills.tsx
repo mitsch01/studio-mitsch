@@ -102,15 +102,10 @@ export default function Skills() {
     <section id="skills" className="py-section bg-gray-50 border-t border-gray-100">
       <div className="max-w-screen-lg mx-auto px-8">
         {/* Section heading */}
-        <div className="mb-16">
-          <span className="font-mono text-xs text-gray-600 uppercase tracking-widest block mb-2">
-            Technical Core
-          </span>
+        <div className="mb-8">
           <h1 className="md:text-7xl text-6xl uppercase tracking-tight text-black">
             Skills
           </h1>
-          {/* Pink underline accent */}
-          <div className="mt-2 h-1 w-16 bg-raspberry" />
         </div>
 
         {/* 2×2 Bento skill grid */}

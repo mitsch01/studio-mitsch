@@ -16,7 +16,7 @@ export default function Page() {
       <Header
         logoColor="white"
         burgerColor="black"
-        // mobileBurgerColor="white"
+        mobileBurgerColor="white"
         scrollThreshold={0.1}
       />
 
@@ -34,7 +34,7 @@ export default function Page() {
         </div>
 
         {/* Right: Form side */}
-        <div className="flex flex-col justify-center px-8 md:px-16 lg:px-24 py-section">
+        <div className="flex flex-col justify-center px-8 md:px-16 lg:px-24 py-48">
           <h1 className="md:text-7xl text-6xl font-bold uppercase text-black mb-6 tracking-tight">
             Contact
           </h1>
