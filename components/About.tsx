@@ -3,32 +3,15 @@
 import { MapPin, Sparkles } from "lucide-react";
 import { motion } from "motion/react";
 import Link from "next/link";
+import type { SiteContent } from "@/lib/siteContent";
 
-const skillBadges = [
-  "Fullstack Development",
-  "Frontend Development",
-  "App Development",
-  "HTML & CSS",
-  "JavaScript",
-  "TypeScript",
-  "React",
-  "Next.js",
-  "Flutter",
-  "Dart",
-  "UI / UX",
-  "Tailwind CSS",
-  "Procreate",
-  "Photoshop",
-];
-
-export default function About() {
+export default function About({ data }: { data: SiteContent["about"] }) {
   return (
     <section id="about" className="py-section md:py-36 bg-white overflow-hidden">
       <div className="max-w-screen-lg mx-auto px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-start">
           {/* ── Column 1: Heading, Badges, Philosophy card ── */}
           <div className="flex flex-col gap-8">
-            {/* Heading */}
             <div>
               <motion.h1
                 initial={{ opacity: 0, y: 20 }}
@@ -40,17 +23,14 @@ export default function About() {
               </motion.h1>
             </div>
 
-            {/* Skill badges — staggered fade in */}
             <motion.div
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true, margin: "-100px" }}
-              variants={{
-                visible: { transition: { staggerChildren: 0.04 } },
-              }}
+              variants={{ visible: { transition: { staggerChildren: 0.04 } } }}
               className="flex flex-wrap gap-2.5"
             >
-              {skillBadges.map((badge) => (
+              {data.skillBadges.map((badge) => (
                 <motion.span
                   key={badge}
                   variants={{
@@ -65,7 +45,6 @@ export default function About() {
               ))}
             </motion.div>
 
-            {/* Coding Philosophy card */}
             <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
               whileInView={{ opacity: 1, scale: 1 }}
@@ -96,32 +75,15 @@ export default function About() {
             transition={{ duration: 0.7 }}
             className="flex flex-col gap-8"
           >
-            {/* Bio */}
             <div className="flex flex-col gap-5 text-gray-700 text-base md:text-lg leading-relaxed">
               <h2 className="text-2xl font-extrabold text-black tracking-tight">
-                Hi, I&apos;m Miriam
+                {data.bioHeading}
               </h2>
-              <p className="text-gray-600 leading-relaxed">
-                I&apos;m a frontend web and app developer from Hamburg with a
-                thing for design, details, and the space where code meets craft.
-                I build responsive websites and apps that feel as good as they
-                look — technically solid, visually considered, and shaped around
-                the people and projects behind them.
-              </p>
-              <p className="text-gray-600 leading-relaxed">
-                My background in art and design isn&apos;t just a hobby
-                footnote. It influences how I think about layouts, colour, and
-                the small decisions that make a digital product feel intentional
-                rather than assembled.
-              </p>
-              <p className="text-gray-600 leading-relaxed">
-                When I&apos;m not coding, you&apos;ll find me in my art studio,
-                out on my bike or in my garden enjoying the fresh air and
-                colours of nature.
-              </p>
+              <p className="text-gray-600 leading-relaxed">{data.bioParagraph1}</p>
+              <p className="text-gray-600 leading-relaxed">{data.bioParagraph2}</p>
+              <p className="text-gray-600 leading-relaxed">{data.bioParagraph3}</p>
             </div>
 
-            {/* Quick Facts */}
             <div className="grid grid-cols-2 gap-6 pt-6 border-t border-gray-200">
               <div className="flex items-center gap-3">
                 <div className="bg-gray-100 p-2 text-gray-600">
@@ -131,9 +93,7 @@ export default function About() {
                   <p className="font-mono text-[10px] uppercase text-gray-400 tracking-wider">
                     Based in
                   </p>
-                  <p className="text-xs font-bold text-black">
-                    Hamburg, Germany
-                  </p>
+                  <p className="text-xs font-bold text-black">Hamburg, Germany</p>
                 </div>
               </div>
 
@@ -145,14 +105,11 @@ export default function About() {
                   <p className="font-mono text-[10px] uppercase text-gray-400 tracking-wider">
                     Status
                   </p>
-                  <p className="text-xs font-bold text-black">
-                    Available for Freelance
-                  </p>
+                  <p className="text-xs font-bold text-black">{data.availabilityStatus}</p>
                 </div>
               </div>
             </div>
 
-            {/* CTAs */}
             <div className="flex gap-4 flex-wrap">
               <Link
                 href="/contact"

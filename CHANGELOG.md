@@ -306,3 +306,36 @@ Format: [Phase] — [Date] — [Description]
 ### 9.4 — REFLEXION.md ✅
 - Abschluss-Reflexion written in German (~500 words)
 - Covers: project scope, what was built, role of AI, honest assessment of AI vs agency
+
+---
+ 
+## Phase 10 — CMS Content Management
+**Date:** July 2026
+ 
+### Sanity schema
+- Created `sanity/schemaTypes/siteContent.ts` — singleton document with three nested objects: `about`, `contact`, `skills`
+- `about`: `bioHeading`, `bioParagraph1-3`, `availabilityStatus`, `skillBadges` (array of strings)
+- `contact`: `contactIntro`
+- `skills`: `skillGroups` (array of `{ category, skills: [{ name, level }] }`), `stackHeading`, `stackBody`, `stackTags`, `artMeetsCodeBody`
+- Registered in `sanity/schemaTypes/index.ts`
+
+### Singleton pattern
+- `sanity.config.ts` — custom `structureTool` structure pins Site Content as a single fixed-ID document (`documentId('siteContent')`) at the top of the Studio nav
+- Filtered out of the generic document type list to prevent accidental duplicate creation
+
+### Data fetching
+- Created `lib/siteContent.ts` — `getSiteContent()` fetches by fixed `_id == "siteContent"`, merges result with a hardcoded `defaultSiteContent` fallback
+- Fallback ensures the site renders correctly even before the Studio document exists, or if only some fields are filled in
+
+### Component changes
+- `components/About.tsx` — hardcoded bio, availability status, and skill badges replaced with `data` prop (`SiteContent["about"]`); stays `"use client"` for `motion/react` animations
+- `components/Skills.tsx` — hardcoded skill groups, stack heading/body/tags, and art-meets-code copy replaced with `data` prop (`SiteContent["skills"]`); stays `"use client"` for animations
+- `app/page.tsx` — converted to `async`, calls `getSiteContent()` once, passes `content.about` and `content.skills` down as props
+- `app/contact/page.tsx` — converted to `async`, fetches `content.contact.contactIntro` to replace hardcoded intro paragraph
+
+### Content
+- `siteContent` document created and populated in Sanity Studio with all current copy
+
+### Decision log
+- Considered adding the `!(_id in path("drafts.**"))` filter to the blog GROQ query for consistency with Sanity's native draft/publish model — ruled out, since `isPublished` is the actual publish gate on the free plan and the native drafts path isn't in use
+ 
