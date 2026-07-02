@@ -338,4 +338,60 @@ Format: [Phase] — [Date] — [Description]
 
 ### Decision log
 - Considered adding the `!(_id in path("drafts.**"))` filter to the blog GROQ query for consistency with Sanity's native draft/publish model — ruled out, since `isPublished` is the actual publish gate on the free plan and the native drafts path isn't in use
+
+---
  
+## Phase 11 — Internationalisation (i18n)
+**Date:** July 2026
+ 
+### 11.1 — Locale routing skeleton
+- Created `app/[locale]/` folder structure — all public pages moved in via `git mv`
+- Deleted stale duplicate `app/api/newsletter/unsubscribed/page.tsx` (dead route left from earlier refactor)
+- `app/[locale]/layout.tsx` — houses `AuthProvider`, `CartProvider`, `generateStaticParams(['de','en'])`, locale validation via `notFound()`
+- `app/layout.tsx` slimmed to `<html>`/`<body>` + global metadata only
+- `middleware.ts` rewritten — default locale `de` invisible in URL via rewrite, `/en/` resolves directly, auth protection locale-aware (redirects to `/account/login` or `/en/account/login` correctly)
+- `lib/locale.ts` created — single source of truth for `locales`, `Locale` type, `defaultLocale`, `localizedHref()`, `switchLocalePath()`, `getLocaleFromPath()`, `hasLocalePrefix()`
+- `lib/strings.ts` scaffolded — typed dictionary for all UI strings in DE/EN
+- All paths tested: `/`, `/en`, `/account/dashboard` (logged out) redirects correctly per locale, `/studio` and `/admin/newsletter` unaffected
+
+### 11.2 — Header, NavModal, Footer, NewsletterForm
+- `Header.tsx` — derives locale from `usePathname()`, no prop drilling needed; all icon links locale-aware via `localizedHref()`
+- Language toggle moved to Footer as a pill switch (`LanguageToggle.tsx`) — sliding raspberry highlight, self-contained via `usePathname()`
+- `NavModal.tsx` — accepts `locale` prop from Header; nav labels from `strings[locale].nav`; active state detection strips locale prefix before comparing; all hrefs via `localizedHref()`
+- `Footer.tsx` — derives locale from `usePathname()`; nav links, tagline, newsletter heading/body all locale-aware
+- `NewsletterForm.tsx` — accepts `locale` prop; placeholder, button, success/error messages all translated
+
+### 11.3 — Strings dictionary
+- Built incrementally across 11.4 page sweep
+- Final keys: `nav`, `common`, `footer`, `newsletter`, `meta`, `projects`, `playground`, `hero`, `blog`, `contact`, `form`, `shop`, `cart`, `success`, `product`, `account`
+
+### 11.4 — Page-by-page sweep
+- **Homepage** — "Projekte" heading, locale-aware metadata, `Hero` alt text, `RepoGallery` all strings (languages, tags, dates, load more, close, view on GitHub), `PlaygroundButton` tooltip; dates use `toLocaleDateString` with `de-DE`/`en-GB` + `2-digit` day/month
+- **Blog** — list and detail pages locale-aware; date formatting via `t.blog.dateLocale`; "Weiterlesen →" / "← Alle Artikel" translated; GROQ query filters by `language == $locale`
+- **Contact** — heading, image alt, metadata, `EmailForm` labels/button/success/error all translated
+- **Shop** — shop list, cart, success pages fully translated; `ProductCard` locale-aware; all internal links via `localizedHref()`; free checkout redirects to locale-correct success page
+- **Account** — all six pages (login, register, dashboard, settings, forgot-password, reset-password) fully translated; redirects after login/logout/reset locale-aware; `LogoutButton` accepts `locale` prop
+- **Playground** — mobile placeholder, back-to-home link, haiku definition, generator heading all translated; input placeholders intentionally stay English (OpenAI prompt requires EN words)
+
+### 11.5 — Sanity i18n plugin
+- Installed `@sanity/document-internationalization`
+- `post.ts` and `product.ts` — `language` field added (hidden, managed by plugin); preview subtitle shows language code
+- `sanity.config.ts` — plugin configured for DE/EN on `post` and `product` schema types
+- `siteContent` handled manually with fixed document IDs (`siteContent-de`, `siteContent-en`) — singleton pattern, no plugin needed
+- Sanity Studio — Site Content nav item expanded to DE/EN sub-items
+- `lib/siteContent.ts` — `getSiteContent(locale)` fetches by `_id == "siteContent-${locale}"`, falls back to English defaults
+- `app/[locale]/page.tsx` and `app/[locale]/contact/page.tsx` — pass `locale` to `getSiteContent()`
+
+### 11.6 — SEO
+- `middleware.ts` — sets `x-locale` response header for use by root layout
+- `app/layout.tsx` — reads `x-locale` header via `next/headers`, sets `<html lang>` dynamically (DE default, EN for `/en/*`)
+- `app/[locale]/layout.tsx` — `hreflang` tags added: DE, EN, and `x-default` pointing to `studio-mitsch.de`
+- `public/sitemap.xml` — updated with both locale variants for all public routes, including `xhtml:link` alternate tags per URL
+
+### Decisions
+- German is the default locale — invisible in the URL (`studio-mitsch.de/`), English at `studio-mitsch.de/en/`
+- `/studio` and `/admin/newsletter` excluded from locale system — internal tools, never localised
+- `siteContent` singleton uses fixed document IDs rather than the i18n plugin — cleaner for a single manually-managed document
+- API error messages remain in English — client-side translation via error codes deferred to Phase 12
+- Duplicate files created by macOS `git mv` cleaned up — `find . -name "* 2.*" -print0 | xargs -0 rm -rf`
+- `public/images/` was excluded from git — added to tracking (11MB, safe for portfolio repo); `public/videos/` stays excluded
