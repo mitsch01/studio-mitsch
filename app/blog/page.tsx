@@ -17,11 +17,11 @@ export const metadata = {
 }
 
 export default async function BlogPage() {
-  const posts = await client.fetch<Post[]>(
-    `*[_type == "post"] | order(publishedAt desc) {
-      _id, title, slug, excerpt, publishedAt
-    }`
-  )
+const posts = await client.fetch<Post[]>(
+  `*[_type == "post" && !(_id in path("drafts.**"))] | order(publishedAt desc) {
+    _id, title, slug, excerpt, publishedAt
+  }`
+)
 
   return (
     <div className="min-h-screen flex flex-col">
