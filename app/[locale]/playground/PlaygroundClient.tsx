@@ -3,6 +3,8 @@
 import Header from "@/components/Header";
 import PlaygroundLayout from "@/components/PlaygroundLayout";
 import { useDarkCursor } from "@/hooks/useDarkCursor";
+import { localizedHref, type Locale } from "@/lib/locale";
+import { getStrings } from "@/lib/strings";
 import { RotateCcw } from "lucide-react";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
@@ -11,7 +13,9 @@ type Haiku = { haiku: string };
 
 type Position = { top: number; left: number };
 
-export default function Playground() {
+export default function Playground({ locale }: { locale: Locale }) {
+  const t = getStrings(locale);
+
   useDarkCursor();
 
   const [haikus, setHaikus] = useState<Haiku[]>([]);
@@ -124,7 +128,7 @@ export default function Playground() {
         body: JSON.stringify({ haiku: generatedHaiku }),
       });
     } else {
-      setNewHaiku("Error generating haiku");
+      setNewHaiku(t.playground.errorGenerating);
       setCurrentMachine("initial");
     }
 
@@ -217,19 +221,18 @@ export default function Playground() {
 
       {/* Mobile placeholder */}
       <div className="flex md:hidden flex-col items-center justify-center h-screen bg-black px-8 text-center gap-6">
-        <p className="font-homemade text-white text-4xl">mitsch</p>
+        <p className="font-homemade text-raspberry text-4xl">_mitsch</p>
         <h1 className="font-cooperhewitt text-white text-2xl uppercase tracking-widest">
-          Playground
+          {t.playground.mobileHeading}
         </h1>
         <p className="text-gray-400 text-sm leading-relaxed max-w-xs">
-          This experience is designed for desktop. Visit on a larger screen to
-          explore the Haiku Generator.
+          {t.playground.mobileBody}
         </p>
         <a
-          href="/"
+          href={localizedHref("/", locale)}
           className="text-xs uppercase tracking-widest font-bold text-white border border-white px-6 py-3 hover:bg-white hover:text-black transition-colors"
         >
-          Back to Home
+          {t.playground.backToHome}
         </a>
       </div>
 
@@ -262,7 +265,7 @@ export default function Playground() {
                   }}
                 >
                   <h2 className="font-cooperhewitt text-white text-5xl mt-48 -mb-20 text-center">
-                    Haiku Generator
+                    {t.playground.generatorHeading}
                   </h2>
                   {currentMachine === "initial" && (
                     <Image
@@ -337,15 +340,9 @@ export default function Playground() {
                     </button>
                   </div>
                   <div className="absolute text-white max-w-96 ml-48 mt-12">
-                    <h1 className="text-xl font-bold italic">haiku</h1>
-                    <p className="italic text-gray-600">/ˈhaɪkuː/ noun</p>
-                    <p className="mt-2 text-justify">
-                      Rooted in Japanese tradition, Haikus capture the beauty of
-                      fleeting moments in just three lines. They invite you to
-                      pause, reflect and appreciate the world around you. Enter
-                      three words and let the Haiku Generator work its magic for
-                      you!
-                    </p>
+                    <h1 className="text-xl font-bold italic">{t.playground.haikuDefinitionTitle}</h1>
+                    <p className="italic text-gray-400">{t.playground.haikuDefinitionPronunciation}</p>
+                    <p className="mt-2 text-justify">{t.playground.haikuDefinitionBody}</p>
                   </div>
                 </div>
               </div>

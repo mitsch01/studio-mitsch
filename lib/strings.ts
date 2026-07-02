@@ -6,7 +6,6 @@ export const strings: Record<Locale, {
   footer: Record<"tagline" | "navigate" | "newsletterHeading" | "newsletterBody" | "copyright" | "builtWith", string>;
   newsletter: Record<"placeholder" | "subscribing" | "success" | "duplicate" | "error", string>;
   projects: Record<"heading" | "unavailable" | "loadMore" | "close" | "noDescription" | "languages" | "tags" | "none" | "created" | "updated" | "viewOnGitHub", string>;
-  playground: Record<"tooltip", string>;
   hero: Record<"alt", string>;
   meta: Record<"homeDescription" | "blogDescription", string>;
   blog: Record<"heading" | "noPosts" | "readMore" | "backToArticles" | "dateLocale", string>;
@@ -28,6 +27,7 @@ export const strings: Record<Locale, {
     "resetHeadingInvalid" | "requestNewLink" | "resetting" | "setNewPassword" |
     "passwordUpdated" | "tryAgain" | "somethingWrong",
     string>;
+  playground: Record<"tooltip" | "mobileHeading" | "mobileBody" | "backToHome" | "haikuDefinitionTitle" | "haikuDefinitionPronunciation" | "haikuDefinitionBody" | "generatorHeading" | "errorGenerating", string>;
 }> = {
   de: {
     nav: {
@@ -81,6 +81,14 @@ export const strings: Record<Locale, {
     },
     playground: {
       tooltip: "Schreib ein Gedicht",
+      mobileHeading: "Playground",
+      mobileBody: "Dieses Feature ist für den Desktop programmiert. Besuche die Seite auf einem größeren Bildschirm, um den Haiku-Generator auszuprobieren.",
+      backToHome: "Zurück zur Startseite",
+      haikuDefinitionTitle: "haiku",
+      haikuDefinitionPronunciation: "/ˈhaɪkuː/ Substantiv",
+      haikuDefinitionBody: "Haikus haben ihren Ursprung in Japan. In nur drei Zeilen fangen sie die Schönheit flüchtiger Momente ein. Sie laden ein zum Innehalten. Gib drei englische Wörter ein und lass den Haiku-Generator seine magische Feder schwingen!",
+      generatorHeading: "Haiku Generator",
+      errorGenerating: "Fehler beim Erstellen des Haikus.",
     },
     hero: {
       alt: "Studio Mitsch — Webentwicklerin & App-Entwicklerin aus Hamburg",
@@ -251,6 +259,14 @@ export const strings: Record<Locale, {
     },
     playground: {
       tooltip: "Write a poem",
+      mobileHeading: "Playground",
+      mobileBody: "This experience is designed for desktop. Visit on a larger screen to explore the Haiku Generator.",
+      backToHome: "Back to Home",
+      haikuDefinitionTitle: "haiku",
+      haikuDefinitionPronunciation: "/ˈhaɪkuː/ noun",
+      haikuDefinitionBody: "Rooted in Japanese tradition, haikus capture the beauty of fleeting moments in just three lines — an invitation to pause and notice the world around you. Enter three words in English and let the Haiku Generator put pen to paper!",
+      generatorHeading: "Haiku Generator",
+      errorGenerating: "Error generating haiku",
     },
     hero: {
       alt: "Studio Mitsch — Hamburg based web and app developer",
