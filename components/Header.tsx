@@ -69,7 +69,7 @@ ${scrolled ? `md:px-16 px-8 py-10 ${scrollBackground ? "bg-white/95 backdrop-blu
       {/* Right side: account + cart + burger */}
       <div className="flex items-center gap-12">
 
-        <div className="flex items-center gap-4">
+        <div className="hidden sm:flex items-center gap-4">
           {/* Account icon */}
           <Tooltip label={user ? "My Account" : "Login"}>
             <Link

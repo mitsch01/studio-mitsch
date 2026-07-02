@@ -1,5 +1,7 @@
 "use client";
 
+import { useAuth } from "@/context/AuthContext";
+import { useCart } from "@/context/CartContext";
 import { useDarkCursor } from '@/hooks/useDarkCursor';
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -15,6 +17,8 @@ export default function NavModal({ toggleModal }: NavModalProps) {
 
   const pathname = usePathname();
   const [mounted, setMounted] = useState(false);
+  const { user } = useAuth()
+const { items } = useCart()
 
   useEffect(() => {
     setMounted(true);
@@ -83,6 +87,39 @@ export default function NavModal({ toggleModal }: NavModalProps) {
             {label}
           </Link>
         ))}
+        {/* Mobile only — account + cart icons */}
+<div className="sm:hidden absolute bottom-10 left-0 right-0 flex justify-center gap-12">
+  <Link
+    href={user ? "/account/dashboard" : "/account/login"}
+    onClick={toggleModal}
+    aria-label={user ? "My Account" : "Login"}
+    className="relative text-white hover:text-raspberry transition-colors p-4"
+  >
+    <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+      <path strokeLinecap="round" strokeLinejoin="round" d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2" />
+      <circle cx="12" cy="7" r="4" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+    {user && (
+      <span className="absolute top-3 right-3 bg-raspberry rounded-full w-2.5 h-2.5" />
+    )}
+  </Link>
+
+  <Link
+    href="/shop/cart"
+    onClick={toggleModal}
+    aria-label="Cart"
+    className="relative text-white hover:text-raspberry transition-colors p-4"
+  >
+    <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+      <path strokeLinecap="round" strokeLinejoin="round" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+    </svg>
+    {items.length > 0 && (
+      <span className="absolute top-3 right-3 bg-raspberry text-white text-[10px] font-bold rounded-full w-4 h-4 flex items-center justify-center">
+        {items.length}
+      </span>
+    )}
+  </Link>
+</div>
       </nav>
     </div>
   );
