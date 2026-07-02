@@ -2,14 +2,18 @@
 @tailwind components;
 @tailwind utilities;
 
-html {
-  scroll-behavior: smooth;
-}
 
 @font-face {
   font-family: "Hind Siliguri";
   src: url("/fonts/HindSiliguri-Light.ttf") format("truetype");
   font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Hind Siliguri";
+  src: url("/fonts/HindSiliguri-Bold.ttf") format("truetype");
+  font-weight: 700;
   font-style: normal;
 }
 
@@ -22,7 +26,7 @@ html {
 
 @font-face {
   font-family: 'Cooper Hewitt';
-  src: url('/fonts/CooperHewitt-Bold.otf') format('truetype');
+  src: url('/fonts/CooperHewitt-Bold.otf') format('opentype');
   font-weight: 700;
   font-style: normal;
 }
@@ -34,23 +38,35 @@ html {
   font-style: normal;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer base {
+  html {
+    scroll-behavior: smooth;
   }
+
+  body {
+    cursor: url('/images/cursor-default.png') 17 17, auto;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+  }
+
+  html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+  }
+
+  a, button, input, textarea, .clickable {
+  cursor: url('/images/cursor-active-black.png') 16 2, pointer !important;
 }
 
-body, p, span {
-  cursor: url('/images/cursor-default-64.png') 16 16, auto !important;
+body.dark-cursor a,
+body.dark-cursor button,
+body.dark-cursor input,
+body.dark-cursor textarea,
+body.dark-cursor .clickable {
+  cursor: url('/images/cursor-active-pink.png') 16 2, pointer !important;
 }
-
-a, button, input, textarea, .clickable {
-  cursor: url('/images/cursor-click-80.png') 36 36, pointer !important;
-}
-
-body.dark-mode {
-    background-color: black;
 }
 
 html,
@@ -93,6 +109,11 @@ a:hover::after {
   background: white;
   animation: draw 0.1s ease-in-out forwards;
   transform: translateY(3px);
+}
+
+a.no-underline:hover::after,
+button a:hover::after {
+  display: none;
 }
 
 @keyframes draw {

@@ -1,16 +1,14 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
 # large media files
+public/videos
+public/images
 *.png
 *.jpg
 *.jpeg
 *.mov
 *.psd
 *.mp4
-
-# Ignore large video files
-.firebase/mitsch-website/functions/public/videos/blogging-app-video.mp4
-.firebase/mitsch-website/functions/public/videos/omr-website-replica-video.mp4
 
 # dependencies
 /node_modules
@@ -36,6 +34,8 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+firebase-debug.log
+
 
 # local env files
 .env*.local
@@ -46,9 +46,6 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
-.firebase/mitsch-website/functions/public/videos/color-palette-generator-video.mp4
-.firebase/mitsch-website/functions/public/videos/couchsurfing-signup-form-video.mp4
-.firebase/mitsch-website/functions/public/videos/emailjs-contact-form-video.mp4
-.firebase/mitsch-website/functions/public/videos/nasa-api-app-video.mp4
-.firebase/mitsch-website/functions/public/videos/rotating-globe-video.mp4
-.firebase/mitsch-website/functions/public/videos/stack-navigation-video.mp4
+
+# firebase
+.firebase/
