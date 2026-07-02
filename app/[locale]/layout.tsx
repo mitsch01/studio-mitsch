@@ -1,10 +1,7 @@
 import { AuthProvider } from "@/context/AuthContext";
 import { CartProvider } from "@/context/CartContext";
+import { locales, type Locale } from "@/lib/locale";
 import { notFound } from "next/navigation";
-
-export const locales = ["de", "en"] as const;
-export type Locale = (typeof locales)[number];
-export const defaultLocale: Locale = "de";
 
 export function generateStaticParams() {
   return locales.map((locale) => ({ locale }));

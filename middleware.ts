@@ -1,24 +1,15 @@
 import { jwtVerify } from "jose";
 import { NextRequest, NextResponse } from "next/server";
-
-const locales = ["de", "en"] as const;
-const defaultLocale = "de";
-
-function getLocaleFromPathname(pathname: string): string | null {
-  const firstSegment = pathname.split("/").filter(Boolean)[0];
-  return locales.includes(firstSegment as (typeof locales)[number]) ? firstSegment : null;
-}
+import { defaultLocale, getLocaleFromPath, hasLocalePrefix } from "@/lib/locale";
 
 export async function middleware(req: NextRequest) {
   const { pathname } = req.nextUrl;
-  const localeInPath = getLocaleFromPathname(pathname);
-  const locale = localeInPath ?? defaultLocale;
+  const localePrefixed = hasLocalePrefix(pathname);
+  const locale = getLocaleFromPath(pathname);
 
   let response: NextResponse;
 
-  if (!localeInPath) {
-    // German is the default and stays invisible in the URL —
-    // internally rewrite "/" and "/blog" etc. to "/de" and "/de/blog"
+  if (!localePrefixed) {
     const rewritten = req.nextUrl.clone();
     rewritten.pathname = `/${defaultLocale}${pathname === "/" ? "" : pathname}`;
     response = NextResponse.rewrite(rewritten);
@@ -26,10 +17,7 @@ export async function middleware(req: NextRequest) {
     response = NextResponse.next();
   }
 
-  // --- Auth protection for /account/*, now locale-aware ---
-  const pathWithoutLocale = localeInPath
-    ? pathname.slice(`/${localeInPath}`.length) || "/"
-    : pathname;
+  const pathWithoutLocale = localePrefixed ? pathname.slice(`/${locale}`.length) || "/" : pathname;
 
   const isAccountRoute = pathWithoutLocale.startsWith("/account");
   const isPublicAccountRoute =
@@ -57,7 +45,5 @@ export async function middleware(req: NextRequest) {
 }
 
 export const config = {
-  // Everything except: API routes, Next internals, Sanity Studio,
-  // admin newsletter (unlocalized by your call above), and any file with an extension
   matcher: ["/((?!api|_next|studio|admin/newsletter|.*\\..*).*)"],
 };

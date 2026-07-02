@@ -3,7 +3,10 @@
 import NavModal from "@/components/NavModal";
 import { useAuth } from "@/context/AuthContext";
 import { useCart } from "@/context/CartContext";
+import { getLocaleFromPath, localizedHref } from "@/lib/locale";
+import { getStrings } from "@/lib/strings";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import Tooltip from "./Tooltip";
 
@@ -30,6 +33,9 @@ export default function Header({
   const [lastScrollY, setLastScrollY] = useState(0);
   const { items } = useCart();
   const { user } = useAuth();
+  const pathname = usePathname();
+  const locale = getLocaleFromPath(pathname);
+  const t = getStrings(locale);
   const toggleModal = () => setIsModalOpen(!isModalOpen);
 
   useEffect(() => {
@@ -60,46 +66,44 @@ ${scrolled ? `md:px-16 px-8 py-10 ${scrollBackground ? "bg-white/95 backdrop-blu
     `}
     >
       {/* Logo */}
-      <Link href="/">
+      <Link href={localizedHref("/", locale)}>
         <div className={`clickable font-homemade md:text-5xl text-4xl text-${currentLogoColor} transition-colors duration-300`}>
           mitsch
         </div>
       </Link>
 
       {/* Right side: account + cart + burger */}
-      <div className="flex items-center gap-12">
+      <div className="flex items-center gap-8 md:gap-12">
 
         <div className="hidden sm:flex items-center gap-4">
           {/* Account icon */}
-          <Tooltip label={user ? "My Account" : "Login"}>
+          <Tooltip label={user ? t.common.myAccount : t.common.login}>
             <Link
-              href={user ? "/account/dashboard" : "/account/login"}
-              aria-label={user ? "My Account" : "Login"}
+              href={user ? localizedHref("/account/dashboard", locale) : localizedHref("/account/login", locale)}
+              aria-label={user ? t.common.myAccount : t.common.login}
               className={`relative ${iconColor} transition-colors duration-300 text-gray-600 hover:text-raspberry no-underline`}
             >
-          
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className={`transition-all duration-300 ${scrolled ? "md:h-7 h-6" : "md:h-9 h-8"}`}
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              strokeWidth={2}
-            >
-              <path strokeLinecap="round" strokeLinejoin="round" d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2" />
-              <circle cx="12" cy="7" r="4" strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
-            {/* Logged in indicator dot */}
-            {user && (
-              <span className="absolute -top-1 -right-1 bg-raspberry rounded-full w-2.5 h-2.5" />
-            )}
-          </Link>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className={`transition-all duration-300 ${scrolled ? "md:h-7 h-6" : "md:h-9 h-8"}`}
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                strokeWidth={2}
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2" />
+                <circle cx="12" cy="7" r="4" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+              {user && (
+                <span className="absolute -top-1 -right-1 bg-raspberry rounded-full w-2.5 h-2.5" />
+              )}
+            </Link>
           </Tooltip>
           {/* Cart icon */}
-          <Tooltip label="Cart">
+          <Tooltip label={t.common.cart}>
             <Link
-              href="/shop/cart"
-              aria-label="Cart"
+              href={localizedHref("/shop/cart", locale)}
+              aria-label={t.common.cart}
               className={`relative ${iconColor} transition-colors duration-300 text-gray-500 hover:text-raspberry no-underline`}
             >
               <svg
@@ -125,7 +129,7 @@ ${scrolled ? `md:px-16 px-8 py-10 ${scrollBackground ? "bg-white/95 backdrop-blu
         <button
           className={`focus:outline-none transition-colors duration-300 ${iconColor}`}
           onClick={toggleModal}
-          aria-label="Open Menu"
+          aria-label={t.common.openMenu}
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -141,7 +145,7 @@ ${scrolled ? `md:px-16 px-8 py-10 ${scrollBackground ? "bg-white/95 backdrop-blu
       </div>
 
       {/* Modal */}
-      {isModalOpen && <NavModal toggleModal={toggleModal} />}
+      {isModalOpen && <NavModal toggleModal={toggleModal} locale={locale} />}
     </header>
   );
 }
