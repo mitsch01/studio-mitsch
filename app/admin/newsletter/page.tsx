@@ -1,8 +1,8 @@
 "use client"
 
-import { useState } from 'react'
-import Header from '@/components/Header'
 import Footer from '@/components/Footer'
+import Header from '@/components/Header'
+import { useState } from 'react'
 
 export default function AdminNewsletterPage() {
   const [secret, setSecret] = useState('')
@@ -11,11 +11,21 @@ export default function AdminNewsletterPage() {
   const [html, setHtml] = useState('')
   const [status, setStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle')
   const [resultMessage, setResultMessage] = useState('')
+  const [subscriberCount, setSubscriberCount] = useState<number | null>(null)
 
-  const handleUnlock = (e: React.FormEvent) => {
-    e.preventDefault()
-    setUnlocked(true)
-  }
+
+const handleUnlock = async (e: React.FormEvent) => {
+  e.preventDefault()
+  setUnlocked(true)
+  // Fetch subscriber count
+  try {
+    const res = await fetch('/api/newsletter/subscribers/count', {
+      headers: { 'Authorization': `Bearer ${secret}` }
+    })
+    const data = await res.json()
+    if (res.ok) setSubscriberCount(data.count)
+  } catch {}
+}
 
   const handleSend = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -85,6 +95,18 @@ export default function AdminNewsletterPage() {
         <h1 className="text-3xl font-bold uppercase tracking-tight mb-8">
           Send Newsletter
         </h1>
+
+        {/* Subscriber count stat */}
+<div className="border border-gray-200 p-6 mb-8 flex items-center gap-6">
+  <div>
+    <p className="font-mono text-[10px] uppercase text-gray-400 tracking-wider mb-1">
+      Active Subscribers
+    </p>
+    <p className="text-4xl font-bold text-black">
+      {subscriberCount ?? '—'}
+    </p>
+  </div>
+</div>
 
         <form onSubmit={handleSend} className="space-y-4">
           <div>
