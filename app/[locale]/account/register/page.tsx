@@ -3,8 +3,10 @@
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import { useAuth } from "@/context/AuthContext";
+import { getLocaleFromPath, localizedHref, type Locale } from "@/lib/locale";
+import { getStrings } from "@/lib/strings";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useState } from "react";
 
 export default function RegisterPage() {
@@ -14,6 +16,9 @@ export default function RegisterPage() {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const router = useRouter();
+  const pathname = usePathname();
+  const locale = getLocaleFromPath(pathname) as Locale;
+  const t = getStrings(locale);
   const { refetch } = useAuth();
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -32,13 +37,13 @@ export default function RegisterPage() {
 
       if (res.ok) {
         await refetch();
-        router.push("/account/dashboard");
+        router.push(localizedHref("/account/dashboard", locale));
         router.refresh();
       } else {
         setError(data.error);
       }
     } catch {
-      setError("Something went wrong — try again.");
+      setError(t.account.somethingWrong);
     } finally {
       setLoading(false);
     }
@@ -49,13 +54,13 @@ export default function RegisterPage() {
       <Header />
       <main className="flex-1 flex flex-col justify-center px-8 pt-48 pb-section max-w-md mx-auto w-full">
         <h1 className="text-5xl font-bold uppercase tracking-tight mb-12">
-          Register
+          {t.account.registerHeading}
         </h1>
 
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
             <label className="block text-sm uppercase tracking-widest text-gray-500 mb-1">
-              Name
+              {t.account.name}
             </label>
             <input
               type="text"
@@ -68,7 +73,7 @@ export default function RegisterPage() {
 
           <div>
             <label className="block text-sm uppercase tracking-widest text-gray-500 mb-1">
-              Email
+              {t.account.email}
             </label>
             <input
               type="email"
@@ -81,7 +86,7 @@ export default function RegisterPage() {
 
           <div>
             <label className="block text-sm uppercase tracking-widest text-gray-500 mb-1">
-              Password
+              {t.account.password}
             </label>
             <input
               type="password"
@@ -91,7 +96,7 @@ export default function RegisterPage() {
               minLength={8}
               className="block w-full p-3 border border-black focus:outline-none focus:border-raspberry transition-colors"
             />
-            <p className="text-xs text-gray-400 mt-1">Minimum 8 characters</p>
+            <p className="text-xs text-gray-400 mt-1">{t.account.minChars}</p>
           </div>
 
           {error && (
@@ -105,17 +110,17 @@ export default function RegisterPage() {
             disabled={loading}
             className="w-full bg-black text-white py-3 text-sm uppercase tracking-widest hover:bg-raspberry transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
           >
-            {loading ? "Creating account..." : "Create account"}
+            {loading ? t.account.creatingAccount : t.account.createAccount}
           </button>
         </form>
 
         <p className="mt-8 text-sm text-gray-500">
-          Already have an account?{" "}
+          {t.account.alreadyAccount}{" "}
           <Link
-            href="/account/login"
+            href={localizedHref("/account/login", locale)}
             className="font-bold text-black hover:text-raspberry transition-colors"
           >
-            Login
+            {t.account.login}
           </Link>
         </p>
       </main>

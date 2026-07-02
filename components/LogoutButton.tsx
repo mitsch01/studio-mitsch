@@ -1,27 +1,29 @@
-"use client"
+"use client";
 
-import { useRouter } from 'next/navigation'
-import { useAuth } from '@/context/AuthContext'
-import { LogOut } from 'lucide-react'
+import { useAuth } from "@/context/AuthContext";
+import type { Locale } from "@/lib/locale";
+import { localizedHref } from "@/lib/locale";
+import { LogOut } from "lucide-react";
+import { useRouter } from "next/navigation";
 
-
-export default function LogoutButton() {
-  const router = useRouter()
-  const { logout } = useAuth()
+export default function LogoutButton({ locale }: { locale: Locale }) {
+  const { refetch } = useAuth();
+  const router = useRouter();
 
   const handleLogout = async () => {
-    await logout()
-    router.push('/')
-    router.refresh()
-  }
+    await fetch("/api/auth/logout", { method: "POST" });
+    await refetch();
+    router.push(localizedHref("/account/login", locale));
+    router.refresh();
+  };
 
   return (
     <button
       onClick={handleLogout}
-      aria-label="Logout"
       className="text-black hover:text-raspberry transition-colors"
+      aria-label="Logout"
     >
       <LogOut size={20} />
     </button>
-  )
+  );
 }

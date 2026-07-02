@@ -3,8 +3,10 @@
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import { useAuth } from "@/context/AuthContext";
+import { getLocaleFromPath, localizedHref, type Locale } from "@/lib/locale";
+import { getStrings } from "@/lib/strings";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useState } from "react";
 
 export default function LoginPage() {
@@ -13,6 +15,9 @@ export default function LoginPage() {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const router = useRouter();
+  const pathname = usePathname();
+  const locale = getLocaleFromPath(pathname) as Locale;
+  const t = getStrings(locale);
   const { refetch } = useAuth();
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -31,13 +36,13 @@ export default function LoginPage() {
 
       if (res.ok) {
         await refetch();
-        router.push("/account/dashboard");
+        router.push(localizedHref("/account/dashboard", locale));
         router.refresh();
       } else {
         setError(data.error);
       }
     } catch {
-      setError("Something went wrong — try again.");
+      setError(t.account.somethingWrong);
     } finally {
       setLoading(false);
     }
@@ -48,13 +53,13 @@ export default function LoginPage() {
       <Header />
       <main className="flex-1 flex flex-col justify-center px-8 pt-48 pb-section max-w-md mx-auto w-full">
         <h1 className="text-5xl font-bold uppercase tracking-tight mb-12">
-          Login
+          {t.account.loginHeading}
         </h1>
 
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
             <label className="block text-sm uppercase tracking-widest text-gray-500 mb-1">
-              Email
+              {t.account.email}
             </label>
             <input
               type="email"
@@ -67,7 +72,7 @@ export default function LoginPage() {
 
           <div>
             <label className="block text-sm uppercase tracking-widest text-gray-500 mb-1">
-              Password
+              {t.account.password}
             </label>
             <input
               type="password"
@@ -89,23 +94,23 @@ export default function LoginPage() {
             disabled={loading}
             className="w-full bg-black text-white py-3 text-sm uppercase tracking-widest hover:bg-raspberry transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
           >
-            {loading ? "Logging in..." : "Login"}
+            {loading ? t.account.loggingIn : t.account.login}
           </button>
           <Link
-            href="/account/forgot-password"
+            href={localizedHref("/account/forgot-password", locale)}
             className="block text-center text-sm text-gray-400 hover:text-black transition-colors"
           >
-            Forgot your password?
+            {t.account.forgotPassword}
           </Link>
         </form>
 
         <p className="mt-8 text-sm text-gray-500">
-          No account yet?{" "}
+          {t.account.noAccount}
           <Link
-            href="/account/register"
-            className="font-bold text-black hover:text-raspberry transition-colors"
+            href={localizedHref("/account/register", locale)}
+            className="font-bold text-black hover:text-raspberry transition-colors ml-2"
           >
-            Register
+            {t.account.register}
           </Link>
         </p>
       </main>

@@ -3,18 +3,22 @@
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import { useAuth } from "@/context/AuthContext";
+import { getLocaleFromPath, localizedHref, type Locale } from "@/lib/locale";
+import { getStrings } from "@/lib/strings";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 
 export default function SettingsPage() {
   const { user, loading, refetch } = useAuth();
+  const pathname = usePathname();
+  const locale = getLocaleFromPath(pathname) as Locale;
+  const t = getStrings(locale);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [currentPassword, setCurrentPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
-  const [status, setStatus] = useState<"idle" | "saving" | "success" | "error">(
-    "idle",
-  );
+  const [status, setStatus] = useState<"idle" | "saving" | "success" | "error">("idle");
   const [errorMessage, setErrorMessage] = useState("");
 
   useEffect(() => {
@@ -54,7 +58,7 @@ export default function SettingsPage() {
       }
     } catch {
       setStatus("error");
-      setErrorMessage("Something went wrong.");
+      setErrorMessage(t.account.somethingWrong);
     }
   };
 
@@ -65,13 +69,13 @@ export default function SettingsPage() {
       <Header />
       <main className="flex-1 flex flex-col justify-center px-8 pt-48 pb-24 max-w-md mx-auto w-full">
         <h1 className="text-4xl font-bold uppercase tracking-tight mb-12">
-          Account Settings
+          {t.account.settingsHeading}
         </h1>
 
         <form onSubmit={handleSubmit} className="space-y-6">
           <div>
             <label className="block text-sm uppercase tracking-widest text-gray-500 mb-1">
-              Name
+              {t.account.name}
             </label>
             <input
               type="text"
@@ -83,7 +87,7 @@ export default function SettingsPage() {
 
           <div>
             <label className="block text-sm uppercase tracking-widest text-gray-500 mb-1">
-              Email
+              {t.account.email}
             </label>
             <input
               type="email"
@@ -95,13 +99,13 @@ export default function SettingsPage() {
 
           <div className="pt-4 border-t border-gray-100">
             <p className="text-xs uppercase tracking-widest text-gray-400 mb-4">
-              Change Password (optional)
+              {t.account.changePassword}
             </p>
 
             <div className="space-y-4">
               <div>
                 <label className="block text-sm uppercase tracking-widest text-gray-500 mb-1">
-                  Current Password
+                  {t.account.currentPassword}
                 </label>
                 <input
                   type="password"
@@ -113,7 +117,7 @@ export default function SettingsPage() {
 
               <div>
                 <label className="block text-sm uppercase tracking-widest text-gray-500 mb-1">
-                  New Password
+                  {t.account.newPassword}
                 </label>
                 <input
                   type="password"
@@ -133,7 +137,7 @@ export default function SettingsPage() {
           )}
           {status === "success" && (
             <p className="text-sm text-green-600 uppercase tracking-widest">
-              Changes saved.
+              {t.account.changesSaved}
             </p>
           )}
 
@@ -142,15 +146,15 @@ export default function SettingsPage() {
             disabled={status === "saving"}
             className="w-full bg-black text-white py-3 text-sm uppercase tracking-widest hover:bg-raspberry transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
           >
-            {status === "saving" ? "Saving..." : "Save Changes"}
+            {status === "saving" ? t.account.saving : t.account.saveChanges}
           </button>
         </form>
 
         <Link
-          href="/account/dashboard"
+          href={localizedHref("/account/dashboard", locale)}
           className="block mt-8 text-sm uppercase tracking-widest font-bold text-black hover:text-raspberry transition-colors"
         >
-          ← Back to Dashboard
+          {t.account.backToDashboard}
         </Link>
       </main>
       <Footer />
