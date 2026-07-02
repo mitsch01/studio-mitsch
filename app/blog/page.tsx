@@ -1,7 +1,7 @@
+import Footer from '@/components/Footer'
+import Header from '@/components/Header'
 import { client } from '@/sanity/client'
 import Link from 'next/link'
-import Header from '@/components/Header'
-import Footer from '@/components/Footer'
 
 type Post = {
   _id: string
@@ -9,6 +9,7 @@ type Post = {
   slug: { current: string }
   excerpt: string
   publishedAt: string
+  isPublished: boolean
 }
 
 export const metadata = {
@@ -18,9 +19,11 @@ export const metadata = {
 
 export default async function BlogPage() {
 const posts = await client.fetch<Post[]>(
-  `*[_type == "post" && !(_id in path("drafts.**"))] | order(publishedAt desc) {
+  `*[_type == "post" && isPublished == true] | order(publishedAt desc) {
     _id, title, slug, excerpt, publishedAt
-  }`
+  }`,
+  {},
+  { cache: 'no-store' }
 )
 
   return (
@@ -40,15 +43,15 @@ const posts = await client.fetch<Post[]>(
             {posts.map((post) => (
               <li key={post._id}>
                 <Link href={`/blog/${post.slug.current}`} className="group">
-                  <p className="text-base uppercase tracking-widest text-gray-400 mb-2">
-                    {post.publishedAt
-                      ? new Date(post.publishedAt).toLocaleDateString('en-GB', {
-                          day: 'numeric',
-                          month: 'long',
-                          year: 'numeric',
-                        })
-                      : 'Unpublished'}
-                  </p>
+                  {post.publishedAt && (
+  <p className="text-base uppercase tracking-widest text-gray-400 mb-2">
+    {new Date(post.publishedAt).toLocaleDateString('en-GB', {
+      day: 'numeric',
+      month: 'long',
+      year: 'numeric',
+    })}
+  </p>
+)}
                   <h2 className="text-3xl font-bold uppercase tracking-tight group-hover:text-raspberry transition-colors mb-3">
                     {post.title}
                   </h2>

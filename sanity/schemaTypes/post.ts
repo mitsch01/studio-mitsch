@@ -47,6 +47,12 @@ export const post = defineType({
       title: 'Published At',
       type: 'datetime',
     }),
+        defineField({
+      name: "isPublished",
+      title: "Publish",
+      type: "boolean",
+      initialValue: true,
+    }),
   ],
   preview: {
     select: { title: 'title', media: 'coverImage' },
