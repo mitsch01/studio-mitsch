@@ -8,8 +8,10 @@ export const strings: Record<Locale, {
   projects: Record<"heading" | "unavailable" | "loadMore" | "close" | "noDescription" | "languages" | "tags" | "none" | "created" | "updated" | "viewOnGitHub", string>;
   playground: Record<"tooltip", string>;
   hero: Record<"alt", string>;
-meta: Record<"homeDescription" | "blogDescription", string>;
+  meta: Record<"homeDescription" | "blogDescription", string>;
   blog: Record<"heading" | "noPosts" | "readMore" | "backToArticles" | "dateLocale", string>;
+  contact: Record<"heading" | "imageAlt" | "descriptionMeta", string>;
+  form: Record<"name" | "email" | "message" | "sending" | "send" | "success" | "error", string>;
 }> = {
   de: {
     nav: {
@@ -78,6 +80,20 @@ meta: Record<"homeDescription" | "blogDescription", string>;
       backToArticles: "← Alle Artikel",
       dateLocale: "de-DE",
     },
+    contact: {
+      heading: "Kontakt",
+      imageAlt: "Kontakt — Studio Mitsch",
+      descriptionMeta: "Nimm Kontakt mit Miriam Schwartz auf — für Freelance-Projekte in Web- und App-Entwicklung.",
+    },
+    form: {
+      name: "Name",
+      email: "E-Mail",
+      message: "Nachricht",
+      sending: "Wird gesendet...",
+      send: "Nachricht senden",
+      success: "Danke — ich melde mich bald bei dir.",
+      error: "Etwas ist schiefgelaufen. Bitte versuch es erneut.",
+    },
   },
   en: {
     nav: {
@@ -145,6 +161,20 @@ meta: Record<"homeDescription" | "blogDescription", string>;
       readMore: "Read more →",
       backToArticles: "← All Articles",
       dateLocale: "en-GB",
+    },
+    contact: {
+      heading: "Contact",
+      imageAlt: "Contact — Studio Mitsch",
+      descriptionMeta: "Get in touch with Miriam Schwartz for freelance web and app development projects.",
+    },
+    form: {
+      name: "Name",
+      email: "Email",
+      message: "Message",
+      sending: "Sending...",
+      send: "Send Message",
+      success: "Thank you — I'll get back to you soon.",
+      error: "Something went wrong. Please try again.",
     },
   },
 } as const;

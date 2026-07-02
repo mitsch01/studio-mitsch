@@ -1,11 +1,8 @@
 "use client";
 
-import type { Locale } from "@/lib/locale";
-import { getStrings } from "@/lib/strings";
 import { useState } from "react";
 
-const EmailForm = ({ locale }: { locale: Locale }) => {
-  const t = getStrings(locale);
+const EmailForm = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
@@ -44,7 +41,7 @@ const EmailForm = ({ locale }: { locale: Locale }) => {
     <form onSubmit={sendEmail} className="space-y-4">
       <div>
         <label htmlFor="name" className="block text-sm uppercase tracking-widest text-gray-500 mb-1">
-          {t.form.name}
+          Name
         </label>
         <input
           type="text"
@@ -59,7 +56,7 @@ const EmailForm = ({ locale }: { locale: Locale }) => {
 
       <div>
         <label htmlFor="email" className="block text-sm uppercase tracking-widest text-gray-500 mb-1">
-          {t.form.email}
+          Email
         </label>
         <input
           type="email"
@@ -74,7 +71,7 @@ const EmailForm = ({ locale }: { locale: Locale }) => {
 
       <div>
         <label htmlFor="message" className="block text-sm uppercase tracking-widest text-gray-500 mb-1">
-          {t.form.message}
+          Message
         </label>
         <textarea
           id="message"
@@ -87,24 +84,22 @@ const EmailForm = ({ locale }: { locale: Locale }) => {
         />
       </div>
 
-      <div className="flex justify-center pt-8">
-        <button
-          type="submit"
-          disabled={loading}
-          className="bg-black text-white py-3 px-12 text-sm uppercase tracking-widest hover:bg-raspberry-hover transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-        >
-          {loading ? t.form.sending : t.form.send}
-        </button>
-      </div>
+      <button
+        type="submit"
+        disabled={loading}
+        className="w-full bg-raspberry text-white py-3 text-sm uppercase tracking-widest hover:bg-raspberry-hover transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+      >
+        {loading ? "Sending..." : "Send Message"}
+      </button>
 
       {status === "success" && (
         <p className="text-sm text-green-600 uppercase tracking-widest">
-          {t.form.success}
+          Thank you — I&apos;ll get back to you soon.
         </p>
       )}
       {status === "error" && (
         <p className="text-sm text-raspberry uppercase tracking-widest">
-          {t.form.error}
+          Something went wrong. Please try again.
         </p>
       )}
     </form>
