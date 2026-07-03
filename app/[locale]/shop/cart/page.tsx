@@ -46,9 +46,9 @@ export default function CartPage() {
   }
 
   return (
-    <div className='min-h-screen flex flex-col'>
+    <div >
       <Header logoColor="black" burgerColor="black" />
-      <main className="flex-1 max-w-3xl mx-auto px-8 pt-48 pb-section">
+      <main className="max-w-3xl mx-auto px-8 pt-48 pb-section">
         <h1 className="text-6xl md:text-7xl font-bold uppercase tracking-tight mb-16">
           {t.cart.heading}
         </h1>
