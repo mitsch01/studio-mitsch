@@ -81,7 +81,7 @@ ${scrolled ? `md:px-16 px-8 py-10 ${scrollBackground ? "bg-white/95 backdrop-blu
             <Link
               href={user ? localizedHref("/account/dashboard", locale) : localizedHref("/account/login", locale)}
               aria-label={user ? t.common.myAccount : t.common.login}
-              className={`relative ${iconColor} transition-colors duration-300 text-gray-600 hover:text-raspberry no-underline`}
+              className={`relative ${iconColor} transition-colors duration-300 text-black hover:text-raspberry no-underline`}
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -104,7 +104,7 @@ ${scrolled ? `md:px-16 px-8 py-10 ${scrollBackground ? "bg-white/95 backdrop-blu
             <Link
               href={localizedHref("/shop/cart", locale)}
               aria-label={t.common.cart}
-              className={`relative ${iconColor} transition-colors duration-300 text-gray-500 hover:text-raspberry no-underline`}
+              className={`relative ${iconColor} transition-colors duration-300 text-black hover:text-raspberry no-underline`}
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
