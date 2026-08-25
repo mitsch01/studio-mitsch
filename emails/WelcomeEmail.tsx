@@ -12,11 +12,10 @@ import {
 
 type WelcomeEmailProps = {
   name?: string
-    email: string
-
+  email: string
 }
 
-export default function WelcomeEmail({ name }: WelcomeEmailProps) {
+export default function WelcomeEmail({ name, email }: WelcomeEmailProps) {
   return (
     <Html>
       <Head />
@@ -42,7 +41,7 @@ export default function WelcomeEmail({ name }: WelcomeEmailProps) {
           <Text style={footer}>
             Don't want to hear from me?{' '}
             <Link
-              href="https://studio-mitsch.de/api/newsletter/unsubscribe"
+              href={`https://studio-mitsch.de/api/newsletter/unsubscribe?email=${email}`}
               style={footerLink}
             >
               Unsubscribe
