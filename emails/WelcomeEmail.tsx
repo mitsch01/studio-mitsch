@@ -12,6 +12,8 @@ import {
 
 type WelcomeEmailProps = {
   name?: string
+    email: string
+
 }
 
 export default function WelcomeEmail({ name }: WelcomeEmailProps) {

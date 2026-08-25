@@ -35,7 +35,7 @@ export async function POST(req: NextRequest) {
         from: 'Miriam @ Studio Mitsch <hello@studio-mitsch.de>',
         to: email,
         subject: 'Welcome back to Studio Mitsch',
-        react: WelcomeEmail({ name }),
+        react: WelcomeEmail({ name, email }),
       })
 
       return NextResponse.json({ success: true, resubscribed: true })
@@ -53,7 +53,7 @@ export async function POST(req: NextRequest) {
       from: 'Miriam @ Studio Mitsch <hello@studio-mitsch.de>',
       to: email,
       subject: 'Welcome to Studio Mitsch',
-      react: WelcomeEmail({ name }),
+      react: WelcomeEmail({ name, email }),
     })
 
     return NextResponse.json({ success: true })
