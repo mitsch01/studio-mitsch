@@ -1,7 +1,7 @@
-import { NextRequest, NextResponse } from 'next/server'
-import clientPromise from '@/mongodb'
-import { Resend } from 'resend'
 import WelcomeEmail from '@/emails/WelcomeEmail'
+import clientPromise from '@/mongodb'
+import { NextRequest, NextResponse } from 'next/server'
+import { Resend } from 'resend'
 
 const resend = new Resend(process.env.RESEND_API_KEY)
 
@@ -31,12 +31,17 @@ export async function POST(req: NextRequest) {
         { $set: { isActive: true, name: name || existing.name, resubscribedAt: new Date() } }
       )
 
-      await resend.emails.send({
+      const { data, error } = await resend.emails.send({
         from: 'Miriam @ Studio Mitsch <hello@studio-mitsch.de>',
         to: email,
         subject: 'Welcome back to Studio Mitsch',
         react: WelcomeEmail({ name, email }),
       })
+
+      if (error) {
+        console.error('Resend error:', error)
+        return NextResponse.json({ error: 'Failed to send email' }, { status: 500 })
+      }
 
       return NextResponse.json({ success: true, resubscribed: true })
     }
@@ -49,12 +54,17 @@ export async function POST(req: NextRequest) {
       isActive: true,
     })
 
-    await resend.emails.send({
+    const { data, error } = await resend.emails.send({
       from: 'Miriam @ Studio Mitsch <hello@studio-mitsch.de>',
       to: email,
       subject: 'Welcome to Studio Mitsch',
       react: WelcomeEmail({ name, email }),
     })
+
+    if (error) {
+      console.error('Resend error:', error)
+      return NextResponse.json({ error: 'Failed to send email' }, { status: 500 })
+    }
 
     return NextResponse.json({ success: true })
   } catch (error) {

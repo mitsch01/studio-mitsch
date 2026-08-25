@@ -1,5 +1,5 @@
-import { Resend } from "resend"
 import { NextResponse } from "next/server"
+import { Resend } from "resend"
 
 const resend = new Resend(process.env.RESEND_API_KEY)
 
@@ -14,13 +14,18 @@ export async function POST(request: Request) {
       )
     }
 
-    await resend.emails.send({
+    const { data, error } = await resend.emails.send({
       from: "studio-mitsch.de <hello@studio-mitsch.de>",
-      to: "studiomitsch@gmail.com",      
+      to: "hello@studio-mitsch.de",
       replyTo: email,
       subject: `New message from ${name}`,
       text: `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`,
     })
+
+    if (error) {
+      console.error("Resend error:", error)
+      return NextResponse.json({ error: "Failed to send email" }, { status: 500 })
+    }
 
     return NextResponse.json({ success: true })
   } catch (error) {
