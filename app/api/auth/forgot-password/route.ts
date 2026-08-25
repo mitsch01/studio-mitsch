@@ -35,7 +35,7 @@ export async function POST(req: NextRequest) {
       // Send reset email
       const resetUrl = `${process.env.NEXT_PUBLIC_BASE_URL}/account/reset-password?token=${token}`
 
-      await resend.emails.send({
+      const { data, error } = await resend.emails.send({
         from: 'Miriam @ Studio Mitsch <hello@studio-mitsch.de>',
         to: email,
         subject: 'Reset your Studio Mitsch password',
@@ -60,6 +60,12 @@ export async function POST(req: NextRequest) {
           </div>
         `,
       })
+
+      if (error) {
+        // Log it for yourself — but don't let it change the response.
+        // Returning a different status here would leak whether this email exists.
+        console.error('Resend error (forgot-password):', error)
+      }
     }
 
     // Always return success — don't reveal whether email exists (security best practice)

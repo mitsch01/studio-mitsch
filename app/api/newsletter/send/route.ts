@@ -56,13 +56,32 @@ export async function POST(req: NextRequest) {
       batches.push(emails.slice(i, i + batchSize));
     }
 
+    // 5. Send each batch and actually check whether it worked
+    let sentCount = 0;
+    let failedCount = 0;
+
     for (const batch of batches) {
-      await resend.batch.send(batch);
+      const { data, error } = await resend.batch.send(batch);
+
+      if (error) {
+        console.error("Newsletter batch error:", error);
+        failedCount += batch.length;
+      } else {
+        sentCount += batch.length;
+      }
+    }
+
+    if (sentCount === 0) {
+      return NextResponse.json(
+        { error: "Failed to send newsletter" },
+        { status: 500 },
+      );
     }
 
     return NextResponse.json({
       success: true,
-      sent: subscribers.length,
+      sent: sentCount,
+      failed: failedCount,
     });
   } catch (error) {
     console.error("Newsletter send error:", error);

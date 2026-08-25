@@ -7,7 +7,7 @@ import { getLocaleFromPath, localizedHref, type Locale } from "@/lib/locale";
 import { getStrings } from "@/lib/strings";
 import Link from "next/link";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { Suspense, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 
 function ResetPasswordForm() {
   const searchParams = useSearchParams();
@@ -15,11 +15,33 @@ function ResetPasswordForm() {
   const [password, setPassword] = useState("");
   const [status, setStatus] = useState<"idle" | "saving" | "success" | "error">("idle");
   const [errorMessage, setErrorMessage] = useState("");
+  const [tokenStatus, setTokenStatus] = useState<"checking" | "valid" | "invalid">(
+    token ? "checking" : "invalid"
+  );
   const router = useRouter();
   const pathname = usePathname();
   const locale = getLocaleFromPath(pathname) as Locale;
   const t = getStrings(locale);
   const { refetch } = useAuth();
+
+  useEffect(() => {
+    if (!token) return;
+
+    let cancelled = false;
+
+    fetch(`/api/auth/reset-password/validate?token=${token}`)
+      .then((res) => res.json())
+      .then((data) => {
+        if (!cancelled) setTokenStatus(data.valid ? "valid" : "invalid");
+      })
+      .catch(() => {
+        if (!cancelled) setTokenStatus("invalid");
+      });
+
+    return () => {
+      cancelled = true;
+    };
+  }, [token]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -49,7 +71,17 @@ function ResetPasswordForm() {
     }
   };
 
-  if (!token) {
+  if (tokenStatus === "checking") {
+    return (
+      <main className="flex-1 flex flex-col justify-center px-8 pt-48 pb-section max-w-md mx-auto w-full">
+        <p className="text-gray-400 text-sm uppercase tracking-widest">
+          {locale === "de" ? "Link wird geprüft …" : "Checking link …"}
+        </p>
+      </main>
+    );
+  }
+
+  if (tokenStatus === "invalid") {
     return (
       <main className="flex-1 flex flex-col justify-center px-8 pt-48 pb-section max-w-md mx-auto w-full">
         <h1 className="text-4xl font-bold uppercase tracking-tight mb-6">

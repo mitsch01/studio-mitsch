@@ -6,6 +6,7 @@ import { useState } from 'react'
 export default function AdminNewsletterPage() {
   const [secret, setSecret] = useState('')
   const [unlocked, setUnlocked] = useState(false)
+  const [unlockError, setUnlockError] = useState('')
   const [subject, setSubject] = useState('')
   const [html, setHtml] = useState('')
   const [status, setStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle')
@@ -16,6 +17,7 @@ export default function AdminNewsletterPage() {
 
   const handleUnlock = async (e: React.FormEvent) => {
     e.preventDefault()
+    setUnlockError('')
     try {
       const res = await fetch('/api/newsletter/subscribers/count', {
         headers: { 'Authorization': `Bearer ${secret}` }
@@ -27,10 +29,11 @@ export default function AdminNewsletterPage() {
         setRecentSubscribers(data.recent)
       } else {
         setUnlocked(false)
-        // hier fehlt noch eine sichtbare Fehlermeldung — dazu gleich mehr
+        setUnlockError(data.error ?? 'Wrong secret key.')
       }
     } catch {
       setUnlocked(false)
+      setUnlockError('Something went wrong.')
     }
   }
 
@@ -81,6 +84,11 @@ export default function AdminNewsletterPage() {
               required
               className="block w-full p-3 border border-black focus:outline-none focus:border-raspberry transition-colors"
             />
+            {unlockError && (
+              <p className="text-sm text-raspberry uppercase tracking-widest">
+                {unlockError}
+              </p>
+            )}
             <button
               type="submit"
               className="w-full bg-black text-white py-3 text-sm uppercase tracking-widest hover:bg-raspberry transition-colors"
