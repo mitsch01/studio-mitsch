@@ -98,12 +98,12 @@ const EmailForm = ({ locale }: { locale: Locale }) => {
       </div>
 
       {status === "success" && (
-        <p className="text-sm text-green-600 uppercase tracking-widest">
+        <p className="text-sm text-green-600 uppercase tracking-widest pt-8">
           {t.form.success}
         </p>
       )}
       {status === "error" && (
-        <p className="text-sm text-raspberry uppercase tracking-widest">
+        <p className="text-sm text-raspberry uppercase tracking-widest pt-8">
           {t.form.error}
         </p>
       )}
