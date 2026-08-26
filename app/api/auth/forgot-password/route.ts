@@ -3,8 +3,6 @@ import clientPromise from '@/mongodb'
 import { Resend } from 'resend'
 import crypto from 'crypto'
 
-const resend = new Resend(process.env.RESEND_API_KEY)
-
 export async function POST(req: NextRequest) {
   try {
     const { email } = await req.json()
@@ -35,36 +33,41 @@ export async function POST(req: NextRequest) {
       // Send reset email
       const resetUrl = `${process.env.NEXT_PUBLIC_BASE_URL}/account/reset-password?token=${token}`
 
-      const { data, error } = await resend.emails.send({
-        from: 'Miriam @ Studio Mitsch <hello@studio-mitsch.de>',
-        to: email,
-        subject: 'Reset your Studio Mitsch password',
-        html: `
-          <div style="font-family: sans-serif; max-width: 520px; margin: 0 auto; padding: 40px 20px; color: #111;">
-            <h1 style="font-size: 2rem; font-weight: 900; text-transform: uppercase; letter-spacing: -0.02em;">
-              Reset your password
-            </h1>
-            <p style="color: #555; line-height: 1.6;">
-              We received a request to reset your Studio Mitsch password. 
-              Click the button below to set a new one.
-            </p>
-            <a href="${resetUrl}" 
-               style="display: inline-block; margin-top: 1.5rem; background: #e8175d; color: white; 
-                      padding: 0.75rem 1.5rem; text-decoration: none; font-size: 0.75rem; 
-                      text-transform: uppercase; letter-spacing: 0.1em; font-weight: 700;">
-              Reset Password
-            </a>
-            <p style="margin-top: 1.5rem; color: #999; font-size: 0.75rem;">
-              This link expires in 1 hour. If you didn't request this, you can safely ignore this email.
-            </p>
-          </div>
-        `,
-      })
+      try {
+        const resend = new Resend(process.env.RESEND_API_KEY)
+        const { data, error } = await resend.emails.send({
+          from: 'Miriam @ Studio Mitsch <hello@studio-mitsch.de>',
+          to: email,
+          subject: 'Reset your Studio Mitsch password',
+          html: `
+            <div style="font-family: sans-serif; max-width: 520px; margin: 0 auto; padding: 40px 20px; color: #111;">
+              <h1 style="font-size: 2rem; font-weight: 900; text-transform: uppercase; letter-spacing: -0.02em;">
+                Reset your password
+              </h1>
+              <p style="color: #555; line-height: 1.6;">
+                We received a request to reset your Studio Mitsch password. 
+                Click the button below to set a new one.
+              </p>
+              <a href="${resetUrl}" 
+                 style="display: inline-block; margin-top: 1.5rem; background: #e8175d; color: white; 
+                        padding: 0.75rem 1.5rem; text-decoration: none; font-size: 0.75rem; 
+                        text-transform: uppercase; letter-spacing: 0.1em; font-weight: 700;">
+                Reset Password
+              </a>
+              <p style="margin-top: 1.5rem; color: #999; font-size: 0.75rem;">
+                This link expires in 1 hour. If you didn't request this, you can safely ignore this email.
+              </p>
+            </div>
+          `,
+        })
 
-      if (error) {
-        // Log it for yourself — but don't let it change the response.
-        // Returning a different status here would leak whether this email exists.
-        console.error('Resend error (forgot-password):', error)
+        if (error) {
+          console.error('Resend error (forgot-password):', error)
+        }
+      } catch (sendError) {
+        // Now also catches a completely missing/invalid API key —
+        // the constructor itself can throw, not just .send()
+        console.error('Resend threw (forgot-password):', sendError)
       }
     }
 
