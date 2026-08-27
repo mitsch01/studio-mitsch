@@ -50,25 +50,18 @@ export default function RepoGallery({ locale }: { locale: Locale }) {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [languages, setLanguages] = useState<string[]>([]);
   const [loading, setLoading] = useState(true); // NEW
-  const username = "mitsch01";
 
   useEffect(() => {
     const fetchRepos = async () => {
       try {
-        // NEW: wrapped in try/finally so loading always clears
-        const response = await fetch(
-          `https://api.github.com/users/${username}/repos`,
-          {
-            headers: {
-              Authorization: `Bearer ${process.env.NEXT_PUBLIC_GITHUB_TOKEN}`,
-            },
-          },
-        );
+        // Server-side route now holds the GitHub token — see app/api/github/repos.
+        const response = await fetch("/api/github/repos");
+        if (!response.ok) {
+          setRepos([]);
+          return;
+        }
         const data = await response.json();
-        const filtered = data.filter(
-          (repo: Repo) => !repo.fork && repo.topics?.includes("portfolio"),
-        );
-        setRepos(filtered);
+        setRepos(Array.isArray(data) ? data : []);
       } finally {
         setLoading(false); // NEW
       }
@@ -87,24 +80,12 @@ export default function RepoGallery({ locale }: { locale: Locale }) {
   }, [selectedProject]);
 
   const openProject = async (repo: Repo) => {
-    const [projectRes, langRes] = await Promise.all([
-      fetch(`https://api.github.com/repos/${username}/${repo.name}`, {
-        headers: {
-          Authorization: `Bearer ${process.env.NEXT_PUBLIC_GITHUB_TOKEN}`,
-        },
-      }),
-      fetch(`https://api.github.com/repos/${username}/${repo.name}/languages`, {
-        headers: {
-          Authorization: `Bearer ${process.env.NEXT_PUBLIC_GITHUB_TOKEN}`,
-        },
-      }),
-    ]);
+    // Server-side route now holds the GitHub token — see app/api/github/repos/[name].
+    const res = await fetch(`/api/github/repos/${repo.name}`);
+    if (!res.ok) return;
 
-    if (!projectRes.ok) return;
-
-    const project = await projectRes.json();
-    const langData = await langRes.json();
-    setLanguages(Object.keys(langData));
+    const { project, languages } = await res.json();
+    setLanguages(languages);
     setSelectedProject(project);
     document.body.style.overflow = "hidden";
   };

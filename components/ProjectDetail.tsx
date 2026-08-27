@@ -25,7 +25,7 @@ export default async function ProjectDetail({
     `https://api.github.com/repos/${username}/${projectName}`,
     {
       headers: {
-        Authorization: `Bearer ${process.env.NEXT_PUBLIC_GITHUB_TOKEN}`,
+        Authorization: `Bearer ${process.env.GITHUB_TOKEN}`,
       },
     },
   );
@@ -51,7 +51,7 @@ export default async function ProjectDetail({
     `https://api.github.com/repos/${username}/${projectName}/languages`,
     {
       headers: {
-        Authorization: `Bearer ${process.env.NEXT_PUBLIC_GITHUB_TOKEN}`,
+        Authorization: `Bearer ${process.env.GITHUB_TOKEN}`,
       },
     },
   );
