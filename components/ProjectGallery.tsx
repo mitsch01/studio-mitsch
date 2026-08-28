@@ -9,7 +9,7 @@ import { Navigation, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 export default function ProjectGallery({ projectName }) {
-  const videoPath = `/videos/${projectName}-video.mp4`;
+  const videoPath = `${process.env.NEXT_PUBLIC_R2_PUBLIC_URL}/videos/${projectName}-video.mp4`;
   const [desktopImages, setDesktopImages] = useState([]);
   const [mobileImages, setMobileImages] = useState([]);
   const maxImages = 11;
