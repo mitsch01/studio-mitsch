@@ -1,6 +1,7 @@
 "use client";
 
 import ErrorBoundary from "@/components/ErrorBoundary";
+import { renderInlineMarkdown } from "@/lib/renderInlineMarkdown";
 import ProjectGallery from "@/components/ProjectGallery";
 import { useDarkCursor } from "@/hooks/useDarkCursor";
 import type { Locale } from "@/lib/locale";
@@ -186,7 +187,7 @@ export default function RepoGallery({ locale }: { locale: Locale }) {
                   {transformString(selectedProject.name)}
                 </h1>
                 <p className="text-gray-300 text-lg leading-relaxed mb-10">
-                  {selectedProject.description || t.projects.noDescription}
+                  {renderInlineMarkdown(selectedProject.description || t.projects.noDescription)}
                 </p>
 
                 <ProjectGallery projectName={selectedProject.name} />

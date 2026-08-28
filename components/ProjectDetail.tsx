@@ -1,4 +1,5 @@
 import ErrorBoundary from "@/components/ErrorBoundary";
+import { renderInlineMarkdown } from "@/lib/renderInlineMarkdown";
 import ProjectGallery from "@/components/ProjectGallery";
 import Link from "next/link";
 
@@ -81,7 +82,7 @@ export default async function ProjectDetail({
           <p
             className={`text-lg leading-relaxed mb-10 ${isModal ? "text-gray-300" : "text-gray-700"}`}
           >
-            {project.description || "No description available."}
+            {renderInlineMarkdown(project.description || "No description available.")}
           </p>
 
           {/* Gallery */}

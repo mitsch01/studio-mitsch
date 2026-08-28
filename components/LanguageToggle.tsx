@@ -19,6 +19,7 @@ export default function LanguageToggle() {
       />
       <Link
         href={switchLocalePath(pathname, "de")}
+        prefetch={false}
         aria-label="Deutsch"
         aria-current={locale === "de" ? "true" : undefined}
         className={`relative z-10 w-9 text-center text-[11px] font-bold uppercase tracking-widest py-1 no-underline transition-colors ${
@@ -29,6 +30,7 @@ export default function LanguageToggle() {
       </Link>
       <Link
         href={switchLocalePath(pathname, "en")}
+        prefetch={false}
         aria-label="English"
         aria-current={locale === "en" ? "true" : undefined}
         className={`relative z-10 w-9 text-center text-[11px] font-bold uppercase tracking-widest py-1 no-underline transition-colors ${
