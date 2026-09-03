@@ -5,7 +5,7 @@ export const strings: Record<Locale, {
   common: Record<"readMore" | "backToArticles" | "addToCart" | "subscribe" | "submit" | "myAccount" | "login" | "cart" | "openMenu" | "closeMenu", string>;
   footer: Record<"tagline" | "navigate" | "newsletterHeading" | "newsletterBody" | "copyright" | "builtWith", string>;
   newsletter: Record<"placeholder" | "subscribing" | "success" | "duplicate" | "error", string>;
-projects: Record<"heading" | "unavailable" | "loadMore" | "close" | "noDescription" | "languages" | "tags" | "none" | "created" | "updated" | "viewOnGitHub" | "viewProject", string>;
+projects: Record<"heading" | "unavailable" | "loadMore" | "close" | "noDescription" | "languages" | "tools" | "tags" | "none" | "created" | "updated" | "viewOnGitHub" | "viewProject", string>;
   hero: Record<"alt", string>;
   meta: Record<"homeDescription" | "blogDescription", string>;
   blog: Record<"heading" | "noPosts" | "readMore" | "backToArticles" | "dateLocale", string>;
@@ -73,6 +73,7 @@ projects: Record<"heading" | "unavailable" | "loadMore" | "close" | "noDescripti
       close: "Schließen",
       noDescription: "Keine Beschreibung vorhanden.",
       languages: "Sprachen",
+      tools: "Tools",
       tags: "Tags",
       none: "keine",
       created: "Erstellt",
@@ -252,6 +253,7 @@ projects: Record<"heading" | "unavailable" | "loadMore" | "close" | "noDescripti
       close: "Close",
       noDescription: "No description available.",
       languages: "Languages",
+      tools: "Tools",
       tags: "Tags",
       none: "none",
       created: "Created",

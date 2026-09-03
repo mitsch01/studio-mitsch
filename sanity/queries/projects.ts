@@ -7,6 +7,7 @@ export type SanityPortfolioProject = {
   html_url: string;
   topics: string[];
   languages: string[];
+  tools: string[];
   created_at: string;
   updated_at: string;
   fork: false;
@@ -22,6 +23,7 @@ const PROJECTION = `{
   "html_url": liveUrl,
   "topics": tags,
   languages,
+  tools,
   "created_at": _createdAt,
   "updated_at": _updatedAt,
   "fork": false,

@@ -16,7 +16,7 @@ export async function GET(
 
     return NextResponse.json({
       project,
-      languages: project.languages ?? [],
+      languages: project.tools ?? [],
     });
   } catch (error) {
     console.error("Sanity project detail fetch error:", error);

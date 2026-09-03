@@ -25,11 +25,11 @@ export const project = defineType({
       rows: 3,
     }),
     defineField({
-      name: 'languages',
-      title: 'Languages',
+      name: 'tools',
+      title: 'Tools',
       type: 'array',
       of: [{ type: 'string' }],
-      description: 'z. B. TypeScript, React, Tailwind — manuell gepflegt, da Sanity keine Sprachstatistik wie GitHub hat',
+      description: 'z. B. TypeScript, React, Tailwind, Procreate, Figma — manuell gepflegt, da Sanity keine Sprachstatistik wie GitHub hat',
     }),
     defineField({
       name: 'coverImage',

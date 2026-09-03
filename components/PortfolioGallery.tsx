@@ -210,7 +210,7 @@ export default function PortfolioGallery({ locale }: { locale: Locale }) {
                   <div className="flex flex-col gap-2">
                     <p className="text-sm text-gray-400">
                       <span className="font-bold uppercase tracking-wider text-white">
-                        {t.projects.languages}:{" "}
+                        {selectedProject.source === "github" ? t.projects.languages : t.projects.tools}{" "}
                       </span>
                       {languages.join(", ")}
                     </p>
