@@ -139,8 +139,7 @@ export default function PortfolioGallery({ locale }: { locale: Locale }) {
               >
                 <div className="w-full h-[305px] relative">
                   <Image
-                    src={`/images/${repo.name}-preview.webp`}
-                    alt={`${repo.name} preview`}
+                    src={`${process.env.NEXT_PUBLIC_R2_PUBLIC_URL}/images/${repo.name}-preview.webp`} alt={`${repo.name} preview`}
                     fill
                     className="object-cover"
                     sizes="(max-width: 768px) 100vw, 50vw"
