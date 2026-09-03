@@ -5,7 +5,7 @@ export const strings: Record<Locale, {
   common: Record<"readMore" | "backToArticles" | "addToCart" | "subscribe" | "submit" | "myAccount" | "login" | "cart" | "openMenu" | "closeMenu", string>;
   footer: Record<"tagline" | "navigate" | "newsletterHeading" | "newsletterBody" | "copyright" | "builtWith", string>;
   newsletter: Record<"placeholder" | "subscribing" | "success" | "duplicate" | "error", string>;
-  projects: Record<"heading" | "unavailable" | "loadMore" | "close" | "noDescription" | "languages" | "tags" | "none" | "created" | "updated" | "viewOnGitHub", string>;
+projects: Record<"heading" | "unavailable" | "loadMore" | "close" | "noDescription" | "languages" | "tags" | "none" | "created" | "updated" | "viewOnGitHub" | "viewProject", string>;
   hero: Record<"alt", string>;
   meta: Record<"homeDescription" | "blogDescription", string>;
   blog: Record<"heading" | "noPosts" | "readMore" | "backToArticles" | "dateLocale", string>;
@@ -78,6 +78,7 @@ export const strings: Record<Locale, {
       created: "Erstellt",
       updated: "Aktualisiert",
       viewOnGitHub: "Auf GitHub ansehen ↗",
+      viewProject: "Projekt ansehen ↗",
     },
     playground: {
       tooltip: "Schreib ein Gedicht",
@@ -256,6 +257,7 @@ export const strings: Record<Locale, {
       created: "Created",
       updated: "Updated",
       viewOnGitHub: "View on GitHub ↗",
+      viewProject: "View Project ↗",
     },
     playground: {
       tooltip: "Write a poem",

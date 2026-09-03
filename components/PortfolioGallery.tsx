@@ -1,17 +1,17 @@
 "use client";
 
 import ErrorBoundary from "@/components/ErrorBoundary";
-import { renderInlineMarkdown } from "@/lib/renderInlineMarkdown";
 import ProjectGallery from "@/components/ProjectGallery";
 import { useDarkCursor } from "@/hooks/useDarkCursor";
 import type { Locale } from "@/lib/locale";
+import { renderInlineMarkdown } from "@/lib/renderInlineMarkdown";
 import { getStrings } from "@/lib/strings";
 import { AnimatePresence, motion } from "motion/react";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 
 type Repo = {
-  id: number;
+  id: number | string;
   name: string;
   description: string;
   html_url: string;
@@ -19,6 +19,7 @@ type Repo = {
   created_at: string;
   updated_at: string;
   fork: boolean;
+  source: "github" | "sanity";
 };
 
 type Project = {
@@ -28,6 +29,7 @@ type Project = {
   topics: string[];
   created_at: string;
   updated_at: string;
+  source: "github" | "sanity";
 };
 
 const transformString = (input: string) =>
@@ -41,7 +43,7 @@ function SkeletonCard() {
   return <div className="w-full h-[305px] bg-gray-200 animate-pulse" />;
 }
 
-export default function RepoGallery({ locale }: { locale: Locale }) {
+export default function PortfolioGallery({ locale }: { locale: Locale }) {
   const t = getStrings(locale);
 
   useDarkCursor();
@@ -55,16 +57,25 @@ export default function RepoGallery({ locale }: { locale: Locale }) {
   useEffect(() => {
     const fetchRepos = async () => {
       try {
-        // Server-side route now holds the GitHub token — see app/api/github/repos.
-        const response = await fetch("/api/github/repos");
-        if (!response.ok) {
-          setRepos([]);
-          return;
-        }
-        const data = await response.json();
-        setRepos(Array.isArray(data) ? data : []);
+        const [githubRes, sanityRes] = await Promise.all([
+          fetch("/api/github/repos"),
+          fetch("/api/sanity/projects"),
+        ]);
+
+        const githubRepos = githubRes.ok ? await githubRes.json() : [];
+        const sanityProjects = sanityRes.ok ? await sanityRes.json() : [];
+
+        const combined = [
+          ...(Array.isArray(githubRepos) ? githubRepos : []),
+          ...(Array.isArray(sanityProjects) ? sanityProjects : []),
+        ].sort(
+          (a, b) =>
+            new Date(b.created_at).getTime() - new Date(a.created_at).getTime(),
+        );
+
+        setRepos(combined);
       } finally {
-        setLoading(false); // NEW
+        setLoading(false);
       }
     };
     fetchRepos();
@@ -81,8 +92,12 @@ export default function RepoGallery({ locale }: { locale: Locale }) {
   }, [selectedProject]);
 
   const openProject = async (repo: Repo) => {
-    // Server-side route now holds the GitHub token — see app/api/github/repos/[name].
-    const res = await fetch(`/api/github/repos/${repo.name}`);
+    const endpoint =
+      repo.source === "sanity"
+        ? `/api/sanity/projects/${repo.name}`
+        : `/api/github/repos/${repo.name}`;
+
+    const res = await fetch(endpoint);
     if (!res.ok) return;
 
     const { project, languages } = await res.json();
@@ -118,7 +133,7 @@ export default function RepoGallery({ locale }: { locale: Locale }) {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {repos.slice(0, visibleRepos).map((repo, index) => (
               <button
-                key={repo.id}
+                key={`${repo.source}-${repo.name}`}
                 onClick={() => openProject(repo)}
                 className="w-full flex flex-col overflow-hidden transition-transform duration-100 hover:scale-105 hover:rounded shadow-xl group text-left"
               >
@@ -233,13 +248,20 @@ export default function RepoGallery({ locale }: { locale: Locale }) {
                   </div>
 
                   <a
+
                     href={selectedProject.html_url}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-sm font-bold uppercase tracking-widest text-white hover:text-raspberry transition-colors"
-                    aria-label={t.projects.viewOnGitHub}
+                    aria-label={
+                      selectedProject.source === "github"
+                        ? t.projects.viewOnGitHub
+                        : t.projects.viewProject
+                    }
                   >
-                    {t.projects.viewOnGitHub}
+                    {selectedProject.source === "github"
+                      ? t.projects.viewOnGitHub
+                      : t.projects.viewProject}
                   </a>
                 </div>
               </div>

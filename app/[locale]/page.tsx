@@ -3,7 +3,7 @@ import Footer from "@/components/Footer"
 import Header from "@/components/Header"
 import Hero from "@/components/Hero"
 import PlayButton from "@/components/PlaygroundButton"
-import RepoGallery from "@/components/RepoGallery"
+import PortfolioGallery from "@/components/PortfolioGallery";
 import Skills from "@/components/Skills"
 import type { Locale } from "@/lib/locale"
 import { getSiteContent } from "@/lib/siteContent"
@@ -42,7 +42,7 @@ const content = await getSiteContent(locale as Locale)
         <h1 className="md:text-7xl text-6xl uppercase text-black pb-6 tracking-tight">
           {t.projects.heading}
         </h1>
-        <RepoGallery locale={locale as Locale} />
+        <PortfolioGallery locale={locale as Locale} />
         <PlayButton locale={locale as Locale} />
       </section>
       <Footer />
