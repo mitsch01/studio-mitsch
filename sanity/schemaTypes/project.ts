@@ -25,6 +25,13 @@ export const project = defineType({
       rows: 3,
     }),
     defineField({
+      name: 'languages',
+      title: 'Languages',
+      type: 'array',
+      of: [{ type: 'string' }],
+      description: 'z. B. TypeScript, React, Tailwind — manuell gepflegt, da Sanity keine Sprachstatistik wie GitHub hat',
+    }),
+    defineField({
       name: 'coverImage',
       title: 'Cover Image',
       type: 'image',
@@ -53,13 +60,7 @@ export const project = defineType({
       type: 'boolean',
       initialValue: true,
     }),
-    defineField({
-      name: 'languages',
-      title: 'Languages',
-      type: 'array',
-      of: [{ type: 'string' }],
-      description: 'z. B. TypeScript, React, Tailwind — manuell gepflegt, da Sanity keine Sprachstatistik wie GitHub hat',
-    }),
+
   ],
   preview: {
     select: { title: 'title', media: 'coverImage' },

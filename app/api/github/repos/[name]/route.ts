@@ -29,9 +29,9 @@ export async function GET(
     const languagesData = langRes.ok ? await langRes.json() : {}
 
     return NextResponse.json({
-      project,
+      project: { ...project, source: "github" as const },
       languages: Object.keys(languagesData),
-    })
+    });
   } catch (error) {
     console.error("GitHub repo detail fetch error:", error)
     return NextResponse.json({ error: "Server error" }, { status: 500 })

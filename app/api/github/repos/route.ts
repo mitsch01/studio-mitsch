@@ -22,11 +22,13 @@ export async function GET() {
 
     const data = await res.json()
     const repos = Array.isArray(data)
-      ? data.filter(
+      ? data
+        .filter(
           (repo: { fork: boolean; topics?: string[] }) =>
             !repo.fork && repo.topics?.includes("portfolio"),
         )
-      : []
+        .map((repo) => ({ ...repo, source: "github" as const }))
+      : [];
 
     return NextResponse.json(repos)
   } catch (error) {
