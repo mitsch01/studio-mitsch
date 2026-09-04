@@ -125,20 +125,114 @@ make_preview() {
 }
 ```
 
-## Ablauf für ein neues Projekt
+## Kompletter Ablauf: Neues Projekt von Anfang bis Online
 
-Angenommen der Projektname (= späterer Sanity-`slug`) ist `mein-projekt`:
+Schritt-für-Schritt-Anleitung, einmal von oben nach unten durchgehen — am Ende ist das Projekt live im Portfolio. Ersetze überall `<projektname>` durch den tatsächlichen Namen (= späterer Sanity-`slug`, z. B. `thank-god-its-tuesday`). Vorbedingung: die Shell-Funktionen oben sind einmalig in `~/.zshrc` eingerichtet (siehe "Einmaliges Setup").
 
-1. Im Ordner mit den frischen Desktop-Screenshots: `raw_rename mein-projekt desktop`
-2. Im Ordner mit den frischen Handy-Screenshots: `raw_rename mein-projekt mobile`
-3. `compress_desktop_shots mein-projekt`
-4. `compress_mobile_shots mein-projekt`
-5. Canva-Mockups bauen (Screenshots aus `2_processed/` verwenden), Export nach `3_mockups/`
-6. `compress_desktop_mockup mein-projekt`
-7. `compress_mobile_mockup mein-projekt`
-8. `compress_video mein-projekt` (falls Video vorhanden, rohes `.mov` vorher in `1_raw/` legen)
-9. `make_preview mein-projekt`
-10. Kompletten Inhalt von `4_web-ready/` nach Cloudflare R2 hochladen (Bilder + Vorschau → `images/`, Video → `videos/`)
-11. Metadaten in Sanity Studio eintragen, `slug` = `mein-projekt`
+### 0. Ordner anlegen
 
-Danach jeder Schritt einfach per Funktionsaufruf mit dem Projektnamen, ohne irgendwo Text im Terminal von Hand zu ändern.
+```bash
+BASE="/Volumes/uLLA4/Coding/Projects/studio-mitsch/assets/portfolio"
+mkdir -p "$BASE/<projektname>"/{1_raw,2_processed,3_mockups,4_web-ready}
+ls "$BASE/<projektname>"
+```
+Erwartet: `1_raw`, `2_processed`, `3_mockups`, `4_web-ready`.
+
+### 1. Screenshots & Video erfassen
+
+- **Desktop:** Browser-DevTools, Responsive Mode (`Cmd+Shift+M`), Viewport auf **1540×852px**. Screenshot pro Ansicht über die DevTools-Command-Palette (`Cmd+Shift+P` → „Capture screenshot“) — schneidet exakt den Viewport.
+- **Handy (Web-Projekt):** gleiches Vorgehen, Viewport **588×1224px**. (Bei App-Projekten stattdessen iOS-Simulator, `Cmd+S` zum Screenshot, danach auf 588×1224px skalieren.)
+- **Video:** QuickTime-Recording (Desktop) bzw. `xcrun simctl io booted recordVideo aufnahme.mov` (iOS-Simulator, App-Projekte).
+- Alle Desktop-Screenshots landen zunächst in einem eigenen, sonst leeren Ordner (z. B. neuer Ordner auf dem Desktop) — noch nicht in `1_raw/`. Gleiches für die Handy-Screenshots, in einem zweiten Ordner.
+
+### 2. Screenshots nummerieren + nach `1_raw/` verschieben
+
+Im Ordner mit den frischen **Desktop**-Screenshots:
+```bash
+raw_rename <projektname> desktop
+```
+Im Ordner mit den frischen **Handy**-Screenshots:
+```bash
+raw_rename <projektname> mobile
+```
+Beide verschieben die Dateien direkt (nummeriert nach Aufnahmezeit) nach `1_raw/`.
+
+### 3. Video nach `1_raw/` legen
+
+Kein Funktionsaufruf nötig, Dateiname ist egal (Endung muss `.mov` sein):
+```bash
+mv dein-video.mov "/Volumes/uLLA4/Coding/Projects/studio-mitsch/assets/portfolio/<projektname>/1_raw/"
+```
+
+### 4. Screenshots komprimieren (`1_raw/` → `2_processed/`)
+
+```bash
+cd "/Volumes/uLLA4/Coding/Projects/studio-mitsch/assets/portfolio/<projektname>/1_raw"
+compress_desktop_shots <projektname>
+compress_mobile_shots <projektname>
+```
+Kontrolle — Anzahl `.webp`-Dateien sollte der Anzahl Screenshots in `1_raw/` entsprechen:
+```bash
+ls "../2_processed"
+```
+
+### 5. Canva-Mockups bauen
+
+Mit den bestehenden Vorlagen (Desktop: iMac-Mockup, Handy: Hand-hält-Phone-Mockup) die Screenshots aus `2_processed/` einsetzen, Export als PNG direkt nach `3_mockups/`.
+
+### 6. Mockups komprimieren (`3_mockups/` → `4_web-ready/`)
+
+```bash
+cd "/Volumes/uLLA4/Coding/Projects/studio-mitsch/assets/portfolio/<projektname>/3_mockups"
+compress_desktop_mockup <projektname>
+compress_mobile_mockup <projektname>
+```
+Die Funktionen nummerieren automatisch neu durch (1, 2, 3, …) unabhängig davon, wie Canva die Export-Dateien intern benennt.
+
+### 7. Video komprimieren (`1_raw/` → `4_web-ready/`)
+
+```bash
+cd "/Volumes/uLLA4/Coding/Projects/studio-mitsch/assets/portfolio/<projektname>/1_raw"
+compress_video <projektname>
+```
+
+### 8. Vorschaubild erzeugen (`2_processed/` → `4_web-ready/`)
+
+```bash
+cd "/Volumes/uLLA4/Coding/Projects/studio-mitsch/assets/portfolio/<projektname>/2_processed"
+make_preview <projektname>
+```
+
+### 9. Kontrolle: `4_web-ready/` vollständig?
+
+```bash
+ls "/Volumes/uLLA4/Coding/Projects/studio-mitsch/assets/portfolio/<projektname>/4_web-ready"
+```
+Erwartet: `<projektname>-desktop-1.webp` … `-N.webp`, `<projektname>-mobile-1.webp` … `-N.webp`, `<projektname>-preview.webp`, `<projektname>-video.mp4` — alle durchnummeriert ohne Lücken oder Klammer-Reste wie `(0)`.
+
+### 10. Upload nach Cloudflare R2
+
+Im R2-Dashboard, Bucket `studio-mitsch-assets`, kompletten Inhalt von `4_web-ready/` per Drag & Drop hochladen:
+- alle `.webp`-Dateien (Desktop, Mobile, Preview) → Ordner `images/`
+- die `.mp4` → Ordner `videos/`
+
+Dateinamen bleiben exakt so, wie sie in `4_web-ready/` heißen.
+
+### 11. Sanity-Dokument anlegen
+
+In Sanity Studio (`studio-mitsch.de/studio`), neues `project`-Dokument:
+- `title`: Anzeigename für die Karte
+- `slug`: **exakt** `<projektname>` (muss 1:1 zum Datei-Präfix in R2 passen — sonst werden Vorschaubild/Mockup-Carousel/Video nicht gefunden)
+- `description`: Projekttext
+- `tags`: verwendete Technologien/Skills
+- `languages`: verwendete Tools bzw. Tech-Stack
+- `liveUrl`: Link zum Projekt, falls live erreichbar
+- `isVisible`: `true`, sobald alles passt
+
+### 12. Live prüfen
+
+- Startseite laden, neues Projekt taucht im Grid auf
+- Modal öffnen: Desktop- + Mobile-Mockup-Carousel, Video, Beschreibung, Tags, Link — alles korrekt?
+- Netzwerk-Tab: Bilder/Video laden von der R2-URL (Status 200)
+
+Fertig — Projekt ist online.
