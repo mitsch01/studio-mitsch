@@ -36,9 +36,12 @@ const defaultSiteContent: SiteContent = {
       "When I'm not coding, you'll find me in my art studio, out on my bike or in my garden enjoying the fresh air and colours of nature.",
     availabilityStatus: "Available for Freelance",
     skillBadges: [
-      "Fullstack Development", "Frontend Development", "App Development",
-      "HTML & CSS", "JavaScript", "TypeScript", "React", "Next.js",
-      "Flutter", "Dart", "UI / UX", "Tailwind CSS", "Procreate", "Photoshop",
+      "AI-Assisted Coding", "AI Integration", "App Development", "Cloudflare R2",
+      "Dart", "Figma", "Firebase", "Flutter", "Framer Motion", "Frontend Development",
+      "Fullstack Development", "Git", "GitHub", "HTML & CSS", "JavaScript", "MongoDB",
+      "Next.js", "Node.js", "Photoshop", "Procreate", "React", "Resend",
+      "RESTful APIs", "Sanity Studio", "Strapi CMS", "Tailwind CSS", "TypeScript",
+      "UI / UX", "Vercel", "Vite", "WCAG / Accessibility"
     ],
   },
   contact: {
@@ -56,28 +59,34 @@ const defaultSiteContent: SiteContent = {
       {
         category: "Frameworks & Libraries", skills: [
           { name: "React", level: 5 }, { name: "Next.js", level: 4 },
-          { name: "Tailwind CSS", level: 5 }, { name: "Flutter", level: 4 },
+          { name: "Vite", level: 4 }, { name: "Tailwind CSS", level: 5 },
+          { name: "Framer Motion", level: 4 }, { name: "Flutter", level: 4 },
         ]
       },
       {
-        category: "Tools & Design", skills: [
-          { name: "UI / UX Design", level: 4 }, { name: "Procreate", level: 5 },
-          { name: "Adobe Photoshop", level: 4 }, { name: "Git & GitHub", level: 4 },
+        category: "Backend, CMS & Data", skills: [
+          { name: "Node.js", level: 3 }, { name: "Sanity Studio", level: 4 },
+          { name: "Strapi CMS", level: 3 }, { name: "RESTful APIs", level: 4 },
+          { name: "MongoDB", level: 4 }, { name: "Firebase", level: 4 },
+          { name: "AI Integration", level: 4 },
         ]
       },
       {
-        category: "Others", skills: [
-          { name: "RESTful APIs", level: 4 }, { name: "Firebase", level: 4 },
-          { name: "MongoDB", level: 4 }, { name: "AI Integration", level: 4 },
+        category: "Tools, Design & Deployment", skills: [
+          { name: "Figma", level: 4 }, { name: "UI / UX Design", level: 4 },
+          { name: "Procreate", level: 5 }, { name: "Photoshop", level: 4 },
+          { name: "Git & GitHub", level: 4 }, { name: "Vercel", level: 4 },
+          { name: "Cloudflare R2", level: 3 }, { name: "Resend", level: 3 },
+          { name: "WCAG / Accessibility", level: 3 },
         ]
       },
     ],
     stackHeading: "Modern Web & App Stack",
     stackBody:
-      "My build pipeline is centred on React and Next.js for web, and Flutter & Dart for cross-platform apps. Every interaction is considered — from server-side architecture to the micro-animations users feel but rarely notice.",
-    stackTags: ["TypeScript", "Tailwind CSS", "Next.js 14", "Flutter"],
+      "My current build pipeline centers on React 19 with TypeScript — paired with Next.js or Vite depending on the project's needs — styled with Tailwind CSS and brought to life with Framer Motion's micro-animations.",
+    stackTags: ["TypeScript", "React 19", "Next.js", "Vite", "Tailwind CSS", "Framer Motion"],
     artMeetsCodeBody:
-      "Using Procreate and Photoshop I illustrate layouts, create custom assets, and prepare visual concepts before writing a single line of CSS. Design and development are never separate disciplines.",
+      "Using Figma, Procreate and Photoshop I build wireframes, illustrate layouts, create custom assets, and prepare visual concepts before writing a single line of CSS. Design and development are never separate disciplines.",
   },
 }
 
