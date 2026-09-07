@@ -94,8 +94,8 @@ const defaultSiteContent: SiteContent = {
 
 export async function getSiteContent(locale: Locale = "de"): Promise<SiteContent> {
   const data = await client.fetch<Partial<SiteContent> | null>(
-    `*[_id == "siteContent"][0]{ about, contact, skills }`,
-    {},
+    `*[_id == $id][0]{ about, contact, skills }`,
+    { id: locale },
     { cache: "no-store" }
   )
 
