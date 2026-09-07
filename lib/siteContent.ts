@@ -25,6 +25,8 @@ export type SiteContent = {
   }
 }
 
+// ACHTUNG: Dieser Inhalt wird nur als Fallback verwendet, wenn keine Inhalte aus Sanity Studio verfügbar sind. Wichtig: Hier sind keine deutschen Übersetzungen enthalten.
+
 const defaultSiteContent: SiteContent = {
   about: {
     bioHeading: "Hi, I'm Miriam",
@@ -41,7 +43,7 @@ const defaultSiteContent: SiteContent = {
       "Fullstack Development", "Git", "GitHub", "HTML & CSS", "JavaScript", "MongoDB",
       "Next.js", "Node.js", "Photoshop", "Procreate", "React", "Resend",
       "RESTful APIs", "Sanity Studio", "Strapi CMS", "Tailwind CSS", "TypeScript",
-      "UI / UX", "Vercel", "Vite", "WCAG / Accessibility"
+      "UX / UI", "Vercel", "Vite", "WCAG / Accessibility"
     ],
   },
   contact: {
@@ -75,16 +77,16 @@ const defaultSiteContent: SiteContent = {
         category: "Tools, Design & Deployment", skills: [
           { name: "Figma", level: 4 }, { name: "UI / UX", level: 4 },
           { name: "Procreate", level: 5 },
-          { name: "Git & GitHub", level: 4 }, { name: "Vercel", level: 4 },
-          { name: "Cloudflare R2", level: 3 }, { name: "Resend", level: 3 },
-          { name: "WCAG / Accessibility", level: 3 },
+          { name: "Git & GitHub", level: 4 }, { name: "Vercel", level: 5 },
+          { name: "Cloudflare R2", level: 4 }, { name: "Resend", level: 3 },
+          { name: "WCAG / Accessibility", level: 4 },
         ]
       },
     ],
     stackHeading: "Modern Web & App Stack",
        stackBody:
       "My current build pipeline centers on React 19 with TypeScript — paired with Next.js or Vite depending on the project's needs — styled with Tailwind CSS and brought to life with Framer Motion's micro-animations, with Sanity as headless CMS for content that clients manage themselves. For cross-platform apps, I build with Flutter and Dart.",
-    stackTags: ["TypeScript", "React 19", "Next.js", "Vite", "Tailwind CSS", "Framer Motion", "Sanity", "Flutter"],
+    stackTags: ["TypeScript", "React 19", "Next.js", "Vite", "Tailwind CSS", "Framer Motion", "Sanity Studio", "Flutter"],
     artMeetsCodeBody:
       "Using Figma and Procreate I build wireframes, illustrate layouts, create custom assets, and prepare visual concepts before writing a single line of CSS. Design and development are never separate disciplines.",
   },
