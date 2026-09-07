@@ -36,7 +36,7 @@ const defaultSiteContent: SiteContent = {
       "When I'm not coding, you'll find me in my art studio, out on my bike or in my garden enjoying the fresh air and colours of nature.",
     availabilityStatus: "Available for Freelance",
     skillBadges: [
-      "AI-Assisted Coding", "AI Integration", "App Development", "Cloudflare R2",
+      "AI-Assisted Coding", "AI Integration", "App Development", "Canva", "Cloudflare R2",
       "Dart", "Figma", "Firebase", "Flutter", "Framer Motion", "Frontend Development",
       "Fullstack Development", "Git", "GitHub", "HTML & CSS", "JavaScript", "MongoDB",
       "Next.js", "Node.js", "Photoshop", "Procreate", "React", "Resend",
@@ -65,7 +65,7 @@ const defaultSiteContent: SiteContent = {
       },
       {
         category: "Backend, CMS & Data", skills: [
-          { name: "Node.js", level: 3 }, { name: "Sanity Studio", level: 4 },
+          { name: "Node.js", level: 3 }, { name: "Sanity Studio", level: 5 },
           { name: "Strapi CMS", level: 3 }, { name: "RESTful APIs", level: 4 },
           { name: "MongoDB", level: 4 }, { name: "Firebase", level: 4 },
           { name: "AI Integration", level: 4 },
@@ -74,7 +74,7 @@ const defaultSiteContent: SiteContent = {
       {
         category: "Tools, Design & Deployment", skills: [
           { name: "Figma", level: 4 }, { name: "UI / UX Design", level: 4 },
-          { name: "Procreate", level: 5 }, { name: "Photoshop", level: 4 },
+          { name: "Procreate", level: 5 },
           { name: "Git & GitHub", level: 4 }, { name: "Vercel", level: 4 },
           { name: "Cloudflare R2", level: 3 }, { name: "Resend", level: 3 },
           { name: "WCAG / Accessibility", level: 3 },
@@ -83,8 +83,8 @@ const defaultSiteContent: SiteContent = {
     ],
     stackHeading: "Modern Web & App Stack",
     stackBody:
-      "My current build pipeline centers on React 19 with TypeScript — paired with Next.js or Vite depending on the project's needs — styled with Tailwind CSS and brought to life with Framer Motion's micro-animations.",
-    stackTags: ["TypeScript", "React 19", "Next.js", "Vite", "Tailwind CSS", "Framer Motion"],
+      "My current build pipeline centers on React 19 with TypeScript — paired with Next.js or Vite depending on the project's needs — styled with Tailwind CSS and brought to life with Framer Motion's micro-animations, with Sanity as headless CMS for content that clients manage themselves.",
+    stackTags: ["TypeScript", "React 19", "Next.js", "Vite", "Tailwind CSS", "Framer Motion", "Sanity"],
     artMeetsCodeBody:
       "Using Figma, Procreate and Photoshop I build wireframes, illustrate layouts, create custom assets, and prepare visual concepts before writing a single line of CSS. Design and development are never separate disciplines.",
   },
