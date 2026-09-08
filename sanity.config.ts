@@ -3,6 +3,7 @@ import { defineConfig } from 'sanity'
 import { structureTool } from 'sanity/structure'
 import { visionTool } from '@sanity/vision'
 import { schemaTypes } from './sanity/schemaTypes'
+import { orderableDocumentListDeskItem } from '@sanity/orderable-document-list'
 
 export default defineConfig({
   name: 'studio-mitsch',
@@ -12,7 +13,7 @@ export default defineConfig({
   basePath: '/studio',
   plugins: [
     structureTool({
-      structure: (S) =>
+      structure: (S, context) =>
         S.list()
           .title('Content')
           .items([
@@ -40,6 +41,12 @@ export default defineConfig({
                   ])
               ),
             S.divider(),
+            orderableDocumentListDeskItem({
+        type: 'project',
+        title: 'Projects',
+        S,
+        context,
+      }),
             ...S.documentTypeListItems().filter(
               (item) => item.getId() !== 'siteContent'
             ),

@@ -222,7 +222,9 @@ export default function PortfolioGallery({ locale }: { locale: Locale }) {
                         {t.projects.tags}:{" "}
                       </span>
                       {selectedProject.topics?.length > 0
-                        ? selectedProject.topics.join(", ")
+                        ? selectedProject.topics.length > 2
+                          ? selectedProject.topics.join(", ")
+                          : selectedProject.topics.join(" ")
                         : t.projects.none}
                     </p>
                     <p className="text-sm text-gray-400">
@@ -268,24 +270,24 @@ export default function PortfolioGallery({ locale }: { locale: Locale }) {
                       </a>
                     )}
 
-                  {selectedProject.repo_url && (
-                    <a
-                      href={selectedProject.repo_url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-sm font-bold uppercase tracking-widest text-white hover:text-raspberry transition-colors"
-                      aria-label={t.projects.viewOnGitHub}
-                    >
-                      {t.projects.viewOnGitHub}
-                    </a>
-                  )}
+                    {selectedProject.repo_url && (
+                      <a
+                        href={selectedProject.repo_url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-sm font-bold uppercase tracking-widest text-white hover:text-raspberry transition-colors"
+                        aria-label={t.projects.viewOnGitHub}
+                      >
+                        {t.projects.viewOnGitHub}
+                      </a>
+                    )}
+                  </div>
+                </div>
               </div>
-            </div>
-          </div>
             </motion.div>
-    </motion.div>
-  )
-}
+          </motion.div>
+        )
+        }
       </AnimatePresence >
     </ErrorBoundary >
   );
