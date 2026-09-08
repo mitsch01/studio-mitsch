@@ -1,9 +1,9 @@
 import { documentInternationalization } from '@sanity/document-internationalization'
+import { orderableDocumentListDeskItem } from '@sanity/orderable-document-list'
+import { visionTool } from '@sanity/vision'
 import { defineConfig } from 'sanity'
 import { structureTool } from 'sanity/structure'
-import { visionTool } from '@sanity/vision'
 import { schemaTypes } from './sanity/schemaTypes'
-import { orderableDocumentListDeskItem } from '@sanity/orderable-document-list'
 
 export default defineConfig({
   name: 'studio-mitsch',
@@ -24,31 +24,23 @@ export default defineConfig({
                 S.list()
                   .title('Site Content')
                   .items([
-                    S.listItem()
-                      .title('DE')
-                      .child(
-                        S.document()
-                          .schemaType('siteContent')
-                          .documentId('siteContent-de')
-                      ),
-                    S.listItem()
-                      .title('EN')
-                      .child(
-                        S.document()
-                          .schemaType('siteContent')
-                          .documentId('siteContent-en')
-                      ),
+                    S.listItem().title('DE').child(
+                      S.document().schemaType('siteContent').documentId('siteContent-de')
+                    ),
+                    S.listItem().title('EN').child(
+                      S.document().schemaType('siteContent').documentId('siteContent-en')
+                    ),
                   ])
               ),
             S.divider(),
             orderableDocumentListDeskItem({
-        type: 'project',
-        title: 'Projects',
-        S,
-        context,
-      }),
+              type: 'project',
+              title: 'Projects',
+              S,
+              context,
+            }),
             ...S.documentTypeListItems().filter(
-              (item) => item.getId() !== 'siteContent'
+              (item) => item.getId() !== 'siteContent' && item.getId() !== 'project'
             ),
           ]),
     }),
