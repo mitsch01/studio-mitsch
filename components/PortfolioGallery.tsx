@@ -71,10 +71,7 @@ export default function PortfolioGallery({ locale }: { locale: Locale }) {
         const combined = [
           ...(Array.isArray(githubRepos) ? githubRepos : []),
           ...(Array.isArray(sanityProjects) ? sanityProjects : []),
-        ].sort(
-          (a, b) =>
-            new Date(b.created_at).getTime() - new Date(a.created_at).getTime(),
-        );
+        ];
 
         setRepos(combined);
       } finally {
