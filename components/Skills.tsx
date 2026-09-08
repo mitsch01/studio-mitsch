@@ -118,7 +118,7 @@ export default function Skills({ data }: { data: SiteContent["skills"] }) {
               JS
             </span>
             <div className="relative z-10">
-              <span className="font-mono text-[10px] uppercase text-raspberry-hover font-bold tracking-widest block mb-1">
+              <span className="font-mono text-[10px] uppercase text-raspberry font-bold tracking-widest block mb-1">
                 Interactive Focus
               </span>
               <h2 className="text-xl md:text-2xl font-black tracking-tight mb-4 uppercase text-white">
