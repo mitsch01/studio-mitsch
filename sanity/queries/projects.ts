@@ -24,7 +24,7 @@ const PROJECTION = `{
   "topics": tags,
   languages,
   tools,
-  "created_at": _createdAt,
+  "created_at": createdAt,
   "updated_at": _updatedAt,
   "fork": false,
   "source": "sanity"
@@ -32,7 +32,7 @@ const PROJECTION = `{
 
 export async function getSanityProjects(): Promise<SanityPortfolioProject[]> {
   return client.fetch(
-    `*[_type == "project" && isVisible == true] | order(_createdAt desc) ${PROJECTION}`,
+    `*[_type == "project" && isVisible == true] | order(createdAt desc) ${PROJECTION}`,
   );
 }
 

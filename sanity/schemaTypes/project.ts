@@ -25,6 +25,13 @@ export const project = defineType({
       rows: 3,
     }),
     defineField({
+      name: 'createdAt',
+      title: 'Created At',
+      type: 'date',
+      description: 'Datum, an dem das Projekt fertiggestellt/veröffentlicht wurde — bestimmt die Reihenfolge auf der Startseite',
+      validation: (Rule) => Rule.required(),
+    }),
+    defineField({
       name: 'tools',
       title: 'Tools',
       type: 'array',
