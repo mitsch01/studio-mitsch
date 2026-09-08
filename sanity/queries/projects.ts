@@ -4,7 +4,8 @@ export type SanityPortfolioProject = {
   id: string;
   name: string;
   description: string;
-  html_url: string;
+  html_url: string | null;
+  repo_url: string | null;
   topics: string[];
   languages: string[];
   tools: string[];
@@ -21,6 +22,7 @@ const PROJECTION = `{
   "name": slug.current,
   description,
   "html_url": liveUrl,
+  "repo_url": repoUrl,
   "topics": tags,
   languages,
   tools,

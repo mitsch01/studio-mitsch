@@ -56,6 +56,12 @@ export const project = defineType({
       type: 'url',
     }),
     defineField({
+      name: 'repoUrl',
+      title: 'Repository URL',
+      type: 'url',
+      description: 'Link zum GitHub-Repo – bei privaten Repos leer lassen',
+    }),
+    defineField({
       name: 'order',
       title: 'Order',
       type: 'number',

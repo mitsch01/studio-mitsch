@@ -14,7 +14,8 @@ type Repo = {
   id: number | string;
   name: string;
   description: string;
-  html_url: string;
+  html_url: string | null;
+  repo_url: string | null;
   topics: string[];
   created_at: string;
   updated_at: string;
@@ -25,7 +26,8 @@ type Repo = {
 type Project = {
   name: string;
   description: string;
-  html_url: string;
+  html_url: string | null;
+  repo_url: string | null;
   topics: string[];
   created_at: string;
   updated_at: string;
@@ -246,28 +248,44 @@ export default function PortfolioGallery({ locale }: { locale: Locale }) {
                     </p>
                   </div>
 
-                  <a
+                  <div className="flex flex-wrap gap-6">
+                    {selectedProject.html_url && (
+                      <a
+                        href={selectedProject.html_url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-sm font-bold uppercase tracking-widest text-white hover:text-raspberry transition-colors"
+                        aria-label={
+                          selectedProject.source === "github"
+                            ? t.projects.viewOnGitHub
+                            : t.projects.viewProject
+                        }
+                      >
+                        {selectedProject.source === "github"
+                          ? t.projects.viewOnGitHub
+                          : t.projects.viewProject}
+                      </a>
+                    )}
 
-                    href={selectedProject.html_url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-sm font-bold uppercase tracking-widest text-white hover:text-raspberry transition-colors"
-                    aria-label={
-                      selectedProject.source === "github"
-                        ? t.projects.viewOnGitHub
-                        : t.projects.viewProject
-                    }
-                  >
-                    {selectedProject.source === "github"
-                      ? t.projects.viewOnGitHub
-                      : t.projects.viewProject}
-                  </a>
-                </div>
+                  {selectedProject.repo_url && (
+                    <a
+                      href={selectedProject.repo_url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-sm font-bold uppercase tracking-widest text-white hover:text-raspberry transition-colors"
+                      aria-label={t.projects.viewOnGitHub}
+                    >
+                      {t.projects.viewOnGitHub}
+                    </a>
+                  )}
               </div>
+            </div>
+          </div>
             </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </ErrorBoundary>
+    </motion.div>
+  )
+}
+      </AnimatePresence >
+    </ErrorBoundary >
   );
 }
