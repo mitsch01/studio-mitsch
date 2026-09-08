@@ -15,6 +15,7 @@ type CategoryTheme = {
 const getCategoryTheme = (category: string): CategoryTheme => {
   switch (category) {
     case "Languages":
+    case "Sprachen":
       return {
         icon: <Terminal className="w-5 h-5 text-amber-600" />,
         headerBg: "bg-amber-50 border-amber-200",
@@ -30,7 +31,8 @@ const getCategoryTheme = (category: string): CategoryTheme => {
         progressColor: "bg-raspberry-hover",
         badgeBg: "bg-rose-50 text-raspberry-hover border-rose-100",
       };
-    case "Tools & Design":
+    case "Backend, CMS & Data":
+    case "Backend, CMS & Daten":
       return {
         icon: <Paintbrush className="w-5 h-5 text-black" />,
         headerBg: "bg-gray-50 border-gray-200",
