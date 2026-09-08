@@ -18,7 +18,7 @@ export default function Footer() {
   const navLinks: { path: string; hash?: string; label: string }[] = [
     { path: "/", label: t.nav.home },
     { path: "/", hash: "projects", label: t.nav.projects },
-    { path: "/blog", label: t.nav.blog },
+    // { path: "/blog", label: t.nav.blog },
     { path: "/shop", label: t.nav.shop },
     { path: "/contact", label: t.nav.contact },
   ];

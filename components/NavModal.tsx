@@ -56,7 +56,7 @@ export default function NavModal({ toggleModal, locale }: NavModalProps) {
     { path: "/", label: t.nav.home },
     { path: "/", hash: "about", label: t.nav.about },
     { path: "/", hash: "projects", label: t.nav.projects },
-    { path: "/blog", label: t.nav.blog },
+    // { path: "/blog", label: t.nav.blog },
     { path: "/shop", label: t.nav.shop },
     { path: "/playground", label: t.nav.playground },
     { path: "/contact", label: t.nav.contact },
