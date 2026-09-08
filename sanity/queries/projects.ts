@@ -38,7 +38,7 @@ const PROJECTION = `{
 
 export async function getSanityProjects(): Promise<SanityPortfolioProject[]> {
   return client.fetch(
-    `*[_type == "project" && isVisible == true] | order(orderRank desc) ${PROJECTION}`,
+    `*[_type == "project" && isVisible == true] | order(orderRank asc) ${PROJECTION}`,
   );
 }
 
