@@ -12,12 +12,13 @@ export type SanityPortfolioProject = {
   tools: string[];
   created_at: string;
   updated_at: string;
+  orderRank: string;
   fork: false;
   source: "sanity";
 };
 
 // Formt jedes Sanity-Dokument auf genau die Feldnamen um, die
-// RepoGallery/ProjectGallery heute von der GitHub-API bekommen.
+// RepoGallery/ProjectGallery von der GitHub-API bekommen.
 const PROJECTION = `{
   "id": _id,
   "name": slug.current,
@@ -30,13 +31,14 @@ const PROJECTION = `{
   tools,
   "created_at": createdAt,
   "updated_at": _updatedAt,
+  "orderRank": orderRank,
   "fork": false,
   "source": "sanity"
 }`;
 
 export async function getSanityProjects(): Promise<SanityPortfolioProject[]> {
   return client.fetch(
-    `*[_type == "project" && isVisible == true] | order(createdAt desc) ${PROJECTION}`,
+    `*[_type == "project" && isVisible == true] | order(orderRank desc) ${PROJECTION}`,
   );
 }
 

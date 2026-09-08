@@ -62,10 +62,9 @@ export const project = defineType({
       description: 'Link zum GitHub-Repo – bei privaten Repos leer lassen',
     }),
     defineField({
-      name: 'order',
-      title: 'Order',
-      type: 'number',
-      description: 'Controls display order — lower numbers appear first',
+      name: 'orderRank',
+      type: 'string',
+      hidden: true,
     }),
     defineField({
       name: 'isVisible',
