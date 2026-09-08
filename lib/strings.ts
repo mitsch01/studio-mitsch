@@ -78,7 +78,7 @@ projects: Record<"heading" | "unavailable" | "loadMore" | "close" | "noDescripti
       none: "keine",
       created: "Erstellt",
       updated: "Aktualisiert",
-      viewOnGitHub: "Auf GitHub ansehen ↗",
+      viewOnGitHub: "GitHub Repo ↗",
       viewProject: "Projekt ansehen ↗",
     },
     playground: {
