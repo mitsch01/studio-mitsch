@@ -3,6 +3,7 @@ import { client } from "@/sanity/client";
 export type SanityPortfolioProject = {
   id: string;
   name: string;
+  title: string;
   description: string;
   html_url: string | null;
   repo_url: string | null;
@@ -20,6 +21,7 @@ export type SanityPortfolioProject = {
 const PROJECTION = `{
   "id": _id,
   "name": slug.current,
+  title,
   description,
   "html_url": liveUrl,
   "repo_url": repoUrl,

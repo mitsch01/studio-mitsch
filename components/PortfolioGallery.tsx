@@ -13,6 +13,7 @@ import { useEffect, useState } from "react";
 type Repo = {
   id: number | string;
   name: string;
+  title?: string;
   description: string;
   html_url: string | null;
   repo_url: string | null;
@@ -25,6 +26,7 @@ type Repo = {
 
 type Project = {
   name: string;
+  title?: string;
   description: string;
   html_url: string | null;
   repo_url: string | null;
@@ -40,7 +42,6 @@ const transformString = (input: string) =>
     .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
     .join(" ");
 
-// NEW: Skeleton card — matches card dimensions exactly
 function SkeletonCard() {
   return <div className="w-full h-[305px] bg-gray-200 animate-pulse" />;
 }
@@ -149,7 +150,7 @@ export default function PortfolioGallery({ locale }: { locale: Locale }) {
                   />
                   <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-90 transition-opacity duration-300 flex items-center justify-center">
                     <h2 className="text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 font-hind md:text-base text-sm uppercase tracking-widest">
-                      {transformString(repo.name)}
+                      {repo.title || transformString(repo.name)}
                     </h2>
                   </div>
                 </div>
@@ -200,7 +201,7 @@ export default function PortfolioGallery({ locale }: { locale: Locale }) {
 
               <div className="pt-16 pb-12 px-8 md:px-12">
                 <h1 className="text-4xl md:text-5xl font-bold uppercase text-white mb-4">
-                  {transformString(selectedProject.name)}
+                  {selectedProject.title || transformString(selectedProject.name)}
                 </h1>
                 <p className="text-gray-300 text-lg leading-relaxed mb-10">
                   {renderInlineMarkdown(selectedProject.description || t.projects.noDescription)}
