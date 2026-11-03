@@ -11,7 +11,7 @@ projects: Record<"heading" | "unavailable" | "loadMore" | "close" | "noDescripti
   meta: Record<"homeDescription" | "blogDescription", string>;
   blog: Record<"heading" | "noPosts" | "readMore" | "backToArticles" | "dateLocale", string>;
   contact: Record<"heading" | "imageAlt" | "descriptionMeta", string>;
-  form: Record<"name" | "email" | "message" | "sending" | "send" | "success" | "error", string>;
+  form: Record<"name" | "email" | "service" | "servicePlaceholder" | "serviceOther" | "message" | "sending" | "send" | "success" | "error", string>;
   shop: Record<"heading" | "subheading" | "noProducts" | "free" | "descriptionMeta" | "comingSoon", string>;
   cart: Record<"heading" | "empty" | "backToShop" | "remove" | "total" | "continueShopping" | "redirecting" | "checkout" | "descriptionMeta", string>;
   success: Record<"heading" | "confirmedLoggedIn" | "confirmedGuest" | "noDownloads" | "download" | "comingSoon" | "accessHeading" | "accessBody" | "createAccount" | "login" | "backToShop" | "descriptionMeta", string>;
@@ -124,6 +124,9 @@ projects: Record<"heading" | "unavailable" | "loadMore" | "close" | "noDescripti
     form: {
       name: "Name",
       email: "E-Mail",
+      service: "Leistung",
+      servicePlaceholder: "Bitte auswählen",
+      serviceOther: "Sonstiges",
       message: "Nachricht",
       sending: "Wird gesendet...",
       send: "Nachricht senden",
@@ -313,6 +316,9 @@ projects: Record<"heading" | "unavailable" | "loadMore" | "close" | "noDescripti
     form: {
       name: "Name",
       email: "Email",
+      service: "Service",
+      servicePlaceholder: "Please select",
+      serviceOther: "Other",
       message: "Message",
       sending: "Sending...",
       send: "Send Message",

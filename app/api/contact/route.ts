@@ -5,7 +5,8 @@ const resend = new Resend(process.env.RESEND_API_KEY)
 
 export async function POST(request: Request) {
   try {
-    const { name, email, message } = await request.json()
+    const { name, email, service, message } = await request.json()
+    const serviceLine = typeof service === "string" && service.trim() ? service.trim().slice(0, 100) : ""
 
     if (!name || !email || !message) {
       return NextResponse.json(
@@ -18,8 +19,8 @@ export async function POST(request: Request) {
       from: "studio-mitsch.de <hello@studio-mitsch.de>",
       to: "hello@studio-mitsch.de",
       replyTo: email,
-      subject: `New message from ${name}`,
-      text: `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`,
+      subject: serviceLine ? `New message from ${name} — ${serviceLine}` : `New message from ${name}`,
+      text: `Name: ${name}\nEmail: ${email}\n${serviceLine ? `Service: ${serviceLine}\n` : ""}\nMessage:\n${message}`,
     })
 
     if (error) {

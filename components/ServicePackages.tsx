@@ -92,7 +92,7 @@ export default function ServicePackages({
               )}
 
               <Link
-                href={contactHref}
+                href={`${contactHref}?service=${encodeURIComponent(pkg.id)}`}
                 className={`mt-auto px-6 py-3 text-center font-bold text-xs uppercase tracking-widest transition-colors no-underline ${
                   pkg.featured
                     ? "bg-raspberry text-white hover:bg-raspberry-hover"
