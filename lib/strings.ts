@@ -96,8 +96,8 @@ projects: Record<"heading" | "unavailable" | "loadMore" | "close" | "noDescripti
     },
     services: {
       heading: "Leistungen",
-      headline: "Websites, die für dein Business arbeiten",
-      subline: "Drei klare Pakete mit Festpreis – vom schnellen Check bis zur laufenden Pflege. Alle Preise sind Endpreise (gemäß § 19 UStG keine Umsatzsteuer).",
+      headline: "Deine Website",
+      subline: "Drei Pakete – vom schnellen Check bis zur laufenden Pflege. Alle Preise sind Endpreise (gemäß § 19 UStG keine Umsatzsteuer).",
       from: "ab",
       footnote: "Nicht sicher, was passt?",
       footnoteCta: "Schreib mir – in einem kurzen Gespräch finden wir es gemeinsam heraus.",
@@ -288,8 +288,8 @@ projects: Record<"heading" | "unavailable" | "loadMore" | "close" | "noDescripti
     },
     services: {
       heading: "Services",
-      headline: "Websites that work for your business",
-      subline: "Three clear packages at fixed prices – from a quick check to ongoing care. All prices are final (no VAT charged under the German small business regulation, § 19 UStG).",
+      headline: "Your Website",
+      subline: "Three packages – from a quick check to ongoing care. All prices are final (no VAT charged under the German small business regulation, § 19 UStG).",
       from: "from",
       footnote: "Not sure what fits?",
       footnoteCta: "Get in touch – we'll figure it out together in a short call.",
