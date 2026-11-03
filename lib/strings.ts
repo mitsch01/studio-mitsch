@@ -1,11 +1,12 @@
 import type { Locale } from "@/lib/locale";
 
 export const strings: Record<Locale, {
-  nav: Record<"home" | "about" | "projects" | "blog" | "shop" | "playground" | "contact", string>;
+  nav: Record<"home" | "about" | "services" | "projects" | "blog" | "shop" | "playground" | "contact", string>;
   common: Record<"readMore" | "backToArticles" | "addToCart" | "subscribe" | "submit" | "myAccount" | "login" | "cart" | "openMenu" | "closeMenu", string>;
   footer: Record<"tagline" | "navigate" | "newsletterHeading" | "newsletterBody" | "copyright" | "builtWith", string>;
   newsletter: Record<"placeholder" | "subscribing" | "success" | "duplicate" | "error", string>;
 projects: Record<"heading" | "unavailable" | "loadMore" | "close" | "noDescription" | "languages" | "tools" | "tags" | "none" | "created" | "updated" | "viewOnGitHub" | "viewProject", string>;
+  services: Record<"heading" | "headline" | "subline" | "from" | "footnote" | "footnoteCta", string>;
   hero: Record<"alt", string>;
   meta: Record<"homeDescription" | "blogDescription", string>;
   blog: Record<"heading" | "noPosts" | "readMore" | "backToArticles" | "dateLocale", string>;
@@ -33,6 +34,7 @@ projects: Record<"heading" | "unavailable" | "loadMore" | "close" | "noDescripti
     nav: {
       home: "Home",
       about: "Über mich",
+      services: "Leistungen",
       projects: "Projekte",
       blog: "Blog",
       shop: "Shop",
@@ -91,6 +93,14 @@ projects: Record<"heading" | "unavailable" | "loadMore" | "close" | "noDescripti
       haikuDefinitionBody: "Haikus haben ihren Ursprung in Japan. In nur drei Zeilen fangen sie die Schönheit flüchtiger Momente ein. Sie laden ein zum Innehalten. Gib drei englische Wörter ein und lass den Haiku-Generator seine magische Feder schwingen!",
       generatorHeading: "Haiku Generator",
       errorGenerating: "Fehler beim Erstellen des Haikus.",
+    },
+    services: {
+      heading: "Leistungen",
+      headline: "Websites, die für dein Business arbeiten",
+      subline: "Drei klare Pakete mit Festpreis – vom schnellen Check bis zur laufenden Pflege. Alle Preise sind Endpreise (gemäß § 19 UStG keine Umsatzsteuer).",
+      from: "ab",
+      footnote: "Nicht sicher, was passt?",
+      footnoteCta: "Schreib mir – in einem kurzen Gespräch finden wir es gemeinsam heraus.",
     },
     hero: {
       alt: "Studio Mitsch — Webentwicklerin & App-Entwicklerin aus Hamburg",
@@ -213,6 +223,7 @@ projects: Record<"heading" | "unavailable" | "loadMore" | "close" | "noDescripti
     nav: {
       home: "Home",
       about: "About",
+      services: "Services",
       projects: "Projects",
       blog: "Blog",
       shop: "Shop",
@@ -271,6 +282,14 @@ projects: Record<"heading" | "unavailable" | "loadMore" | "close" | "noDescripti
       haikuDefinitionBody: "Rooted in Japanese tradition, haikus capture the beauty of fleeting moments in just three lines — an invitation to pause and notice the world around you. Enter three words in English and let the Haiku Generator put pen to paper!",
       generatorHeading: "Haiku Generator",
       errorGenerating: "Error generating haiku",
+    },
+    services: {
+      heading: "Services",
+      headline: "Websites that work for your business",
+      subline: "Three clear packages at fixed prices – from a quick check to ongoing care. All prices are final (no VAT charged under the German small business regulation, § 19 UStG).",
+      from: "from",
+      footnote: "Not sure what fits?",
+      footnoteCta: "Get in touch – we'll figure it out together in a short call.",
     },
     hero: {
       alt: "Studio Mitsch — Hamburg based web and app developer",

@@ -4,9 +4,11 @@ import Header from "@/components/Header"
 import Hero from "@/components/Hero"
 import PlayButton from "@/components/PlaygroundButton"
 import PortfolioGallery from "@/components/PortfolioGallery";
+import ServicePackages from "@/components/ServicePackages"
 import type { Locale } from "@/lib/locale"
 import { getSiteContent } from "@/lib/siteContent"
 import { getStrings } from "@/lib/strings"
+import { getServicePackages } from "@/sanity/queries/servicePackages"
 import { Metadata } from "next"
 
 export async function generateMetadata({
@@ -30,12 +32,14 @@ export default async function Page({
   const { locale } = await params
   const t = getStrings(locale as Locale)
 const content = await getSiteContent(locale as Locale)
+  const servicePackages = await getServicePackages(locale as Locale)
 
   return (
     <>
       <Header logoColor="white" burgerColor="white" scrollThreshold={0.8} />
       <Hero locale={locale as Locale} />
       <About data={content.about} />
+      <ServicePackages packages={servicePackages} locale={locale as Locale} />
       <section id="projects" className="py-section max-w-screen-lg mx-auto px-8">
         <h1 className="md:text-7xl text-6xl uppercase text-black pb-6 tracking-tight">
           {t.projects.heading}

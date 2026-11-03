@@ -55,6 +55,7 @@ export default function NavModal({ toggleModal, locale }: NavModalProps) {
   const navItems: { path: string; hash?: string; label: string }[] = [
     { path: "/", label: t.nav.home },
     { path: "/", hash: "about", label: t.nav.about },
+    { path: "/", hash: "services", label: t.nav.services },
     { path: "/", hash: "projects", label: t.nav.projects },
     // { path: "/blog", label: t.nav.blog },
     { path: "/shop", label: t.nav.shop },
