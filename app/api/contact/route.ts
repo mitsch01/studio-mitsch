@@ -17,7 +17,8 @@ export async function POST(request: Request) {
 
     const { data, error } = await resend.emails.send({
       from: "studio-mitsch.de <hello@studio-mitsch.de>",
-      to: "hello@studio-mitsch.de",
+      // Direct to Gmail — the domain only forwards, and forwarded mail fails SPF at Gmail
+      to: "studiomitsch@gmail.com",
       replyTo: email,
       subject: serviceLine ? `New message from ${name} — ${serviceLine}` : `New message from ${name}`,
       text: `Name: ${name}\nEmail: ${email}\n${serviceLine ? `Service: ${serviceLine}\n` : ""}\nMessage:\n${message}`,
