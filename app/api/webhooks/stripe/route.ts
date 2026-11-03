@@ -42,8 +42,3 @@ export async function POST(req: NextRequest) {
 
   return NextResponse.json({ received: true })
 }
-
-// Required — disable body parsing so Stripe signature verification works
-export const config = {
-  api: { bodyParser: false },
-}

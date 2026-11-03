@@ -4,6 +4,7 @@ import Header from "@/components/Header";
 import type { Locale } from "@/lib/locale";
 import { getSiteContent } from "@/lib/siteContent";
 import { getStrings } from "@/lib/strings";
+import { getServicePackages } from "@/sanity/queries/servicePackages";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -22,12 +23,18 @@ export async function generateMetadata({
 
 export default async function Page({
   params,
+  searchParams,
 }: {
   params: Promise<{ locale: string }>
+  searchParams: Promise<{ service?: string }>
 }) {
   const { locale } = await params
+  const { service } = await searchParams
   const t = getStrings(locale as Locale)
   const content = await getSiteContent(locale as Locale)
+  const services = (await getServicePackages(locale as Locale)).map(({ id, title }) => ({ id, title }))
+  // Preselect the package from the card link (?service=<id>), ignore anything unknown
+  const defaultService = services.some((s) => s.id === service) ? service : ""
 
   return (
     <div>
@@ -74,7 +81,7 @@ export default async function Page({
             </Link>
           </div>
 
-          <EmailForm locale={locale as Locale} />
+          <EmailForm locale={locale as Locale} services={services} defaultService={defaultService} />
         </div>
       </div>
 

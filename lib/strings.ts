@@ -1,16 +1,17 @@
 import type { Locale } from "@/lib/locale";
 
 export const strings: Record<Locale, {
-  nav: Record<"home" | "about" | "projects" | "blog" | "shop" | "playground" | "contact", string>;
+  nav: Record<"home" | "about" | "services" | "projects" | "blog" | "shop" | "playground" | "contact", string>;
   common: Record<"readMore" | "backToArticles" | "addToCart" | "subscribe" | "submit" | "myAccount" | "login" | "cart" | "openMenu" | "closeMenu", string>;
   footer: Record<"tagline" | "navigate" | "newsletterHeading" | "newsletterBody" | "copyright" | "builtWith", string>;
   newsletter: Record<"placeholder" | "subscribing" | "success" | "duplicate" | "error", string>;
 projects: Record<"heading" | "unavailable" | "loadMore" | "close" | "noDescription" | "languages" | "tools" | "tags" | "none" | "created" | "updated" | "viewOnGitHub" | "viewProject", string>;
+  services: Record<"heading" | "headline" | "subline" | "from" | "footnote" | "footnoteCta", string>;
   hero: Record<"alt", string>;
   meta: Record<"homeDescription" | "blogDescription", string>;
   blog: Record<"heading" | "noPosts" | "readMore" | "backToArticles" | "dateLocale", string>;
   contact: Record<"heading" | "imageAlt" | "descriptionMeta", string>;
-  form: Record<"name" | "email" | "message" | "sending" | "send" | "success" | "error", string>;
+  form: Record<"name" | "email" | "service" | "servicePlaceholder" | "serviceOther" | "message" | "sending" | "send" | "success" | "error", string>;
   shop: Record<"heading" | "subheading" | "noProducts" | "free" | "descriptionMeta" | "comingSoon", string>;
   cart: Record<"heading" | "empty" | "backToShop" | "remove" | "total" | "continueShopping" | "redirecting" | "checkout" | "descriptionMeta", string>;
   success: Record<"heading" | "confirmedLoggedIn" | "confirmedGuest" | "noDownloads" | "download" | "comingSoon" | "accessHeading" | "accessBody" | "createAccount" | "login" | "backToShop" | "descriptionMeta", string>;
@@ -33,6 +34,7 @@ projects: Record<"heading" | "unavailable" | "loadMore" | "close" | "noDescripti
     nav: {
       home: "Home",
       about: "Über mich",
+      services: "Leistungen",
       projects: "Projekte",
       blog: "Blog",
       shop: "Shop",
@@ -92,6 +94,14 @@ projects: Record<"heading" | "unavailable" | "loadMore" | "close" | "noDescripti
       generatorHeading: "Haiku Generator",
       errorGenerating: "Fehler beim Erstellen des Haikus.",
     },
+    services: {
+      heading: "Leistungen",
+      headline: "Websites, die für dein Business arbeiten",
+      subline: "Drei klare Pakete mit Festpreis – vom schnellen Check bis zur laufenden Pflege. Alle Preise sind Endpreise (gemäß § 19 UStG keine Umsatzsteuer).",
+      from: "ab",
+      footnote: "Nicht sicher, was passt?",
+      footnoteCta: "Schreib mir – in einem kurzen Gespräch finden wir es gemeinsam heraus.",
+    },
     hero: {
       alt: "Studio Mitsch — Webentwicklerin & App-Entwicklerin aus Hamburg",
     },
@@ -114,6 +124,9 @@ projects: Record<"heading" | "unavailable" | "loadMore" | "close" | "noDescripti
     form: {
       name: "Name",
       email: "E-Mail",
+      service: "Leistung",
+      servicePlaceholder: "Bitte auswählen",
+      serviceOther: "Sonstiges",
       message: "Nachricht",
       sending: "Wird gesendet...",
       send: "Nachricht senden",
@@ -213,6 +226,7 @@ projects: Record<"heading" | "unavailable" | "loadMore" | "close" | "noDescripti
     nav: {
       home: "Home",
       about: "About",
+      services: "Services",
       projects: "Projects",
       blog: "Blog",
       shop: "Shop",
@@ -272,6 +286,14 @@ projects: Record<"heading" | "unavailable" | "loadMore" | "close" | "noDescripti
       generatorHeading: "Haiku Generator",
       errorGenerating: "Error generating haiku",
     },
+    services: {
+      heading: "Services",
+      headline: "Websites that work for your business",
+      subline: "Three clear packages at fixed prices – from a quick check to ongoing care. All prices are final (no VAT charged under the German small business regulation, § 19 UStG).",
+      from: "from",
+      footnote: "Not sure what fits?",
+      footnoteCta: "Get in touch – we'll figure it out together in a short call.",
+    },
     hero: {
       alt: "Studio Mitsch — Hamburg based web and app developer",
     },
@@ -294,6 +316,9 @@ projects: Record<"heading" | "unavailable" | "loadMore" | "close" | "noDescripti
     form: {
       name: "Name",
       email: "Email",
+      service: "Service",
+      servicePlaceholder: "Please select",
+      serviceOther: "Other",
       message: "Message",
       sending: "Sending...",
       send: "Send Message",

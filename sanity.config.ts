@@ -39,8 +39,17 @@ export default defineConfig({
               S,
               context,
             }),
+            orderableDocumentListDeskItem({
+              type: 'servicePackage',
+              title: 'Leistungspakete',
+              S,
+              context,
+            }),
             ...S.documentTypeListItems().filter(
-              (item) => item.getId() !== 'siteContent' && item.getId() !== 'project'
+              (item) =>
+                item.getId() !== 'siteContent' &&
+                item.getId() !== 'project' &&
+                item.getId() !== 'servicePackage'
             ),
           ]),
     }),

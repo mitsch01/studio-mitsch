@@ -1,11 +1,23 @@
 import { AuthProvider } from "@/context/AuthContext";
 import { CartProvider } from "@/context/CartContext";
 import { locales, type Locale } from "@/lib/locale";
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
 export function generateStaticParams() {
   return locales.map((locale) => ({ locale }));
 }
+
+// hreflang links — rendered into the root <head> by Next.js (resolved against metadataBase)
+export const metadata: Metadata = {
+  alternates: {
+    languages: {
+      de: "/",
+      en: "/en",
+      "x-default": "/",
+    },
+  },
+};
 
 export default async function LocaleLayout({
   children,
@@ -23,14 +35,7 @@ export default async function LocaleLayout({
   return (
     <AuthProvider>
       <CartProvider>
-        <>
-          <head>
-            <link rel="alternate" hrefLang="de" href="https://studio-mitsch.de" />
-            <link rel="alternate" hrefLang="en" href="https://studio-mitsch.de/en" />
-            <link rel="alternate" hrefLang="x-default" href="https://studio-mitsch.de" />
-          </head>
-          <main className="flex-1">{children}</main>
-        </>
+        <main className="flex-1">{children}</main>
       </CartProvider>
     </AuthProvider>
   );
