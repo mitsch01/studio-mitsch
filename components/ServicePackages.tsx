@@ -30,9 +30,6 @@ export default function ServicePackages({
           {t.services.heading}
         </h1>
         <div className="max-w-2xl flex flex-col gap-4 pb-12">
-          <h2 className="text-2xl font-extrabold text-black tracking-tight">
-            {t.services.headline}
-          </h2>
           <p className="text-gray-600 text-base md:text-lg leading-relaxed">
             {t.services.subline}
           </p>
@@ -43,11 +40,10 @@ export default function ServicePackages({
           {packages.map((pkg) => (
             <article
               key={pkg.id}
-              className={`flex flex-col gap-6 p-8 border shadow-sm ${
-                pkg.featured
+              className={`flex flex-col gap-6 p-8 border shadow-sm ${pkg.featured
                   ? "bg-black border-black text-white"
                   : "bg-white border-gray-200 text-black"
-              }`}
+                }`}
             >
               <div className="flex flex-col gap-3">
                 <div className="flex flex-wrap items-center justify-between gap-x-4 gap-y-2">
@@ -93,11 +89,10 @@ export default function ServicePackages({
 
               <Link
                 href={`${contactHref}?service=${encodeURIComponent(pkg.id)}`}
-                className={`mt-auto px-6 py-3 text-center font-bold text-xs uppercase tracking-widest transition-colors no-underline ${
-                  pkg.featured
+                className={`mt-auto px-6 py-3 text-center font-bold text-xs uppercase tracking-widest transition-colors no-underline ${pkg.featured
                     ? "bg-raspberry text-white hover:bg-raspberry-hover"
                     : "bg-black text-white hover:bg-raspberry"
-                }`}
+                  }`}
               >
                 {pkg.ctaLabel}
               </Link>

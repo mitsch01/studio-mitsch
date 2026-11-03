@@ -6,7 +6,7 @@ export const strings: Record<Locale, {
   footer: Record<"tagline" | "navigate" | "newsletterHeading" | "newsletterBody" | "copyright" | "builtWith", string>;
   newsletter: Record<"placeholder" | "subscribing" | "success" | "duplicate" | "error", string>;
 projects: Record<"heading" | "unavailable" | "loadMore" | "close" | "noDescription" | "languages" | "tools" | "tags" | "none" | "created" | "updated" | "viewOnGitHub" | "viewProject", string>;
-  services: Record<"heading" | "headline" | "subline" | "from" | "footnote" | "footnoteCta", string>;
+  services: Record<"heading" | "subline" | "from" | "footnote" | "footnoteCta", string>;
   hero: Record<"alt", string>;
   meta: Record<"homeDescription" | "blogDescription", string>;
   blog: Record<"heading" | "noPosts" | "readMore" | "backToArticles" | "dateLocale", string>;
@@ -96,8 +96,7 @@ projects: Record<"heading" | "unavailable" | "loadMore" | "close" | "noDescripti
     },
     services: {
       heading: "Leistungen",
-      headline: "Deine Website",
-      subline: "Drei Pakete – vom schnellen Check bis zur laufenden Pflege. Alle Preise sind Endpreise (gemäß § 19 UStG keine Umsatzsteuer).",
+      subline: "Deine Website – vom schnellen Check bis zur laufenden Pflege. Alle Preise sind Endpreise (gemäß § 19 UStG keine Umsatzsteuer).",
       from: "ab",
       footnote: "Nicht sicher, was passt?",
       footnoteCta: "Schreib mir – in einem kurzen Gespräch finden wir es gemeinsam heraus.",
@@ -288,8 +287,7 @@ projects: Record<"heading" | "unavailable" | "loadMore" | "close" | "noDescripti
     },
     services: {
       heading: "Services",
-      headline: "Your Website",
-      subline: "Three packages – from a quick check to ongoing care. All prices are final (no VAT charged under the German small business regulation, § 19 UStG).",
+      subline: "Your Website – from a quick check to ongoing care. All prices are final (no VAT charged under the German small business regulation, § 19 UStG).",
       from: "from",
       footnote: "Not sure what fits?",
       footnoteCta: "Get in touch – we'll figure it out together in a short call.",
