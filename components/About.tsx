@@ -10,7 +10,8 @@ export default function About({ data }: { data: SiteContent["about"] }) {
     <section id="about" className="py-section md:py-36 bg-white overflow-hidden">
       <div className="max-w-screen-lg mx-auto px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-start">
-          {/* ── Column 1: Heading, Badges, Philosophy card ── */}
+          
+          {/* ── Column 1: Heading, Philosophy card ── */}
           <div className="flex flex-col gap-8">
             <div>
               <motion.h1
@@ -22,28 +23,6 @@ export default function About({ data }: { data: SiteContent["about"] }) {
                 About
               </motion.h1>
             </div>
-
-            <motion.div
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: "-100px" }}
-              variants={{ visible: { transition: { staggerChildren: 0.04 } } }}
-              className="flex flex-wrap gap-2.5"
-            >
-              {data.skillBadges.map((badge) => (
-                <motion.span
-                  key={badge}
-                  variants={{
-                    hidden: { opacity: 0, scale: 0.85 },
-                    visible: { opacity: 1, scale: 1 },
-                  }}
-                  whileHover={{ scale: 1.05, y: -2 }}
-                  className="bg-raspberry text-white px-4 py-2 text-xs font-bold tracking-wider uppercase select-none hover:bg-raspberry-hover transition-colors cursor-default"
-                >
-                  {badge}
-                </motion.span>
-              ))}
-            </motion.div>
 
             <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
