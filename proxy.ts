@@ -2,7 +2,7 @@ import { defaultLocale, getLocaleFromPath, hasLocalePrefix } from "@/lib/locale"
 import { jwtVerify } from "jose";
 import { NextRequest, NextResponse } from "next/server";
 
-export async function middleware(req: NextRequest) {
+export async function proxy(req: NextRequest) {
   const { pathname } = req.nextUrl;
   const localePrefixed = hasLocalePrefix(pathname);
   const locale = getLocaleFromPath(pathname);
