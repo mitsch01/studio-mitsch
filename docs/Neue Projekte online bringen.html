@@ -1,0 +1,685 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1"><style>:root{color-scheme:light}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found]){display:none!important}</style></head><body>
+<title>Portfolio-Workflow</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#F5F6F4;
+    --surface:#FFFFFF;
+    --surface-2:#EEF0EC;
+    --text:#16181A;
+    --text-muted:#63696B;
+    --border:#DCE0DC;
+    --border-strong:#C7CDC6;
+    --accent:#0F7B6C;
+    --accent-contrast:#FFFFFF;
+    --accent-soft:#E1F1EC;
+    --web-tag:#1D5FA8;
+    --web-tag-soft:#E4EEF8;
+    --app-tag:#C2540B;
+    --app-tag-soft:#FAEADD;
+    --danger:#B3261E;
+    --shadow: 0 1px 2px rgba(20,24,22,0.07), 0 6px 16px rgba(20,24,22,0.05);
+    --radius: 10px;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg:#13161A;
+      --surface:#1B1F1F;
+      --surface-2:#20262A;
+      --text:#EDEFEC;
+      --text-muted:#98A29B;
+      --border:#2B3230;
+      --border-strong:#3A4340;
+      --accent:#35C4A6;
+      --accent-contrast:#0B1513;
+      --accent-soft:#173229;
+      --web-tag:#7CB0E8;
+      --web-tag-soft:#182634;
+      --app-tag:#E8935A;
+      --app-tag-soft:#33241A;
+      --danger:#E5695F;
+      --shadow: 0 1px 2px rgba(0,0,0,0.4), 0 8px 20px rgba(0,0,0,0.35);
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#13161A;
+    --surface:#1B1F1F;
+    --surface-2:#20262A;
+    --text:#EDEFEC;
+    --text-muted:#98A29B;
+    --border:#2B3230;
+    --border-strong:#3A4340;
+    --accent:#35C4A6;
+    --accent-contrast:#0B1513;
+    --accent-soft:#173229;
+    --web-tag:#7CB0E8;
+    --web-tag-soft:#182634;
+    --app-tag:#E8935A;
+    --app-tag-soft:#33241A;
+    --danger:#E5695F;
+    --shadow: 0 1px 2px rgba(0,0,0,0.4), 0 8px 20px rgba(0,0,0,0.35);
+  }
+
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:"IBM Plex Sans", system-ui, -apple-system, sans-serif;
+    line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+  }
+  ::selection{ background: var(--accent-soft); }
+  a{ color:var(--accent); }
+
+  .wrap{
+    max-width:920px;
+    margin:0 auto;
+    padding:40px 24px 96px;
+  }
+
+  header.top{
+    display:flex;
+    flex-direction:column;
+    gap:14px;
+    margin-bottom:32px;
+  }
+  .eyebrow{
+    font-family:"IBM Plex Mono", monospace;
+    font-size:12.5px;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+    color:var(--text-muted);
+  }
+  h1{
+    font-family:"Archivo", sans-serif;
+    font-weight:800;
+    font-size:clamp(28px,4vw,38px);
+    margin:0;
+    text-wrap:balance;
+    letter-spacing:-0.01em;
+  }
+  .sub{
+    color:var(--text-muted);
+    font-size:15px;
+    max-width:640px;
+  }
+
+  .progress-row{
+    display:flex;
+    align-items:center;
+    gap:14px;
+    margin-top:6px;
+  }
+  .progress-track{
+    flex:1;
+    height:8px;
+    border-radius:999px;
+    background:var(--surface-2);
+    overflow:hidden;
+    border:1px solid var(--border);
+  }
+  .progress-fill{
+    height:100%;
+    background:var(--accent);
+    border-radius:999px;
+    transition:width .3s ease;
+  }
+  .progress-label{
+    font-family:"IBM Plex Mono", monospace;
+    font-size:13px;
+    color:var(--text-muted);
+    font-variant-numeric:tabular-nums;
+    white-space:nowrap;
+  }
+
+  section{ margin-bottom:28px; }
+  h2{
+    font-family:"Archivo", sans-serif;
+    font-weight:700;
+    font-size:19px;
+    margin:0 0 12px;
+    letter-spacing:-0.005em;
+  }
+  .card{
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-radius:var(--radius);
+    box-shadow:var(--shadow);
+    padding:20px 22px;
+  }
+
+  .stage-label{
+    font-family:"IBM Plex Mono", monospace;
+    font-size:11.5px;
+    letter-spacing:0.05em;
+    text-transform:uppercase;
+    color:var(--text-muted);
+    margin:18px 0 8px;
+  }
+  .stage-label:first-child{ margin-top:0; }
+
+  ul.steps{ list-style:none; margin:0; padding:0; }
+  ul.steps li{
+    display:flex;
+    align-items:flex-start;
+    gap:10px;
+    padding:6px 0;
+    border-bottom:1px solid var(--border);
+  }
+  ul.steps li:last-child{ border-bottom:none; }
+  ul.steps input[type="checkbox"]{
+    margin-top:3px;
+    width:17px;height:17px;
+    accent-color:var(--accent);
+    flex-shrink:0;
+    cursor:pointer;
+  }
+  ul.steps label{
+    font-size:14.5px;
+    cursor:pointer;
+  }
+  ul.steps li.done label{
+    color:var(--text-muted);
+    text-decoration:line-through;
+    text-decoration-color:var(--border-strong);
+  }
+  code.inline{
+    font-family:"IBM Plex Mono", monospace;
+    font-size:12.5px;
+    background:var(--surface-2);
+    padding:1px 5px;
+    border-radius:4px;
+  }
+
+  details.ref{
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-radius:var(--radius);
+    box-shadow:var(--shadow);
+    padding:16px 22px;
+  }
+  details.ref summary{
+    cursor:pointer;
+    font-family:"Archivo", sans-serif;
+    font-weight:700;
+    font-size:16px;
+    list-style:none;
+  }
+  details.ref summary::-webkit-details-marker{ display:none; }
+  details.ref summary::before{
+    content:"›";
+    display:inline-block;
+    margin-right:8px;
+    transition:transform .15s ease;
+  }
+  details.ref[open] summary::before{ transform:rotate(90deg); }
+  .ref-body{ margin-top:14px; }
+  .ref-block{ margin-bottom:16px; }
+  .ref-block h3{
+    font-size:13.5px;
+    margin:0 0 6px;
+    font-weight:600;
+  }
+  .ref-block p.note{
+    font-size:13px;
+    color:var(--text-muted);
+    margin:6px 0 0;
+  }
+  pre{
+    font-family:"IBM Plex Mono", monospace;
+    font-size:12.5px;
+    background:var(--surface-2);
+    border:1px solid var(--border);
+    border-radius:8px;
+    padding:12px 14px;
+    overflow-x:auto;
+    margin:0;
+    position:relative;
+  }
+  .copy-btn{
+    font-family:"IBM Plex Mono", monospace;
+    font-size:11px;
+    background:var(--surface);
+    border:1px solid var(--border-strong);
+    color:var(--text-muted);
+    border-radius:6px;
+    padding:3px 8px;
+    cursor:pointer;
+    float:right;
+    margin-left:8px;
+  }
+  .copy-btn:hover{ color:var(--text); border-color:var(--text-muted); }
+
+  .tools-note{
+    font-size:13px;
+    color:var(--text-muted);
+    margin-top:2px;
+  }
+
+  .project-grid{ display:flex; flex-direction:column; gap:16px; }
+  .project-card .p-head{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    margin-bottom:4px;
+  }
+  .p-name{
+    font-family:"Archivo", sans-serif;
+    font-weight:700;
+    font-size:17px;
+    border:none;
+    background:none;
+    outline:none;
+    color:var(--text);
+    padding:2px 4px;
+    border-radius:6px;
+    flex:1;
+    min-width:0;
+  }
+  .p-name:hover, .p-name:focus{ background:var(--surface-2); }
+  .type-toggle{
+    display:inline-flex;
+    border:1px solid var(--border-strong);
+    border-radius:999px;
+    overflow:hidden;
+    font-family:"IBM Plex Mono", monospace;
+    font-size:11.5px;
+    flex-shrink:0;
+  }
+  .type-toggle button{
+    border:none;
+    background:var(--surface);
+    color:var(--text-muted);
+    padding:5px 11px;
+    cursor:pointer;
+  }
+  .type-toggle button.active[data-type="web"]{ background:var(--web-tag-soft); color:var(--web-tag); }
+  .type-toggle button.active[data-type="app"]{ background:var(--app-tag-soft); color:var(--app-tag); }
+  .p-progress{
+    font-family:"IBM Plex Mono", monospace;
+    font-size:12.5px;
+    color:var(--text-muted);
+    flex-shrink:0;
+    font-variant-numeric:tabular-nums;
+  }
+  .p-del{
+    border:none;
+    background:none;
+    color:var(--text-muted);
+    cursor:pointer;
+    font-size:16px;
+    line-height:1;
+    padding:2px 4px;
+    flex-shrink:0;
+  }
+  .p-del:hover{ color:var(--danger); }
+
+  .add-project{
+    margin-top:14px;
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    background:none;
+    border:1px dashed var(--border-strong);
+    color:var(--text-muted);
+    border-radius:999px;
+    padding:8px 16px;
+    font-family:"IBM Plex Sans", sans-serif;
+    font-size:13.5px;
+    cursor:pointer;
+  }
+  .add-project:hover{ color:var(--text); border-color:var(--text-muted); }
+
+  footer.status{
+    margin-top:36px;
+    font-size:12.5px;
+    color:var(--text-muted);
+    text-align:center;
+  }
+
+  button:focus-visible, input:focus-visible, [contenteditable]:focus-visible{
+    outline:2px solid var(--accent);
+    outline-offset:2px;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    .progress-fill{ transition:none; }
+  }
+</style>
+
+<div class="wrap" id="app"></div>
+
+<script>
+(function(){
+  "use strict";
+
+  var STAGES = [
+    { key:"capture", label:"Erfassen", steps:[
+      { id:"cap_desktop_shot", text:"Desktop-Screenshot (Browser, DevTools Responsive Mode, exakt 1540×852px)" },
+      { id:"cap_desktop_rec", text:"Desktop-Recording (QuickTime, 10–20s, relevante Interaktion)" },
+      { id:"cap_phone_shot", web:"Handy-Screenshot – DevTools Responsive Mode, exakt 588×1224px", app:"Handy-Screenshot – iOS Simulator (Cmd+S), danach auf 588×1224px skalieren" },
+      { id:"cap_phone_rec", web:"Handy-Recording – responsive Ansicht (QuickTime)", app:"Handy-Recording – iOS Simulator (xcrun simctl io booted recordVideo)" }
+    ]},
+    { key:"resize", label:"Größe &amp; Kompression", steps:[
+      { id:"resize_shots", text:"Screenshots auf Canva-Zielmaße bringen: Desktop 1540×852px, Handy 588×1224px (Shell-Funktion, siehe docs/portfolio-asset-workflow.md)" },
+      { id:"compress_video", text:"Videos komprimieren (Shell-Funktion, siehe docs/portfolio-asset-workflow.md)" }
+    ]},
+    { key:"mockup", label:"Mockup (Canva)", steps:[
+      { id:"mockup_desktop", text:"Desktop-Mockup bauen + exportieren" },
+      { id:"mockup_phone", text:"Phone-Mockup bauen + exportieren" }
+    ]},
+    { key:"optimize", label:"Web-Optimierung", steps:[
+      { id:"webp_convert", text:"Beide Mockup-Exporte zu WebP konvertieren (Shell-Funktion, siehe docs/portfolio-asset-workflow.md)" }
+    ]},
+    { key:"upload", label:"Sanity-Upload", steps:[
+      { id:"upload_desktop", text:"Desktop-Mockup hochladen" },
+      { id:"upload_phone", text:"Phone-Mockup hochladen" },
+      { id:"upload_video", text:"Video(s) hochladen" },
+      { id:"upload_meta", text:"Metadaten eintragen (Titel, Beschreibung, Tech-Stack, Links)" }
+    ]},
+    { key:"verify", label:"Verify", steps:[
+      { id:"verify_live", text:"Live-Check: Desktop- + Mobile-Ansicht" },
+      { id:"verify_perf", text:"Ladezeit/Netzwerk-Tab checken" }
+    ]}
+  ];
+
+  function stepIds(){
+    var ids = [];
+    STAGES.forEach(function(s){ s.steps.forEach(function(st){ ids.push(st.id); }); });
+    return ids;
+  }
+  var ALL_STEP_IDS = stepIds();
+
+  function freshSteps(){
+    var o = {};
+    ALL_STEP_IDS.forEach(function(id){ o[id] = false; });
+    return o;
+  }
+
+  function defaultState(){
+    return {
+      setup: [
+        { id:"s1", text:"Canva: „browser mockup“ + „phone mockup“ Templates mit unscharfem Hintergrund recherchieren", done:false },
+        { id:"s2", text:"Ziel-Maße aus den Templates notieren (Desktop-Screen-Fläche B×H px, Phone-Screen-Fläche B×H px)", done:false },
+        { id:"s3", text:"Bestehendes Mockup auf der Live-Seite inspizieren (Bildadresse kopieren → Maße ablesen) zum Abgleich", done:false },
+        { id:"s4", text:"Ordnerstruktur anlegen: assets/portfolio/&lt;projekt&gt;/{1_raw, 2_processed, 3_mockups, 4_web-ready}", done:false },
+        { id:"s5", text:"Shell-Funktionen aus docs/portfolio-asset-workflow.md einmal in ~/.zshrc einrichten und an einem Testbild/-video ausprobieren", done:false }
+      ],
+      projects: [1,2,3,4,5,6].map(function(n){
+        return { id:"p"+n, name:"Projekt "+n, type:"web", steps: freshSteps() };
+      }),
+      nextProjectN: 7
+    };
+  }
+
+  var STATE = defaultState();
+  var artifactAPI = null;
+  var capabilityChecked = false;
+  var saveTimer = null;
+
+  function esc(s){
+    return String(s).replace(/[&<>"']/g, function(c){
+      return { "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;", "'":"&#39;" }[c];
+    });
+  }
+
+  function countDone(steps){
+    var d = 0;
+    ALL_STEP_IDS.forEach(function(id){ if (steps[id]) d++; });
+    return d;
+  }
+
+  function overallProgress(){
+    var total = STATE.setup.length + STATE.projects.length * ALL_STEP_IDS.length;
+    var done = STATE.setup.filter(function(s){ return s.done; }).length;
+    STATE.projects.forEach(function(p){ done += countDone(p.steps); });
+    return { done: done, total: total };
+  }
+
+  function renderSetup(){
+    var items = STATE.setup.map(function(s){
+      return '<li class="'+(s.done?'done':'')+'">' +
+        '<input type="checkbox" data-setup="'+s.id+'" '+(s.done?'checked':'')+' id="chk-'+s.id+'">' +
+        '<label for="chk-'+s.id+'">'+s.text+'</label>' +
+        '</li>';
+    }).join("");
+    return '<section><h2>Einmalig, vor dem ersten Projekt</h2><div class="card"><ul class="steps">'+items+'</ul></div></section>';
+  }
+
+  function renderReference(){
+    return ''+
+    '<section><details class="ref">'+
+      '<summary>Terminal-Befehle</summary>'+
+      '<div class="ref-body">'+
+        '<div class="ref-block">'+
+          '<h3>Jetzt im Repo statt hier</h3>'+
+          '<p class="note">Die Terminal-Befehle (Screenshots umbenennen, Screenshots/Mockups/Video komprimieren, Vorschaubild erzeugen) sind seit 04.09.2026 als reine Markdown-Referenz + fertige Shell-Funktionen im Repo gepflegt, nicht mehr hier — so müssen sie bei einer Struktur-Änderung nur an einer Stelle aktualisiert werden:</p>'+
+          '<pre><button class="copy-btn" data-copy="mitsch-website/docs/portfolio-asset-workflow.md">Copy</button>mitsch-website/docs/portfolio-asset-workflow.md</pre>'+
+          '<p class="note">Diese Datei einmal als zweiten Tab/Fenster daneben offen halten. Sie enthält 7 Shell-Funktionen für <code class="inline">~/.zshrc</code>, die den Projektnamen als Argument nehmen (z.B. <code class="inline">compress_desktop_shots mein-projekt</code>) — kein manuelles Editieren von Platzhaltern oder <code class="inline">cd</code> mehr nötig.</p>'+
+        '</div>'+
+        '<div class="ref-block">'+
+          '<h3>iOS-Simulator-Recording direkt aus dem Terminal</h3>'+
+          '<pre><button class="copy-btn" data-copy="xcrun simctl io booted recordVideo aufnahme.mov">Copy</button>xcrun simctl io booted recordVideo aufnahme.mov</pre>'+
+          '<p class="note">Stoppen mit Ctrl+C im Terminal. Danach mit der compress_video-Funktion aus dem Repo-Doc komprimieren.</p>'+
+        '</div>'+
+      '</div>'+
+    '</details></section>';
+  }
+
+  function renderProject(p){
+    var prog = countDone(p.steps);
+    var stagesHtml = STAGES.map(function(stage){
+      var lis = stage.steps.map(function(st){
+        var text = st.text || (p.type === "app" ? st.app : st.web);
+        var done = p.steps[st.id];
+        var elId = "chk-"+p.id+"-"+st.id;
+        return '<li class="'+(done?'done':'')+'">'+
+          '<input type="checkbox" data-project="'+p.id+'" data-step="'+st.id+'" '+(done?'checked':'')+' id="'+elId+'">'+
+          '<label for="'+elId+'">'+text+'</label>'+
+          '</li>';
+      }).join("");
+      return '<div class="stage-label">'+stage.label+'</div><ul class="steps">'+lis+'</ul>';
+    }).join("");
+
+    return ''+
+    '<div class="card project-card" data-project-card="'+p.id+'">'+
+      '<div class="p-head">'+
+        '<input class="p-name" data-name="'+p.id+'" value="'+esc(p.name)+'" spellcheck="false">'+
+        '<div class="type-toggle" role="group">'+
+          '<button data-type-btn="web" data-project="'+p.id+'" class="'+(p.type==="web"?"active":"")+'" data-type="web">Web</button>'+
+          '<button data-type-btn="app" data-project="'+p.id+'" class="'+(p.type==="app"?"active":"")+'" data-type="app">App</button>'+
+        '</div>'+
+        '<div class="p-progress">'+prog+'/'+ALL_STEP_IDS.length+'</div>'+
+        '<button class="p-del" data-del="'+p.id+'" title="Projekt entfernen" aria-label="Projekt entfernen">×</button>'+
+      '</div>'+
+      stagesHtml+
+    '</div>';
+  }
+
+  function renderApp(){
+    var overall = overallProgress();
+    var pct = overall.total ? Math.round(overall.done / overall.total * 100) : 0;
+
+    var html = ''+
+    '<header class="top">'+
+      '<div class="eyebrow">Studio Mitsch — Portfolio-Update</div>'+
+      '<h1>Neue Projekte online bringen</h1>'+
+      '<p class="sub">Ein Durchlauf pro Projekt: Screens erfassen, auf Zielmaß bringen, Mockup bauen, fürs Web optimieren, in Sanity hochladen, live prüfen. Fortschritt wird gespeichert.</p>'+
+      '<div class="progress-row">'+
+        '<div class="progress-track"><div class="progress-fill" style="width:'+pct+'%"></div></div>'+
+        '<div class="progress-label">'+overall.done+' / '+overall.total+'</div>'+
+      '</div>'+
+    '</header>'+
+    renderSetup() +
+    renderReference() +
+    '<section>'+
+      '<h2>Pro Projekt</h2>'+
+      '<div class="project-grid">'+
+        STATE.projects.map(renderProject).join("") +
+      '</div>'+
+      '<button class="add-project" data-add>+ Projekt hinzufügen</button>'+
+    '</section>'+
+    '<footer class="status" id="status-line"></footer>';
+
+    document.getElementById("app").innerHTML = html;
+    updateStatusLine();
+  }
+
+  function updateStatusLine(){
+    var el = document.getElementById("status-line");
+    if (!el) return;
+    if (artifactAPI){
+      el.textContent = "Fortschritt wird geräteübergreifend gespeichert.";
+    } else if (capabilityChecked){
+      el.textContent = "Nur lokal in diesem Browser gespeichert (kein Sync verfügbar).";
+    } else {
+      el.textContent = "";
+    }
+  }
+
+  // State lives in its own file (state.json), not in index.html. That way
+  // saving never republishes the page itself, so the view never reloads
+  // while you're mid-click. The files-form publish() only reloads OTHER
+  // open views, never this one.
+  var LS_KEY = "studio-mitsch-portfolio-checklist";
+
+  function scheduleSave(){
+    document.getElementById("status-line") && (document.getElementById("status-line").textContent = "Speichere …");
+    if (saveTimer) clearTimeout(saveTimer);
+    saveTimer = setTimeout(doSave, 500);
+  }
+
+  function doSave(){
+    try{ localStorage.setItem(LS_KEY, JSON.stringify(STATE)); }catch(e){}
+    if (!artifactAPI){ updateStatusLine(); return; }
+    artifactAPI.publish({ "state.json": JSON.stringify(STATE) }).then(function(){
+      updateStatusLine();
+    }).catch(function(err){
+      if (!err || err.code === "conflict"){ return; }
+      if (err.code === "capability_disabled" || err.code === "not_declared" || err.code === "not_writer" || err.code === "not_granted"){
+        artifactAPI = null;
+      }
+      updateStatusLine();
+    });
+  }
+
+  function onChange(e){
+    var t = e.target;
+    if (t.matches("[data-setup]")){
+      var id = t.getAttribute("data-setup");
+      STATE.setup.forEach(function(s){ if (s.id === id) s.done = t.checked; });
+      renderApp();
+      scheduleSave();
+    } else if (t.matches("[data-project][data-step]")){
+      var pid = t.getAttribute("data-project");
+      var stepId = t.getAttribute("data-step");
+      STATE.projects.forEach(function(p){ if (p.id === pid) p.steps[stepId] = t.checked; });
+      renderApp();
+      scheduleSave();
+    }
+  }
+
+  function onClick(e){
+    var addBtn = e.target.closest("[data-add]");
+    if (addBtn){
+      STATE.projects.push({ id:"p"+STATE.nextProjectN, name:"Projekt "+STATE.nextProjectN, type:"web", steps: freshSteps() });
+      STATE.nextProjectN++;
+      renderApp();
+      scheduleSave();
+      return;
+    }
+    var delBtn = e.target.closest("[data-del]");
+    if (delBtn){
+      var pid = delBtn.getAttribute("data-del");
+      if (STATE.projects.length <= 1) return;
+      STATE.projects = STATE.projects.filter(function(p){ return p.id !== pid; });
+      renderApp();
+      scheduleSave();
+      return;
+    }
+    var typeBtn = e.target.closest("[data-type-btn]");
+    if (typeBtn){
+      var tpid = typeBtn.getAttribute("data-project");
+      var newType = typeBtn.getAttribute("data-type");
+      STATE.projects.forEach(function(p){ if (p.id === tpid) p.type = newType; });
+      renderApp();
+      scheduleSave();
+      return;
+    }
+    var copyBtn = e.target.closest("[data-copy]");
+    if (copyBtn){
+      var text = copyBtn.getAttribute("data-copy");
+      if (navigator.clipboard && navigator.clipboard.writeText){
+        navigator.clipboard.writeText(text).then(function(){
+          var old = copyBtn.textContent;
+          copyBtn.textContent = "Copied";
+          setTimeout(function(){ copyBtn.textContent = old; }, 1200);
+        }).catch(function(){});
+      }
+      return;
+    }
+  }
+
+  function onBlurCapture(e){
+    var t = e.target;
+    if (t.matches && t.matches("[data-name]")){
+      var pid = t.getAttribute("data-name");
+      var val = t.value.trim() || "Projekt";
+      STATE.projects.forEach(function(p){ if (p.id === pid) p.name = val; });
+      scheduleSave();
+    }
+  }
+
+  document.addEventListener("change", onChange);
+  document.addEventListener("click", onClick);
+  document.addEventListener("blur", onBlurCapture, true);
+
+  function initCapability(){
+    if (!window.claude || !window.claude.use){ capabilityChecked = true; updateStatusLine(); return; }
+    window.claude.use("artifact").then(function(api){
+      artifactAPI = api;
+      capabilityChecked = true;
+      updateStatusLine();
+    }).catch(function(){
+      artifactAPI = null;
+      capabilityChecked = true;
+      updateStatusLine();
+    });
+  }
+
+  function boot(){
+    // 1) Render immediately with defaults so the page never sits blank.
+    renderApp();
+    // 2) Try to load the saved state.json (this artifact's own data file).
+    fetch("state.json", { cache: "no-store" }).then(function(r){
+      if (!r.ok) throw new Error("no state.json yet");
+      return r.json();
+    }).then(function(data){
+      if (data && data.projects){
+        STATE = data;
+        renderApp();
+      }
+    }).catch(function(){
+      // No state.json yet (first run) or not reachable — fall back to
+      // whatever this browser saved locally, if anything.
+      try{
+        var raw = localStorage.getItem(LS_KEY);
+        if (raw){
+          var local = JSON.parse(raw);
+          if (local && local.projects){ STATE = local; renderApp(); }
+        }
+      }catch(e){}
+    }).finally(function(){
+      initCapability();
+    });
+  }
+
+  boot();
+})();
+</script>
+
+</body></html>
